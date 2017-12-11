@@ -19,15 +19,6 @@ class CreatePasswordResetsTable extends Migration
             $table->timestamp('created_at')->nullable();
         });
 
-
-        $table->string('name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('birth_date');
-            $table->integer('role_id')->unsigned();
-            $table->integer('status');
-
     }
 
     /**
