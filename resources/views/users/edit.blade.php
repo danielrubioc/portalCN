@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Perfil</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ action('UserController@update', ['id' => $user->id] ) }}">
@@ -73,7 +73,6 @@
                             <div class="col-md-6">
                                 <select class="form-control" name="role_id">
                                     @foreach($roles as $role)
-                                        $role
                                         @if ($user->role_id  == $role->id)
                                             <option value="{{$role->id}}" selected>{{$role->name}}</option>
                                             @else
@@ -86,16 +85,12 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
-
+                            <label for="email" class="col-md-4 control-label">Estado</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                <select class="form-control" name="status">
+                                    <option value="1" selected>Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
                             </div>
                         </div>
 

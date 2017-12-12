@@ -27,7 +27,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('users.create');
+        return view('users.create', ['roles' => Role::all(['id', 'name'])]);
     }
 
     /**
@@ -39,6 +39,31 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user = new User($request->all());
+        if ($request->password_confirmation == $request->password) {
+            $user->status = 1;
+            $user->password = bcrypt($request->password);
+            $count = User::where('email', $user->email)->count();
+            //dd($count);
+            if ($count>0){                       
+                if ($user->save()) {
+                    flash('El usuario se creo correctamente!')->success();
+                    return redirect('users');
+                }else {
+                    flash('Disculpa! el usuario no se pudo crear.')->error();
+                    return view('users.create');
+                }
+            } else {   
+                flash('El email ingresado ya se encuentra en la base de datos!')->error();
+                return view('users.create');
+            }
+
+        } else{
+            flash('Contraseñas deben ser iguales')->error();
+            return redirect()->route('users.create');
+
+        }
     }
 
     /**
@@ -61,7 +86,9 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        return view('users.edit', ['user' => User::findOrFail($id),  'roles' => Role::all(['id', 'name']) ]);
+
+        return view('users.edit', ['user' => User::findOrFail($id),  
+                                   'roles' => Role::all(['id', 'name']) ]);
 
     }
 
@@ -78,35 +105,37 @@ class UserController extends Controller
         $user = User::find($id); 
         if ($request->password_confirmation == $request->password) {
             if ($user) {
-
                 $user->name = $request->name;
                 $user->last_name = $request->last_name;
                 //$user->email = $request->email;
                 $user->birth_date = $request->birth_date;
                 $user->role_id = $request->role_id;
+                $user->status = $request->status;
                 $user->password = bcrypt($request->password);
-                $count = User::where('email', $user->email)->count();
-
+                    
                 if ($request->email == $user->email){
                    
                     $user->email = $request->email;   
 
                 } else{
-                    echo $count;
-                    if ($count<=0) {
-                        # code...
+                    $count = User::where('email', $request->email)->count();
+                    if ($count>0) {
+                        flash('el correo ingresado ya se encuentra registrado')->error();
+                        return redirect()->route('users.edit', $user->id);
+                    } else {  
+                        $user->email = $request->email;   
                     }
                    
                 }
                 
-                    if ($user->save()) {
-                        flash('El usuario '. $user->name .' se actualizó correctamente!')->success();
-                        return redirect()->route('users.edit', $user->id);
-                    }else
-                    {
-                         flash('El usuario no se pudo actualizar.')->error();
-                         return redirect()->route('users.edit', $user->id);
-                    }
+                if ($user->save()) {
+                    flash('El usuario '. $user->name .' se actualizó correctamente!')->success();
+                    return redirect()->route('users.edit', $user->id);
+                }else
+                {
+                     flash('El usuario no se pudo actualizar.')->error();
+                     return redirect()->route('users.edit', $user->id);
+                }
 
                 
 
@@ -132,5 +161,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::find($id);
+        if ($user->delete()) {
+            flash('Usuario eliminado correctamente!')->success();
+            return redirect('users');
+        } else{
+            flash('No se pudo eliminar el usuario!')->error();   
+            return redirect('users');
+        }
     }
 }

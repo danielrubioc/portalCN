@@ -17,7 +17,7 @@
 		</div>
 	    <br>
 		    <div class="table-responsive">
-			    <table class="table table-responsive table-perzonalise">
+			    <table class="table table-responsive table-perzonalise table-striped">
 			    	<thead>
 			    			<tr>	
 			    					<td>Nombre</td>
@@ -36,7 +36,15 @@
 								    <td>{{ $user->name }} {{ $user->last_name }}</td>
 								    <td>{{ $user->email }}</td>
 								    <td>{{ $user->birth_date }}</td>
-								    <td>{{ $user->profile }}</td>
+								    <td>
+								    	@if ($user->role_id  == 1)
+                                           <span>Administrador</span>
+                                            @elseif($user->role_id  == 2)
+                                            <span>Profesor</span>
+                                            @elseif($user->role_id  == 3)
+                                            <span>Publico</span>
+                                        @endif
+								    </td>
 								    <td>{{ $user->status }}</td>
 								    <td>{{ $user->created_at }}</td>
 								  
@@ -44,7 +52,12 @@
 								    <td class="especial">
 	
 									<div class="info">
-								    	<a href="{!! route('users.edit', $user->id) !!}" class="btn btn-info btn-edit-style">Editar</a></td>
+								    	<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-edit-style">Editar</a>
+				    					<form method="POST" action="{{ action('UserController@destroy', ['id' => $user->id] ) }}">
+									        {{ csrf_field() }}
+									        {{ method_field('DELETE') }}
+									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')"> Eliminar </button>
+									    </form>
 				    				</div>
 				    			</tr>
 			    			@endforeach
