@@ -32,3 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('users', 'UserController');
+//para ver perfil
+Route::get('profile', 'UserController@profile')->name('home');
+//para actualizar foto avatar
+Route::post('profile', 'UserController@update_avatar');
