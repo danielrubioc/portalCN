@@ -37,8 +37,7 @@
                         @if (Auth::user()->role_id == 1)
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
-                                <li><a href="{{ URL::to('users') }}">Publicaciones</a></li>
-
+                                <li><a href="">Publicaciones</a></li>
                             </ul>
                         @endif
                         @if (Auth::user()->role_id == 2)

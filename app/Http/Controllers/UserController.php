@@ -98,7 +98,7 @@ class UserController extends Controller
     {
         //
 
-        return view('users.profile', ['user' => Auth::user() ]);
+        return view('users.profile', ['user' => Auth::user(), 'roles' => Role::all(['id', 'name']) ]);
 
     }
 
@@ -115,7 +115,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        return view('profile', ['user' => Auth::user()] );
+        return view('users.profile', ['user' => Auth::user(), 'roles' => Role::all(['id', 'name']) ]);
 
     }
 
@@ -126,7 +126,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $profile=null)
     {
 
         $user = User::find($id); 
@@ -134,10 +134,9 @@ class UserController extends Controller
             if ($user) {
                 $user->name = $request->name;
                 $user->last_name = $request->last_name;
-                //$user->email = $request->email;
                 $user->birth_date = $request->birth_date;
                 $user->role_id = $request->role_id;
-                $user->status = $request->status;
+                //$user->status = $request->status;
                 $user->password = bcrypt($request->password);
                     
                 if ($request->email == $user->email){
@@ -148,6 +147,9 @@ class UserController extends Controller
                     $count = User::where('email', $request->email)->count();
                     if ($count>0) {
                         flash('el correo ingresado ya se encuentra registrado')->error();
+                        if ($request->profile) {
+                            return view('users.profile', ['user' => Auth::user() ]);
+                        }
                         return redirect()->route('users.edit', $user->id);
                     } else {  
                         $user->email = $request->email;   
@@ -157,11 +159,17 @@ class UserController extends Controller
                 
                 if ($user->save()) {
                     flash('El usuario '. $user->name .' se actualizó correctamente!')->success();
+                    if ($request->profile) {
+                        return view('users.profile', ['user' => Auth::user() ]);
+                    }
                     return redirect()->route('users.edit', $user->id);
                 }else
                 {
-                     flash('El usuario no se pudo actualizar.')->error();
-                     return redirect()->route('users.edit', $user->id);
+                    flash('El usuario no se pudo actualizar.')->error();
+                    if ($request->profile) {
+                        return view('users.profile', ['user' => Auth::user() ]);
+                    }
+                    return redirect()->route('users.edit', $user->id);
                 }
 
                 
@@ -169,10 +177,16 @@ class UserController extends Controller
             }  else{
                 
                 flash('no se encuentra el usuario')->error();
+                if ($request->profile) {
+                    return view('users.profile', ['user' => Auth::user() ]);
+                }
                 return redirect()->route('users.edit', $id);
             }
         } else{
             flash('Contraseñas deben ser iguales')->error();
+            if ($request->profile) {
+               return view('users.profile', ['user' => Auth::user() ]);
+            }
             return redirect()->route('users.edit', $id);
 
         }

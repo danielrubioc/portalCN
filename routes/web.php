@@ -31,8 +31,17 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+//************* users **************///
 Route::resource('users', 'UserController');
+
 //para ver perfil
-Route::get('profile', 'UserController@profile')->name('home');
+Route::get('profile', function () {
+    if(Auth::check()){
+    	return view('users.profile', ['user' => Auth::user() ]);
+    }else{
+        return view('/site/home');
+    }
+});
 //para actualizar foto avatar
 Route::post('profile', 'UserController@update_avatar');
