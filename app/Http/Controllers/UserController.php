@@ -163,8 +163,7 @@ class UserController extends Controller
                         return view('users.profile', ['user' => Auth::user() ]);
                     }
                     return redirect()->route('users.edit', $user->id);
-                }else
-                {
+                } else {
                     flash('El usuario no se pudo actualizar.')->error();
                     if ($request->profile) {
                         return view('users.profile', ['user' => Auth::user() ]);

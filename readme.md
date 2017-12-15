@@ -15,3 +15,12 @@
 - php artisan migrate
 - php artisan serve
 
+
+
+## Usuarios
+
+- teacher@gmail.com
+- admin@gmail.com
+- public@gmail.com
+
+Contraseña : 12345
