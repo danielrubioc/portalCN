@@ -21,11 +21,13 @@ class CreateBlogNewsTable extends Migration
             $table->string('cover_page');
             $table->integer('status');
             $table->integer('blog_category_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('blog_news', function($table) {
-            $table->foreign('blog_category_id')->references('id')->on('blog_category')->onDelete('cascade');;
+            $table->foreign('blog_category_id')->references('id')->on('blog_categories')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
