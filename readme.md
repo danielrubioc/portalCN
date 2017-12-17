@@ -13,6 +13,7 @@
 - Crear carpeta en public /uploads/avatars/. 
 - php artisan key:generate
 - php artisan migrate
+- php artisan vendor:publish --tag=ckeditor
 - php artisan serve
 
 
@@ -24,3 +25,9 @@
 - public@gmail.com
 
 Contraseña : 12345
+
+
+## librerias 
+
+- subir imagenes : http://image.intervention.io/
+- editor de texto: https://github.com/UniSharp/laravel-ckeditor

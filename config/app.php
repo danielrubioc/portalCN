@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Deportes Cerro Navia'),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +178,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
         Laracasts\Flash\FlashServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
+
 
     ],
 

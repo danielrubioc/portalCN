@@ -6,6 +6,7 @@
 @section('content')
 
 <div class="container">
+	<div class="gral-list-content">
 	    <div class="title-gral-index">
 			<a href="{{ URL::to('blogCategory/create') }}" class="btn btn-success">Nueva Categoria</a>	
 			<h1>Lista de Categorias del blog</h1>
@@ -28,20 +29,18 @@
 								
 								    <td>{{ $category->status }}</td>
 								  
-								    <td class="especial">
-	
-									<div class="info">
-								    	<a href="{{ route('blogCategory.edit', $category->id) }}" class="btn btn-info btn-edit-style">Editar</a>
+								    <td class="box-btnes">
+								    	<a href="{{ route('blogCategory.edit', $category->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 				    					<form method="POST" action="{{ route('blogCategory.destroy', ['id' => $category->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
-									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')"> Eliminar </button>
+									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
 									    </form>
-				    				</div>
 				    			</tr>
 			    			@endforeach
 			    	</tbody>
 			    </table>
 		    </div>
+	</div> 		    
  </div> 
 @endsection

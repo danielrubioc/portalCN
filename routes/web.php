@@ -49,3 +49,5 @@ Route::post('profile', 'UserController@update_avatar');
 //************ blog *****************//
 //categorias
 Route::resource('blogCategory', 'BlogCategoryController');
+//news
+Route::resource('blogNew', 'BlogNewsController');

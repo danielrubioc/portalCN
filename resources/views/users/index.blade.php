@@ -37,28 +37,20 @@
 								    <td>{{ $user->email }}</td>
 								    <td>{{ $user->birth_date }}</td>
 								    <td>
-								    	@if ($user->role_id  == 1)
-                                           <span>Administrador</span>
-                                            @elseif($user->role_id  == 2)
-                                            <span>Profesor</span>
-                                            @elseif($user->role_id  == 3)
-                                            <span>Publico</span>
-                                        @endif
+								    	{{ $user->roles->name }}
 								    </td>
 								    <td>{{ $user->status }}</td>
 								    <td>{{ $user->created_at }}</td>
 								  
 
-								    <td class="especial">
-	
-									<div class="info">
-								    	<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-edit-style">Editar</a>
+								    <td class="box-btnes">
+								    	<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 				    					<form method="POST" action="{{ action('UserController@destroy', ['id' => $user->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
-									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')"> Eliminar </button>
+									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estas seguro?')"  data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span> </button>
 									    </form>
-				    				</div>
+									</td>
 				    			</tr>
 			    			@endforeach
 			    	</tbody>

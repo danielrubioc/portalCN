@@ -1,0 +1,30 @@
+body {
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+    line-height: 1.5;
+    color: #6a6a6a;
+    font-size: 14px;
+}
+.btn-success {
+    color: #fff;
+    background-color: #282b2a;
+    border-color: #259d6d;
+}
+
+div#gral-list-index {
+    background: white;
+    padding: 15px;
+}
+.gral-list-content{
+    background: white;
+    padding: 15px;
+}
+
+.btn {
+    border: none;
+    border-radius: 0;
+    font-weight: 900;
+    font-size: 16px;
+}
+td.box-btnes {
+    display: inline-flex;
+}

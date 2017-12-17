@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="content-avatar-change col-md-3 ">
-                <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%; margin-right:25px;">
+                <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
                 <form enctype="multipart/form-data" action="/profile" method="POST">
                     <input type="file" name="avatar" required>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <button type="submit" class="pull-right btn btn-sm btn-primary"> cambiar avatar</button>
                 </form>
             </div>
-            <div class="content-info-change col-md-9 ">
+            <div class="content-avatar-change col-md-9 ">
                 <h2 style="text-align: center">Actualiza tus datos {{ $user->name }}</h2>
                
 

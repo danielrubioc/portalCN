@@ -8,12 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Deportes Cerro Navia') }}</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -31,18 +32,20 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Cerro Navigation
+                        <img src="/images/Logo_Deporte-17.png" style="height: 50px; margin-top: -15px;">
                     </a>
                     @if(Auth::user())
                         @if (Auth::user()->role_id == 1)
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
                                 <li><a href="{{ URL::to('blogCategory') }}">Categorías blog</a></li>
+                                <li><a href="{{ URL::to('blogNew') }}">Blog</a></li>
                             </ul>
                         @endif
                         @if (Auth::user()->role_id == 2)
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ URL::to('blogCategory') }}">Categorías blog</a></li>
+                                <li><a href="{{ URL::to('blogNew') }}">Blog</a></li>
                             </ul>
 
                         @endif
@@ -59,8 +62,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">Ingresar</a></li>
+                            <li><a href="{{ route('register') }}">Registro</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -68,11 +71,8 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ url('/profile')}}">Mi perfil</a>
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="position:relative; padding-left:50px;">
-                                            <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">
-                                            {{ Auth::user()->name }} <span class="caret"></span>
-                                        </a>
+                                    <li>
+                                        <a href="{{ url('/profile')}}"> <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span style="padding-left: 25px;">Mi perfil </span></a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -100,8 +100,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
         $('#flash-overlay-modal').modal();
+    </script>
+
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script>
+        $('#content').ckeditor();
     </script>
 </body>
 </html>
