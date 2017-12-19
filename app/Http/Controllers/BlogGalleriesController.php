@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\BlogNew;
 use App\BlogGallery;
+use App\BlogCategory;
 use Auth;
 use Image;
 
@@ -59,17 +60,33 @@ class BlogGalleriesController extends Controller
                 $upload_success = Image::make($avatar)->save( public_path('/uploads/news/gallery/' . $filename ) );
                 
                 $gallery->url = $filename;
+                $gallery->save();
 
-                if (!$upload_success && !$gallery->save()) {
+                 /*if (!$upload_success && !) {
                     flash('no se pudieron subir las imagenes')->error();
-                    return redirect()->route('blogGallery.create');         
-                }
+                   return redirect()->route('blogGallery.create');         
+                }*/
 
             }   
 
             if ($upload_success && $gallery->save()) {
                 flash('imagen(es) subidas correctamente!')->success();
-                return redirect()->route('blogGallery.create');
+                //from viene de editar noticia si es asi lo redirecciono donde mismo
+                if ($request->from) {
+                    //esto es para actvivar el tab en galeria
+                    $tabName = array(
+                        'name' => 'gallery',
+                    );
+
+                    return view('blogNew.edit', ['news' => BlogNew::findOrFail($request->blog_news_id), 
+                            'tab' => $tabName, 
+                            'categories' => BlogCategory::all(['id', 'name']),
+                            'gallery' => BlogGallery::where('blog_news_id', '=', $request->blog_news_id)->paginate(10) ]);
+                } else{
+                    
+                    return redirect()->route('blogGallery.create');
+                }
+               
             }
             else {
                 flash('no se pudieron subir las imagenes')->error();
@@ -123,8 +140,39 @@ class BlogGalleriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         //
+
+        $gallery = BlogGallery::find($id);
+
+
+        if ($gallery->delete()) {
+            //$file_path = app_path().'/images/news/'.$news->photo;
+
+            //unlink('/uploads/news/gallery'.$gallery->url);
+            unlink(public_path() .  '/uploads/news/gallery/' . $gallery->url );
+            flash('imagen eliminada correctamente!')->success();
+            if ($request->from) {
+                //esto es para actvivar el tab en galeria
+                $tabName = array(
+                    'name' => 'gallery',
+                );
+                return view('blogNew.edit', ['news' => BlogNew::findOrFail($gallery->blog_news_id), 
+                                            'tab' => $tabName, 
+                                            'categories' => BlogCategory::all(['id', 'name']),
+                                            'gallery' => BlogGallery::where('blog_news_id', '=', $gallery->blog_news_id)->paginate(10) ]);
+            } else{
+                return redirect('blogGallery');
+            }
+        } else{
+            flash('no se pudieron subir la imagen')->error();
+            return redirect('blogGallery');
+        }
+
+        
+
+        
+
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\BlogNew;
 use App\BlogCategory;
+use App\BlogGallery;
 use Auth;
 use Image;
 
@@ -89,8 +90,15 @@ class BlogNewsController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('blogNew.edit', ['news' => BlogNew::findOrFail($id), 'categories' => BlogCategory::all(['id', 'name'])]);
+        //esto es para actvivar el tab en info
+        $tabName = array(
+            'name' => 'info',
+        );
+
+        return view('blogNew.edit', ['news' => BlogNew::findOrFail($id), 
+                                    'tab' => $tabName, 
+                                    'categories' => BlogCategory::all(['id', 'name']),
+                                    'gallery' => BlogGallery::where('blog_news_id', '=', $id)->paginate(10) ]);
     }
 
     /**
