@@ -15,11 +15,11 @@ class CreateBlogNewsTable extends Migration
     {
         Schema::create('blog_news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('subtitle');
-            $table->string('content');
-            $table->string('cover_page');
-            $table->integer('status');
+            $table->string('title')->nullable();
+            $table->text('subtitle', 2000)->nullable();
+            $table->text('content')->nullable();
+            $table->string('cover_page')->nullable();
+            $table->integer('status')->nullable();
             $table->integer('blog_category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();

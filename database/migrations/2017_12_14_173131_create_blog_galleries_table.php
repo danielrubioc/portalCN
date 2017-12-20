@@ -15,10 +15,10 @@ class CreateBlogGalleriesTable extends Migration
     {
         Schema::create('blog_galleries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('url');
+            $table->string('name')->nullable();
+            $table->string('url')->nullable();
             $table->integer('blog_news_id')->unsigned();
-            $table->integer('status');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
 

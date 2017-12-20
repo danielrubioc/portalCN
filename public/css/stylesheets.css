@@ -60,3 +60,8 @@ ul.galleries {
     border-radius: 0;
     background: aliceblue;
 }
+
+.table-perzonalise.table-striped thead {
+    background: #98c329;
+    color: white;
+}

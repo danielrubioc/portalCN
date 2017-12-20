@@ -26,7 +26,7 @@
                                         <label for="cover_page" class="col-md-4 control-label">Portada</label>
 
                                         <div class="col-md-6">
-                                            <input type="file" name="cover_page">
+                                            <input type="file" name="cover_page" >
 
 
                                             @if ($errors->has('cover_page'))
@@ -85,9 +85,9 @@
 
                                     <div class="form-group">
                                         <div class="col-md-12 col-offset-md-1">
-                                    <textarea name="content" id="content" rows="10" cols="80">
-                                        Contenido
-                                    </textarea> 
+                                        <textarea name="content" id="content" value="" rows="10" cols="80">
+                                            {{ $news->content  }}
+                                        </textarea> 
                                     </div>
                                     </div>
                                     <div class="form-group">
@@ -160,7 +160,7 @@
                                         @endif
                                         @foreach($gallery as $file)
                                             <li class="col-md-4 box-content-action-gallery">
-                                                <img src="/uploads/news/gallery/{{ $file->url }}" style="width:100%; max-height:150px ">
+                                                <img src="/uploads/gallery/{{ $file->url }}" style="width:100%; max-height:150px ">
                                                 <form method="POST" action="{{ route('blogGallery.destroy', ['id' => $file->id] ) }}">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}

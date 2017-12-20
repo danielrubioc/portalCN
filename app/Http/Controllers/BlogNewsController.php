@@ -63,7 +63,14 @@ class BlogNewsController extends Controller
         if ($news->save()) {
             $lastInsertedId = $news->id;
             flash('Noticia creada correctamente!')->success();
-            return view('blogNew.edit', ['news' => BlogNew::findOrFail($lastInsertedId), 'categories' => BlogCategory::all(['id', 'name'])]);
+            $tabName = array(
+                'name' => 'info',
+            );
+            return view('blogNew.edit', ['news' => BlogNew::findOrFail($lastInsertedId), 
+                                    'tab' => $tabName, 
+                                    'categories' => BlogCategory::all(['id', 'name']),
+                                    'gallery' => BlogGallery::where('blog_news_id', '=', $lastInsertedId) ]);
+
         }else {
             flash('no se pudo crear la categoría')->error();
             return view('blogNew.create');
@@ -98,8 +105,10 @@ class BlogNewsController extends Controller
         return view('blogNew.edit', ['news' => BlogNew::findOrFail($id), 
                                     'tab' => $tabName, 
                                     'categories' => BlogCategory::all(['id', 'name']),
-                                    'gallery' => BlogGallery::where('blog_news_id', '=', $id)->paginate(10) ]);
+                                    'gallery' => BlogGallery::where('blog_news_id', '=', $id) ]);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -111,38 +120,52 @@ class BlogNewsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $news = BlogNew::find($id); 
 
-            if ($news) {
-                $news->title = $request->title;
-                $news->subtitle = $request->subtitle;
-                if ($request->cover_page) {
-                    $avatar = $request->file('cover_page');
-                    $random_string = md5(microtime());
-                    $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
-                    Image::make($avatar)->save( public_path('/uploads/news/' . $filename ) );
-                    $news->cover_page = $filename;
-                
-                } else {
-                    $news->cover_page = $news->cover_page; 
-                }
-                //$user->status = $request->status;
-                $news->content = $request->content;
-                $news->status = $request->status ? $request->status : 1;
-                if ($news->save()) {
-                    flash('La noticia '. $news->title .' se actualizó correctamente!')->success();
+            if ($request->show) {
+                $news = BlogNew::findOrFail($id);
+                $news->title = $news->title;
+                $news->subtitle = $news->subtitle;
+                $news->cover_page = $news->cover_page;
+                $news->status = $request->status;
+                $news->save();
+                $news = BlogNew::paginate(15);
+                return view('blogNew.index', ['news' => $news]);
+            } else {
+
+                $news = BlogNew::find($id); 
+                if ($news) {
+                    $news->title = $request->title;
+                    $news->subtitle = $request->subtitle;
+                    if ($request->cover_page) {
+                        $avatar = $request->file('cover_page');
+                        $random_string = md5(microtime());
+                        $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
+                        Image::make($avatar)->save( public_path('/uploads/news/' . $filename ) );
+                        $news->cover_page = $filename;
                     
-                    return redirect()->route('blogNew.edit', $news->id);
-                } else {
-                    flash('La noticia no se pudo actualizar.')->error();
-                    return redirect()->route('blogNew.edit', $news->id);
+                    } else {
+                        $news->cover_page = $news->cover_page; 
+                    }
+                    //$user->status = $request->status;
+                    $news->content = $request->content;
+                    $news->status = $request->status ? $request->status : 1;
+                    if ($news->save()) {
+                        flash('La noticia '. $news->title .' se actualizó correctamente!')->success();
+                        
+                        return redirect()->route('blogNew.edit', $news->id);
+                    } else {
+                        flash('La noticia no se pudo actualizar.')->error();
+                        return redirect()->route('blogNew.edit', $news->id);
+                    }
+                    
+                }  else{
+                    
+                    flash('no se encuentra la noticia')->error();
+                    return redirect()->route('blogNew.edit', $id);
                 }
-                
-            }  else{
-                
-                flash('no se encuentra la noticia')->error();
-                return redirect()->route('blogNew.edit', $id);
+
             }
+
 
 
     }

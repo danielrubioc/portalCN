@@ -57,7 +57,7 @@ class BlogGalleriesController extends Controller
                 $avatar = $file;
                 $random_string = md5(microtime());
                 $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
-                $upload_success = Image::make($avatar)->save( public_path('/uploads/news/gallery/' . $filename ) );
+                $upload_success = Image::make($avatar)->save( public_path('/uploads/gallery/' . $filename ) );
                 
                 $gallery->url = $filename;
                 $gallery->save();
@@ -151,7 +151,7 @@ class BlogGalleriesController extends Controller
             //$file_path = app_path().'/images/news/'.$news->photo;
 
             //unlink('/uploads/news/gallery'.$gallery->url);
-            unlink(public_path() .  '/uploads/news/gallery/' . $gallery->url );
+            unlink(public_path() .  '/uploads/gallery/' . $gallery->url );
             flash('imagen eliminada correctamente!')->success();
             if ($request->from) {
                 //esto es para actvivar el tab en galeria
