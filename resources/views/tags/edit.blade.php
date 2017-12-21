@@ -8,7 +8,7 @@
                 <div class="panel-heading">Nueva Categoría</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('blogCategory.update', ['id' => $category->id] ) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('tags.update', ['id' => $tag->id] ) }}">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
 
@@ -16,7 +16,7 @@
                                 <label for="name" class="col-md-4 control-label">Nombre</label>
 
                                 <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ $category->name }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $tag->name }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">

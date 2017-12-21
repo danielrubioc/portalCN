@@ -8,8 +8,8 @@
 <div class="container">
 	<div class="gral-list-content">
 	    <div class="title-gral-index">
-			<a href="{{ URL::to('blogCategory/create') }}" class="btn btn-success">Nueva Categoria</a>	
-			<h1>Lista de Categorias del blog</h1>
+			<a href="{{ URL::to('tags/create') }}" class="btn btn-success">Nuevo tag</a>	
+			<h1>Lista de tags</h1>
 		</div>
 	    <br>
 		    <div class="table-responsive">
@@ -22,16 +22,16 @@
 			    			</tr>
 			    	</thead>
 			    	<tbody>
-			    			@foreach ($categories as $category)
+			    			@foreach ($tags as $tag)
 				    			<tr>
 				    				
-								    <td>{{ $category->name }} {{ $category->last_name }}</td>
+								    <td>{{ $tag->name }} {{ $tag->last_name }}</td>
 								
-								    <td>{{ $category->status }}</td>
+								    <td>{{ $tag->status }}</td>
 								  
 								    <td class="box-btnes">
-								    	<a href="{{ route('blogCategory.edit', $category->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
-				    					<form method="POST" action="{{ route('blogCategory.destroy', ['id' => $category->id] ) }}">
+								    	<a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+				    					<form method="POST" action="{{ route('tags.destroy', ['id' => $tag->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>

@@ -8,7 +8,7 @@
                 <div class="panel-heading">Nueva Noticia</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('blogNew.store' ) }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('posts.store' ) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('cover_page') ? ' has-error' : '' }}">
@@ -57,9 +57,21 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="blog_category_id" class="col-md-4 control-label">Categoría</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="blog_category_id">
+                                <select class="form-control" name="category_id">
                                     @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="blog_category_id" class="col-md-4 control-label">Tags</label>
+                            <div class="col-md-6">
+                                <select class="form-control js-multiple" name="tags[]" multiple="multiple">
+                                  
+                                    @foreach($tags as $tag)
+                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -86,5 +98,29 @@
         </div>
     </div>
 </div>
+@section('select2')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(".js-multiple").select2({
+            placeholder: "Selecciona los tags",
+            tags: true,
+            tokenSeparators: [',', ' '],
+            createTag: function (params) {
+                // Don't offset to create a tag if there is no @ symbol
+                if (params.term.indexOf('@') === -1) {
+                  // Return null to disable tag creation
+                  return null;
+                }
+
+                return {
+                  id: params.term,
+                  text: params.term
+                }
+            }
+        })
+    </script>
+@stop
+
 @endsection
 

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\BlogNew;
-use App\BlogGallery;
-use App\BlogCategory;
+use App\Post;
+use App\Gallery;
+use App\Category;
 use Auth;
 use Image;
 
-class BlogGalleriesController extends Controller
+class GalleriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class BlogGalleriesController extends Controller
     public function index()
     {
         //
-        $galleries = BlogGallery::paginate(15);
-        return view('blogGallery.index', ['galleries' => $galleries]);
+        $galleries = Gallery::paginate(15);
+        return view('galleries.index', ['galleries' => $galleries]);
     }
 
     /**
@@ -32,7 +32,7 @@ class BlogGalleriesController extends Controller
     public function create()
     {
         //
-        return view('blogGallery.create', ['news' => BlogNew::all(['id', 'title'])]);
+        return view('galleries.create', ['news' => Post::all(['id', 'title'])]);
     }
 
     /**
@@ -50,10 +50,10 @@ class BlogGalleriesController extends Controller
 
             foreach ($files as $file) {
 
-                $gallery = new BlogGallery();
+                $gallery = new gallery();
                 $gallery->name = $request->name;
                 $gallery->status = 1;
-                $gallery->blog_news_id = $request->blog_news_id;
+                $gallery->post_id = $request->post_id;
                 $avatar = $file;
                 $random_string = md5(microtime());
                 $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
@@ -64,7 +64,7 @@ class BlogGalleriesController extends Controller
 
                  /*if (!$upload_success && !) {
                     flash('no se pudieron subir las imagenes')->error();
-                   return redirect()->route('blogGallery.create');         
+                   return redirect()->route('galleries.create');         
                 }*/
 
             }   
@@ -78,19 +78,19 @@ class BlogGalleriesController extends Controller
                         'name' => 'gallery',
                     );
 
-                    return view('blogNew.edit', ['news' => BlogNew::findOrFail($request->blog_news_id), 
+                    return view('posts.edit', ['news' => Post::findOrFail($request->post_id), 
                             'tab' => $tabName, 
-                            'categories' => BlogCategory::all(['id', 'name']),
-                            'gallery' => BlogGallery::where('blog_news_id', '=', $request->blog_news_id)->paginate(10) ]);
+                            'categories' => Category::all(['id', 'name']),
+                            'gallery' => Gallery::where('post_id', '=', $request->post_id)->paginate(10) ]);
                 } else{
                     
-                    return redirect()->route('blogGallery.create');
+                    return redirect()->route('galleries.create');
                 }
                
             }
             else {
                 flash('no se pudieron subir las imagenes')->error();
-                return redirect()->route('blogGallery.create');
+                return redirect()->route('galleries.create');
             }
         }
 
@@ -144,7 +144,7 @@ class BlogGalleriesController extends Controller
     {
         //
 
-        $gallery = BlogGallery::find($id);
+        $gallery = Gallery::find($id);
 
 
         if ($gallery->delete()) {
@@ -158,16 +158,16 @@ class BlogGalleriesController extends Controller
                 $tabName = array(
                     'name' => 'gallery',
                 );
-                return view('blogNew.edit', ['news' => BlogNew::findOrFail($gallery->blog_news_id), 
+                return view('posts.edit', ['news' => Post::findOrFail($gallery->post_id), 
                                             'tab' => $tabName, 
-                                            'categories' => BlogCategory::all(['id', 'name']),
-                                            'gallery' => BlogGallery::where('blog_news_id', '=', $gallery->blog_news_id)->paginate(10) ]);
+                                            'categories' => Category::all(['id', 'name']),
+                                            'gallery' => Gallery::where('post_id', '=', $gallery->post_id)->paginate(10) ]);
             } else{
-                return redirect('blogGallery');
+                return redirect('gallery');
             }
         } else{
             flash('no se pudieron subir la imagen')->error();
-            return redirect('blogGallery');
+            return redirect('gallery');
         }
 
         

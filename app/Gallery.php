@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogGallery extends Model
+class Gallery extends Model
 {
     //
     protected $fillable = [
-        'name', 'url', 'blog_news_id', 'status',
+        'name', 'url', 'post_id', 'status',
     ];
 
      public function BlogNews()
     {
-        return $this->hasMany('App\BlogNew', 'id', 'blog_news_id');
+        return $this->hasMany('App\BlogNew', 'id', 'post_id');
     }
 }

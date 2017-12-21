@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\BlogNew;
-use App\BlogCategory;
-use App\BlogGallery;
+use App\Post;
+use App\Category;
+use App\Gallery;
+use App\Tag;
 use Auth;
 use Image;
 
-class BlogNewsController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +20,8 @@ class BlogNewsController extends Controller
     public function index()
     {
         //
-        $news = BlogNew::paginate(15);
-        return view('blogNew.index', ['news' => $news]);
+        $news = Post::paginate(15);
+        return view('posts.index', ['news' => $news]);
     }
 
     /**
@@ -31,7 +32,8 @@ class BlogNewsController extends Controller
     public function create()
     {
         //
-        return view('blogNew.create', ['categories' => BlogCategory::all(['id', 'name'])]);
+        return view('posts.create', ['categories' => Category::all(['id', 'name']),
+                                     'tags' => Tag::all(['id', 'name'])]);
 
     }
 
@@ -46,9 +48,10 @@ class BlogNewsController extends Controller
         //
         //var_dump($request);
        
-        $news = new BlogNew($request->all());
+        $news = new Post($request->all());
         $news->status = 1;
         $news->user_id = Auth::id();
+        
 
         if( $request->hasFile('cover_page') ) {
             $avatar = $request->file('cover_page');
@@ -61,19 +64,22 @@ class BlogNewsController extends Controller
 
         
         if ($news->save()) {
+
+
             $lastInsertedId = $news->id;
+            $news->tags()->attach($request->tags);
             flash('Noticia creada correctamente!')->success();
             $tabName = array(
                 'name' => 'info',
             );
-            return view('blogNew.edit', ['news' => BlogNew::findOrFail($lastInsertedId), 
+            return view('posts.edit', ['news' => Post::findOrFail($lastInsertedId), 
                                     'tab' => $tabName, 
-                                    'categories' => BlogCategory::all(['id', 'name']),
-                                    'gallery' => BlogGallery::where('blog_news_id', '=', $lastInsertedId) ]);
+                                    'categories' => Category::all(['id', 'name']),
+                                    'gallery' => Gallery::where('post_id', '=', $lastInsertedId) ]);
 
         }else {
             flash('no se pudo crear la categoría')->error();
-            return view('blogNew.create');
+            return view('posts.create');
         }
         
     }
@@ -102,10 +108,10 @@ class BlogNewsController extends Controller
             'name' => 'info',
         );
 
-        return view('blogNew.edit', ['news' => BlogNew::findOrFail($id), 
+        return view('posts.edit', ['news' => Post::findOrFail($id), 
                                     'tab' => $tabName, 
-                                    'categories' => BlogCategory::all(['id', 'name']),
-                                    'gallery' => BlogGallery::where('blog_news_id', '=', $id) ]);
+                                    'categories' => Category::all(['id', 'name']),
+                                    'gallery' => Gallery::where('post_id', '=', $id) ]);
     }
 
 
@@ -122,17 +128,17 @@ class BlogNewsController extends Controller
         //
 
             if ($request->show) {
-                $news = BlogNew::findOrFail($id);
+                $news = Post::findOrFail($id);
                 $news->title = $news->title;
                 $news->subtitle = $news->subtitle;
                 $news->cover_page = $news->cover_page;
                 $news->status = $request->status;
                 $news->save();
-                $news = BlogNew::paginate(15);
-                return view('blogNew.index', ['news' => $news]);
+                $news = Post::paginate(15);
+                return view('posts.index', ['news' => $news]);
             } else {
 
-                $news = BlogNew::find($id); 
+                $news = Post::find($id); 
                 if ($news) {
                     $news->title = $request->title;
                     $news->subtitle = $request->subtitle;
@@ -152,16 +158,16 @@ class BlogNewsController extends Controller
                     if ($news->save()) {
                         flash('La noticia '. $news->title .' se actualizó correctamente!')->success();
                         
-                        return redirect()->route('blogNew.edit', $news->id);
+                        return redirect()->route('posts.edit', $news->id);
                     } else {
                         flash('La noticia no se pudo actualizar.')->error();
-                        return redirect()->route('blogNew.edit', $news->id);
+                        return redirect()->route('posts.edit', $news->id);
                     }
                     
                 }  else{
                     
                     flash('no se encuentra la noticia')->error();
-                    return redirect()->route('blogNew.edit', $id);
+                    return redirect()->route('posts.edit', $id);
                 }
 
             }
@@ -179,13 +185,13 @@ class BlogNewsController extends Controller
     public function destroy($id)
     {
         //
-        $category = BlogCategory::find($id);
+        $category = Post::find($id);
         if ($category->delete()) {
             flash('Noticia eliminada correctamente!')->success();
-            return redirect('blogNew');
+            return redirect('post');
         } else{
             flash('No se pudo eliminar la Noticia!')->error();   
-            return redirect('blogNew');
+            return redirect('post');
         }
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlogNewsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateBlogNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog_news', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->nullable();
             $table->text('subtitle', 2000)->nullable();
             $table->text('content')->nullable();
             $table->string('cover_page')->nullable();
             $table->integer('status')->nullable();
-            $table->integer('blog_category_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('blog_news', function($table) {
-            $table->foreign('blog_category_id')->references('id')->on('blog_categories')->onDelete('cascade');
+        Schema::table('posts', function($table) {
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -38,6 +38,6 @@ class CreateBlogNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_news');
+        Schema::dropIfExists('posts');
     }
 }

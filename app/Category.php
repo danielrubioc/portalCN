@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogCategory extends Model
+class Category extends Model
 {
     //
     protected $fillable = [
@@ -13,6 +13,6 @@ class BlogCategory extends Model
 
      public function BlogNews()
     {
-        return $this->hasMany('App\BlogNew', 'id', 'blog_category_id');
+        return $this->hasOne('App\Post', 'id', 'category_id');
     }
 }

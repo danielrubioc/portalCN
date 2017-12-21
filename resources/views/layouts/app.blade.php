@@ -37,14 +37,15 @@
                         @if (Auth::user()->role_id == 1)
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
-                                <li><a href="{{ URL::to('blogCategory') }}">Categorías blog</a></li>
-                                <li><a href="{{ URL::to('blogNew') }}">Blog</a></li>
+                                <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
+                                <li><a href="{{ URL::to('posts') }}">Blog</a></li>
+                                <li><a href="{{ URL::to('tags') }}">Tags</a></li>
                             </ul>
                         @endif
                         @if (Auth::user()->role_id == 2)
                             <ul class="nav navbar-nav">
-                                <li><a href="{{ URL::to('blogCategory') }}">Categorías blog</a></li>
-                                <li><a href="{{ URL::to('blogNew') }}">Blog</a></li>
+                                <li><a href="{{ URL::to('category') }}">Categorías blog</a></li>
+                                <li><a href="{{ URL::to('post') }}">Blog</a></li>
                             </ul>
 
                         @endif
@@ -99,8 +100,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-
-    @yield('dropzone')
+    @yield('select2')
 
     <script>
         $('#flash-overlay-modal').modal();

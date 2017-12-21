@@ -18,7 +18,7 @@
                                         <img src="/uploads/news/{{ $news->cover_page }}" style="width:100%; max-height:150px ">
                                 <?php endif ?>
                                  <br>  <br>   
-                                <form class="form-horizontal" method="POST" action="{{ route('blogNew.update', ['id' => $news->id] ) }}" enctype="multipart/form-data">
+                                <form class="form-horizontal" method="POST" action="{{ route('posts.update', ['id' => $news->id] ) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
 
@@ -109,9 +109,9 @@
                     <div id="gallery" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'gallery' ? 'in active' : '' }}">
                             <div class="panel-body">
                                 <h2 class="title-gral">Sube imagenes para la noticia</h2>
-                                <form class="form-horizontal" method="POST" action="{{ route('blogGallery.store' ) }}" enctype="multipart/form-data">
+                                <form class="form-horizontal" method="POST" action="{{ route('galleries.store' ) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-                                    <input type="hidden" name="blog_news_id" value="{{$news->id}}">
+                                    <input type="hidden" name="post_id" value="{{$news->id}}">
                                     <input type="hidden" name="from" value="news">
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                         <label for="name" class="col-md-4 control-label">Imagen(es)</label>
@@ -161,7 +161,7 @@
                                         @foreach($gallery as $file)
                                             <li class="col-md-4 box-content-action-gallery">
                                                 <img src="/uploads/gallery/{{ $file->url }}" style="width:100%; max-height:150px ">
-                                                <form method="POST" action="{{ route('blogGallery.destroy', ['id' => $file->id] ) }}">
+                                                <form method="POST" action="{{ route('galleries.destroy', ['id' => $file->id] ) }}">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
                                                     <input type="hidden" name="from" value="news">

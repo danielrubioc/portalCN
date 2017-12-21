@@ -8,8 +8,8 @@
 <div class="container">
 	<div class="gral-list-content">
 	    <div class="title-gral-index">
-			<a href="{{ URL::to('blogNew/create') }}" class="btn btn-success">Subir publicación</a>	
-			<h1>Noticias</h1>
+			<a href="{{ URL::to('posts/create') }}" class="btn btn-success">Subir publicación</a>	
+			<h1>Publicaciones</h1>
 		</div>
 	    <br>
 		    <div class="table-responsive">
@@ -34,21 +34,21 @@
 				    				<td><img src="/uploads/news/{{ $post->cover_page }}" style="width:100%; max-height:150px "></td>
 								    <td>{{ $post->title }}</td>
 								    <td>{{ $post->subtitle }}</td>
-									<td>{{ $post->BlogCategory->name }}</td>
+									<td>{{ $post->category->name }}</td>
 									<td>{{ $post->user->name   }}</td>
 									<td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
 								    <td>{{ $post->status }}</td>
 								  
 								    <td class="box-btnes">
-								    	<a href="{{ route('blogNew.edit', $post->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
-				    					<form method="POST" action="{{ route('blogNew.destroy', ['id' => $post->id] ) }}">
+								    	<a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+				    					<form method="POST" action="{{ route('posts.destroy', ['id' => $post->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span> </button>
 									    </form>
 									    
 									    @if ($post->status === 1)
-										    <form method="POST" action="{{ route('blogNew.update', ['id' => $post->id] ) }}">
+										    <form method="POST" action="{{ route('posts.update', ['id' => $post->id] ) }}">
 										       	{{ csrf_field() }}
 	                                    		{{ method_field('PUT') }}
 	                                    		<input type="hidden" name="status" value="0">
@@ -56,7 +56,7 @@
 										        <button type="submit" class="btn btn-alert delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Ocultar"> <span class="glyphicon glyphicon-eye-close"></span> </button>
 										    </form>
 										@else
-										    <form method="POST" action="{{ route('blogNew.update', ['id' => $post->id] ) }}">
+										    <form method="POST" action="{{ route('posts.update', ['id' => $post->id] ) }}">
 										       	{{ csrf_field() }}
 	                                    		{{ method_field('PUT') }}
 	                                    		<input type="hidden" name="status" value="1">

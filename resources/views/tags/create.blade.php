@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Nueva Categoría</div>
+                <div class="panel-heading">Nuevo tag</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('blogCategory.store' ) }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('tags.store' ) }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

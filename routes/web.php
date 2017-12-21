@@ -47,9 +47,11 @@ Route::get('profile', function () {
 Route::post('profile', 'UserController@update_avatar');
 
 //************ blog *****************//
-//categorias
-Route::resource('blogCategory', 'BlogCategoryController');
-//news
-Route::resource('blogNew', 'BlogNewsController');
-//news
-Route::resource('blogGallery', 'BlogGalleriesController');
+//category
+Route::resource('categories', 'CategoriesController');
+//post
+Route::resource('posts', 'PostsController');
+//gallery
+Route::resource('galleries', 'GalleriesController');
+//tags
+Route::resource('tags', 'TagsController');

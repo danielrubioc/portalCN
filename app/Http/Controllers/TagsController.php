@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\BlogCategory;
+use App\Tag;
 
-class BlogCategoryController extends Controller
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class BlogCategoryController extends Controller
     public function index()
     {
         //
-        $categories = BlogCategory::latest()->paginate(5);
-        return view('blogCategory.index', ['categories' => $categories]);
+        $tags = Tag::latest()->paginate(5);
+        return view('tags.index', ['tags' => $tags]);
     }
 
     /**
@@ -27,7 +27,7 @@ class BlogCategoryController extends Controller
     public function create()
     {
         //
-        return view('blogCategory.create');
+        return view('tags.create');
     }
 
     /**
@@ -39,14 +39,14 @@ class BlogCategoryController extends Controller
     public function store(Request $request)
     {
         //
-        $category = new BlogCategory($request->all());
-        $category->status = 1;
-        if ($category->save()) {
+        $tags = new Tag($request->all());
+        $tags->status = 1;
+        if ($tags->save()) {
             flash('Categoría creada correctamente!')->success();
-            return redirect('blogCategory');
+            return redirect('tag');
         }else {
             flash('no se pudo crear la categoría')->error();
-            return view('blogCategory.create');
+            return view('tags.create');
         }
         
     }
@@ -71,7 +71,7 @@ class BlogCategoryController extends Controller
     public function edit($id)
     {
         //
-        return view('blogCategory.edit', ['category' => BlogCategory::findOrFail($id)]);
+        return view('tags.edit', ['tag' => Tag::findOrFail($id)]);
     }
 
     /**
@@ -84,22 +84,22 @@ class BlogCategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $category = BlogCategory::find($id); 
-            if ($category) {
-                $category->name = $request->name;
-                if ($category->save()) {
-                    flash('La categoría '. $category->name .' se actualizó correctamente!')->success();
+        $tag = Tag::find($id); 
+            if ($tag) {
+                $tag->name = $request->name;
+                if ($tag->save()) {
+                    flash('El tag '. $tag->name .' se actualizó correctamente!')->success();
                     
-                    return redirect()->route('blogCategory.edit', $category->id);
+                    return redirect()->route('tags.edit', $tag->id);
                 } else {
-                    flash('La categoría no se pudo actualizar.')->error();
-                    return redirect()->route('blogCategory.edit', $category->id);
+                    flash('El tag no se pudo actualizar.')->error();
+                    return redirect()->route('tags.edit', $tag->id);
                 }
                 
             }  else{
                 
-                flash('no se encuentra la categoría')->error();
-                return redirect()->route('blogCategory.edit', $id);
+                flash('no se encuentra el tag')->error();
+                return redirect()->route('tags.edit', $id);
             }
 
 
@@ -114,13 +114,13 @@ class BlogCategoryController extends Controller
     public function destroy($id)
     {
         //
-        $category = BlogCategory::find($id);
-        if ($category->delete()) {
-            flash('Categoría eliminado correctamente!')->success();
-            return redirect('blogCategory');
+        $tag = Tag::find($id);
+        if ($tag->delete()) {
+            flash('Tag eliminado correctamente!')->success();
+            return redirect('tag');
         } else{
-            flash('No se pudo eliminar el categoría!')->error();   
-            return redirect('blogCategory');
+            flash('No se pudo eliminar el tag!')->error();   
+            return redirect('tag');
         }
     }
 }

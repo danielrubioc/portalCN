@@ -8,7 +8,7 @@
                 <div class="panel-heading">Nueva imagen</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('blogGallery.store' ) }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('gallery.store' ) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -42,7 +42,7 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="blog_category_id" class="col-md-4 control-label">Noticia</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="blog_news_id">
+                                <select class="form-control" name="post_id">
                                     @foreach($news as $new)
                                             <option value="{{$new->id}}">{{$new->title}}</option>
                                     @endforeach
