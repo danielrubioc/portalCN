@@ -120,8 +120,34 @@
     margin-bottom: 30px;
 }
 
+
 section#first-section {
-    height: 200px;
+    position: relative;
+}
+.text-description {
+    z-index: 999999;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Archivo Black', sans-serif;
 }
 
+.text-description h1 {
+    font-weight: bold;
+    font-style: normal;
+    color: white;
+    font-size: 22px;
+    line-height: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    border: 12px solid rgba(255,255,255,.8);
+    background: rgba(3,9,31,.4);
+    padding: 10px 26px;
+    display: inline-block;
+}
 }

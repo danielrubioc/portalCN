@@ -14,6 +14,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
+    <!--title font-->
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -42,8 +45,13 @@
     </div>    
     <div id="main">    
         @yield('content')
-    </div>    
-    </div>
+    </div>  
+    <footer>
+      <div class="btn-register-taller">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit at ex luctus auctor.</p>
+      </div>
+    </footer>  
+  </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
