@@ -36,27 +36,31 @@
         </div>
       </div>
 
-      <!-- Use any element to open the sidenav -->
-      <div class="fixed-menu">
-          <div class="container order-nav">
-            <div class="icon-menu" onclick="openNav()">
-              <div class="bar1"></div>
-              <div class="bar2"></div>
-              <div class="bar3"></div>
+       
+      <div id="main"> 
+        <!-- Use any element to open the sidenav -->
+        <div class="fixed-menu">
+            <div class="container order-nav">
+                <div class="icon-menu" onclick="openNav()">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </div>
+                <div class="icon-corporative"> 
+                  <img src="{{url('/images/Logo_Deporte-17.png')}}" class="img-responsive" >   
+                </div>
             </div>
-            <div class="icon-corporative"> 
-              <img src="{{url('/images/Logo_Deporte-17.png')}}" class="img-responsive" >   
+        </div>      
+        
+        @yield('content')
+
+        <footer>
+            <div class="btn-register-taller">
+                <a href="#">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
             </div>
-          </div>
-      </div>    
-      <div id="main">    
-          @yield('content')
+        </footer>  
       </div>  
-      <footer>
-        <div class="btn-register-taller">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit at ex luctus auctor.</p>
-        </div>
-      </footer>  
+
     </div>
 
     <!-- Scripts -->
