@@ -12,50 +12,57 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <div class="space-menu">
+            <img src="{{url('/images/Logo_Deporte-17.png')}}" >
+          </div>
+          <div class="buttone">
+          <a href="#">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="#">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="#">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="#">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="#">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          </div>
+        </div>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/Logo_Deporte-17.png" style="height: 50px; margin-top: -15px;">
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-
-                    
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="">Nosotros</a></li>
-                            <li><a href="">Disciplina</a></li>
-                            <li><a href="">Evento</a></li>
-                            <li><a href="">Tercer Tiempo</a></li>
-                            <li><a href="">Contacto</a></li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+    <!-- Use any element to open the sidenav -->
+    <div class="fixed-menu">
+        <div class="container" onclick="openNav()">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>    
+    </div>    
+    <div id="main">    
         @yield('content')
+    </div>    
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script type="text/javascript">
+
+    function openNav() {
+        document.getElementById("mySidenav").classList.add('margin-nav');
+        document.getElementById("main").classList.add('margin-nav');
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+    function closeNav() {
+        document.getElementById("mySidenav").classList.remove('margin-nav');
+        document.getElementById("main").classList.remove('margin-nav');
+        document.body.style.backgroundColor = "white";
+    }
+
+    </script>
 </body>
 </html>
