@@ -15,43 +15,49 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
     <!--title font-->
-    <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 </head>
 <body>
     <div id="app">
 
-        <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <div class="space-menu">
-            <img src="{{url('/images/Logo_Deporte-17.png')}}" >
-          </div>
-          <div class="buttone">
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="space-menu">
+          <img src="{{url('/images/Logo_Deporte-17.png')}}" >
+        </div>
+        <div class="buttons">
           <a href="#">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          </div>
+          <a href="#">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>
-
-    <!-- Use any element to open the sidenav -->
-    <div class="fixed-menu">
-        <div class="container" onclick="openNav()">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </div>    
-    </div>    
-    <div id="main">    
-        @yield('content')
-    </div>  
-    <footer>
-      <div class="btn-register-taller">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit at ex luctus auctor.</p>
       </div>
-    </footer>  
-  </div>
+
+      <!-- Use any element to open the sidenav -->
+      <div class="fixed-menu">
+          <div class="container order-nav">
+            <div class="icon-menu" onclick="openNav()">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </div>
+            <div class="icon-corporative"> 
+              <img src="{{url('/images/Logo_Deporte-17.png')}}" class="img-responsive" >   
+            </div>
+          </div>
+      </div>    
+      <div id="main">    
+          @yield('content')
+      </div>  
+      <footer>
+        <div class="btn-register-taller">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit at ex luctus auctor.</p>
+        </div>
+      </footer>  
+    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

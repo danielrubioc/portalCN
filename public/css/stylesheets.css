@@ -1,5 +1,8 @@
 
 @media (max-width: 768px) { 
+body{
+    font-family: 'Open Sans', sans-serif;
+}    
 /* menu  */
 .sidenav {
     height: 100%;
@@ -45,7 +48,7 @@
 .bar1, .bar2, .bar3 {
     width: 35px;
     height: 5px;
-    background-color: #333;
+    background-color: white;
     margin: 6px 0;
     transition: 0.4s;
 }
@@ -63,11 +66,15 @@
 }
 .fixed-menu {
     position: fixed;
-    z-index: 1050;
+    z-index: 999;
     top: 0;
     bottom: 0;
     overflow-y: auto;
     border-radius: 0;
+    display: inline-block;
+    background: black;
+    height: 55px;
+    width: 100%;
 }
 #app{
     overflow: hidden;
@@ -90,29 +97,32 @@
     margin-bottom: 10px;
 }
 
-.buttone a:nth-child(1) {
+.buttons a:nth-child(1) {
     background: #3b92b0;
 }
-.buttone a:nth-child(2) {
+.buttons a:nth-child(2) {
     background: #3763a0;
 }
-.buttone a:nth-child(3) {
+.buttons a:nth-child(3) {
     background: #294e7b;
 }
-.buttone a:nth-child(4) {
+.buttons a:nth-child(4) {
     background: #283c77;
 }
-.buttone a:nth-child(5) {
+.buttons a:nth-child(5) {
     background: #9c3270;
 }
-.buttone a {
+.buttons a:nth-child(6) {
+    background: #c74290;
+}
+.buttons a {
     color: white;
     font-family: arial;
     text-transform: uppercase;
     font-weight: bold;
     padding-left: 20px;
 }
-.buttone a span {
+.buttons a span {
     float: right;
     margin-right: 10px;
 }
@@ -125,16 +135,28 @@ section#first-section {
     position: relative;
 }
 .text-description {
-    z-index: 999999;
+    z-index: 2;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     text-align: center;
 }
+section#first-section {
+    margin-top: 54px;
+}
+
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: 'Open Sans', sans-serif;
     font-family: 'Archivo Black', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #222;
+    text-rendering: optimizeLegibility;
+    margin-top: .2rem;
+    margin-bottom: .5rem;
+    line-height: 1.4;
 }
 
 .text-description h1 {
@@ -145,9 +167,76 @@ section#first-section {
     line-height: 25px;
     text-transform: uppercase;
     text-align: center;
-    border: 12px solid rgba(255,255,255,.8);
+    border: 5px solid rgb(255, 255, 255);
     background: rgba(3,9,31,.4);
-    padding: 10px 26px;
+    padding: 10px 40px;
     display: inline-block;
 }
+.icon-menu {
+    display: inline-block;
+    float: left;
+    margin-top: 10px;
+    color: white;
+}
+
+.icon-corporative {
+    width: 60px;
+    float: left;
+    width: 28%;
+    max-width: 80px;
+    margin-left: 90px;
+    margin-top: 6px;
+}
+.content {
+    position: relative;
+}
+.content img{
+    min-height: 400px;
+}
+.content:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(243, 243, 243, 0.37);
+}
+
+.text-description-gral {
+    position: absolute;
+    bottom: 0;
+    z-index: 3
+}
+.text-description-gral h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    line-height: 1.1;
+}
+
+.text-description-gral p {
+    color: white;
+}
+.text-description-gral p {
+    font-style: italic;
+}
+
+a.btn-first.btn-gral {
+    padding: 10px 15px;
+    border: 2px solid white;
+    color: white;
+    text-transform: uppercase;
+}
+
+.text-description-gral.text-second-gral {
+    bottom: 20%;
+    width: 50%;
+}
+.text-description-gral.text-third-gral {
+    width: 55%;
+    right: 0;
+    bottom: 5%;
+}
+
 }
