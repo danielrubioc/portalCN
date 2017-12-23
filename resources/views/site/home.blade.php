@@ -6,7 +6,13 @@
 		<img src="{{url('/images/first-section.jpg')}}" class="img-responsive">
 		<div class="container">
 			<div class="text-description">
-				<div class="title"><h1>Fomentar <br> y <br>difundir</h1></div>
+				<div class="title">
+					<h1>Fomentar <br> y <br>difundir <br>
+					<span style="font-size: 28px; font-style: italic; font-weight: 100; text-transform: lowercase;">
+					"El deporte y la actividad física<br> en Cerro Navia"</span></h1>
+					
+				</div>
+
 			</div>
 		</div>
 	</section>

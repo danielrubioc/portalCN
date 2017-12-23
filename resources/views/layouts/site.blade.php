@@ -32,7 +32,7 @@
           <a href="#">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="#">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="registro/create">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>
       </div>
 

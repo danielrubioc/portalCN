@@ -41,6 +41,7 @@
                                 <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
                                 <li><a href="{{ URL::to('posts') }}">Blog</a></li>
                                 <li><a href="{{ URL::to('tags') }}">Tags</a></li>
+                                <li><a href="{{ URL::to('talleres') }}">Talleres</a></li>
                             </ul>
                         @endif
                         @if (Auth::user()->role_id == 2)

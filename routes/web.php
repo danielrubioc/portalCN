@@ -55,3 +55,7 @@ Route::resource('posts', 'PostsController');
 Route::resource('galleries', 'GalleriesController');
 //tags
 Route::resource('tags', 'TagsController');
+//taller
+Route::resource('talleres', 'TallersController');
+//registro
+Route::resource('registro', 'UsersTallersController');
