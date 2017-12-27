@@ -50,13 +50,13 @@
                   <img src="{{url('/images/Logo_Deporte-17.png')}}" class="img-responsive" >   
                 </div>
             </div>
-        </div>      
-        
+        </div>
+
         @yield('content')
 
         <footer>
             <div class="btn-register-taller">
-                <a href="#">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                <a href="registro/create">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
             </div>
         </footer>  
       </div>  
