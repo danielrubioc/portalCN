@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/stylesheets-app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -32,7 +32,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/Logo_Deporte-17.png" style="height: 50px; margin-top: -15px;">
+                        <img src="{{url('/images/Logo_Deporte-17.png')}}" style="height: 50px; margin-top: -15px;">
                     </a>
                     @if(Auth::user())
                         @if (Auth::user()->role_id == 1)

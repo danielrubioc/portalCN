@@ -61,13 +61,24 @@ class PostsController extends Controller
             $news->cover_page = $filename;
         }   
         
-
-        
+            
         if ($news->save()) {
 
+            foreach ($request->tags as $key => $value) {
+                $tag = Tag::firstOrNew(['name' => $value]);
+                if (!$tag->exists) {    
+                    $tag = new Tag();
+                    $tag->status = 1;
+                    $tag->name = $value;
+                    $tag->save();
+                    $tags[$key] = $tag->id;
+                } else {
+                    $tags[$key] = $value;
+                }
+            }
 
             $lastInsertedId = $news->id;
-            $news->tags()->attach($request->tags);
+            $news->tags()->attach($tags);
             flash('Noticia creada correctamente!')->success();
             $tabName = array(
                 'name' => 'info',
@@ -75,7 +86,9 @@ class PostsController extends Controller
             return view('posts.edit', ['news' => Post::findOrFail($lastInsertedId), 
                                     'tab' => $tabName, 
                                     'categories' => Category::all(['id', 'name']),
-                                    'gallery' => Gallery::where('post_id', '=', $lastInsertedId) ]);
+                                    'gallery' => Gallery::where('post_id', '=', $lastInsertedId),
+                                    'tags' => Tag::all(['id', 'name']),
+                                    'tagsOld' => Post::findOrFail($lastInsertedId)->tags() ]);
 
         }else {
             flash('no se pudo crear la categoría')->error();
@@ -108,10 +121,13 @@ class PostsController extends Controller
             'name' => 'info',
         );
 
+
         return view('posts.edit', ['news' => Post::findOrFail($id), 
                                     'tab' => $tabName, 
                                     'categories' => Category::all(['id', 'name']),
-                                    'gallery' => Gallery::where('post_id', '=', $id) ]);
+                                    'gallery' => Gallery::where('post_id', '=', $id),
+                                    'tags' => Tag::all(['id', 'name']),
+                                    'tagsOld' => Post::findOrFail($id)->tags() ]);
     }
 
 
@@ -143,6 +159,7 @@ class PostsController extends Controller
                     $news->title = $request->title;
                     $news->subtitle = $request->subtitle;
                     if ($request->cover_page) {
+                        unlink(public_path() .  '/uploads/news/' . $news->cover_page );
                         $avatar = $request->file('cover_page');
                         $random_string = md5(microtime());
                         $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
@@ -187,11 +204,12 @@ class PostsController extends Controller
         //
         $category = Post::find($id);
         if ($category->delete()) {
+            unlink(public_path() .  '/uploads/news/' . $category->cover_page );
             flash('Noticia eliminada correctamente!')->success();
-            return redirect('post');
+            return redirect('posts');
         } else{
             flash('No se pudo eliminar la Noticia!')->error();   
-            return redirect('post');
+            return redirect('posts');
         }
     }
 }

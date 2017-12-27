@@ -15,7 +15,7 @@
                     <div id="info" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'info' ? 'in active' : '' }}">
                             <div class="panel-body">
                                 <?php if ($news->cover_page): ?>
-                                        <img src="/uploads/news/{{ $news->cover_page }}" style="width:100%; max-height:150px ">
+                                        <img src="{{url('/uploads/news')}}/{{ $news->cover_page }}" style="width:100%; max-height:150px ">
                                 <?php endif ?>
                                  <br>  <br>   
                                 <form class="form-horizontal" method="POST" action="{{ route('posts.update', ['id' => $news->id] ) }}" enctype="multipart/form-data">
@@ -77,6 +77,20 @@
                                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                                     @endif
                                                         
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <label for="blog_category_id" class="col-md-4 control-label">Tags</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control js-multiple" name="tags[]" multiple="multiple">
+                                              
+                                                @foreach($tags as $tag)
+
+                                                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                                      
                                                 @endforeach
                                             </select>
                                         </div>
@@ -181,4 +195,15 @@
         </div>
     </div>
 </div>
+
+@section('select2')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(".js-multiple").select2({
+            placeholder: "Selecciona los tags",
+            tags: true,
+        })
+    </script>
+@stop
 @endsection
