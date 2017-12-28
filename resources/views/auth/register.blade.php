@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Registro de usuario</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
-                            <label for="birth_date" class="col-md-4 control-label">Edad</label>
+                            <label for="birth_date" class="col-md-4 control-label">Fecha de nacimiento</label>
 
                             <div class="col-md-6">
                                 <input id="birth_date" type="date" class="form-control" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
@@ -92,7 +92,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Registrar 
                                 </button>
                             </div>
                         </div>

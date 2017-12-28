@@ -80,10 +80,10 @@
 
                         <div class="form-group">
                             <div class="col-md-10 col-offset-md-1">
-                        <textarea name="content" id="content" rows="10" cols="80">
-                            Contenido
-                        </textarea> 
-                        </div>
+                                <textarea name="content" id="content" rows="10" cols="80">
+                                    Contenido
+                                </textarea> 
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -107,6 +107,13 @@
             tags: true,
         })
     </script>
+@stop
+@section('ckeditor')
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+<script>
+    $('#content').ckeditor();
+</script>
 @stop
 
 @endsection

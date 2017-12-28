@@ -86,8 +86,8 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Estado</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="status">
-                                    <option value="1" selected>Activo</option>
+                                <select class="form-control" name="status" id="status">
+                                    <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>
                                 </select>
                             </div>
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Actualizar
                                 </button>
                             </div>
                         </div>

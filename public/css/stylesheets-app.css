@@ -76,3 +76,17 @@ ul.galleries {
     float: left;
     margin-top: 70px;
 }
+
+.profile-form .control-label {
+    text-align: left;
+    margin-bottom: 0;
+    padding-top: 7px;
+}
+
+@media (max-width: 768px) { 
+
+ul.nav.navbar-nav.align-element-nav {
+    padding-left: 40px;
+}
+ 
+}
