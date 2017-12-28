@@ -15,7 +15,7 @@
                             <label for="cover_page" class="col-md-4 control-label">Portada</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="cover_page" required>
+                                <input type="file" name="cover_page" accept=".png, .jpg, .jpeg" required>
 
 
                                 @if ($errors->has('cover_page'))
@@ -68,7 +68,7 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="blog_category_id" class="col-md-4 control-label">Tags</label>
                             <div class="col-md-6">
-                                <select class="form-control js-multiple" name="tags[]" multiple="multiple">
+                                <select class="form-control js-multiple" name="tags[]" multiple="multiple" required>
                                   
                                     @foreach($tags as $tag)
                                             <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -99,25 +99,12 @@
     </div>
 </div>
 @section('select2')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/select2.min.js') }}"></script>
     <script type="text/javascript">
         $(".js-multiple").select2({
             placeholder: "Selecciona los tags",
             tags: true,
-            tokenSeparators: [',', ' '],
-            createTag: function (params) {
-                // Don't offset to create a tag if there is no @ symbol
-                if (params.term.indexOf('@') === -1) {
-                  // Return null to disable tag creation
-                  return null;
-                }
-
-                return {
-                  id: params.term,
-                  text: params.term
-                }
-            }
         })
     </script>
 @stop

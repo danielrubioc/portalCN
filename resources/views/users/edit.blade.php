@@ -41,10 +41,9 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
-                            <label for="birth_date" class="col-md-4 control-label">Edad</label>
-
+                            <label for="birth_date" class="col-md-4 control-label">Fecha de nacimiento</label>
                             <div class="col-md-6">
-                                <input id="birth_date" type="date" class="form-control" name="birth_date" value="{{ $user->birth_date }}" required autofocus>
+                                <input id="birth_date" type="date" class="form-control" name="birth_date" value="{{ date('Y-m-d', strtotime($user->birth_date)) }}" required autofocus>
 
                                 @if ($errors->has('birth_date'))
                                     <span class="help-block">
@@ -91,28 +90,6 @@
                                     <option value="1" selected>Activo</option>
                                     <option value="0">Inactivo</option>
                                 </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 

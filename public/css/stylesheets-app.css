@@ -28,6 +28,7 @@ div#gral-list-index {
 td.box-btnes {
     display: inline-flex;
 }
+
 ul.galleries {
 
     margin-left: 0;
@@ -64,4 +65,14 @@ ul.galleries {
 .table-perzonalise.table-striped thead {
     background: #98c329;
     color: white;
+}
+
+.content-avatar-change.col-md-12 {
+    display: inline-block;
+        padding-top: 20px;
+}
+
+.content-change-input-avatar {
+    float: left;
+    margin-top: 70px;
 }

@@ -15,7 +15,7 @@
                     <div id="info" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'info' ? 'in active' : '' }}">
                             <div class="panel-body">
                                 <?php if ($news->cover_page): ?>
-                                        <img src="/uploads/news/{{ $news->cover_page }}" style="width:100%; max-height:150px ">
+                                        <img src="{{url('/uploads/news')}}/{{ $news->cover_page }}" style="width:100%; max-height:150px ">
                                 <?php endif ?>
                                  <br>  <br>   
                                 <form class="form-horizontal" method="POST" action="{{ route('posts.update', ['id' => $news->id] ) }}" enctype="multipart/form-data">
@@ -26,7 +26,7 @@
                                         <label for="cover_page" class="col-md-4 control-label">Portada</label>
 
                                         <div class="col-md-6">
-                                            <input type="file" name="cover_page" >
+                                            <input type="file" name="cover_page" accept=".png, .jpg, .jpeg">
 
 
                                             @if ($errors->has('cover_page'))
@@ -82,6 +82,21 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <label for="blog_category_id" class="col-md-4 control-label">Tags</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control js-multiple" name="tags[]" multiple="multiple" required>
+                                                @foreach($tags as $tag)
+                                                    @if (array_search($tag['id'], array_column($tagsInPost, 'id')) !== false ){
+                                                       <option value="{{$tag->id}}" selected>{{$tag->name}}</option>
+                                                       @else
+                                                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
 
                                     <div class="form-group">
                                         <div class="col-md-12 col-offset-md-1">
@@ -117,7 +132,7 @@
                                         <label for="name" class="col-md-4 control-label">Imagen(es)</label>
 
                                         <div class="col-md-6">
-                                            <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />
+                                            <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" accept=".png, .jpg, .jpeg" required/>
 
                                             @if ($errors->has('name'))
                                                 <span class="help-block">
@@ -155,20 +170,26 @@
                                 <div class="list-file-galleries">
                                     <h2>Imagenes de la noticia</h2>
                                     <ul class="galleries">
+
+
                                         @if (!$gallery)
-                                            no hay imagenes
-                                        @endif
-                                        @foreach($gallery as $file)
                                             <li class="col-md-4 box-content-action-gallery">
-                                                <img src="/uploads/gallery/{{ $file->url }}" style="width:100%; max-height:150px ">
-                                                <form method="POST" action="{{ route('galleries.destroy', ['id' => $file->id] ) }}">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('DELETE') }}
-                                                    <input type="hidden" name="from" value="news">
-                                                    <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
-                                                </form>
+                                                <p>no hay imagenes</p>
                                             </li>
-                                        @endforeach
+                                            @else
+                                            @foreach($gallery as $file)
+                                                <li class="col-md-4 box-content-action-gallery">
+                                                    <img src="/uploads/gallery/{{ $file->url }}" style="width:100%; max-height:150px ">
+                                                    <form method="POST" action="{{ route('galleries.destroy', ['id' => $file->id] ) }}">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <input type="hidden" name="from" value="news">
+                                                        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
+                                                    </form>
+                                                </li>
+                                            @endforeach    
+                                        @endif
+                                        
                                     </ul>
 
                                 </div>
@@ -181,4 +202,15 @@
         </div>
     </div>
 </div>
+
+@section('select2')
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script type="text/javascript">
+        $(".js-multiple").select2({
+            placeholder: "Selecciona los tags",
+            tags: true,
+        })
+    </script>
+@stop
 @endsection

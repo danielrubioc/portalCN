@@ -57,31 +57,19 @@ class GalleriesController extends Controller
                 $avatar = $file;
                 $random_string = md5(microtime());
                 $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
-                $upload_success = Image::make($avatar)->save( public_path('/uploads/gallery/' . $filename ) );
-                
+                $upload_success = Image::make($avatar)->save( public_path('/uploads/gallery/' . $filename ) );        
                 $gallery->url = $filename;
                 $gallery->save();
 
-                 /*if (!$upload_success && !) {
-                    flash('no se pudieron subir las imagenes')->error();
-                   return redirect()->route('galleries.create');         
-                }*/
 
             }   
-
             if ($upload_success && $gallery->save()) {
                 flash('imagen(es) subidas correctamente!')->success();
                 //from viene de editar noticia si es asi lo redirecciono donde mismo
                 if ($request->from) {
                     //esto es para actvivar el tab en galeria
-                    $tabName = array(
-                        'name' => 'gallery',
-                    );
+                    return redirect()->route('posts.edit', $gallery->post_id);
 
-                    return view('posts.edit', ['news' => Post::findOrFail($request->post_id), 
-                            'tab' => $tabName, 
-                            'categories' => Category::all(['id', 'name']),
-                            'gallery' => Gallery::where('post_id', '=', $request->post_id)->paginate(10) ]);
                 } else{
                     
                     return redirect()->route('galleries.create');
@@ -158,10 +146,8 @@ class GalleriesController extends Controller
                 $tabName = array(
                     'name' => 'gallery',
                 );
-                return view('posts.edit', ['news' => Post::findOrFail($gallery->post_id), 
-                                            'tab' => $tabName, 
-                                            'categories' => Category::all(['id', 'name']),
-                                            'gallery' => Gallery::where('post_id', '=', $gallery->post_id)->paginate(10) ]);
+                return redirect()->route('posts.edit', $gallery->post_id);
+                
             } else{
                 return redirect('gallery');
             }

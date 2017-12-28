@@ -162,6 +162,11 @@ section#first-section {
     line-height: 1.4;
 }
 
+
+.box-btnes {
+    display: inline-flex !important;
+}
+
 .text-description h1 {
     font-weight: bold;
     font-style: normal;
