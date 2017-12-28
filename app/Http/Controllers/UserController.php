@@ -30,6 +30,7 @@ class UserController extends Controller
     {
         //
         return view('users.create', ['roles' => Role::all(['id', 'name'])]);
+
     }
 
     /**
@@ -48,7 +49,8 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
             $count = User::where('email', $user->email)->count();
             //dd($count);
-            if ($count>0){                       
+
+            if ($count==0){                       
                 if ($user->save()) {
                     flash('El usuario se creo correctamente!')->success();
                     return redirect('users');
@@ -58,7 +60,7 @@ class UserController extends Controller
                 }
             } else {   
                 flash('El email ingresado ya se encuentra en la base de datos!')->error();
-                return view('users.create');
+                return redirect()->route('users.create');
             }
 
         } else{
@@ -134,10 +136,10 @@ class UserController extends Controller
             if ($user) {
                 $user->name = $request->name;
                 $user->last_name = $request->last_name;
-                $user->birth_date = $request->birth_date;
+                $user->birth_date = $request->birth_date ? $user->birth_date : $user->birth_date;
                 $user->role_id = $request->role_id;
-                //$user->status = $request->status;
-                $user->password = bcrypt($request->password);
+                $user->status = $request->status ? $user->status : $user->status;
+                $user->password = $request->password ? bcrypt($request->password) : $user->password;
                     
                 if ($request->email == $user->email){
                    

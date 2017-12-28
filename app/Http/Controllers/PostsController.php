@@ -62,25 +62,27 @@ class PostsController extends Controller
             //si vienen los tags
             if ($request->tags) {
                 foreach ($request->tags as $key => $value) {
-                    //busco por nombre los tags que vienen
-                    $tag = Tag::firstOrNew(['name' => $value]);
-                    //si no existe lo creo
-                    if (!$tag->exists) {    
-                        $tag = new Tag();
-                        $tag->status = 1;
-                        $tag->name = $value;
-                        $tag->save();
-                        // agrego el id al arreglo $tags
-                        $tags[$key] = $tag->id;
+                    // si viene un string esto pasa cuando es un nuevo tag 
+                    if(is_numeric($value) == false) {
+                        //busco por nombre los tags que vienen
+                        $tag = Tag::firstOrNew(['name' => $value]);
+                        //si no existe lo creo
+                        if (!$tag->exists) {    
+                            $tag = new Tag();
+                            $tag->status = 1;
+                            $tag->name = $value;
+                            $tag->save();
+                            // agrego el id al arreglo $tags
+                            $tags[$key] = $tag->id;
+                        } 
                     } else {
-                        $tags[$key] = $value;
+                      $tags[$key] = $value;  
                     }
+
                 }
+                $news->tags()->attach($tags);
             }
-
             $lastInsertedId = $news->id;
-            $news->tags()->attach($tags);
-
             flash('Noticia creada correctamente!')->success();
             $tabName = array(
                 'name' => 'info',
@@ -168,21 +170,24 @@ class PostsController extends Controller
                     //si vienen los tags
                     if ($request->tags) {
                         foreach ($request->tags as $key => $value) {
-                            //busco por nombre los tags que vienen
-                            $tag = Tag::firstOrNew(['name' => $value]);
-                            //si no existe lo creo
-                            if (!$tag->exists) {    
-                                $tag = new Tag();
-                                $tag->status = 1;
-                                $tag->name = $value;
-                                $tag->save();
-                                // agrego el id al arreglo $tags
-                                $tags[$key] = $tag->id;
+                            // si viene un string esto pasa cuando es un nuevo tag 
+                            if(is_numeric($value) == false) {
+                                //busco por nombre los tags que vienen
+                                $tag = Tag::firstOrNew(['name' => $value]);
+                                //si no existe lo creo
+                                if (!$tag->exists) {    
+                                    $tag = new Tag();
+                                    $tag->status = 1;
+                                    $tag->name = $value;
+                                    $tag->save();
+                                    // agrego el id al arreglo $tags
+                                    $tags[$key] = $tag->id;
+                                } 
                             } else {
-                                $tags[$key] = $value;
+                              $tags[$key] = $value;  
                             }
-                        }
 
+                        }
                         $news->tags()->detach();
                         $news->tags()->attach($tags);
                     }

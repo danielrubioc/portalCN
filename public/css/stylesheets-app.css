@@ -66,3 +66,13 @@ ul.galleries {
     background: #98c329;
     color: white;
 }
+
+.content-avatar-change.col-md-12 {
+    display: inline-block;
+        padding-top: 20px;
+}
+
+.content-change-input-avatar {
+    float: left;
+    margin-top: 70px;
+}
