@@ -83,6 +83,49 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                                    <label for="address" class="col-md-12 control-label">Dirección</label>
+
+                                    <div class="col-md-12">
+                                        <input id="address" type="text" class="form-control" name="address" value="{{ $user->address }}" autofocus>
+
+                                        @if ($errors->has('address'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('address') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                    <label for="phone" class="col-md-12 control-label">Teléfono fijo</label>
+
+                                    <div class="col-md-12">
+                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->phone }}" autofocus>
+
+                                        @if ($errors->has('phone'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('phone') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                    <label for="cell_phone" class="col-md-12 control-label">Teléfono celular</label>
+
+                                    <div class="col-md-12">
+                                        <input id="cell_phone" type="text" class="form-control" name="cell_phone" value="{{ $user->cell_phone }}" autofocus>
+
+                                        @if ($errors->has('cell_phone'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('cell_phone') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="password" class="col-md-12 control-label">Reseña</label>
                                     <div class="col-md-12">

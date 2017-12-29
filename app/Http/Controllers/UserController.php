@@ -148,8 +148,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $profile=null)
-    {
+    public function update(Request $request, $id)
+    {   
+        //validacion si esque viene de perfil
+        if ($request->profile) {
+                
+                   
+            // mensajes de validacion
+            $messages = array(
+                'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
+                'email.unique'    => 'El email ya ha sido registrado.',
+                'required' => 'El campo es obligatorio',
+            );
+            // validacion segun Validator
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'password' => 'required|string|min:6|confirmed',
+            ],  $messages);
+
+            if ($validator->fails()) {
+                return redirect('profile')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+
+        }
 
         $user = User::find($id); 
         if ($request->password_confirmation == $request->password) {
@@ -159,8 +182,9 @@ class UserController extends Controller
                 $user->birth_date = $request->birth_date ? $request->birth_date : $user->birth_date;
                 $user->role_id = $request->role_id ? $request->role_id : $user->role_id;
                 $user->status = $request->status ? $request->status : $user->status;
-                print_r($user->status);
-                die();
+                $user->address = $request->address ? $request->address : $user->address;
+                $user->phone = $request->phone ? $request->phone : $user->phone; 
+                $user->cell_phone = $request->cell_phone ? $request->cell_phone : $user->cell_phone;
                 $user->password = $request->password ? bcrypt($request->password) : $user->password;
                 $user->referential_info = $request->referential_info ? $request->referential_info : $user->referential_info;
 
@@ -169,6 +193,7 @@ class UserController extends Controller
                     $user->email = $request->email;   
 
                 } else{
+
                     $count = User::where('email', $request->email)->count();
                     if ($count>0) {
                         flash('el correo ingresado ya se encuentra registrado')->error();
