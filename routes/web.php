@@ -17,8 +17,6 @@ Route::get('/', function () {
     }else{
         return view('/site/home');
     }
-
-
 });
 
 
@@ -26,14 +24,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 //************* users **************///
-Route::resource('users', 'UserController');
+Route::resource('users', 'UserController')->middleware('auth');
 
 //para ver perfil
 Route::get('profile', function () {
@@ -44,18 +37,29 @@ Route::get('profile', function () {
     }
 });
 //para actualizar foto avatar
-Route::post('profile', 'UserController@update_avatar');
+Route::post('profile', 'UserController@update_avatar')->middleware('auth');;
 
 //************ blog *****************//
+
 //category
-Route::resource('categories', 'CategoriesController');
+Route::resource('categories', 'CategoriesController')->middleware('auth');;
 //post
-Route::resource('posts', 'PostsController');
+Route::resource('posts', 'PostsController')->middleware('auth');;
 //gallery
-Route::resource('galleries', 'GalleriesController');
+Route::resource('galleries', 'GalleriesController')->middleware('auth');;
 //tags
-Route::resource('tags', 'TagsController');
+Route::resource('tags', 'TagsController');;
 //taller
 Route::resource('talleres', 'TallersController');
 //registro
 Route::resource('registro', 'UsersTallersController');
+Route::get('/registro/exitoso', 'UsersTallersController@exitoso');
+Route::resource('tags', 'TagsController')->middleware('auth');;
+
+
+
+
+/***************** Public site  ***********************/
+
+Route::get('/site', 'HomeController@index')->name('home');
+Route::get('about', 'HomeController@about');

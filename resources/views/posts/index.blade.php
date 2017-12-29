@@ -31,7 +31,7 @@
 			    	<tbody>
 			    			@foreach ($news as $post)
 				    			<tr>
-				    				<td><img src="/uploads/news/{{ $post->cover_page }}" style="width:100%; max-height:150px "></td>
+				    				<td><img src="{{url('/uploads/news')}}/{{ $post->cover_page }}" style="width:100%; max-height:150px "></td>
 								    <td>{{ $post->title }}</td>
 								    <td>{{ $post->subtitle }}</td>
 									<td>{{ $post->category->name }}</td>

@@ -22,7 +22,7 @@
 			    			<tr>	
 			    					<td>Nombre</td>
 			    					<td>Email</td>
-			    					<td>Fecha de nacimiento</td>
+			    					<td>Teléfono celular</td>
 			    					<td>Perfil</td>
 			    					<td>Estado</td>
 			    					<td>Fecha de creación</td>
@@ -35,10 +35,8 @@
 				    				
 								    <td>{{ $user->name }} {{ $user->last_name }}</td>
 								    <td>{{ $user->email }}</td>
-								    <td>{{ $user->birth_date }}</td>
-								    <td>
-								    	{{ $user->roles->name }}
-								    </td>
+								    <td>{{ $user->cell_phone }}</td>
+								    <td>{{ $user->roles->name }}</td>
 								    <td>{{ $user->status }}</td>
 								    <td>{{ $user->created_at }}</td>
 								  

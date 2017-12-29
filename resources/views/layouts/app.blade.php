@@ -18,19 +18,17 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+
+        <nav class="navbar navbar-default navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{url('/images/Logo_Deporte-17.png')}}" style="height: 50px; margin-top: -15px;">
                     </a>
@@ -54,46 +52,68 @@
                     @endif
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav align-element-nav">
+                        @if(Auth::user())
+                            @if (Auth::user()->role_id == 1)
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
+                                    <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
+                                    <li><a href="{{ URL::to('posts') }}">Blog</a></li>
+                                    <li><a href="{{ URL::to('tags') }}">Tags</a></li>
+                                </ul>
+                            @endif
+                            @if (Auth::user()->role_id == 2)
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ URL::to('category') }}">Categorías blog</a></li>
+                                    <li><a href="{{ URL::to('post') }}">Blog</a></li>
+                                </ul>
+
+                            @endif
+                        @endif
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
+                        
                         @guest
                             <li><a href="{{ route('login') }}">Ingresar</a></li>
                             <li><a href="{{ route('register') }}">Registro</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false">
+                                   
+                                    <img src="{{url('/uploads/avatars')}}/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span style="padding-left: 25px;">
+                                    {{ Auth::user()->name }}
                                 </a>
-
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/profile')}}"> <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span style="padding-left: 25px;">Mi perfil </span></a>
+                                        <a href="{{ url('/profile')}}"> Mi perfil </span></a>
                                     </li>
+                                    <li role="presentation" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            <i class="fa fa-sign-out"></i> Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
+
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                        @endif
+
                     </ul>
                 </div>
             </div>
         </nav>
+
+
+
         <div class="container">
             @include('flash::message')
         </div>
@@ -102,16 +122,14 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <!-- selector multiple -->
     @yield('select2')
-
+    <!--  editor de texto -->
+    @yield('ckeditor')
     <script>
         $('#flash-overlay-modal').modal();
     </script>
 
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
-    <script>
-        $('#content').ckeditor();
-    </script>
+    
 </body>
 </html>

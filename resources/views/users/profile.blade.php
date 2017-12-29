@@ -9,7 +9,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel  panel-default" style="display: inline-block">
                 <div class="content-avatar-change col-md-12 ">
-                    <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%; margin-right:25px; float:left">
+                    <img src="{{url('/uploads/avatars/')}}/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%; margin-right:25px; float:left">
                     <div class="content-change-input-avatar">
                         <form enctype="multipart/form-data" action="/profile" method="POST">
                             <input type="file" name="avatar" required>
@@ -22,17 +22,16 @@
                     <h2 style="text-align: center">Actualiza tus datos {{ $user->name }}</h2>
                    
 
-                    <form class="form-horizontal" method="POST" action="{{ action('UserController@update', ['id' => $user->id] ) }}">
+                    <form class="form-horizontal profile-form" method="POST" action="{{ action('UserController@update', ['id' => $user->id] ) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <input id="profile" type="hidden" class="form-control" name="profile" value="true">
-                                <input id="status" type="hidden" class="form-control" name="status" value="true">
                                 <input id="role_id" type="hidden" class="form-control" name="role_id" value="{{$user->role_id}}">
 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Nombre</label>
+                                    <label for="name" class="col-md-12 control-label">Nombre</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" required autofocus>
 
                                         @if ($errors->has('name'))
@@ -44,9 +43,9 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                    <label for="last_name" class="col-md-4 control-label">Apellido</label>
+                                    <label for="last_name" class="col-md-12 control-label">Apellido</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input id="last_name" type="text" class="form-control" name="last_name" value="{{ $user->last_name }}" required autofocus>
 
                                         @if ($errors->has('last_name'))
@@ -58,9 +57,9 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
-                                    <label for="birth_date" class="col-md-4 control-label">Edad</label>
+                                    <label for="birth_date" class="col-md-12 control-label">Fecha de nacimiento</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input id="birth_date" type="date" class="form-control" name="birth_date" value="{{ $user->birth_date }}" required autofocus>
 
                                         @if ($errors->has('birth_date'))
@@ -72,9 +71,9 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <label for="email" class="col-md-4 control-label">E-Mail</label>
+                                    <label for="email" class="col-md-12 control-label">E-Mail</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" required>
 
                                         @if ($errors->has('email'))
@@ -85,6 +84,56 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                                    <label for="address" class="col-md-12 control-label">Dirección</label>
+
+                                    <div class="col-md-12">
+                                        <input id="address" type="text" class="form-control" name="address" value="{{ $user->address }}" autofocus>
+
+                                        @if ($errors->has('address'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('address') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                    <label for="phone" class="col-md-12 control-label">Teléfono fijo</label>
+
+                                    <div class="col-md-12">
+                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->phone }}" autofocus>
+
+                                        @if ($errors->has('phone'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('phone') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                    <label for="cell_phone" class="col-md-12 control-label">Teléfono celular</label>
+
+                                    <div class="col-md-12">
+                                        <input id="cell_phone" type="text" class="form-control" name="cell_phone" value="{{ $user->cell_phone }}" autofocus>
+
+                                        @if ($errors->has('cell_phone'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('cell_phone') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password" class="col-md-12 control-label">Reseña</label>
+                                    <div class="col-md-12">
+                                        <textarea name="referential_info" id="referential_info"  rows="10" cols="80">
+                                           {{ $user->referential_info }}
+                                        </textarea> 
+                                    </div>
+                                </div>
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <label for="password" class="col-md-4 control-label">Contraseña</label>
@@ -121,5 +170,13 @@
         </div>
     </div>
 </div>
+
+@section('ckeditor')
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+<script>
+    $('#referential_info').ckeditor();
+</script>
+@stop
 
 @endsection
