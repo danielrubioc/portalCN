@@ -56,3 +56,4 @@ Route::resource('tags', 'TagsController')->middleware('auth');;
 /***************** Public site  ***********************/
 
 Route::get('/site', 'HomeController@index')->name('home');
+Route::get('about', 'HomeController@about');

@@ -36,9 +36,7 @@
 								    <td>{{ $user->name }} {{ $user->last_name }}</td>
 								    <td>{{ $user->email }}</td>
 								    <td>{{ $user->cell_phone }}</td>
-								    <td>
-								    	{{ $user->roles->name }}
-								    </td>
+								    <td>{{ $user->roles->name }}</td>
 								    <td>{{ $user->status }}</td>
 								    <td>{{ $user->created_at }}</td>
 								  
