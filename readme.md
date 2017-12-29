@@ -15,6 +15,7 @@
 - php artisan migrate
 - php artisan vendor:publish --tag=ckeditor
 - php artisan serve
+- test commit
 
 
 
