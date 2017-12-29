@@ -179,7 +179,7 @@
                                             @else
                                             @foreach($gallery as $file)
                                                 <li class="col-md-4 box-content-action-gallery">
-                                                    <img src="/uploads/gallery/{{ $file->url }}" style="width:100%; max-height:150px ">
+                                                    <img src="{{url('/uploads/gallery')}}/{{ $file->url }}" style="width:100%; max-height:150px ">
                                                     <form method="POST" action="{{ route('galleries.destroy', ['id' => $file->id] ) }}">
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}

@@ -9,7 +9,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel  panel-default" style="display: inline-block">
                 <div class="content-avatar-change col-md-12 ">
-                    <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%; margin-right:25px; float:left">
+                    <img src="{{url('/uploads/avatars/')}}/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%; margin-right:25px; float:left">
                     <div class="content-change-input-avatar">
                         <form enctype="multipart/form-data" action="/profile" method="POST">
                             <input type="file" name="avatar" required>

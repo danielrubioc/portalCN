@@ -65,7 +65,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                    
-                                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span style="padding-left: 25px;">
+                                    <img src="{{url('/uploads/avatars')}}/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span style="padding-left: 25px;">
                                     {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
