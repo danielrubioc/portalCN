@@ -71,33 +71,7 @@
                             </div>
                         </div> 
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-4 control-label"> Fecha de inicio </label>
-
-                            <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="fecha_inicio" value="{{ old('fecha_inicio') }}" autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> 
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-4 control-label"> Fecha de termino </label>
-
-                            <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="fecha_termino" value="{{ old('fecha_termino') }}" autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        
 
 
                         <div class="form-group">
