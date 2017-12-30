@@ -32,24 +32,6 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{url('/images/Logo_Deporte-17.png')}}" style="height: 50px; margin-top: -15px;">
                     </a>
-                    @if(Auth::user())
-                        @if (Auth::user()->role_id == 1)
-                            <ul class="nav navbar-nav">
-                                <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
-                                <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
-                                <li><a href="{{ URL::to('posts') }}">Blog</a></li>
-                                <li><a href="{{ URL::to('tags') }}">Tags</a></li>
-                                <li><a href="{{ URL::to('talleres') }}">Talleres</a></li>
-                            </ul>
-                        @endif
-                        @if (Auth::user()->role_id == 2)
-                            <ul class="nav navbar-nav">
-                                <li><a href="{{ URL::to('category') }}">Categorías blog</a></li>
-                                <li><a href="{{ URL::to('post') }}">Blog</a></li>
-                            </ul>
-
-                        @endif
-                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -61,6 +43,7 @@
                                     <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
                                     <li><a href="{{ URL::to('posts') }}">Blog</a></li>
                                     <li><a href="{{ URL::to('tags') }}">Tags</a></li>
+                                    <li><a href="{{ URL::to('talleres') }}">Talleres</a></li>
                                 </ul>
                             @endif
                             @if (Auth::user()->role_id == 2)

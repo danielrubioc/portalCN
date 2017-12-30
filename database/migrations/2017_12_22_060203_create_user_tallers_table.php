@@ -24,7 +24,7 @@ class CreateUserTallersTable extends Migration
         });        
 
         Schema::table('user_tallers', function($table) {
-            $table->foreign('taller_id')->references('id')->on('taller')->onDelete('cascade');
+            $table->foreign('taller_id')->references('id')->on('tallers')->onDelete('cascade');
         });
     }
 
