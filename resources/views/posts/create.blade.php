@@ -79,7 +79,7 @@
 
 
                         <div class="form-group">
-                            <div class="col-md-10 col-offset-md-1">
+                            <div class="col-md-10 col-md-offset-1">
                                 <textarea name="content" id="content" rows="10" cols="80">
                                     Contenido
                                 </textarea> 
@@ -90,6 +90,8 @@
                                 <button type="submit" class="btn btn-primary">
                                     Crear
                                 </button>
+                             
+                                <a href="{{ URL::to('posts') }}" class="btn btn-danger">Cancelar</a>
                             </div>
                         </div>
                     </form>

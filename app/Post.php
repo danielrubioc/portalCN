@@ -27,4 +27,23 @@ class Post extends Model
         return $this->belongsToMany('App\Tag', 'post_tag');
     }
 
+    public function scopeFilterByRequest($query, $column, $value)
+    {   
+        if (trim($value) != "" && trim($column) != "") {
+            switch ($column) {
+                case 'title':
+                    $query->where(\DB::raw("title"), "LIKE", "%$value%");
+                    break;
+                case 'category':
+                    $query->where('category_id', '=', $value);
+
+                    break;
+                case 'status':
+                    $query->where(\DB::raw("status"), "LIKE", "%$value%");
+                    break;
+            }
+        }
+
+    }
+
 }

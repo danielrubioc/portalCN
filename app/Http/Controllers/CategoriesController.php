@@ -86,10 +86,14 @@ class CategoriesController extends Controller
         //
         $category = Category::find($id); 
             if ($category) {
-                $category->name = $request->name;
+                $category->name = $request->name ? $request->name : $category->name;
+                $category->status = $request->status ? $request->status : 0;
                 if ($category->save()) {
                     flash('La categoría '. $category->name .' se actualizó correctamente!')->success();
                     
+                    if ($request->show) {
+                        return redirect()->route('categories.index');
+                    }
                     return redirect()->route('categories.edit', $category->id);
                 } else {
                     flash('La categoría no se pudo actualizar.')->error();

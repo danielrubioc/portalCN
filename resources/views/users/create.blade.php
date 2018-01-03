@@ -105,8 +105,9 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Crear
                                 </button>
+                                <a href="{{ URL::to('users') }}" class="btn btn-danger">Cancelar</a>
                             </div>
                         </div>
                     </form>

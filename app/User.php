@@ -43,12 +43,10 @@ class User extends Authenticatable
                 case 'email':
                     $query->where(\DB::raw("email"), "LIKE", "%$value%");
                     break;
-                default:
-                    # code...
+                case 'status':
+                    $query->where(\DB::raw("status"), "LIKE", "%$value%");
                     break;
             }
-
-
         }
 
     }

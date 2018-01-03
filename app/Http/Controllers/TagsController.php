@@ -91,10 +91,14 @@ class TagsController extends Controller
         //
         $tag = Tag::find($id); 
             if ($tag) {
-                $tag->name = $request->name;
+                $tag->name = $request->name ?  $request->name : $tag->name;
+                $tag->status = $request->status ? $request->status : 0;
+
                 if ($tag->save()) {
                     flash('El tag '. $tag->name .' se actualizó correctamente!')->success();
-                    
+                    if ($request->show) {
+                        return redirect()->route('tags.index');
+                    }
                     return redirect()->route('tags.edit', $tag->id);
                 } else {
                     flash('El tag no se pudo actualizar.')->error();

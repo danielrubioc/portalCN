@@ -19,18 +19,19 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //
-        //$search = $request->all();
         if ($request->has('name')) {
             $column = "full_name";
             $users = User::filterByRequest($column, $request->get('name'))->paginate();
         } else if ($request->has('email')) {
             $column = "email";
             $users = User::filterByRequest($column, $request->get('email'))->paginate();
+        } else if ($request->has('status')) {
+            $column = "status";
+            $users = User::filterByRequest($column, $request->get('status'))->paginate();
         } else {
             $users = User::paginate(15);
         }
 
-        //$total = count($users);
         return view('users.index', ['users' => $users]);
     }
 
