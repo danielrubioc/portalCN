@@ -13,6 +13,11 @@ class Workshop extends Model
         'name', 'description', 'user_id', 'fecha_inicio', 'fecha_termino', 'horario', 'status'
     ];
 
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
     public function scopeFilterByRequest($query, $column, $value)
     {   
         if (trim($value) != "" && trim($column) != "") {
