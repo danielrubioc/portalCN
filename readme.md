@@ -32,4 +32,4 @@ Contraseña : 12345
 
 - subir imagenes : http://image.intervention.io/
 - editor de texto: https://github.com/UniSharp/laravel-ckeditor
-- test commit
+- test commit 22
