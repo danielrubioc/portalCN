@@ -13,17 +13,19 @@
 			<h1>Lista de Talleres </h1>
 		</div>
 	    <br>
-		
+		<br><br><br>
+
+	    <div class="col-md-12">
+	    	<p>Un total de {{ $workshops->total() }} registros</p>
 		    <div class="table-responsive">
 			    <table class="table table-responsive table-perzonalise table-striped">
 			    	<thead>
 			    			<tr>	
 			    					<td>Nombre</td>
-			    					<td>Descripcion</td>
-			    					<td>Horario</td>
-									<td>Fecha de inicio</td>
-									<td>Fecha de termino</td>
+									<td>Cupos</td>
+									<td>Sobrecupos</td>
 			    					<td>Estado</td>
+			    					<td>Creado por</td>
 			    					<td></td>
 			    			</tr>
 			    	</thead>
@@ -32,11 +34,16 @@
 				    			<tr>
 				    				
 								    <td>{{ $taller->name }}</td>
-								    <td>{{ $taller->description }}</td>
-									<td>{{ $taller->horario }}</td>
-									<td>{{ $taller->fecha_inicio }}</td>
-									<td>{{ $taller->fecha_termino }}</td>
-								    <td>{{ $taller->status }}</td>
+									<td>{{ $taller->quotas }}</td>
+									<td>{{ $taller->about_quotas }}</td>
+								    <td>
+								    	@if ($taller->status === 1)
+										   <span class="span-success">Disponible</span>
+										@else
+										   <span class="span-danger">No disponible</span>
+										@endif	
+								    </td>
+								    <td>{{ $taller->user->name }} {{ $taller->user->last_name }}</td>
 								  	
 								    <td class="box-btnes">
 								    	<form method="POST" action="{{ route('talleres.destroy', ['id' => $taller->id] ) }}">
@@ -49,6 +56,7 @@
 			    	</tbody>
 			    </table>
 		    </div>
+		</div>
 	</div> 		    
  </div> 
 @endsection
