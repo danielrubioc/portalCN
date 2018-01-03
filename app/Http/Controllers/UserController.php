@@ -55,7 +55,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     { 
-        die( print_r( $request->all() ) );
         // mensajes de validacion
         $messages = array(
             'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
