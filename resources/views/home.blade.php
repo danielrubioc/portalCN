@@ -2,23 +2,27 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+   
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    
-                    <button>Subir post</button>
-                    <button>usuarios</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+     @if(Auth::user())
+        @if (Auth::user()->role_id == 1)
+            <ul class="nav navbar-nav">
+                <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
+                <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
+                <li><a href="{{ URL::to('posts') }}">Blog</a></li>
+                <li><a href="{{ URL::to('tags') }}">Tags</a></li>
+                <li><a href="{{ URL::to('talleres') }}">Talleres</a></li>
+            </ul>
+        @endif
+        @if (Auth::user()->role_id == 2)
+            <ul class="nav navbar-nav">
+                <li><a href="{{ URL::to('category') }}">Categorías blog</a></li>
+                <li><a href="{{ URL::to('post') }}">Blog</a></li>
+            </ul>
+
+        @endif
+    @endif
+
 </div>
 @endsection
