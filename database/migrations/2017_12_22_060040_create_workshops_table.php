@@ -19,9 +19,9 @@ class CreateWorkshopsTable extends Migration
             $table->string('name', 200);
             $table->text('description');
             $table->integer('user_id')->unsigned();
-            $table->date('fecha_inicio')->nullable(true);
-            $table->date('fecha_termino')->nullable(true);
-            $table->string('horario', 200)->nullable(true);
+            $table->integer('quotas');
+            $table->integer('about_quotas');
+            $table->text('cover_page');
             $table->integer('status');
         });
 

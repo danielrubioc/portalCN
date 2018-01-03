@@ -23,7 +23,7 @@ class WorkshopsController extends Controller
     }
 
     public function create(){
-        
+        $user = DB::table('users')->where('role_id', 2);
         return view('workshops.create', ['teachers' => User::all(['id', 'name', 'last_name'])]);
     }
 

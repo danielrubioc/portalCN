@@ -22,8 +22,6 @@ class Lessons extends Migration
             $table->date('date');
             $table->text('hour');
             $table->text('place');
-            $table->integer('quotas');
-            $table->integer('about_quotas');
             $table->integer('workshop_id')->unsigned();
             $table->integer('status');
         });        

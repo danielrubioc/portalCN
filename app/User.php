@@ -46,6 +46,9 @@ class User extends Authenticatable
                 case 'status':
                     $query->where(\DB::raw("status"), "LIKE", "%$value%");
                     break;
+                case 'role_id':
+                    $query->where(\DB::raw("status"), "=", $value);
+                    break;
             }
         }
 
