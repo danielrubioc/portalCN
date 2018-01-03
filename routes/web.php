@@ -50,10 +50,10 @@ Route::resource('galleries', 'GalleriesController')->middleware('auth');;
 //tags
 Route::resource('tags', 'TagsController');;
 //taller
-Route::resource('talleres', 'TallersController');
+Route::resource('talleres', 'WorkshopsController');
 //registro
-Route::resource('registro', 'UsersTallersController');
-Route::get('/registro/exitoso', 'UsersTallersController@exitoso');
+Route::resource('registro', 'StudentController');
+Route::get('/registro/exitoso', 'WorkshopsController@exitoso');
 Route::resource('tags', 'TagsController')->middleware('auth');;
 
 

@@ -14,7 +14,6 @@ class Teachers extends Migration
     public function up()
     {
         //
-
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
