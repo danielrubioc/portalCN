@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTallersTable extends Migration
+class CreateWorkshopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTallersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tallers', function (Blueprint $table) {
+        Schema::create('workshops', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('name', 200);
@@ -25,7 +25,7 @@ class CreateTallersTable extends Migration
             $table->integer('status');
         });
 
-        Schema::table('tallers', function($table) {
+        Schema::table('workshops', function($table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -37,6 +37,6 @@ class CreateTallersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tallers');
+        Schema::dropIfExists('workshops');
     }
 }

@@ -11,14 +11,14 @@ use App\UserTaller;
 use Auth;
 
 
-class TallersController extends Controller
+class WorkshopsController extends Controller
 {
     //
     public function index(){
         //$tallers = Taller::paginate(15);
-        $tallers = Taller::paginate(15);       
+        $workshops = Taller::paginate(15);       
 
-        return view('tallers.index', ['tallers' => $tallers]);
+        return view('tallers.index', ['tallers' => $workshops]);
     }
 
     public function create(){
