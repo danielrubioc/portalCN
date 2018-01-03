@@ -29,8 +29,6 @@ class WorkshopsController extends Controller
 
     public function store(Request $request)
     {
-        die('test');
-
         $taller = new Taller( $request->all() );
         $taller->status = 1;
         if ($taller->save()) {

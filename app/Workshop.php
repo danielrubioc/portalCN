@@ -10,7 +10,7 @@ class Workshop extends Model
     protected $table= "workshops";
     
     protected $fillable = [
-        'name', 'description', 'user_id', 'fecha_inicio', 'fecha_termino', 'horario', 'status'
+        'name', 'description', 'user_id', 'status'
     ];
 
     public function scopeFilterByRequest($query, $column, $value)

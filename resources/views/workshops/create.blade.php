@@ -24,55 +24,35 @@
                                 @endif
                             </div>
                         </div>
-                        
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-4 control-label"> Descripcion </label>
 
-                            <div class="col-md-6">
-                                <textarea id="title" type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="teachers" class="col-md-4 control-label">Profesor a Cargo</label>
+                            <label for="teachers" class="col-md-4 control-label">Profesores a Cargo</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="user_id">
-                                    @foreach($teachers as $profe)
-                                            <option value="{{$profe->id}}">{{$profe->name}} {{$profe->last_name}}</option>
+                                
+                                <select class="form-control js-multiple" name="teachers[]" multiple="multiple" required>
+                                
+                                    @foreach($teachers as $teacher)
+                                            <option value="{{$teacher->id}}">{{$teacher->name}} {{$teacher->last_name}}</option>
                                     @endforeach
-                                </select>
-                            </div>
-                        </div>
 
+                                </select>
+
+                            </div>                            
+                        </div>                    
+                        
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="title" class="col-md-4 control-label"> Horario </label>
-
-                            <div class="col-md-6">
-                                <select id="horario" type="text" class="form-control" name="horario" value="{{ old('horario') }}" required autofocus>
-                                    <option value="9:30 a 10:30">9:30 a 10:30</option>
-                                    <option value="10:30 a 11:30">10:30 a 11:30</option>
-                                    <option value="11:30 a 12:30">11:30 a 12:30</option>
-                                    <option value="12:30 a 13:30">12:30 a 13:30</option>
-                                    <option value="14:00 a 15:00">14:00 a 15:00</option>
-                                    <option value="15:00 a 16:00">15:00 a 16:00</option>
-                                </select>
-
+                            <div class="col-md-offset-1 col-md-10">
+                                <textarea id="content"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
+                                    
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div> 
 
-                        
-
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -81,16 +61,36 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
-
-
-
-
-                  
+                    </form>                  
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+    
+    @section('select2')
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script type="text/javascript">
+        $(".js-multiple").select2({
+            placeholder: "Selecciona los Profesores",
+            teachers: true,
+        })
+    </script>
+    @stop
+    @section('ckeditor')
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script>
+    $('#content').ckeditor();
+    </script>
+    @stop
+
 @endsection
+
+
+
+
+
+
