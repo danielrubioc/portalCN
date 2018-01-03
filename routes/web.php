@@ -13,17 +13,35 @@
 
 Route::get('/', function () {
     if(Auth::check()){
-    	return view('/home');
+        
+        switch (Auth::user()->role_id) {
+                //segun rol redirecciono al dashboard
+                case '1':
+                    return redirect()->action('HomeController@index');
+                    break;
+                
+                case '2':
+                    return redirect()->action('HomeController@indexTeacher');
+                    //return view('/site/home');
+                    break;
+
+                case '3':
+                    return redirect()->action('HomeController@indexPublic');
+                    break;
+        }    
+    	
     }else{
-        return view('/site/home');
+        return view('/home');
     }
 });
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+//************* dashboard **************///
+Route::get('/admin', 'HomeController@index')->middleware('auth');
+Route::get('/profesor', 'HomeController@indexTeacher')->middleware('auth');
+Route::get('/publico', 'HomeController@indexPublic')->middleware('auth');
 
 //************* users **************///
 Route::resource('users', 'UserController')->middleware('auth');
@@ -37,29 +55,29 @@ Route::get('profile', function () {
     }
 });
 //para actualizar foto avatar
-Route::post('profile', 'UserController@update_avatar')->middleware('auth');;
+Route::post('profile', 'UserController@update_avatar')->middleware('auth');
 
 //************ blog *****************//
 
 //category
-Route::resource('categories', 'CategoriesController')->middleware('auth');;
+Route::resource('categories', 'CategoriesController')->middleware('auth');
 //post
-Route::resource('posts', 'PostsController')->middleware('auth');;
+Route::resource('posts', 'PostsController')->middleware('auth');
 //gallery
-Route::resource('galleries', 'GalleriesController')->middleware('auth');;
+Route::resource('galleries', 'GalleriesController')->middleware('auth');
 //tags
-Route::resource('tags', 'TagsController');;
+Route::resource('tags', 'TagsController');
 //taller
 Route::resource('talleres', 'WorkshopsController');
 //registro
 Route::resource('registro', 'StudentController');
 Route::get('/registro/exitoso', 'WorkshopsController@exitoso');
-Route::resource('tags', 'TagsController')->middleware('auth');;
+Route::resource('tags', 'TagsController')->middleware('auth');
 
 
 
 
 /***************** Public site  ***********************/
 
-Route::get('/site', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@indexSite');
 Route::get('about', 'HomeController@about');

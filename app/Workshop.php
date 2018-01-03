@@ -43,4 +43,9 @@ class Workshop extends Model
         }
     }
 
+    public function scopeGetListActiveWorkshops($query)
+    {   
+        $query->where(\DB::raw("status"), "=", 1);
+    }
+
 }
