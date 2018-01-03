@@ -30,6 +30,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Crear
                                 </button>
+                                <a href="{{ URL::to('categories') }}" class="btn btn-danger">Cancelar</a>
                             </div>
                         </div>
                     </form>

@@ -85,7 +85,7 @@
                             <label for="email" class="col-md-4 control-label">Teléfono fijo</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->phone }}" required>
+                                <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->phone }}">
 
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
@@ -99,7 +99,7 @@
                             <label for="email" class="col-md-4 control-label">Teléfono celular</label>
 
                             <div class="col-md-6">
-                                <input id="cell_phone" type="text" class="form-control" name="cell_phone" value="{{ $user->cell_phone }}" required>
+                                <input id="cell_phone" type="text" class="form-control" name="cell_phone" value="{{ $user->cell_phone }}">
 
                                 @if ($errors->has('cell_phone'))
                                     <span class="help-block">
@@ -140,6 +140,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Actualizar
                                 </button>
+                                <a href="{{ URL::to('users') }}" class="btn btn-danger">Cancelar</a>
                             </div>
                         </div>
                     </form>

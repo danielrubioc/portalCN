@@ -22,11 +22,23 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $news = Post::paginate(15);
-        return view('posts.index', ['news' => $news]);
+        if ($request->has('title')) {
+            $column = "title";
+            $news = Post::filterByRequest($column, $request->get('title'))->paginate();
+        } else if ($request->has('category')) {
+            $column = "category";
+            $news = Post::filterByRequest($column, $request->get('category'))->paginate();
+        } else if ($request->has('status')) {
+            $column = "status";
+            $news = Post::filterByRequest($column, $request->get('status'))->paginate();
+        } else {
+            $news = Post::paginate(15);
+        }
+
+        return view('posts.index', ['news' => $news, 'categories' => Category::all(['id', 'name']) ]);
     }
 
     /**
@@ -149,13 +161,14 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //$user->roles()->detach($roleId);
+    {   
+
 
             $news = Post::find($id); 
             if ($news) {
-                $news->title = $request->title;
-                $news->subtitle = $request->subtitle;
+                $news->title = $request->title ? $request->title : $news->title;
+                $news->subtitle = $request->subtitle ? $request->subtitle : $news->subtitle;
+                //viene una imagen nueva
                 if ($request->cover_page) {
                     unlink(public_path() .  '/uploads/news/' . $news->cover_page );
                     $avatar = $request->file('cover_page');
@@ -167,9 +180,12 @@ class PostsController extends Controller
                 } else {
                     $news->cover_page = $news->cover_page; 
                 }
-                //$user->status = $request->status;
-                $news->content = $request->content;
-                $news->status = $request->status ? $request->status : 1;
+                $news->category_id = $request->category_id ? $request->category_id : $news->category_id;
+                $news->content = $request->content ? $request->content : $news->content;
+                //si no viene el status a 0
+                $news->status = $request->status ? $request->status : 0;
+
+
                 if ($news->save()) {
 
                     //si vienen los tags
@@ -196,11 +212,16 @@ class PostsController extends Controller
                         $news->tags()->detach();
                         $news->tags()->attach($tags);
                     }
+
+                    if ($request->show) {
+                        flash('La noticia '. $news->title .' se actualizó correctamente!')->success();
+                        return redirect()->route('posts.index');
+                    }
                     
 
                     flash('La noticia '. $news->title .' se actualizó correctamente!')->success();
-                    
                     return redirect()->route('posts.edit', $news->id);
+
                 } else {
                     flash('La noticia no se pudo actualizar.')->error();
                     return redirect()->route('posts.edit', $news->id);

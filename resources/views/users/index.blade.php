@@ -26,17 +26,21 @@
 			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			    </form>
 
-			    <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-				  ...
-				  <li class="dropdown-header">Dropdown header</li>
-				  ...
-				</ul>
+			   	<form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
+			       <select class="form-control" id="status" name="status">
+			       	  <option disabled selected value> -- Buscar por estado -- </option>
+					    <option value="1">Activo</option>
+					    <option value="2">Deshabilitado</option>
+					    <option value="2">Pendiente</option>
+				  	</select>
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			    </form>
 
 		</div>
 	    <br><br><br>
 
 	    <div class="col-md-12">
-	    	<p>un total de x registros</p>
+	    	<p>Un total de {{ $users->total() }} registros</p>
 		    <div class="table-responsive">
 			    <table class="table table-responsive table-perzonalise table-striped">
 			    	<thead>
@@ -60,8 +64,7 @@
 								    <td>{{ $user->cell_phone }}</td>
 								    <td>{{ $user->roles->name }}</td>
 								    <td>{{ $user->status }}</td>
-								    <td>{{ $user->created_at }}</td>
-								  
+								  	<td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
 
 								    <td class="box-btnes">
 								    	<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>

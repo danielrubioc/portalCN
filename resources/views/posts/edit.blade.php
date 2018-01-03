@@ -35,7 +35,15 @@
                                                 </span>
                                             @endif
                                         </div>
-                                    </div> 
+                                    </div>  
+                                    <div class="col-md-12">
+                                        <label for="cover_page" class="col-md-4 control-label">Visible</label>
+                                        <label class="switch">
+                                          <input type="checkbox" name="status" id="status" value="1" 
+                                          @if ($news->status == 1) checked="checked" @endif>
+                                          <span class="slider round"></span>
+                                        </label>
+                                    </div>
 
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                         <label for="title" class="col-md-4 control-label"> Título </label>
@@ -68,9 +76,9 @@
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="blog_category_id" class="col-md-4 control-label">Categoría</label>
                                         <div class="col-md-6">
-                                            <select class="form-control" name="blog_category_id">
+                                            <select class="form-control" name="category_id">
                                                 @foreach($categories as $category)
-                                                    @if ($news->blog_category_id  == $category->id)
+                                                    @if ($news->category_id  == $category->id)
                                                         <option value="{{$category->id}}" selected>{{$category->name}}</option>
 
                                                         @else
@@ -110,9 +118,7 @@
                                             <button type="submit" class="btn btn-primary">
                                                 Actualizar
                                             </button>
-                                            <button type="button" class="btn btn-danger">
-                                                Cancelar
-                                            </button>
+                                            <a href="{{ URL::to('posts') }}" class="btn btn-danger">Cancelar</a>
                                         </div>
                                     </div>
                                 </form>

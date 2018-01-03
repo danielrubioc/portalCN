@@ -11,7 +11,7 @@
                     <form class="form-horizontal" method="POST" action="{{ route('categories.update', ['id' => $category->id] ) }}">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
-
+                        <input type="hidden" name="status" id="status" value="{{ $category->status }}">
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Nombre</label>
 
@@ -31,6 +31,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Actualizar
                                 </button>
+                                <a href="{{ URL::to('categories') }}" class="btn btn-danger">Cancelar</a>
                             </div>
                         </div>
                     </form>
