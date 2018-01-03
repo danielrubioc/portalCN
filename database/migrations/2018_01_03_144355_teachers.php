@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Lessons extends Migration
+class Teachers extends Migration
 {
     /**
      * Run the migrations.
@@ -15,21 +15,17 @@ class Lessons extends Migration
     {
         //
 
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->text('description');
-            $table->date('date');
-            $table->text('hour');
-            $table->text('place');
-            $table->integer('quotas');
-            $table->integer('about_quotas');
             $table->integer('workshop_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('status');
-        });        
+        });
 
-        Schema::table('lessons', function($table) {
+        Schema::table('teachers', function($table) {
             $table->foreign('workshop_id')->references('id')->on('workshops')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
