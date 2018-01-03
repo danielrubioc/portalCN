@@ -10,12 +10,19 @@ class Workshop extends Model
     protected $table= "workshops";
     
     protected $fillable = [
-        'name', 'description', 'user_id', 'status'
+        'name', 'description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page'
     ];
 
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
+    public function teacher()
+    {
+    
+        return $this->belongsToMany('App\Teacher', 'teachers');
+        //return $this->belongsToMany('App\Tag', 'post_tag');
     }
 
     public function scopeFilterByRequest($query, $column, $value)

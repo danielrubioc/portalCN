@@ -18,13 +18,13 @@ class Teachers extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('workshop_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('status');
+            $table->integer('teacher_id')->unsigned();
+            $table->integer('status')->default(1);
         });
 
         Schema::table('teachers', function($table) {
             $table->foreign('workshop_id')->references('id')->on('workshops')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('teacher_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

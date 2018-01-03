@@ -11,6 +11,22 @@
                     <form class="form-horizontal" method="POST" action="{{ route('talleres.store' ) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
+
+                        <div class="form-group{{ $errors->has('cover_page') ? ' has-error' : '' }}">
+                            <label for="cover_page" class="col-md-4 control-label">Portada</label>
+
+                            <div class="col-md-6">
+                                <input type="file" name="cover_page" accept=".png, .jpg, .jpeg" required>
+
+
+                                @if ($errors->has('cover_page'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('cover_page') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label"> Nombre </label>
 
@@ -25,7 +41,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="teachers" class="col-md-4 control-label">Profesores a Cargo</label>
                             <div class="col-md-6">
@@ -39,7 +54,35 @@
                                 </select>
 
                             </div>                            
-                        </div>                    
+                        </div>
+                        
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-4 control-label"> Cupos </label>
+
+                            <div class="col-md-6">
+                                <input id="quotas" type="number" class="form-control" name="quotas" value="{{ old('quotas') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-4 control-label"> Sobre Cupos </label>
+
+                            <div class="col-md-6">
+                                <input id="about_quotas" type="number" class="form-control" name="about_quotas" value="{{ old('abou_quotas') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <div class="col-md-offset-1 col-md-10">
@@ -51,7 +94,18 @@
                                     </span>
                                 @endif
                             </div>
+                        </div>
 
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <div class="col-md-offset-1 col-md-10">
+                                <textarea id="content"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
+                                    
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group">
