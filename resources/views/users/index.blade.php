@@ -14,12 +14,34 @@
 	    <div class="title-gral-index">
 			<a href="{{ URL::to('users/create') }}" class="btn btn-success">Nuevo usuario</a>	
 			<h1>Lista de Usuarios</h1>
+
+			    <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
+			        <input class="form-control mr-sm-2" type="search" name="name" placeholder="Busca por nombre" aria-label="Search">
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			    </form>
+
+
+			    <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
+			        <input class="form-control mr-sm-2" type="search" name="email" placeholder="Busca por correo" aria-label="Search">
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			    </form>
+
+			    <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+				  ...
+				  <li class="dropdown-header">Dropdown header</li>
+				  ...
+				</ul>
+
 		</div>
-	    <br>
+	    <br><br><br>
+
+	    <div class="col-md-12">
+	    	<p>un total de x registros</p>
 		    <div class="table-responsive">
 			    <table class="table table-responsive table-perzonalise table-striped">
 			    	<thead>
 			    			<tr>	
+			    					<td>#</td>
 			    					<td>Nombre</td>
 			    					<td>Email</td>
 			    					<td>Teléfono celular</td>
@@ -32,7 +54,7 @@
 			    	<tbody>
 			    			@foreach ($users as $user)
 				    			<tr>
-				    				
+				    				<td>{{ $user->id }}</td>	
 								    <td>{{ $user->name }} {{ $user->last_name }}</td>
 								    <td>{{ $user->email }}</td>
 								    <td>{{ $user->cell_phone }}</td>
@@ -54,7 +76,7 @@
 			    	</tbody>
 			    </table>
 		    </div>
-
+		</div>    
 		    {{ $users->links() }}
 </div>
 	</div> 

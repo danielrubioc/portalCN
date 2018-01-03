@@ -16,10 +16,21 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $users = User::paginate(15);
+        //$search = $request->all();
+        if ($request->has('name')) {
+            $column = "full_name";
+            $users = User::filterByRequest($column, $request->get('name'))->paginate();
+        } else if ($request->has('email')) {
+            $column = "email";
+            $users = User::filterByRequest($column, $request->get('email'))->paginate();
+        } else {
+            $users = User::paginate(15);
+        }
+
+        //$total = count($users);
         return view('users.index', ['users' => $users]);
     }
 

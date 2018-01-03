@@ -32,4 +32,25 @@ class User extends Authenticatable
         return $this->hasOne('App\Role', 'id', 'role_id');
     }
 
+    public function scopeFilterByRequest($query, $column, $value)
+    {   
+        if (trim($value) != "" && trim($column) != "") {
+
+            switch ($column) {
+                case 'full_name':
+                    $query->where(\DB::raw("CONCAT(name, '', last_name)"), "LIKE", "%$value%");
+                    break;
+                case 'email':
+                    $query->where(\DB::raw("email"), "LIKE", "%$value%");
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+
+
+        }
+
+    }
+
 }
