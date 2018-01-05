@@ -69,6 +69,8 @@ Route::resource('galleries', 'GalleriesController')->middleware('auth');
 Route::resource('tags', 'TagsController');
 //taller
 Route::resource('talleres', 'WorkshopsController');
+//lesson
+Route::resource('lessons', 'LessonsController');
 //registro
 Route::resource('registro', 'StudentController');
 Route::get('/registro/exitoso', 'WorkshopsController@exitoso');

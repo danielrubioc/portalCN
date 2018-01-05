@@ -9,6 +9,7 @@ use App\User;
 use App\Workshop;
 use App\Student;
 use App\Teacher;
+use App\Lesson;
 use Image;
 use Auth;
 
@@ -48,7 +49,6 @@ class WorkshopsController extends Controller
        
         
         if ($workshops->save()) {
-            
             //si vienen los tags
             if ($request->teachers) {
                 foreach ($request->teachers as $key => $value) {
@@ -58,17 +58,58 @@ class WorkshopsController extends Controller
                 $workshops->teacher()->attach($teachers);
             }
             $lastInsertedId = $workshops->id;
-            flash('Taller creado correctamente!')->success();
+            flash('Taller creado correctamente! Continua agregando el horario y fecha de las clases para este taller.')->success();
             $tabName = array(
-                'name' => 'info',
+                'name' => 'lessons',
             );
 
-            return view('workshops.edit', ['workshop' => Workshop::findOrFail($lastInsertedId), 
+            return view('workshops.edit', ['workshops' => Workshop::findOrFail($lastInsertedId), 
                                     'tab' => $tabName,
-                                    'teachers' => User::all(['id', 'name', 'last_name'])]
-                                    );
-            
+                                    'teachers' => User::all(['id', 'name', 'last_name']),
+                                    'lessons' => Lesson::all() ]
+                                );
+
+        } else {
+            flash('no se pudo crear la categoría')->error();
+            return view('posts.create');
+        }
+
+
+
+        $taller = new Taller( $request->all() );
+        $taller->status = 1;
+        if ($taller->save()) {
+            flash('Taller creado correctamente!')->success();
+            return redirect('talleres');
         }else {
+            flash('no se pudo crear el Taller')->error();
+            return view('talleres.create');
+        }
+    }
+
+    public function storelessons(Request $request)
+    {
+        //die( print_r( $request->all() ) );
+        $lessons = new Lesson($request->all());
+        $lessons->status = 1;
+        $lessons->place = $request->all()['place'] . 'ayfua';
+
+        if ($lessons->save()) {
+            
+            $lastInsertedId = $lessons->id;
+            flash('La clase fue creada correctamente!')->success();
+            $tabName = array(
+                'name' => 'lessons',
+            );
+
+            return view('workshops.edit', [
+                            'workshops' => Workshop::findOrFail($lastInsertedId), 
+                            'tab' => $tabName,
+                            'teachers' => User::all(['id', 'name', 'last_name']),
+                            'lessons' => Lesson::all(['date', 'place'])
+                        ]);
+            
+        } else {
             flash('no se pudo crear la categoría')->error();
             return view('posts.create');
         }

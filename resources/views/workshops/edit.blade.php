@@ -6,15 +6,13 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Nuevo taller</div>
-
                 <ul class="nav nav-pills nav-gallery">
                     <li class="{{ empty($tab['name']) || $tab['name'] == 'info' ? 'active' : '' }}"><a data-toggle="pill" href="#info">Información de taller</a></li>
-                    <li class="{{ empty($tab['name']) || $tab['name'] == 'lessions' ? 'active' : '' }}"><a data-toggle="pill" href="#lessions">Calendario de clases</a></li>
+                    <li class="{{ empty($tab['name']) || $tab['name'] == 'lessons' ? 'active' : '' }}"><a data-toggle="pill" href="#lessons">Calendario de clases</a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div id="info" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'info' ? 'in active' : '' }}">
-
                         <div class="panel-body">
                             <form class="form-horizontal" method="POST" action="{{ route('talleres.store' ) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
@@ -102,19 +100,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <div class="col-md-offset-1 col-md-10">
-                                        <textarea id="content"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
-                                            
-                                        @if ($errors->has('name'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+                                </div>                                
 
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
@@ -127,12 +113,100 @@
 
                         </div>
                     </div>
+
                     <div id="lessons" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'lessons' ? 'in active' : '' }}">
-                        ljgsojgolsjgoplsjhpñshpñhsvkvs
-                        <br>
-                        gablahlñakkñ
-                        <br>
-                        ujgadsljghdñ
+                        <div class="panel-body">
+                            
+                            <form class="form-horizontal" method="POST" action="{{ route('lessons.store' ) }}" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                <input id="workshop_id" name="workshop_id" value="1" type="hidden" />
+                                
+                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <label for="title" class="col-md-4 control-label"> Lugar </label>
+
+                                    <div class="col-md-6">
+                                        <input id="place" type="text" class="form-control" name="place" value="{{ old('place') }}" required autofocus>
+
+                                        @if ($errors->has('place'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('place') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
+                                    <label for="birth_date" class="col-md-4 control-label">Fecha</label>
+                                    <div class="col-md-6">
+                                        <input id="birth_date" type="date" class="form-control" name="date" value="{{ old('date') }}" required autofocus>
+                                        @if ($errors->has('birth_date'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('birth_date') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('horario') ? ' has-error' : '' }}">
+                                    <label for="teachers" class="col-md-4 control-label">Horario</label>
+                                    <div class="col-md-6">                                    
+                                        <select class="form-control" name="hour" required>
+                                            <option value=""></option>
+                                            <option value="9:30 a 10:30">9:30 a 10:30</option>
+                                            <option value="10:30 a 11:30">10:30 a 11:30</option>
+                                            <option value="11:30 a 12:30">11:30 a 12:30</option>
+                                            <option value="12:30 a 13:30">12:30 a 13:30</option>
+                                            <option value="14:00 a 15:00">14:00 a 15:00</option>
+                                            <option value="15:00 a 16:00">15:00 a 16:00</option>
+                                        </select>
+                                    </div>                            
+                                </div>
+
+                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <div class="col-md-offset-1 col-md-10">
+                                        <textarea id="description"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
+                                            
+                                        @if ($errors->has('name'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            Guardar clase
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-10 col-md-offset-1">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Lugar</th>
+                                                <th scope="col">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($lessons as $lesson)
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>{{ $lesson->date }}</td>
+                                                    <td>{{ $lesson->place }}</td>
+                                                    <td>Editar Eliminar</td>
+                                                </tr>
+                                            @endforeach                                                                                    
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,6 +229,7 @@
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
     <script>
     $('#content').ckeditor();
+    $('#description').ckeditor();
     </script>
     @stop
 
