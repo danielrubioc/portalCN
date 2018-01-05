@@ -68,6 +68,7 @@ Route::resource('galleries', 'GalleriesController')->middleware('auth');
 //tags
 Route::resource('tags', 'TagsController');
 //taller
+Route::resource('workshops', 'WorkshopsController');
 Route::resource('talleres', 'WorkshopsController');
 //lesson
 Route::resource('lessons', 'LessonsController');

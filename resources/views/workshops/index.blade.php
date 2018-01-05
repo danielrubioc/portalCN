@@ -45,7 +45,9 @@
 								    </td>
 								    <td>{{ $taller->user->name }} {{ $taller->user->last_name }}</td>
 								  	
-								    <td class="box-btnes">
+								    <td class="box-btnes">	
+										<a href="{{ route('workshops.edit', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+					    					
 								    	<form method="POST" action="{{ route('talleres.destroy', ['id' => $taller->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}

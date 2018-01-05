@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Nuevo taller</div>
                 <ul class="nav nav-pills nav-gallery">
@@ -14,9 +14,11 @@
                 <div class="tab-content">
                     <div id="info" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'info' ? 'in active' : '' }}">
                         <div class="panel-body">
+                        <?php if ($workshops->cover_page): ?>
+                            <img src="{{url('/uploads/workshop')}}/{{ $workshops->cover_page }}" style="width:100%; max-height:150px ">
+                        <?php endif ?>
                             <form class="form-horizontal" method="POST" action="{{ route('talleres.store' ) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-
 
                                 <div class="form-group{{ $errors->has('cover_page') ? ' has-error' : '' }}">
                                     <label for="cover_page" class="col-md-4 control-label">Portada</label>
@@ -37,7 +39,7 @@
                                     <label for="title" class="col-md-4 control-label"> Nombre </label>
 
                                     <div class="col-md-6">
-                                        <input id="title" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                        <input id="title" type="text" class="form-control" name="name" value="{{ $workshops->name }}" required autofocus>
 
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -66,7 +68,7 @@
                                     <label for="title" class="col-md-4 control-label"> Cupos </label>
 
                                     <div class="col-md-6">
-                                        <input id="quotas" type="number" class="form-control" name="quotas" value="{{ old('quotas') }}" required autofocus>
+                                        <input id="quotas" type="number" class="form-control" name="quotas" value="{{ $workshops->quotas }}" required autofocus>
 
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -80,7 +82,7 @@
                                     <label for="title" class="col-md-4 control-label"> Sobre Cupos </label>
 
                                     <div class="col-md-6">
-                                        <input id="about_quotas" type="number" class="form-control" name="about_quotas" value="{{ old('abou_quotas') }}" required autofocus>
+                                        <input id="about_quotas" type="number" class="form-control" name="about_quotas" value="{{ $workshops->about_quotas }}" required autofocus>
 
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -92,7 +94,9 @@
                                 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <div class="col-md-offset-1 col-md-10">
-                                        <textarea id="content"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
+                                        <textarea id="content"  type="text" class="form-control" name="description" required autofocus>
+                                        {{ $workshops->description }}
+                                        </textarea>
                                             
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -105,7 +109,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-primary">
-                                            Crear
+                                            Guardar
                                         </button>
                                     </div>
                                 </div>
@@ -119,7 +123,7 @@
                             
                             <form class="form-horizontal" method="POST" action="{{ route('lessons.store' ) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-                                <input id="workshop_id" name="workshop_id" value="1" type="hidden" />
+                                <input id="workshop_id" name="workshop_id" value="{{ $workshops->id }}" type="hidden" />
                                 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="title" class="col-md-4 control-label"> Lugar </label>
@@ -183,7 +187,7 @@
                                 </div>
 
                                 <div class="col-md-10 col-md-offset-1">
-                                    <table class="table">
+                                    <table class="table table-responsive table-perzonalise table-striped">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>

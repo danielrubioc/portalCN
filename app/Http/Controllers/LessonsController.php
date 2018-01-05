@@ -36,7 +36,6 @@ class LessonsController extends Controller
 
     public function store(Request $request)
     {
-        //die( print_r( $request->all() ) );
         $lessons = new Lesson($request->all());
         $lessons->status = 1;
         $lessons->place = $request->all()['place'];

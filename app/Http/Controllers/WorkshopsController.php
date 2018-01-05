@@ -63,11 +63,13 @@ class WorkshopsController extends Controller
                 'name' => 'lessons',
             );
 
-            return view('workshops.edit', ['workshops' => Workshop::findOrFail($lastInsertedId), 
-                                    'tab' => $tabName,
-                                    'teachers' => User::all(['id', 'name', 'last_name']),
-                                    'lessons' => Lesson::all() ]
-                                );
+            return view('workshops.edit', [
+                'workshops' => Workshop::findOrFail($lastInsertedId), 
+                'tab' => $tabName,
+                'all_teachers' => User::all(['id', 'name', 'last_name']),
+                'teachers' => User::all(['id', 'name', 'last_name']),
+                'lessons' => Lesson::all()->where('workshop_id', $lastInsertedId) ]
+            );
 
         } else {
             flash('no se pudo crear la categoría')->error();
@@ -86,6 +88,24 @@ class WorkshopsController extends Controller
             return view('talleres.create');
         }
     }
+
+    public function edit($id)
+    {   
+        //esto es para actvivar el tab en info
+        $tabName = array(
+            'name' => 'info',
+        );
+
+        return view('workshops.edit', [
+            'workshops' => Workshop::findOrFail($id), 
+            'tab' => $tabName,
+            'all_teachers' => User::all(['id', 'name', 'last_name']),
+            'teachers' => User::all(['id', 'name', 'last_name']),
+            'lessons' => Lesson::all()->where('workshop_id', $id) ]
+        );
+    }
+
+    
 
     public function storelessons(Request $request)
     {
