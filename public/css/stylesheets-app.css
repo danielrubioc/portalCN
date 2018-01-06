@@ -213,12 +213,10 @@ ul.nav.navbar-nav.align-element-nav {
         margin-top: -75px;
   }
 
+ 
   .content-gallery {
-      position: relative;
-  }
-  .content-gallery {
-      margin-top: 100px;
-      transition: 1s all;
+        position: relative;
+        transition: 1s all;
   }
 
   .text-related-workshop {
@@ -230,7 +228,6 @@ ul.nav.navbar-nav.align-element-nav {
       bottom: -40vh;
       opacity: 0;
       transition: 1s all;
-      z-index: 99;
       text-align: center;
   }
 
@@ -251,11 +248,11 @@ ul.nav.navbar-nav.align-element-nav {
   }
   .owl-item.active {
       text-align: center;
-  }
-
-  .owl-item.active {
       z-index: 99;
   }
+  .owl-item {
+        background: #ececec;
+   }
   .visibility-content {
       position: absolute;
       left: 0;
@@ -283,5 +280,9 @@ ul.nav.navbar-nav.align-element-nav {
         text-align: left;
         padding: 20px;
         display: block;
+    }
+    .item{
+        min-height: 450px;
+        display: inline-block;
     }
 }

@@ -35,7 +35,7 @@ body{
 
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
+    top: -5px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
@@ -96,32 +96,31 @@ body{
 
 .space-menu img {
     max-width: 150px;
-    margin-left: 18px;
     margin-bottom: 10px;
 }
 
 .buttons a:nth-child(1) {
-    background: #3b92b0;
+    background: #005f9e;
 }
 .buttons a:nth-child(2) {
-    background: #3763a0;
+    background: #008bb9;
 }
 .buttons a:nth-child(3) {
-    background: #294e7b;
+    background: #00c1c1;
 }
 .buttons a:nth-child(4) {
-    background: #283c77;
+    background: #00ac50;
 }
 .buttons a:nth-child(5) {
-    background: #9c3270;
+    background: #41c14b;
 }
 .buttons a:nth-child(6) {
-    background: #c74290;
+    background: #b0d648;
 }
 .buttons a {
     color: white;
     font-family: arial;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-weight: bold;
     padding-left: 20px;
 }
@@ -130,7 +129,9 @@ body{
     margin-right: 10px;
 }
 .space-menu {
-    margin-bottom: 15px;
+    margin-bottom: 0;
+    text-align: center;
+    margin-top: 30px;
 }
 
 
@@ -270,5 +271,26 @@ footer a {
     font-weight: bold;
     padding-left: 20px;
     font-size: 18px;
+}
+a.left-input i {
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 20px;
+    border: 2px solid #a0a0a0;
+    margin-right: 8px;
+}
+
+a.closebtn i {
+    padding: 10px;
+    border-radius: 50px;
+    font-size: 20px;
+    border: 2px solid #a0a0a0;
+}
+a.left-input {
+    padding: 0;
+    left: 10px;
+    position: absolute;
+    top: 15px;
+    font-size: 16px;
 }
 }

@@ -22,7 +22,8 @@
     <div id="app">
 
       <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="{{ route('login') }}" class="left-input"><i class="fa fa-user-o" aria-hidden="true"></i>Ingresa aquí</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
         <div class="space-menu">
           <img src="{{url('/images/Logo_Deporte-17.png')}}" >
         </div>
@@ -32,7 +33,7 @@
           <a href="#">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="registro/create">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ route('register') }}">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>
       </div>
 
