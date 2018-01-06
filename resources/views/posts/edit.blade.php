@@ -10,7 +10,7 @@
                     <li class="{{ empty($tab['name']) || $tab['name'] == 'info' ? 'active' : '' }}"><a data-toggle="pill" href="#info">Información de noticia</a></li>
                     <li class="{{ empty($tab['name']) || $tab['name'] == 'gallery' ? 'active' : '' }}"><a data-toggle="pill" href="#gallery">Galeria de imagenes</a></li>
                 </ul>
-
+                
                 <div class="tab-content">
                     <div id="info" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'info' ? 'in active' : '' }}">
                             <div class="panel-body">
@@ -68,6 +68,20 @@
                                             @if ($errors->has('subtitle'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('subtitle') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                                        <label for="url" class="col-md-4 control-label"> Url </label>
+
+                                        <div class="col-md-6">
+                                            <input id="url" type="text" class="form-control" name="url" value="{{ $news->url  }}" onkeyup="validate();" placeholder="no debe contener ningun caracter raro" required autofocus>
+
+                                            @if ($errors->has('url'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('url') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -224,6 +238,10 @@
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
     $('#content').ckeditor();
+    function validate() {
+      var element = document.getElementById('url');
+      element.value = element.value.replace(/[^a-zA-Z0-9@]+/, '');
+    };
 </script>
 @stop
 @endsection

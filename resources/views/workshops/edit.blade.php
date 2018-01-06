@@ -24,7 +24,7 @@
                                     <label for="cover_page" class="col-md-4 control-label">Portada</label>
 
                                     <div class="col-md-6">
-                                        <input type="file" name="cover_page" accept=".png, .jpg, .jpeg" required>
+                                        <input type="file" name="cover_page" accept=".png, .jpg, .jpeg">
 
 
                                         @if ($errors->has('cover_page'))

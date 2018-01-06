@@ -169,4 +169,119 @@ ul.nav.navbar-nav.align-element-nav {
     padding-left: 40px;
 }
  
+
+ .info-taller.active-clicked {
+      height: 100vh;
+  }
+  .content-gallery.active-clicked {
+      margin-top: 0;
+      transition: 1s all;
+  }
+
+  .content-gallery.active-clicked .item h1 {
+        opacity: 0;
+        transition: 1s all;
+  }
+
+  div#workshop-modify-container.active-clicked {
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      transition: 1s all;
+  }
+  .info-taller {
+      height: 100vh;
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+      transition: 1s all;
+  }
+  .item img{
+    height: 280px;
+    transition: 1s all;
+  }
+  
+  .owl-carousel .owl-item img.active-clicked {
+        height: 60vh;
+        width: 140%;
+        transition: 1s all;
+        -webkit-transform: scale(1.25);
+        -moz-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+        -o-transform: scale(1.25);
+        transform: scale(1);
+        margin-top: -75px;
+  }
+
+  .content-gallery {
+      position: relative;
+  }
+  .content-gallery {
+      margin-top: 100px;
+      transition: 1s all;
+  }
+
+  .text-related-workshop {
+      width: 100%;
+      height: 50vh;
+      background: #fff;
+      color: black;
+      position: absolute;
+      bottom: -40vh;
+      opacity: 0;
+      transition: 1s all;
+      z-index: 99;
+      text-align: center;
+  }
+
+  .text-related-workshop.active-clicked {
+        bottom: -15vh;
+        opacity: 1;
+        transition: 1s all;
+        z-index: 99;
+        
+      
+  }
+  
+  .owl-carousel .owl-item img {
+      display: block;
+      width: 88%;
+      margin: 0 auto;
+      transition: 1s all;
+  }
+  .owl-item.active {
+      text-align: center;
+  }
+
+  .owl-item.active {
+      z-index: 99;
+  }
+  .visibility-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+  }
+  .visibility-content.active-clicked{
+    z-index: 999;
+    opacity: 1;
+  }
+  .relative-conten {
+    position: relative;
+  }
+  .content-total {
+      margin-top: -22px;
+      padding: 30px;
+      text-align: center;
+      background: #3097d1;
+      color: white;
+      font-size: 16px;
+  }
+  span.info-detail-work {
+        text-align: left;
+        padding: 20px;
+        display: block;
+    }
 }

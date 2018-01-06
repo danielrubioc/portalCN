@@ -163,11 +163,17 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {   
 
-
+        
             $news = Post::find($id); 
             if ($news) {
                 $news->title = $request->title ? $request->title : $news->title;
                 $news->subtitle = $request->subtitle ? $request->subtitle : $news->subtitle;
+                $news->url = $request->url ? $request->url : $news->url;
+                $news->category_id = $request->category_id ? $request->category_id : $news->category_id;
+                $news->content = $request->content ? $request->content : $news->content;
+                //si no viene el status a 0
+                $news->status = $request->status ? $request->status : 0;
+
                 //viene una imagen nueva
                 if ($request->cover_page) {
                     unlink(public_path() .  '/uploads/news/' . $news->cover_page );
@@ -180,11 +186,7 @@ class PostsController extends Controller
                 } else {
                     $news->cover_page = $news->cover_page; 
                 }
-                $news->category_id = $request->category_id ? $request->category_id : $news->category_id;
-                $news->content = $request->content ? $request->content : $news->content;
-                //si no viene el status a 0
-                $news->status = $request->status ? $request->status : 0;
-
+                
 
                 if ($news->save()) {
 

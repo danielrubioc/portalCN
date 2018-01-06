@@ -40,6 +40,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-4 control-label"> Url </label>
+
+                            <div class="col-md-6">
+                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" onkeyup="validate();" required autofocus>
+
+                                @if ($errors->has('url'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('url') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('subtitle') ? ' has-error' : '' }}">
                             <label for="subtitle" class="col-md-4 control-label"> Subtítulo </label>
 
@@ -115,6 +129,11 @@
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
     $('#content').ckeditor();
+
+    function validate() {
+      var element = document.getElementById('url');
+      element.value = element.value.replace(/[^a-zA-Z0-9@]+/, '');
+    };
 </script>
 @stop
 

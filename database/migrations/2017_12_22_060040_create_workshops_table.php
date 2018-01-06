@@ -17,11 +17,12 @@ class CreateWorkshopsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name', 200);
+            $table->text('url')->nullable();
             $table->text('description');
             $table->integer('user_id')->unsigned();
             $table->integer('quotas');
             $table->integer('about_quotas');
-            $table->text('cover_page');
+            $table->text('cover_page')->nullable();
             $table->integer('status');
         });
 

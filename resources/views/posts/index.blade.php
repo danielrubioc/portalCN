@@ -49,7 +49,7 @@
 				    					<td>#</td>
 				    					<td width="20%">Portada</td>
 				    					<td>título</td>
-				    					<td>Bajada de título</td>
+				    					<td>Url</td>
 				    					<td>Categoría</td>
 				    					<td>Usuario</td>
 				    					<td>Creado </td>
@@ -63,7 +63,7 @@
 					    				<td>{{ $post->id }}</td>
 					    				<td><img src="{{url('/uploads/news')}}/{{ $post->cover_page }}" style="width:100%; max-height:150px "></td>
 									    <td>{{ $post->title }}</td>
-									    <td>{{ $post->subtitle }}</td>
+									    <td>{{ $post->url }}</td>
 										<td>{{ $post->category->name }}</td>
 										<td>{{ $post->user->name   }}</td>
 										<td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>

@@ -25,7 +25,7 @@
 									<td>Cupos</td>
 									<td>Sobrecupos</td>
 			    					<td>Estado</td>
-			    					<td>Creado por</td>
+			    					<td>Profesor(es) a cargo</td>
 			    					<td></td>
 			    			</tr>
 			    	</thead>
@@ -43,7 +43,11 @@
 										   <span class="span-danger">No disponible</span>
 										@endif	
 								    </td>
-								    <td>{{ $taller->user->name }} {{ $taller->user->last_name }}</td>
+								    <td>
+								    	@foreach ($taller->teachers as $key => $teacher)
+								    		{{ $teacher->name }} {{ $teacher->last_name }}, 
+								    	@endforeach
+								    </td>
 								  	
 								    <td class="box-btnes">	
 										<a href="{{ route('workshops.edit', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>

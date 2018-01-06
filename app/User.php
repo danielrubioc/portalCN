@@ -32,6 +32,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Role', 'id', 'role_id');
     }
 
+    public function workshop()
+    {
+        return $this->belongsToMany('App\Workshop', 'teachers', 'workshop_id', 'teacher_id');
+
+    }
+
     public function scopeFilterByRequest($query, $column, $value)
     {   
         if (trim($value) != "" && trim($column) != "") {

@@ -35,7 +35,7 @@ class AddRegisterToUsersAndBlogcategoriesTable extends Migration
             'name' => 'Admin',
             'last_name' => 'user',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345'),
+            'password' => bcrypt('123456'),
             'birth_date' => date('Y-m-d'),
             'role_id' => '1',
             'status' => '1',
@@ -61,7 +61,7 @@ class AddRegisterToUsersAndBlogcategoriesTable extends Migration
             'email' => 'public@gmail.com',
             'password' => bcrypt('123456'),
             'birth_date' => date('Y-m-d'),
-            'role_id' => '2',
+            'role_id' => '3',
             'status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')

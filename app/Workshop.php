@@ -25,6 +25,13 @@ class Workshop extends Model
         //return $this->belongsToMany('App\Tag', 'post_tag');
     }
 
+
+    public function teachers()
+    {
+        return $this->belongsToMany('App\User', 'teachers', 'workshop_id', 'teacher_id');
+    }
+
+
     public function scopeFilterByRequest($query, $column, $value)
     {   
         if (trim($value) != "" && trim($column) != "") {
@@ -49,3 +56,6 @@ class Workshop extends Model
     }
 
 }
+
+
+    
