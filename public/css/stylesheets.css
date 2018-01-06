@@ -35,7 +35,7 @@ body{
 
 .sidenav .closebtn {
     position: absolute;
-    top: -5px;
+    top: -14px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
@@ -275,7 +275,7 @@ footer a {
 a.left-input i {
     padding: 10px;
     border-radius: 50px;
-    font-size: 20px;
+    font-size: 10px;
     border: 2px solid #a0a0a0;
     margin-right: 8px;
 }
@@ -283,7 +283,7 @@ a.left-input i {
 a.closebtn i {
     padding: 10px;
     border-radius: 50px;
-    font-size: 20px;
+    font-size: 10px;
     border: 2px solid #a0a0a0;
 }
 a.left-input {
@@ -291,6 +291,6 @@ a.left-input {
     left: 10px;
     position: absolute;
     top: 15px;
-    font-size: 16px;
+    font-size: 10px;
 }
 }
