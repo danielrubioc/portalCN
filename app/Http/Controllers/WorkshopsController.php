@@ -32,22 +32,18 @@ class WorkshopsController extends Controller
 
     public function store(Request $request)
     {
-
         $workshops = new Workshop($request->all());
         $workshops->status = 1;
         $workshops->user_id = Auth::id();
-       
-        
+               
         if( $request->hasFile('cover_page') ) {
             $avatar = $request->file('cover_page');
             $random_string = md5(microtime());
             $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->save( public_path('/uploads/workshop/' . $filename ) );
             $workshops->cover_page = $filename;
-        } 
+        }
 
-       
-        
         if ($workshops->save()) {
             //si vienen los tags
             if ($request->teachers) {
@@ -101,7 +97,7 @@ class WorkshopsController extends Controller
             'tab' => $tabName,
             'all_teachers' => User::all(['id', 'name', 'last_name']),
             'teachers' => User::all(['id', 'name', 'last_name']),
-            'lessons' => Lesson::all()->where('workshop_id', $id) ]
+            'lessons' => Lesson::all()->where('workshop_id', $id) ]            
         );
     }
 
@@ -146,4 +142,102 @@ class WorkshopsController extends Controller
             return view('talleres.create');
         }
     }
+
+    public function update(Request $request, $id)
+    {   
+        $workshops = Workshop::find($id);
+        if ($workshops) {
+            $workshops->name = $request->name ? $request->name : $workshops->name;
+            $workshops->description = $request->description ? $request->description : $workshops->description;
+            $workshops->quotas = $request->quotas ? $request->quotas : $workshops->quotas;
+            $workshops->about_quotas = $request->about_quotas ? $request->about_quotas : $workshops->about_quotas;
+            
+            $workshops->status = $request->status ? $request->status : 1;
+
+            //viene una imagen nueva
+            if ($request->cover_page) {
+                unlink(public_path() .  '/uploads/workshop/' . $workshops->cover_page );
+                $cover_page = $request->file('cover_page');
+                $random_string = md5(microtime());
+                $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
+                Image::make($avatar)->save( public_path('/uploads/workshop/' . $filename ) );
+                $workshops->cover_page = $filename;
+            
+            } else {
+                $workshops->cover_page = $workshops->cover_page; 
+            }
+            
+
+            if ($workshops->save()) {
+
+                //si vienen los tags
+                /*if ($request->teachers) {
+                    foreach ($request->teachers as $key => $value) {
+                        // si viene un string esto pasa cuando es un nuevo tag 
+                        if(is_numeric($value) == false) {
+                            //busco por nombre los tags que vienen
+                            $teacher = Teacher::firstOrNew(['name' => $value]);
+                            //si no existe lo creo
+                            if (!$tag->exists) {
+                                $tag = new Tag();
+                                $tag->status = 1;
+                                $tag->name = $value;
+                                $tag->save();
+                                // agrego el id al arreglo $tags
+                                $tags[$key] = $tag->id;
+                            } 
+                        } else {
+                            $tags[$key] = $value;  
+                        }
+
+                    }
+                    $news->tags()->detach();
+                    $news->tags()->attach($tags);
+                }*/
+
+                if ($request->show) {
+                    flash('La noticia '. $workshops->title .' se actualizó correctamente!')->success();
+                    return redirect()->route('workshops.index');
+                }
+                
+
+                flash('La noticia '. $workshops->title .' se actualizó correctamente!')->success();
+                return redirect()->route('workshops.edit', $workshops->id);
+
+            } else {
+                flash('La noticia no se pudo actualizar.')->error();
+                return redirect()->route('workshops.edit', $workshops->id);
+            }
+            
+        }  else{
+            
+            flash('no se encuentra la noticia')->error();
+            return redirect()->route('workshops.edit', $id);
+        }
+
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+        $workshops = Workshop::find($id);
+        if ($workshops->delete()) {
+            if ($workshops->cover_page) {
+                unlink(public_path() .  '/uploads/workshops/' . $workshops->cover_page );
+            }
+            flash('Taller eliminado correctamente!')->success();
+            return redirect('workshopss');
+        } else{
+            flash('No se pudo eliminar el workshop!')->error();   
+            return redirect('workshop');
+        }
+    }
+
 }
