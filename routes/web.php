@@ -30,8 +30,30 @@ Route::get('/', function () {
                     break;
         }    
     	
-    }else{
-        return view('/home');
+    } else{
+        return view('/');
+    }
+});
+
+Route::get('/dashboard', function () {
+    if(Auth::check()){
+        switch (Auth::user()->role_id) {
+                //segun rol redirecciono al dashboard
+                case '1':
+                    return redirect()->action('HomeController@index');
+                    break;
+                
+                case '2':
+                    return redirect()->action('HomeController@indexTeacher');
+                    //return view('/site/home');
+                    break;
+
+                case '3':
+                    return redirect()->action('HomeController@indexPublic');
+                    break;
+        }    
+    } else{
+        return view('/');
     }
 });
 
@@ -82,5 +104,5 @@ Route::resource('tags', 'TagsController')->middleware('auth');
 
 /***************** Public site  ***********************/
 
-Route::get('/home', 'HomeController@indexSite');
+Route::get('/', 'HomeController@indexSite');
 Route::get('about', 'HomeController@about');

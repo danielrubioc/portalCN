@@ -29,9 +29,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{url('/images/Logo_Deporte-17.png')}}" style="height: 50px; margin-top: -15px;">
-                    </a>
+                    @if(Auth::user())
+                        <a class="navbar-brand" href="{{ url('/dashboard') }}">
+                            <img src="{{url('/images/Logo_Deporte-17.png')}}" style="height: 50px; margin-top: -15px;">
+                        </a>
+                        @else
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <img src="{{url('/images/Logo_Deporte-17.png')}}" style="height: 50px; margin-top: -15px;">
+                        </a>
+                    @endif
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
