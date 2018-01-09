@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasOne('App\Post', 'id', 'category_id');
     }
+
+    public function scopeGetListActiveCategories($query)
+    {   
+        $query->where(\DB::raw("status"), "=", 1);
+    }
 }

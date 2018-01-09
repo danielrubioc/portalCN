@@ -9,6 +9,8 @@ use App\Gallery;
 use App\Tag;
 use Auth;
 use Image;
+//campo url
+use Illuminate\Support\Str as Str;
 
 class PostsController extends Controller
 {
@@ -66,7 +68,7 @@ class PostsController extends Controller
         $news = new Post($request->all());
         $news->status = 1;
         $news->user_id = Auth::id();
-        
+        $news->url = Str::slug($request->url ? $request->url : $request->title, '_');
         if( $request->hasFile('cover_page') ) {
             $avatar = $request->file('cover_page');
             $random_string = md5(microtime());
@@ -125,9 +127,12 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Post::where('url','=', $slug)->firstOrFail();
+
+        return view('site/post_detail', ['post' => $post]);
+        
     }
 
     /**

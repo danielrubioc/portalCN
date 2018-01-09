@@ -78,5 +78,35 @@ class HomeController extends Controller
                 
     }
 
+    public function showPostDetail($slug)
+    {
+        $post = Post::where('url','=', $slug)->firstOrFail();
+
+        return view('site/post_detail', ['post' => $post]);
+        
+    }
+
+    public function indexPosts(Request $request, $id = null, $name = null)
+    {
+         //
+        if ($request->has('title')) {
+            $column = "title";
+            $posts = Post::filterByRequest($column, $request->get('title'))->paginate();
+        } else if ($request->has('category')) {
+            $column = "category";
+            $posts = Post::filterByRequest($column, $request->get('category'))->paginate();
+        } else if ($request->has('status')) {
+            $column = "status";
+            $posts = Post::filterByRequest($column, $request->get('status'))->paginate();
+        } else if ($id) {
+            $column = "category";
+            $posts = Post::filterByRequest($column, $id)->paginate();
+        } else {
+            $posts = Post::getListActivePost()->paginate(15);
+        }
+
+        return view('site.post_categories', ['posts' => $posts, 'categories' => Category::getListActiveCategories()->get(), 'tags' => Tag::getListActiveTags()->get() ]);
+    }
+
     
 }

@@ -108,3 +108,13 @@ Route::get('/', 'HomeController@indexSite');
 Route::get('/about', 'HomeController@about');
 Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
+
+// blog publico
+//detalle noticia
+Route::get('publicaciones/{slug}', ['as' => 'post', 'uses' => 'HomeController@showPostDetail']);
+//index por categoria
+Route::get('publicaciones/categoria/{id}/{name}', 'HomeController@indexPosts');
+//index por tags
+Route::get('publicaciones/tag/{id}/{name}', 'HomeController@indexPosts');
+//index todas  
+Route::get('publicaciones/', 'HomeController@indexPosts');
