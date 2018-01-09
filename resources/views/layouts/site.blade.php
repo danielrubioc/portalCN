@@ -25,14 +25,16 @@
         <a href="{{ route('login') }}" class="left-input"><i class="fa fa-user-o" aria-hidden="true"></i>Ingresa aquí</a>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
         <div class="space-menu">
-          <img src="{{url('/images/Logo_Deporte-17.png')}}" >
+          <a href="{{ url('/') }}">
+            <img src="{{url('/images/Logo_Deporte-17.png')}}" >
+          </a>
         </div>
         <div class="buttons">
           <a href="#">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="#">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="/contacto">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ route('register') }}">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>
       </div>
@@ -48,7 +50,9 @@
                   <div class="bar3"></div>
                 </div>
                 <div class="icon-corporative"> 
-                  <img src="{{url('/images/Logo_Deporte-17.png')}}" class="img-responsive" >   
+                  <a href="{{ url('/') }}">
+                    <img src="{{url('/images/Logo_Deporte-17.png')}}" class="img-responsive" >   
+                  </a>
                 </div>
             </div>
         </div>
@@ -84,13 +88,7 @@
 
     </script>
 
-      <!-- Angular Material requires Angular.js Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-
-    <!-- Angular Material Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <!-- selector multiple -->
+    @yield('inputHasContent')
 </body>
 </html>

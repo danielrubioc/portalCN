@@ -7,9 +7,10 @@
 		<div class="container">
 			<div class="text-description">
 				<div class="title">
-					<h1 style="font-size: 26px; margin: 20px;">Fomentar y difundir <br>
-					<span style="font-size: 26px; font-style: italic; font-weight: 100; text-transform: lowercase;">
-					"El deporte y<br> la actividad física<br> en Cerro Navia"</span></h1>
+					<h1>Fomentar y difundir</h1>
+					<span>
+					"El deporte y la actividad física  en Cerro Navia"
+					</span>
 					
 				</div>
 

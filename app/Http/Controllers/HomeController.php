@@ -11,6 +11,7 @@ use App\User;
 use App\Workshop;
 use App\Student;
 use App\Teacher;
+use Mail;
 use Auth;
 use Image;
 
@@ -54,6 +55,27 @@ class HomeController extends Controller
     public function about()
     {
         return view('site/about');
+    }
+
+    public function contact()
+    {
+        return view('site/contact');
+    }
+
+    
+ 
+    public function sendContact(Request $request)
+    {
+        //
+
+        Mail::send('emails.contact', $request->all(), function($msj){
+            $msj->subject('Corrreo de contacto');
+            $msj->to('daniel.janorc@gmail.com');
+        });
+
+        flash('Contacto enviado correctamente!')->success();
+        return view('site/contact');
+                
     }
 
     
