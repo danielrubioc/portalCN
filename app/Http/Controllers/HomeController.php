@@ -102,7 +102,7 @@ class HomeController extends Controller
             $column = "category";
             $posts = Post::filterByRequest($column, $id)->paginate();
         } else {
-            $posts = Post::getListActivePost()->paginate(15);
+            $posts = Post::getListActivePost()->paginate(5);
         }
 
         return view('site.post_categories', ['posts' => $posts, 'categories' => Category::getListActiveCategories()->get(), 'tags' => Tag::getListActiveTags()->get() ]);

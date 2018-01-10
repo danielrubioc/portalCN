@@ -238,10 +238,6 @@
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
     $('#content').ckeditor();
-    function validate() {
-      var element = document.getElementById('url');
-      element.value = element.value.replace(/[^a-zA-Z0-9@]+/, '');
-    };
 </script>
 @stop
 @endsection
