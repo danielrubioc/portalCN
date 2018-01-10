@@ -312,7 +312,84 @@ section#six-section:before {
     background: rgba(76, 150, 39, 0.75);
 }
 
+.content-categories {
+    min-height: 100vh;
+}
+.item-post {
+    height: 400px;
+    position: relative;
+    width: 100%;
+}
 
+.item-post:before {
+    position: absolute;
+    content: '';
+    background: rgba(0, 106, 22, 0.43);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.info-post-tercer-tiempo-right {
+    position: absolute;
+    bottom: 64px;
+    right: 14px;
+    left: 50%;
+    text-align: right;
+}
+.info-post-tercer-tiempo {
+    position: absolute;
+    bottom: 30px;
+    left: 14px;
+    right: 50%;
+}
+.info-post-tercer-tiempo-right a {
+    color: white;
+    padding: 10px 15px;
+    border: 2px solid white;
+    color: white;
+    text-transform: uppercase;
+}
+.info-post-tercer-tiempo h2 {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.pagination-blog {
+    width: 100%;
+    text-align: center;
+}
+
+.img-post-detail {
+    height: 300px;
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+}
+.content-title-detail {
+    background: #383838;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: white;
+        padding: 10px;
+}
+.content-title-detail h1 {
+    margin: 0;
+    margin-top: -10px;
+    color: white;
+    text-transform: initial;
+}
+.info-content-detail {
+    margin: 35px 0;
+}
+.info-content-detail h4 {
+    margin-bottom: 16px;
+}
+hr.separator-comparte {
+    border-top: 3px solid #eee;
+}
 footer {
     background: #f0f0f0;
     padding: 20px;

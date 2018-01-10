@@ -78,7 +78,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/tercer-tiempo') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
