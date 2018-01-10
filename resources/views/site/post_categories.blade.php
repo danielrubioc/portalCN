@@ -11,7 +11,7 @@
 		    @if ($posts)
 				<p>Un total de {{ $posts->total() }} Publicaciones</p>
 				@foreach ($posts as $post)
-					@if ($post->status === 1)
+
 		    		<div class="item-post" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
 												  -webkit-background-size: cover;
 												  -moz-background-size: cover;
@@ -26,7 +26,7 @@
 		    			</div>
 		    		</div>		
 
-					@endif
+
 				@endforeach
 				<div class="pagination-blog">
 					{{ $posts->links() }}

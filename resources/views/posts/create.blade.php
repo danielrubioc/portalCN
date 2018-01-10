@@ -44,7 +44,7 @@
                             <label for="title" class="col-md-4 control-label"> Url </label>
 
                             <div class="col-md-6">
-                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" onkeyup="validate();" required autofocus>
+                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" required autofocus>
 
                                 @if ($errors->has('url'))
                                     <span class="help-block">

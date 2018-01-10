@@ -77,7 +77,7 @@
                                         <label for="url" class="col-md-4 control-label"> Url </label>
 
                                         <div class="col-md-6">
-                                            <input id="url" type="text" class="form-control" name="url" value="{{ $news->url  }}" onkeyup="validate();" placeholder="no debe contener ningun caracter raro" required autofocus>
+                                            <input id="url" type="text" class="form-control" name="url" value="{{ $news->url  }}" placeholder="no debe contener ningun caracter raro" required autofocus>
 
                                             @if ($errors->has('url'))
                                                 <span class="help-block">
