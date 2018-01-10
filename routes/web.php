@@ -100,8 +100,6 @@ Route::get('/registro/exitoso', 'WorkshopsController@exitoso');
 Route::resource('tags', 'TagsController')->middleware('auth');
 
 
-
-
 /***************** Public site  ***********************/
 
 Route::get('/', 'HomeController@indexSite');
@@ -110,11 +108,12 @@ Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
 
 // blog publico
-//detalle noticia
-Route::get('tercer-tiempo/{slug}', ['as' => 'post', 'uses' => 'HomeController@showPostDetail']);
-//index por categoria
-Route::get('tercer-tiempo/categoria/{id}/{name}', 'HomeController@indexPosts');
-//index por tags
-Route::get('tercer-tiempo/tag/{id}/{name}', 'HomeController@indexPosts');
-//index todas  
-Route::get('tercer-tiempo/', 'HomeController@indexPosts');
+//detalle de noticia
+Route::get('{category}/detalle/{slug}', ['as' => 'post', 'uses' => 'HomeController@showPostDetail']);
+//listado por categoria
+Route::get('{category}', 'HomeController@indexPosts');
+
+//index todas las categorias
+Route::get('publicaciones/', 'HomeController@indexPosts');
+
+

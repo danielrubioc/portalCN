@@ -16,7 +16,7 @@
     <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
     <!--title font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600i,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300i,400,700,800,800i" rel="stylesheet">
 </head>
 <body>
     <div id="app">

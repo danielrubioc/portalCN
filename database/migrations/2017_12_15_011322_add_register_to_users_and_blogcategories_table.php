@@ -18,15 +18,17 @@ class AddRegisterToUsersAndBlogcategoriesTable extends Migration
 
 
         DB::table('categories')->insert([
-            'name' => 'Revistas',
+            'name' => 'Tercer tiempo',
             'status' => '1',
+            'url' => 'tercer-tiempo',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'Noticias',
+            'name' => 'Eventos',
             'status' => '1',
+            'url' => 'eventos',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);

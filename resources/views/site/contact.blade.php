@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="conent-form-contact">
-<form method="POST" class="form-css-label"action="/contacto/enviar">
+<form method="POST" class="form-css-label" action="{{ url('/contacto/enviar' ) }}">
     {{ csrf_field() }}
 
     <h2>Formulario de contacto</h2>

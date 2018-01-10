@@ -3,7 +3,7 @@
 @section('content')
 
 	<section class="content" id="first-section">
-		<img src="{{url('/images/first-section.jpg')}}" class="img-responsive">
+		<img src="{{url('/images/home-home.jpg')}}" class="img-responsive">
 		<div class="container">
 			<div class="text-description">
 				<div class="title">
@@ -62,7 +62,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/eventos') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
@@ -78,7 +78,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/tercer-tiempo') }}" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/tercer_tiempo') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>

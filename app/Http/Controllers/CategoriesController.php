@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+//campo url
+use Illuminate\Support\Str as Str;
 
 class CategoriesController extends Controller
 {
@@ -41,6 +43,7 @@ class CategoriesController extends Controller
         //
         $category = new Category($request->all());
         $category->status = 1;
+        $category->url = Str::slug($request->name, '-');
         if ($category->save()) {
             flash('Categoría creada correctamente!')->success();
             return redirect('categories');
@@ -88,6 +91,7 @@ class CategoriesController extends Controller
             if ($category) {
                 $category->name = $request->name ? $request->name : $category->name;
                 $category->status = $request->status ? $request->status : 0;
+                $category->url = Str::slug($request->name, '-');    
                 if ($category->save()) {
                     flash('La categoría '. $category->name .' se actualizó correctamente!')->success();
                     

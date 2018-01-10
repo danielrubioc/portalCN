@@ -68,7 +68,7 @@
 										<td>{{ $post->user->name   }}</td>
 										<td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
 									    <td>
-									    	@if ($post->status === 1)
+									    	@if ($post->status == 1)
 											   <span class="span-success">Publicado</span>
 											@else
 											   <span class="span-danger">No visible</span>

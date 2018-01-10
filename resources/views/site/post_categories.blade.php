@@ -22,7 +22,7 @@
 		    				<h2>{{ $post->title }}</h2>
 		    			</div>
 		    			<div class="info-post-tercer-tiempo-right">
-		    				<a href="{{url('/tercer-tiempo/')}}/{{ $post->url }}">leer + </a>
+		    				<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">leer + </a>
 		    			</div>
 		    		</div>		
 

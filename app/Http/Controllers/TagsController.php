@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tag;
+//campo url
+use Illuminate\Support\Str as Str;
 
 class TagsController extends Controller
 {
@@ -46,9 +48,10 @@ class TagsController extends Controller
         //
         $tags = new Tag($request->all());
         $tags->status = 1;
+        $tags->url = Str::slug($request->name, '-');
         if ($tags->save()) {
             flash('Categoría creada correctamente!')->success();
-            return redirect('tag');
+            return redirect('tags');
         }else {
             flash('no se pudo crear la categoría')->error();
             return view('tags.create');
@@ -93,7 +96,7 @@ class TagsController extends Controller
             if ($tag) {
                 $tag->name = $request->name ?  $request->name : $tag->name;
                 $tag->status = $request->status ? $request->status : 0;
-
+                $tags->url = Str::slug($request->name, '-');
                 if ($tag->save()) {
                     flash('El tag '. $tag->name .' se actualizó correctamente!')->success();
                     if ($request->show) {
