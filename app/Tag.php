@@ -20,4 +20,9 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Post', 'post_tag');
     }
+
+    public function scopeGetListActiveTags($query)
+    {   
+        $query->where(\DB::raw("status"), "=", 1);
+    }
 }

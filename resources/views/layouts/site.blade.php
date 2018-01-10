@@ -33,8 +33,8 @@
           <a href="#">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="#">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="#">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="/contacto">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('/tercer-tiempo') }}">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('/contacto') }}">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ route('register') }}">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>
       </div>
