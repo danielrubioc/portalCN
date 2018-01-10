@@ -19,7 +19,7 @@
 	</section>
 
 	<section class="content" id="second-section">
-		<!--<img src="{{url('/images/first-section.jpg')}}" class="img-responsive">-->
+		<img src="{{url('/images/nosotros-menu.jpg')}}" class="img-responsive">
 		<div class="container">
 			<div class="text-description align-left-section">
 				<div class="text-description-section text-second-gral">
@@ -68,7 +68,7 @@
 	</section>
 
 	<section class="content" id="five-section">
-		<img src="{{url('/images/tercertiempo-menu.jpg')}}" class="img-responsive">
+		<img src="{{url('/images/tercer-tiempo-menu.jpg')}}" class="img-responsive">
 		<div class="container">
 			<div class="text-description align-left-section">
 				<div class="text-description-section text-five-gral">
