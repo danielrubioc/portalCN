@@ -36,7 +36,7 @@ body{
 .sidenav .closebtn {
     position: absolute;
     top: -14px;
-    right: 25px;
+    right: 5px;
     font-size: 36px;
     margin-left: 50px;
 }
@@ -149,8 +149,8 @@ section#first-section {
     z-index: 2;
     position: absolute;
     top: 45%;
-    left: 0;
-    right: 0;
+    left: 20px;
+    right: 20px;
     text-align: center;
 }
 section#first-section {
@@ -266,16 +266,60 @@ a.btn-first.btn-gral {
     right: 0;
     bottom: 5%;
 }
-section#first-section:before {
-    background: transparent;
+.text-description.align-left-section {
+    right: 30%;
+    top: 20%;
+    left: 20px;
+    text-align: left;
+    padding: 10px;
 }
+.text-description-section {
+    color: white;
+}
+.text-description-section h1 {
+    color: white;
+    margin: 0;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+.content-btn-full {
+    width: 100%;
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    left: -20px;
+    text-align: right;
+}
+section.content {
+    min-height: 400px;
+}
+section#first-section:before {
+    background: rgba(55, 99, 160, 0.2);
+}
+section#second-section:before {
+    background: rgba(55, 99, 160, 0.87);
+}
+section#third-section:before {
+    background: rgba(14, 55, 111, 0.73);
+}
+section#four-section:before {
+    background: rgba(8, 60, 60, 0.7);
+}
+section#five-section:before {
+    background: rgba(26, 72, 30, 0.76);
+}
+section#six-section:before {
+    background: rgba(76, 150, 39, 0.75);
+}
+
+
 footer {
-    background: black;
+    background: #f0f0f0;
     padding: 20px;
     text-align: center;
 }
 footer a {
-    color: white;
+    color: #898989;
     font-family: arial;
     text-transform: uppercase;
     font-weight: bold;
@@ -335,4 +379,13 @@ input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width
     background: #007c98;
     border-radius: 0;
 }
+}
+
+@media (max-width: 320px) { 
+    .title h1 {
+        font-size: 23px;
+    }
+    .title span {
+        font-size: 12px;
+    }
 }

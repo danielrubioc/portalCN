@@ -19,28 +19,84 @@
 	</section>
 
 	<section class="content" id="second-section">
-		<img src="{{url('/images/second-section.jpg')}}" class="img-responsive">
+		<!--<img src="{{url('/images/first-section.jpg')}}" class="img-responsive">-->
 		<div class="container">
-			<div class="text-description-gral text-second-gral">
-				<h1>¿Por qué?</h1>
-				<p>Para disminuir las enfermedades producidas por el sedentarismo en Chile creemos que es fundamental Difundir y Fomentar la actividad física en toda la comuna.</p>
+			<div class="text-description align-left-section">
+				<div class="text-description-section text-second-gral">
+					<h1>Nosotros</h1>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+					
+				</div>
+			</div>
+			<div class="content-btn-full">
 				<a href="" class="btn-first btn-gral">Aprende más</a>
 			</div>
-			
 		</div>
 	</section>
-
 
 	<section class="content" id="third-section">
-		<img src="{{url('/images/third-section.jpg')}}" class="img-responsive">
+		<img src="{{url('/images/disciplina-menu.jpg')}}" class="img-responsive">
 		<div class="container">
-			<div class="text-description-gral text-third-gral">
-				<h1>¿Por qué actividad física y deporte?</h1>
-				<p>Genera lazos y aumenta la confianza en ti mismo, regula el peso y mejora notablemente la calidad de vida, manteniéndonos ocupados y enfocados en lo que realmente queremos. ¡El deporte te desafía a superarte a ti mismo!</p>
+			<div class="text-description align-left-section">
+				<div class="text-description-section text-third-gral">
+					<h1>Disciplina</h1>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+					
+				</div>
+			</div>
+			<div class="content-btn-full">
 				<a href="" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
 
+
+	<section class="content" id="four-section">
+		<img src="{{url('/images/eventos-menu.jpg')}}" class="img-responsive">
+		<div class="container">
+			<div class="text-description align-left-section">
+				<div class="text-description-section text-four-gral">
+					<h1>Eventos</h1>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+					
+				</div>
+			</div>
+			<div class="content-btn-full">
+				<a href="" class="btn-first btn-gral">Aprende más</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="content" id="five-section">
+		<img src="{{url('/images/tercertiempo-menu.jpg')}}" class="img-responsive">
+		<div class="container">
+			<div class="text-description align-left-section">
+				<div class="text-description-section text-five-gral">
+					<h1>Tercer tiempo</h1>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+					
+				</div>
+			</div>
+			<div class="content-btn-full">
+				<a href="" class="btn-first btn-gral">Aprende más</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="content" id="six-section">
+		<img src="{{url('/images/contacto-menu.jpg')}}" class="img-responsive">
+		<div class="container">
+			<div class="text-description align-left-section">
+				<div class="text-description-section text-six-gral">
+					<h1>Contacto</h1>
+					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+					
+				</div>
+			</div>
+			<div class="content-btn-full">
+				<a href="" class="btn-first btn-gral">Aprende más</a>
+			</div>
+		</div>
+	</section>
 
 @endsection
