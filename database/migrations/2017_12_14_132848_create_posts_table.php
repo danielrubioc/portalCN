@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->text('subtitle')->nullable();
-            $table->string('url', 400)->unique();
+            $table->string('url', 300)->unique();
             $table->text('content')->nullable();
             $table->text('cover_page')->nullable();
             $table->integer('status')->nullable();
