@@ -62,6 +62,11 @@ class HomeController extends Controller
         return view('site/contact');
     }
 
+    public function workshops()
+    {   
+        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        return view('site/workshops', ['workshops' => $workshops]);
+    }
     
  
     public function sendContact(Request $request)

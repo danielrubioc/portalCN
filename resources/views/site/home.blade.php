@@ -9,7 +9,7 @@
 				<div class="title">
 					<h1>Fomentar y difundir</h1>
 					<span>
-					"El deporte y la actividad física  en Cerro Navia"
+					El deporte y la actividad física
 					</span>
 					
 				</div>
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/nosostros') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/disciplinas/') }}s" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
@@ -90,11 +90,15 @@
 				<div class="text-description-section text-six-gral">
 					<h1>Contacto</h1>
 					<p>Mantengamos el contacto.</p>
-					
+					<ul>
+						<li>Número: (+562) 2667 6631</li>
+						<li>Correo: contacto@deportescerronavia.cl</li>
+						<li>Dirección: Mapocho Norte 8115, Cerro Navia. Stgo.</li>
+					</ul>	
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/contacto') }}" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/contacto') }}" class="btn-first btn-gral">Contactanos</a>
 			</div>
 		</div>
 	</section>

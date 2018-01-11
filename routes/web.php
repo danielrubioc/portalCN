@@ -109,8 +109,10 @@ Route::resource('tags', 'TagsController')->middleware('auth');
 /***************** Public site  ***********************/
 
 Route::get('/', 'HomeController@indexSite');
-Route::get('/about', 'HomeController@about');
 Route::get('/contacto', 'HomeController@contact');
+Route::get('/nosotros', 'HomeController@about');
+Route::get('/disciplinas', 'HomeController@workshops');
+
 Route::post('/contacto/enviar', 'HomeController@sendContact');
 
 // blog publico
