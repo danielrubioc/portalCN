@@ -98,8 +98,11 @@ Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'WorkshopsContro
 //lesson
 Route::resource('lessons', 'LessonsController');
 //registro
-Route::resource('registro', 'StudentController');
-Route::get('/registro/exitoso', 'WorkshopsController@exitoso');
+Route::resource('registro', 'StudentsController');
+Route::get('/registro/verificacion', 'StudentsController@verificacion');
+Route::get('/registro/exitoso', 'StudentsController@existoso');
+
+
 Route::resource('tags', 'TagsController')->middleware('auth');
 
 

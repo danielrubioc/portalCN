@@ -8,7 +8,7 @@
                 <div class="panel-heading">Nuevo taller</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('talleres.store' ) }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('workshops.store' ) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
 
@@ -36,6 +36,48 @@
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('subtitle') ? ' has-error' : '' }}">
+                            <label for="subtitle" class="col-md-4 control-label"> Subtitulo </label>
+
+                            <div class="col-md-6">
+                                <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ old('subtitle') }}" required autofocus>
+
+                                @if ($errors->has('subtitle'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('subtitle') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                            <label for="url" class="col-md-4 control-label"> Url </label>
+
+                            <div class="col-md-6">
+                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" required autofocus>
+
+                                @if ($errors->has('url'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('url') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
+                            <label for="color" class="col-md-4 control-label"> Color </label>
+
+                            <div class="col-md-6">
+                                <input id="color" type="text" class="form-control" name="color" value="{{ old('color') }}" required autofocus>
+
+                                @if ($errors->has('color'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('color') }}</strong>
                                     </span>
                                 @endif
                             </div>

@@ -28,8 +28,6 @@
                     <img src="http://www.futuroestudiante.cl/images/services/deportes.jpg">
                 </div>
 
-
-
             @endforeach
             
             <div class="col-md-12">

@@ -13,23 +13,40 @@ use App\Lesson;
 use Image;
 use Auth;
 
-
-
 class WorkshopsController extends Controller
 {
-    //
-    public function index(){
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         //$tallers = Taller::paginate(15);
         $workshops = Workshop::paginate(15);       
-
+        
         return view('workshops.index', ['workshops' => $workshops]);
+            
     }
 
-    public function create(){
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $user = DB::table('users')->where('role_id', 2);
         return view('workshops.create', ['teachers' => User::all(['id', 'name', 'last_name'])]);
+    
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $workshops = new Workshop($request->all());
@@ -64,6 +81,7 @@ class WorkshopsController extends Controller
                 'tab' => $tabName,
                 'all_teachers' => User::all(['id', 'name', 'last_name']),
                 'teachers' => User::all(['id', 'name', 'last_name']),
+                'teachersInWorkshops' => Workshop::findOrFail($lastInsertedId)->teachers()->get()->toArray(),
                 'lessons' => Lesson::all()->where('workshop_id', $lastInsertedId) ]
             );
 
@@ -85,8 +103,36 @@ class WorkshopsController extends Controller
         }
     }
 
-    public function edit($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
     {   
+        
+        $workshop = Workshop::where('name', '=', $slug)->firstOrFail();
+        
+        if( !empty( $workshop->id ) ){
+            return view('site.workshop', [
+                    'workshop' => $workshop
+                ]
+            );
+        }else{
+            die("No existe la disciplina $slug");
+        }
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
         //esto es para actvivar el tab en info
         $tabName = array(
             'name' => 'info',
@@ -97,66 +143,34 @@ class WorkshopsController extends Controller
             'tab' => $tabName,
             'all_teachers' => User::all(['id', 'name', 'last_name']),
             'teachers' => User::all(['id', 'name', 'last_name']),
+            'teachersInWorkshops' => Workshop::findOrFail($id)->teachers()->get()->toArray(),
             'lessons' => Lesson::all()->where('workshop_id', $id) ]            
         );
     }
 
-    
-
-    public function storelessons(Request $request)
-    {
-        //die( print_r( $request->all() ) );
-        $lessons = new Lesson($request->all());
-        $lessons->status = 1;
-        $lessons->place = $request->all()['place'] . 'ayfua';
-
-        if ($lessons->save()) {
-            
-            $lastInsertedId = $lessons->id;
-            flash('La clase fue creada correctamente!')->success();
-            $tabName = array(
-                'name' => 'lessons',
-            );
-
-            return view('workshops.edit', [
-                            'workshops' => Workshop::findOrFail($lastInsertedId), 
-                            'tab' => $tabName,
-                            'teachers' => User::all(['id', 'name', 'last_name']),
-                            'lessons' => Lesson::all(['date', 'place'])
-                        ]);
-            
-        } else {
-            flash('no se pudo crear la categoría')->error();
-            return view('posts.create');
-        }
-
-
-
-        $taller = new Taller( $request->all() );
-        $taller->status = 1;
-        if ($taller->save()) {
-            flash('Taller creado correctamente!')->success();
-            return redirect('talleres');
-        }else {
-            flash('no se pudo crear el Taller')->error();
-            return view('talleres.create');
-        }
-    }
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
-    {   
+    {
+        
         $workshops = Workshop::find($id);
         if ($workshops) {
             $workshops->name = $request->name ? $request->name : $workshops->name;
             $workshops->description = $request->description ? $request->description : $workshops->description;
             $workshops->quotas = $request->quotas ? $request->quotas : $workshops->quotas;
             $workshops->about_quotas = $request->about_quotas ? $request->about_quotas : $workshops->about_quotas;
-            
             $workshops->status = $request->status ? $request->status : 1;
 
             //viene una imagen nueva
             if ($request->cover_page) {
-                unlink(public_path() .  '/uploads/workshop/' . $workshops->cover_page );
+                if ( file_exists(public_path() . "/uploads/workshop/$workshops->cover_page" ) ) {
+                    unlink(public_path() .  "/uploads/workshop/$workshops->cover_page" );
+                }
                 $cover_page = $request->file('cover_page');
                 $random_string = md5(microtime());
                 $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
@@ -167,7 +181,6 @@ class WorkshopsController extends Controller
                 $workshops->cover_page = $workshops->cover_page; 
             }
             
-
             if ($workshops->save()) {
 
                 //si vienen los tags
@@ -214,8 +227,6 @@ class WorkshopsController extends Controller
             flash('no se encuentra la noticia')->error();
             return redirect()->route('workshops.edit', $id);
         }
-
-
     }
 
     /**
@@ -226,18 +237,18 @@ class WorkshopsController extends Controller
      */
     public function destroy($id)
     {
-        //
         $workshops = Workshop::find($id);
         if ($workshops->delete()) {
             if ($workshops->cover_page) {
-                unlink(public_path() .  '/uploads/workshops/' . $workshops->cover_page );
+                if ( file_exists(public_path() . "/uploads/workshop/$workshops->cover_page" ) ) {
+                    unlink(public_path() .  "/uploads/workshop/$workshops->cover_page" );
+                }
             }
             flash('Taller eliminado correctamente!')->success();
-            return redirect('workshopss');
+            return redirect('workshops');
         } else{
             flash('No se pudo eliminar el workshop!')->error();   
             return redirect('workshop');
         }
     }
-
 }

@@ -167,8 +167,6 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {   
-
-        
             $news = Post::find($id); 
             if ($news) {
                 $news->title = $request->title ? $request->title : $news->title;
