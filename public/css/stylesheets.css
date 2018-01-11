@@ -1,7 +1,8 @@
 
 @media (max-width: 768px) { 
 body{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
+
 }    
 /* menu  */
 .sidenav {
@@ -211,7 +212,7 @@ section#first-section {
 }
 .content img {
     min-height: 400px;
-    min-width: 429px;
+    min-width: 100%;
 }
 .content:before {
     content: '';
@@ -220,7 +221,7 @@ section#first-section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(239, 236, 236, 0.28);
+    /*background: rgba(239, 236, 236, 0.28);*/
 }
 .content:before:first-child {
     content: '';
@@ -293,6 +294,8 @@ a.btn-first.btn-gral {
 section.content {
     min-height: 400px;
 }
+
+/*
 section#first-section:before {
     background: rgba(55, 99, 160, 0.2);
 }
@@ -311,7 +314,7 @@ section#five-section:before {
 section#six-section:before {
     background: rgba(76, 150, 39, 0.75);
 }
-
+*/
 .content-categories {
     min-height: 100vh;
 }
@@ -319,16 +322,17 @@ section#six-section:before {
     height: 400px;
     position: relative;
     width: 100%;
+    border-bottom: 3px solid white;
 }
 
 .item-post:before {
     position: absolute;
     content: '';
-    background: rgba(0, 106, 22, 0.43);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    background: rgba(0, 0, 0, 0.34);
 }
 .info-post-tercer-tiempo-right {
     position: absolute;

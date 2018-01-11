@@ -14,7 +14,7 @@
 	</div>
 	<div class="container info-content-detail">
 		<h4>{{ $post->subtitle }}</h4>
-		<p>{{ $post->content }}</p>
+		<p>{!! $post->content !!}</p>
 
 		<hr class="separator-comparte">
 		<p>link redes sociales</p>

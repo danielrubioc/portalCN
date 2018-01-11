@@ -78,29 +78,29 @@ class HomeController extends Controller
                 
     }
 
-    public function showPostDetail($slug)
-    {
-        $post = Post::where('url','=', $slug)->firstOrFail();
-
-        return view('site/post_detail', ['post' => $post]);
-        
+    public function showPostDetail($category = null, $slug = null)
+    {   
+        if ($slug) {
+            $post = Post::where('url','=', $slug)->firstOrFail();
+            return view('site/post_detail', ['post' => $post]);
+        }
     }
 
-    public function indexPosts(Request $request, $id = null, $name = null)
-    {
+    public function indexPosts(Request $request, $category = null)
+    {   
          //
         if ($request->has('title')) {
             $column = "title";
-            $posts = Post::filterByRequest($column, $request->get('title'))->paginate();
+            $posts = Post::filterByRequest($column, $request->get('title'))->paginate(5);
         } else if ($request->has('category')) {
             $column = "category";
-            $posts = Post::filterByRequest($column, $request->get('category'))->paginate();
+            $posts = Post::filterByRequest($column, $request->get('category'))->paginate(5);
         } else if ($request->has('status')) {
             $column = "status";
-            $posts = Post::filterByRequest($column, $request->get('status'))->paginate();
-        } else if ($id) {
-            $column = "category";
-            $posts = Post::filterByRequest($column, $id)->paginate();
+            $posts = Post::filterByRequest($column, $request->get('status'))->paginate(5);
+        } else if ($category) {
+            $column = "category_get";
+            $posts = Post::filterByRequest($column, $category)->paginate(5);
         } else {
             $posts = Post::getListActivePost()->paginate(5);
         }

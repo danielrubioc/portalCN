@@ -8,7 +8,7 @@ class Tag extends Model
 {
     //
     protected $fillable = [
-        'name', 'status',
+        'name', 'status', 'url',
     ];
 
      public function BlogNews()

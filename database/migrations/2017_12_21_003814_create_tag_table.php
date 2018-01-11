@@ -16,6 +16,7 @@ class CreateTagTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('url')->unique();
             $table->integer('status')->nullable();
             $table->timestamps();
         });
@@ -23,6 +24,7 @@ class CreateTagTable extends Migration
 
         DB::table('tags')->insert([
             'name' => 'Gimnasio y Estadio',
+            'url' => 'gimnasio-y-estadio',
             'status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
@@ -30,6 +32,7 @@ class CreateTagTable extends Migration
 
         DB::table('tags')->insert([
             'name' => 'Gran Final Torneo',
+            'url' => 'gran-final-torneo',
             'status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
@@ -37,6 +40,7 @@ class CreateTagTable extends Migration
 
         DB::table('tags')->insert([
             'name' => 'Taller Deportivo',
+            'url' => 'taller-deportivo',
             'status' => '1',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')

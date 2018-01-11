@@ -18,6 +18,7 @@
                                         <img src="{{url('/uploads/news')}}/{{ $news->cover_page }}" style="width:100%; max-height:150px ">
                                 <?php endif ?>
                                  <br>  <br>   
+                                  <a href="{{ URL::to('/') }}/{{ $news->category->url }}/detalle/{{ $news->url }}" class="btn btn-danger">Ir a publicación</a>
                                 <form class="form-horizontal" method="POST" action="{{ route('posts.update', ['id' => $news->id] ) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}

@@ -178,8 +178,10 @@ class PostsController extends Controller
                 $news->status = $request->status ? $request->status : 0;
 
                 //viene una imagen nueva
-                if ($request->cover_page) {
-                    unlink(public_path() .  '/uploads/news/' . $news->cover_page );
+                if ($request->cover_page && $request->cover_page != '') {
+                    if ($news->cover_page && $news->cover_page != '') {
+                        unlink(public_path() .  '/uploads/news/' . $news->cover_page );
+                    }
                     $avatar = $request->file('cover_page');
                     $random_string = md5(microtime());
                     $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
