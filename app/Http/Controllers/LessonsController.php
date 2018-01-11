@@ -41,7 +41,7 @@ class LessonsController extends Controller
         $lessons->place = $request->all()['place'];
 
         if ($lessons->save()) {
-            
+            $id = $request->all()['workshop_id'];
             $lastInsertedId = $lessons->id;
             flash('La clase fue creada correctamente!')->success();
             $tabName = array(
@@ -49,10 +49,11 @@ class LessonsController extends Controller
             );
            
             return view('workshops.edit', [
-                            'workshops' => Workshop::findOrFail($lastInsertedId), 
+                            'workshops' => Workshop::findOrFail( $id ), 
                             'tab' => $tabName,
                             'teachers' => User::all(['id', 'name', 'last_name']),
-                            'lessons' => Lesson::all(['date', 'place'])
+                            'teachersInWorkshops' => Workshop::findOrFail($request->all()['workshop_id'])->teachers()->get()->toArray(),
+                            'lessons' => Lesson::all()->where('workshop_id', $id)
                         ]);
             
         } else {

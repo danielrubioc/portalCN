@@ -20,12 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('birth_date')->nullable();
+            $table->string('rut')->nullable();
+            $table->string('validate')->nullable();
             $table->integer('role_id')->unsigned();
             $table->integer('status');
             $table->rememberToken();
-            $table->timestamps();
-            
-
+            $table->timestamps();           
         });
 
         Schema::table('users', function($table) {

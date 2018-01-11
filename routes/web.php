@@ -90,13 +90,19 @@ Route::resource('galleries', 'GalleriesController')->middleware('auth');
 //tags
 Route::resource('tags', 'TagsController');
 //taller
-Route::resource('workshops', 'WorkshopsController');
-Route::resource('talleres', 'WorkshopsController');
+Route::resource('workshops', 'WorkshopsController')->middleware('auth');
+//Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');
+
+Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'WorkshopsController@show']);
+
 //lesson
 Route::resource('lessons', 'LessonsController');
 //registro
-Route::resource('registro', 'StudentController');
-Route::get('/registro/exitoso', 'WorkshopsController@exitoso');
+Route::resource('registro', 'StudentsController');
+Route::get('/registro/verificacion', 'StudentsController@verificacion');
+Route::get('/registro/exitoso', 'StudentsController@existoso');
+
+
 Route::resource('tags', 'TagsController')->middleware('auth');
 
 

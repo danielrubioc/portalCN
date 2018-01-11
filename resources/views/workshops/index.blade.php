@@ -8,8 +8,8 @@
 <div class="container">
 	<div class="gral-list-content">
 	    <div class="title-gral-index">
-			<a href="{{ URL::to('talleres/create') }}" class="btn btn-success">Nuevo taller</a>
-			<a href="{{ URL::to('registro/create') }}" class="btn btn-success">Nuevo Alumno</a>	
+			<a href="{{ URL::to('workshops/create') }}" class="btn btn-success">Nuevo taller</a>
+			<a href="{{ URL::to('workshops/create') }}" class="btn btn-success">Nuevo Alumno</a>	
 			<h1>Lista de Talleres </h1>
 		</div>
 	    <br>
@@ -52,7 +52,7 @@
 								    <td class="box-btnes">	
 										<a href="{{ route('workshops.edit', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 					    					
-								    	<form method="POST" action="{{ route('talleres.destroy', ['id' => $taller->id] ) }}">
+								    	<form method="POST" action="{{ route('workshops.destroy', ['id' => $taller->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>

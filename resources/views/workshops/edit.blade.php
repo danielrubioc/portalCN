@@ -17,8 +17,10 @@
                         <?php if ($workshops->cover_page): ?>
                             <img src="{{url('/uploads/workshop')}}/{{ $workshops->cover_page }}" style="width:100%; max-height:150px ">
                         <?php endif ?>
-                            <form class="form-horizontal" method="POST" action="{{ route('talleres.store' ) }}" enctype="multipart/form-data">
+
+                            <form class="form-horizontal" method="POST" action="{{ route('workshops.update', ['id' => $workshops->id] ) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
+                                {{ method_field('PUT') }}
 
                                 <div class="form-group{{ $errors->has('cover_page') ? ' has-error' : '' }}">
                                     <label for="cover_page" class="col-md-4 control-label">Portada</label>
@@ -56,7 +58,12 @@
                                         <select class="form-control js-multiple" name="teachers[]" multiple="multiple" required>
                                         
                                             @foreach($teachers as $teacher)
+                                                @if (array_search($teacher['id'], array_column($teachersInWorkshops, 'id')) !== false ){
+                                                    <option value="{{$teacher->id}}" selected>{{$teacher->name}} {{$teacher->last_name}}</option>
+                                                @else
                                                     <option value="{{$teacher->id}}">{{$teacher->name}} {{$teacher->last_name}}</option>
+                                                @endif
+                                
                                             @endforeach
 
                                         </select>
@@ -202,7 +209,6 @@
                                                     <th scope="row">1</th>
                                                     <td>{{ $lesson->date }}</td>
                                                     <td>{{ $lesson->place }}</td>
-                                                    <td>Editar Eliminar</td>
                                                 </tr>
                                             @endforeach                                                                                    
                                         </tbody>
