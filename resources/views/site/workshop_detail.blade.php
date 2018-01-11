@@ -17,9 +17,6 @@
 		<p>{!! $post->content !!}</p>
 
 		<hr class="separator-comparte">
-		<div class="social-icons">
-			sudo apt install ng-common
-			<a href="whatsapp://send" data-text="Cómo crear el botón de Compartir en WhatsApp en tu sitio:" data-href="" class="wa_btn wa_btn_s" style="display:none">Compartir</a>
-			link redes sociales</p>
+		<p>link redes sociales</p>
 	</div>
 @endsection

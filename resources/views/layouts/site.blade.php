@@ -15,8 +15,7 @@
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
     <!--title font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600i,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300i,400,700,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
 </head>
 <body>
     <div id="app">

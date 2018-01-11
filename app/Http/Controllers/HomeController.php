@@ -53,8 +53,13 @@ class HomeController extends Controller
 
 
     public function about()
-    {
+    {   
         return view('site/about');
+    }
+
+    public function team()
+    {   
+        return view('site/team');
     }
 
     public function contact()
@@ -64,8 +69,14 @@ class HomeController extends Controller
 
     public function workshops()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        $workshops = Workshop::getListActiveWorkshops()->limit(5)->get();
         return view('site/workshops', ['workshops' => $workshops]);
+    }
+
+    public function workshopsAll()
+    {   
+        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        return view('site/workshops_all', ['workshops' => $workshops]);
     }
     
  
