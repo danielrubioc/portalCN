@@ -3,7 +3,20 @@
 body{
     font-family: 'Merriweather Sans', sans-serif;
 
-}    
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: #222;
+    text-rendering: optimizeLegibility;
+    margin-top: .2rem;
+    margin-bottom: .5rem;
+    line-height: 1.4;
+} 
+a, span {
+    font-family: 'Merriweather Sans', sans-serif;
+}   
 /* menu  */
 .sidenav {
     height: 100%;
@@ -129,8 +142,9 @@ body{
     color: white;
     font-family: arial;
     text-transform: capitalize;
-    font-weight: bold;
+    font-weight: lighter;
     padding-left: 20px;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 .buttons a span {
     float: right;
@@ -180,10 +194,12 @@ section#first-section {
     color: white;
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 2px;
     margin: 0;
     padding: 0;
-    font-size: 26px;
+    font-size: 27px;
+    text-transform: uppercase;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
 }
 .title span {
     font-size: 14px;
@@ -256,6 +272,7 @@ a.btn-first.btn-gral {
     border: 2px solid white;
     color: white;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .text-description-gral.text-second-gral {
@@ -280,8 +297,10 @@ a.btn-first.btn-gral {
 .text-description-section h1 {
     color: white;
     margin: 0;
-    font-size: 30px;
+    font-size: 27px;
     text-transform: uppercase;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
 }
 .content-btn-full {
     width: 100%;
@@ -428,17 +447,32 @@ a.left-input {
     top: 15px;
     font-size: 10px;
 }
-.conent-form-contact {
-    margin: 90px 0;
-    display: inline-block;
-}
+
 input{
     outline: none;
 }
-input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;box-shadow: none;}
-.effect-placeholder {border: 0; padding: 4px 0; border-bottom: 1px solid #ccc; background-color: transparent;}
-
-.effect-placeholder ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #3399FF; transition: 0.4s;}
+input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;box-shadow: none !important;}
+.effect-placeholder {
+    border: 0;
+    border-radius: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+}
+textarea#msg {
+    width: 100%;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+input.btn.btn-info.pull-right.contact-btn-submit {
+    background: #ea6b00;
+    padding: 8px 15px;
+    margin-right: 15px;
+    text-transform: uppercase;
+    border-color: white;
+}
+.effect-placeholder ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #fff; transition: 0.4s;}
 .effect-placeholder:focus ~ .focus-border,
 .has-content.effect-placeholder ~ .focus-border{width: 100%; transition: 0.4s;}
 .effect-placeholder ~ label{position: absolute; left: 0; width: 100%; top: 9px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px;}
@@ -447,18 +481,142 @@ input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width
     position: relative;
 }
 .conent-form-contact {
-    padding: 10px;
     background: rgba(255, 255, 255, 0.74);
-    margin-left: 20px;
-    margin-right: 20px;
+    height: 100vh;
+    width: 100%;
 }
 .conent-form-contact h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    color: white;
+    font-family: 'Merriweather Sans', sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: bold;
 }
 .contact-btn-submit {
     background: #007c98;
     border-radius: 0;
+}
+.conten-formulario {
+    padding: 20px;
+    margin-top: 70px;
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+    width: 100%;
+}
+.conten-formulario .effect-placeholder ~ label {
+    color: white;
+    text-align: left;
+    text-transform: capitalize;
+}
+.conten-formulario input[type="text"] {
+    color: white;
+    text-align: left;
+    text-transform: capitalize;
+}
+section#six-section .text-description.align-left-section {
+    right: 0;
+}
+
+
+/*  carrousel  */
+.owl-carousel .owl-item img {
+  display: block;
+  width: 88%;
+  margin: 0 auto;
+  transition: 1s all;
+}
+.owl-item.active {
+  text-align: center;
+  z-index: 99;
+}
+.owl-item {
+    background: #ececec;
+}
+.visibility-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+.visibility-content.active-clicked{
+z-index: 999;
+opacity: 1;
+}
+.relative-conten {
+position: relative;
+}
+.content-total {
+  margin-top: -22px;
+  padding: 30px;
+  text-align: center;
+  background: #3097d1;
+  color: white;
+  font-size: 16px;
+}
+span.info-detail-work {
+    text-align: left;
+    padding: 20px;
+    display: block;
+}
+.item{
+    min-height: 450px;
+    display: inline-block;
+}
+
+.owl-carousel .owl-item img.active-clicked {
+    transition: 1s all;
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    -ms-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    transform: scale(1.1);
+}
+
+
+.content-gallery {
+    position: relative;
+    transition: 1s all;
+}
+
+.text-related-workshop {
+  width: 100%;
+  height: 50vh;
+  background: #fff;
+  color: black;
+  position: absolute;
+  bottom: -40vh;
+  opacity: 0;
+  transition: 1s all;
+  text-align: center;
+}
+.info-taller {
+    position: relative;
+}
+
+.text-related-workshop.active-clicked {
+    bottom: 0;
+    opacity: 1;
+    transition: 1s all;
+    z-index: 99;
+}
+/*  carrousel  */
+
+
+
+.main-talleres {
+    margin-top: 77px;
+}
+.main-talleres .content-total {
+    padding: 10px 0;
+}
+
+.main-talleres .content-total p {
+    margin: 0;
 }
 }
 
@@ -466,7 +624,13 @@ input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width
     .title h1 {
         font-size: 23px;
     }
+    .text-description-section p {
+        font-size: 14px;
+    }
     .title span {
-        font-size: 12px;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 500;
+        text-transform: inherit;
     }
 }

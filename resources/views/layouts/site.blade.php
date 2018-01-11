@@ -87,7 +87,8 @@
     }
 
     </script>
-
+    <!--  sliders -->
+    @yield('slider-owl')
     <!-- selector multiple -->
     @yield('inputHasContent')
 </body>
