@@ -112,7 +112,7 @@ class WorkshopsController extends Controller
     public function show($slug)
     {   
         
-        $workshop = Workshop::where('name', '=', $slug)->firstOrFail();
+        $workshop = Workshop::where('url', '=', $slug)->firstOrFail();
         
         if( !empty( $workshop->id ) ){
             return view('site.workshop', [
