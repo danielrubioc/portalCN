@@ -109,11 +109,17 @@ Route::resource('tags', 'TagsController')->middleware('auth');
 /***************** Public site  ***********************/
 
 Route::get('/', 'HomeController@indexSite');
-Route::get('/contacto', 'HomeController@contact');
 Route::get('/nosotros', 'HomeController@about');
-Route::get('/disciplinas', 'HomeController@workshops');
-
+Route::get('/equipo', 'HomeController@team');
+Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
+//disciplinas
+Route::get('/disciplinas', 'HomeController@workshops');
+Route::get('/disciplinas', 'HomeController@workshopsAll');
+Route::get('/disciplinas/{slug}', 'HomeController@workshops');
+
+
+
 
 // blog publico
 //detalle de noticia

@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/nosostros') }}" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/nosotros') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/disciplinas/') }}s" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/disciplinas') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
