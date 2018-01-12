@@ -67,15 +67,15 @@ class HomeController extends Controller
         return view('site/contact');
     }
 
-    public function workshops()
+    public function newsWorkshops()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->limit(5)->get();
+        $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
         return view('site/workshops', ['workshops' => $workshops]);
     }
 
     public function workshopsAll()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        $workshops = Workshop::getListActiveWorkshops()->paginate(4); 
         return view('site/workshops_all', ['workshops' => $workshops]);
     }
     

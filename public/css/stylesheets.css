@@ -14,8 +14,10 @@ body{
     margin-bottom: .5rem;
     line-height: 1.4;
 } 
-a, span {
+a, span, button {
     font-family: 'Merriweather Sans', sans-serif;
+    outline: none;
+    text-decoration: none;
 }   
 /* menu  */
 .sidenav {
@@ -613,10 +615,169 @@ span.info-detail-work {
 }
 .main-talleres .content-total {
     padding: 10px 0;
+        padding-bottom: 3px;
 }
 
 .main-talleres .content-total p {
     margin: 0;
+}
+.content-total.tallers {
+    background: #ffffff;
+}
+.content-total.tallers h2 {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #818181;
+        margin: 0;
+}
+.content-total.tallers p {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: lighter;
+    text-transform: inherit;
+    font-size: 13px;
+    color: #818181;
+}
+.btn-ir-taller {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    color: black;
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, 0))) !important;
+    padding: 5px 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.info-taller {
+    width: 100%;
+    display: inline-block;
+}
+.block-button-taller a {
+    position: absolute;
+    top: -42px;
+    z-index: 9;
+    width: 100%;
+    text-align: center;
+    background: #d9d9d9;
+    padding: 10px;
+    color: #838383;
+}
+.block-button-taller {
+    position: relative;
+}
+.workshop-all h1 {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #818181;
+    margin: 0;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+/*
+.item-work {
+    min-width: 175px;
+    min-height: 236px;
+    width: 50%;
+    position: relative;
+}
+*/
+.no-padding {
+    margin-bottom: 25px;
+    display: contents;
+    padding: 0
+}
+.item-work {
+    padding-right: 10px;
+}
+.col-md-12.pagination-work {
+    width: 100%;
+    text-align: center;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 10px 12px;
+    line-height: 1.6;
+    text-decoration: none;
+    color: #818181;
+    background-color: #fff;
+    border: none;
+    margin-left: -1px;
+    margin-right: 8px;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.flotant-button {
+    position: fixed;
+    top: 3px;
+    right: 15px;
+    font-size: 28px;
+    z-index: 9999;
+}
+button.search-button {
+    border: none;
+    background: transparent;
+}
+.search-open.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #c9c9c9;
+    z-index: 99999;
+    opacity: 1;
+    transition: 1s all;
+}
+
+button.search-button.clickable-out {
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 30px;
+}
+.content-info-search {
+    display: inline-block;
+    width: 100%;
+    margin-top: 40%;
+    text-align: center;
+}
+.search-open {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #c9c9c9;
+    z-index: 0;
+    transition: 1s all;
+    opacity: 0;
+}
+.social-icons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    background: aqua;
+    background: #d9d9d9;
+    right: 0;
+}
+.social-icons ul {
+    display: inline-flex;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.social-icons ul li {
+    width: 100%;
+    text-align: center;
 }
 }
 

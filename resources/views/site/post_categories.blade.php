@@ -2,12 +2,25 @@
 
 @section('content')
 	<div class="content-categories visible-xs">
-			<div class="info-sub-menu" style="display:none">
-				<form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('HomeController@indexPosts') }}">
-			        <input class="form-control mr-sm-2" type="search" name="title" placeholder="Busca por titulo" aria-label="Search">
-			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-			    </form>
-		    </div>
+			<div class="flotant-button">
+	            <button class="search-button clickable"><i class="fa fa-search" aria-hidden="true"></i> </button>
+	        </div>
+	        <div class="search-open">
+
+	                <button class="search-button clickable-out"><i class="fa fa-times" aria-hidden="true"></i> </button>
+	               
+	                <br>
+
+	                <div class="content-info-search">
+	                 <p >Busca por nombre de publicacion</p>
+	                <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('HomeController@indexPosts') }}">
+	                    <input class="form-control mr-sm-2" type="search" name="title" placeholder="Busca por titulo" aria-label="Search">
+	                    <br>
+	                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+	                </form>
+	                </div>
+	            
+	        </div>
 		    @if ($posts)
 				<p>Un total de {{ $posts->total() }} Publicaciones</p>
 				@foreach ($posts as $post)
@@ -59,4 +72,15 @@
 			@endif
 
 	</div>
+@section('slider-owl')
+<script type="text/javascript">
+$(".clickable").click(function() {  //use a class, since your ID gets mangled
+    $(".search-open").addClass("active");      //add the class to the clicked element
+});
+$(".clickable-out").click(function() {  //use a class, since your ID gets mangled
+    $(".search-open").removeClass("active");      //add the class to the clicked element
+});
+
+</script>
+@stop
 @endsection

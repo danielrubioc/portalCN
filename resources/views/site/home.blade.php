@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/disciplinas') }}" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/nuevas-disciplinas') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>
@@ -102,5 +102,9 @@
 			</div>
 		</div>
 	</section>
-
+	<footer>
+        <div class="btn-register-taller">
+            <a href="registro/create">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+        </div>
+    </footer>  
 @endsection

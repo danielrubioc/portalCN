@@ -33,10 +33,10 @@ class Post extends Model
         if (trim($value) != "" && trim($column) != "") {
             switch ($column) {
                 case 'title':
-                    $query->where(\DB::raw("title"), "LIKE", "%$value%")>where('status', '=', 1)->orderByRaw('created_at DESC');
+                    $query->where(\DB::raw("title"), "LIKE", "%$value%")->where('status', '=', 1)->orderByRaw('created_at DESC');
                     break;
                 case 'category':
-                    $query->where('category_id', '=', $value)>where('status', '=', 1)->orderByRaw('created_at DESC');
+                    $query->where('category_id', '=', $value)->where('status', '=', 1)->orderByRaw('created_at DESC');
                     break;
                 case 'category_get':
                     //recibo la url de categoria y busco todos por categoria id
@@ -46,7 +46,7 @@ class Post extends Model
                     }
                     break;
                 case 'status':
-                    $query->where(\DB::raw("status"), "LIKE", "%$value%")>where('status', '=', 1)->orderByRaw('created_at DESC');
+                    $query->where(\DB::raw("status"), "LIKE", "%$value%")->where('status', '=', 1)->orderByRaw('created_at DESC');
                     break;
             }
         }

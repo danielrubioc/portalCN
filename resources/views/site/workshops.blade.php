@@ -1,32 +1,16 @@
 @extends('layouts.site')
 
 @section('content')
+<style type="text/css">
+#app {
+    overflow: inherit!important;
+}
+</style>
 	<div class="main-talleres">
-			<div class="content-total">
-                <p>Un total de {{ $workshops->total() }} Talleres disponibles</p>
+			<div class="content-total tallers">
+                <h2>Últimas 5 disciplinas</h2>
+                <p><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Desliza para ver <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p>
             </div>
-            <span class="hidden-xs">
-
-            <ul><li style="position: absolute; left: 0px; top: 0px;">
-                        <figure>
-                            <img src="img/thumb/1.png" alt="img01">
-                            <figcaption><h3>Letterpress asymmetrical</h3><p>Chillwave hoodie ea gentrify aute sriracha consequat.</p></figcaption>
-                        </figure>
-                    </li></ul>
-            @foreach ($workshops as $key => $taller)
-
-                <div class="item" data-owl="{{$key}}">
-                    <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
-                </div>
-
-
-
-            @endforeach
-            
-            <div class="col-md-12">
-                {{ $workshops->links() }}
-            </div>
-            </span>
 
             <!--mobil-->
 
@@ -38,43 +22,22 @@
 
                                 <div class="item" data-owl="{{$key}}">
                                 	<img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
+                                    
+                                    <a href="{{ url('/disciplina') }}/{{$taller->url}}" class="btn-ir-taller" style=" background: {{$taller->color}}">Ingresa</a>
+
                                 </div>    
                             @endforeach
                         </div>     
                     </div>
-                    <div class="text-related-workshop" >
-                        <div class="relative-conten">
-                        @foreach ($workshops as $key => $tall)
 
-                           
-                                <span id="content-workshop-{{$key}}" class="visibility-content">
-                                    <h3>{{ $tall->name }}</h1>
-                                    <span class="info-detail-work">
-                                        <p>Cantidad de cupos:  {{ $tall->quotas }}</p>
-                                        <p>Profesor(es) a cargo:
-                                            <ul>
-                                                @foreach ($tall->teachers as  $teacher)
-
-                                                    <li>{{ $teacher->name }} {{ $teacher->last_name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </p>
-                                    </span>
-                                    <a href="" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar">
-                                        Inscribete
-                                    </a>   
-                                    
-                                </span>
-
-                                   
-                       
-                        @endforeach
-                        </div> 
-                    </div>
                 </div>
             </span>
 
     </div>
+    <div class="block-button-taller">
+         <a href="{{ url('/disciplinas') }}"> Ver todas las disciplinas</a>
+    </div>
+   
 @section('slider-owl')
 <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>

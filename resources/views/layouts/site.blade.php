@@ -29,9 +29,9 @@
           </a>
         </div>
         <div class="buttons">
-          <a href="#">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="#">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="#">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('/nosotros') }}">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('/nuevas-disciplinas') }}">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('/eventos') }}">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('/tercer-tiempo') }}">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('/contacto') }}">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ route('register') }}">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
@@ -58,11 +58,7 @@
 
         @yield('content')
 
-        <footer>
-            <div class="btn-register-taller">
-                <a href="registro/create">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-            </div>
-        </footer>  
+        
       </div>  
 
     </div>
