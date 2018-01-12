@@ -637,19 +637,27 @@ span.info-detail-work {
 
 /* Workshop */
 
-.content-form-workshop{
-    
+.content-workshop{
     background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: cover;
+    background-position: top center;
+    background-size: auto;
 }
 
 .form-workshop{
-    margin-top: 100px;
-    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 300px;
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 20px 10%;    
 }
 
-.form-workshop h1{
-    font-size: 30px;    
+.form-workshop .titulo{
+    font-size: 25px !important;  
+    margin: 20px 0; 
+    text-transform: uppercase;   
+}
+
+
+.form-workshop span{
+    font-size: 10px;
+    text-align: justify;
+    
 }

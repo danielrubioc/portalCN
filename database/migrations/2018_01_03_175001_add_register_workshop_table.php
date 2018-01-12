@@ -16,7 +16,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Karate ',
             'url' => 'karate',
-            'color' => '',
+            'color' => '#54a492',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'karate.jpg',
@@ -44,7 +44,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Futbol ',
             'url' => 'futbol',
-            'color' => '',
+            'color' => '#3c997d',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'futbol.jpg',
@@ -58,7 +58,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Aerobox ',
             'url' => 'aerobox',
-            'color' => '',
+            'color' => '#e2789d',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'aerobox.jpg',
@@ -72,7 +72,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Atletismo ',
             'url' => 'atletismo',
-            'color' => '',
+            'color' => '#c1fce6',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'atletismo.jpg',
@@ -86,7 +86,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Baile Entretenido',
             'url' => 'baile-entretenido',
-            'color' => '',
+            'color' => '#1e3275',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'baile-entretenido.jpg',
@@ -100,7 +100,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Basquetbol',
             'url' => 'basquetbol',
-            'color' => '',
+            'color' => '#1806b7',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'basquetbol.jpg',
@@ -114,7 +114,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Crossfit ',
             'url' => 'crossfit',
-            'color' => '',
+            'color' => '#cd1142',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'crossfit.jpg',
@@ -128,7 +128,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Crosswork',
             'url' => 'crosswork',
-            'color' => '',
+            'color' => '#7dc5bd',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'crosswork.jpg',
@@ -142,7 +142,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Defensa Personal',
             'url' => 'defensa-personal',
-            'color' => '',
+            'color' => '#b62445',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'defensa-personal.jpg',
@@ -156,7 +156,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Hidromasaje',
             'url' => 'hidromasaje',
-            'color' => '',
+            'color' => '#6ca989',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'hidromasaje.jpg',
@@ -170,7 +170,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'Taekondo',
             'url' => 'taekwondo',
-            'color' => '',
+            'color' => '#2c4092',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'taekwondo.jpg',
@@ -184,7 +184,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'voleibol',
             'url' => 'voleibol',
-            'color' => '',
+            'color' => '#3c997d',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'voleibol.jpg',
@@ -198,7 +198,7 @@ class AddRegisterWorkshopTable extends Migration
         DB::table('workshops')->insert([
             'name' => 'yoga',
             'url' => 'yoga',
-            'color' => '',
+            'color' => '#f1cd43',
             'status' => '1',
             'quotas' => '20',
             'cover_page' => 'yoga.jpg',

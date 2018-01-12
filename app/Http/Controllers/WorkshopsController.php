@@ -122,7 +122,7 @@ class WorkshopsController extends Controller
         }else{
             die("No existe la disciplina $slug");
         }
-        
+
     }
 
     /**
