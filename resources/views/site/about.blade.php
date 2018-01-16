@@ -49,7 +49,7 @@
 				 <a href="{{ url('/disciplinas') }}">Disciplinas <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
 			</div>
 			<div class="separ-vtn">
-				 <a href="{{ url('/equipo') }}">Equipo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+				 <a href="{{ url('/equipo') }}">El equipo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
 			</div>
 	</div>
 @endsection

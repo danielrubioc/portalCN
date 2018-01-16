@@ -120,7 +120,7 @@
                 @endif
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <div class="space-menu">
-                    <a href="{{ url('/dashboard') }}">
+                    <a href="{{ url('/') }}">
                         <h3>Administrador</h3>
                     </a>
                 </div>

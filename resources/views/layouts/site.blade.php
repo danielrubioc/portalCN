@@ -91,5 +91,7 @@
     @yield('slider-owl')
     <!-- selector multiple -->
     @yield('inputHasContent')
+
+    @yield('facebook')
 </body>
 </html>

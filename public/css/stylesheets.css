@@ -851,11 +851,11 @@ div#team-modify-container {
     margin-top: 30px;
 }
 .social-icons ul li a {
-    background: #008bb9;
     color: white;
-    padding: 10px;
+    padding: 5px;
     width: 100%;
     display: inline-block;
+    font-size: 24px;
 }
 .main-talleres.talleres-home {
     margin-top: 20px;
@@ -865,6 +865,17 @@ a.btn-ir-taller.btn-taller-home {
     right: 0;
     padding: 15px;
 }
+a.fb-xfbml-parse-ignore {
+    background: #4267b2;
+}
+.social-icons ul li:first-child a {
+    background: #4267b2;
+}
+
+.social-icons ul li:nth-child(2) a {
+    background: #4DC247;
+}
+
 }
 
 

@@ -19,10 +19,23 @@
 		<hr class="separator-comparte">
 		<div class="social-icons">
 			<ul>
-				<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-				<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-				<li><a href="whatsapp://send" data-text="Cómo crear el botón de Compartir en WhatsApp en tu sitio:" data-href="" class="wa_btn wa_btn_s" style="display:none"><a href=""><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+				<!--<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
+				<li><div class="fb-share-button" data-href="https://www.facebook.com/cerronaviadeporte/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fcerronaviadeporte%2F&amp;src=sdkpreparse"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
+				</li>
+				<li><a href="whatsapp://send?text={{ url()->current() }}" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
 			</ul>
 	
 	</div>
+
+@section('facebook')
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.11';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+@stop
 @endsection

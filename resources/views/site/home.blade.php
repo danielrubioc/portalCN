@@ -132,7 +132,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/contacto') }}" class="btn-first btn-gral">Contactanos</a>
+				<a href="{{ url('/contacto') }}" class="btn-first btn-gral">Contáctanos</a>
 			</div>
 		</div>
 	</section>
