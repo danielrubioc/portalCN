@@ -109,6 +109,7 @@ Route::resource('tags', 'TagsController')->middleware('auth');
 /***************** Public site  ***********************/
 
 Route::get('/', 'HomeController@indexSite');
+Route::get('/home', 'HomeController@indexSite');
 Route::get('/nosotros', 'HomeController@about');
 Route::get('/equipo', 'HomeController@team');
 Route::get('/contacto', 'HomeController@contact');
@@ -123,7 +124,7 @@ Route::get('/disciplinas', 'HomeController@workshopsAll');
 //detalle de noticia
 Route::get('{category}/detalle/{slug}', ['as' => 'post', 'uses' => 'HomeController@showPostDetail']);
 //listado por categoria
-Route::get('{category}', 'HomeController@indexPosts');
+Route::get('/publicaciones/{category}', 'HomeController@indexPosts');
 
 //index todas las categorias
 Route::get('publicaciones/', 'HomeController@indexPosts');

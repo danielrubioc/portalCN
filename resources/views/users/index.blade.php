@@ -12,28 +12,28 @@
 		
 	    
 	    <div class="title-gral-index">
-			<a href="{{ URL::to('users/create') }}" class="btn btn-success">Nuevo usuario</a>	
+			<a href="{{ URL::to('users/create') }}" class="btn btn-success btn-create-gral">Nuevo usuario <i class="fa fa-plus-circle" aria-hidden="true"></i></a>	
 			<h1>Lista de Usuarios</h1>
 
-			    <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
+			    <form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
 			        <input class="form-control mr-sm-2" type="search" name="name" placeholder="Busca por nombre" aria-label="Search">
-			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
 
 
-			    <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
+			    <form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
 			        <input class="form-control mr-sm-2" type="search" name="email" placeholder="Busca por correo" aria-label="Search">
-			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
 
-			   	<form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
+			   	<form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
 			       <select class="form-control" id="status" name="status">
 			       	  <option disabled selected value> -- Buscar por estado -- </option>
 					    <option value="1">Activo</option>
 					    <option value="2">Deshabilitado</option>
 					    <option value="2">Pendiente</option>
 				  	</select>
-			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
 
 		</div>

@@ -105,6 +105,7 @@ a, span, button {
 #main{
     transition: 0.6s;
     width: 100%;
+    position: relative;
 }
 #main.margin-nav{
     transition: 0.6s;
@@ -482,6 +483,13 @@ input.btn.btn-info.pull-right.contact-btn-submit {
 .input-effect {
     position: relative;
 }
+.effect-placeholder {
+    border: 0;
+    border-radius: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+}
 .conent-form-contact {
     background: rgba(255, 255, 255, 0.74);
     height: 100vh;
@@ -641,13 +649,15 @@ span.info-detail-work {
 }
 .btn-ir-taller {
     position: absolute;
-    bottom: 10%;
-    right: 10%;
+    bottom: 0;
+    right: 10px;
+    left: 0;
     color: black;
-    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, 0))) !important;
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgb(240, 240, 240)), to(rgb(240, 240, 240))) !important;
     padding: 5px 15px;
     font-size: 13px;
     text-transform: uppercase;
+    text-align: center;
 }
 .info-taller {
     width: 100%;
@@ -779,7 +789,84 @@ button.search-button.clickable-out {
     width: 100%;
     text-align: center;
 }
+.selection-participate {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+        display: inline-flex;
 }
+.selection-participate .separ-vtn {
+    width: 100%;
+    text-align: center;
+
+}
+
+.selection-participate .separ-vtn:first-child a {
+    background: #008bb9;
+    color: white;
+    padding: 10px;
+    width: 100%;display: inline-block;}
+}
+.selection-participate .separ-vtn:nth-child(2) a {
+    background: #41c14b;
+    color: white;
+    padding: 10px;
+    width: 100%;display: inline-block;
+}
+.content-team-description {
+    margin-top: 90px;
+}
+span.info-team h1 {
+    color: #91be18;
+    font-size: 14px;
+    margin: 0;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: lighter;
+    text-transform: capitalize;
+    text-align: left;
+    margin-top: 10px;
+}
+
+span.info-team {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+span.info-team h2 {
+    color: #818181;
+    font-size: 11px;
+    margin: 0;
+    font-family: 'Merriweather Sans', sans-serif;
+    /* font-weight: lighter; */
+    text-transform: capitalize;
+    text-align: left;
+    margin-top: 0px;
+}
+div#team-modify-container .no-padding {
+    margin-bottom: 40px;
+    min-height: 260px;
+}
+div#team-modify-container {
+    margin-top: 30px;
+}
+.social-icons ul li a {
+    background: #008bb9;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    display: inline-block;
+}
+.main-talleres.talleres-home {
+    margin-top: 20px;
+}
+a.btn-ir-taller.btn-taller-home {
+    bottom: 36px;
+    right: 0;
+    padding: 15px;
+}
+}
+
 
 @media (max-width: 320px) { 
     .title h1 {

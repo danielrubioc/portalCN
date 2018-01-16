@@ -21,7 +21,12 @@
     <div id="app">
 
       <div id="mySidenav" class="sidenav">
-        <a href="{{ route('login') }}" class="left-input"><i class="fa fa-user-o" aria-hidden="true"></i>Ingresa aquí</a>
+        @if(Auth::user())
+            <a href="{{ url('/dashboard') }}" class="left-input"><i class="fa fa-user-o" aria-hidden="true"></i>Administrador</a>
+            @else
+           <a href="{{ route('login') }}" class="left-input"><i class="fa fa-user-o" aria-hidden="true"></i>Ingresa aquí</a>
+        @endif
+        
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
         <div class="space-menu">
           <a href="{{ url('/') }}">
@@ -31,8 +36,8 @@
         <div class="buttons">
           <a href="{{ url('/nosotros') }}">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('/nuevas-disciplinas') }}">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="{{ url('/eventos') }}">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="{{ url('/tercer-tiempo') }}">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('publicaciones/eventos') }}">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('publicaciones/tercer-tiempo') }}">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('/contacto') }}">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ route('register') }}">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>

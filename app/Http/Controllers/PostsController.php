@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Post;
 use App\Category;
 use App\Gallery;
@@ -166,12 +167,33 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {       
+        
+
+
             $news = Post::find($id); 
             if ($news) {
+                if ($news->url != $request->url) {
+                   // mensajes de validacion
+                    $messages = array(
+                        'url.unique'    => 'La url ya ha sido registrada.',
+                        'required' => 'El campo es obligatorio',
+                    );
+                    // validacion segun Validator
+                    $validator = Validator::make($request->all(), [
+                        'url' => 'required|string|max:255|unique:posts',
+                    ],  $messages);
+
+                    if ($validator->fails()) {
+                        return redirect('posts/'.$id.'/edit')
+                                    ->withErrors($validator)
+                                    ->withInput();
+                    }
+                }
+
                 $news->title = $request->title ? $request->title : $news->title;
                 $news->subtitle = $request->subtitle ? $request->subtitle : $news->subtitle;
-                $news->url = $request->url ? $request->url : $news->url;
+                $news->url = $request->url ? Str::slug($request->url, '_') : $news->url;
                 $news->category_id = $request->category_id ? $request->category_id : $news->category_id;
                 $news->content = $request->content ? $request->content : $news->content;
                 //si no viene el status a 0

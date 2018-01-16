@@ -48,7 +48,8 @@ class HomeController extends Controller
     
     public function indexSite()
     {   
-        return view('site/home');
+        $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
+        return view('site/home', ['workshops' => $workshops]);
     }
 
 

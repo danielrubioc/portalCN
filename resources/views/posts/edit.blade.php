@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                                         <label for="blog_category_id" class="col-md-4 control-label">Categoría</label>
                                         <div class="col-md-6">
                                             <select class="form-control" name="category_id">
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
                                         <label for="blog_category_id" class="col-md-4 control-label">Tags</label>
                                         <div class="col-md-6">
                                             <select class="form-control js-multiple" name="tags[]" multiple="multiple" required>
@@ -239,6 +239,7 @@
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
     $('#content').ckeditor();
+    
 </script>
 @stop
 @endsection

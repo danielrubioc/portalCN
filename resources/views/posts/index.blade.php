@@ -8,15 +8,15 @@
 <div class="container">
 	<div class="gral-list-content">
 	    <div class="title-gral-index">
-			<a href="{{ URL::to('posts/create') }}" class="btn btn-success">Subir publicación</a>	
+			<a href="{{ URL::to('posts/create') }}" class="btn btn-success btn-create-gral">Subir publicación <i class="fa fa-plus-circle" aria-hidden="true"></i></a>	
 			<h1>Publicaciones</h1>
-			 	<form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
+			 	<form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
 			        <input class="form-control mr-sm-2" type="search" name="title" placeholder="Busca por titulo" aria-label="Search">
-			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
 
 
-			    <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
+			    <form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
 			    	<select class="form-control" id="category" name="category">
 			    		<option disabled selected value> -- Buscar por Categoría -- </option>
                         @foreach($categories as $category)
@@ -24,16 +24,16 @@
                         @endforeach
                     </select>
 			       
-			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
 
-			   	<form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
+			   	<form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
 			       <select class="form-control" id="status" name="status">
 			       	  <option disabled selected value> -- Buscar por estado -- </option>
 					    <option value="1">Publicado</option>
 					    <option value="0">No visible</option>
 				  	</select>
-			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
 		
 	    <br><br><br>

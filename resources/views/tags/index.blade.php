@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="gral-list-content">
 	    <div class="title-gral-index">
-			<a href="{{ URL::to('tags/create') }}" class="btn btn-success">Nuevo tag</a>	
+			<a href="{{ URL::to('tags/create') }}" class="btn btn-success btn-create-gral">Nuevo tag <i class="fa fa-plus-circle" aria-hidden="true"></i></a>	
 			<h1>Lista de tags</h1>
 		</div>
 	    <br>

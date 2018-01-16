@@ -8,8 +8,8 @@
 <div class="container">
 	<div class="gral-list-content">
 	    <div class="title-gral-index">
-			<a href="{{ URL::to('categories/create') }}" class="btn btn-success">Nueva Categoria</a>	
-			<h1>Lista de Categorias del blog</h1>
+			<a href="{{ URL::to('categories/create') }}" class="btn btn-success btn-create-gral">Nueva Categoria <i class="fa fa-plus-circle" aria-hidden="true"></i></a>	
+			<h1>Lista de Categorias</h1>
 		</div>
 	    <br>
 	    <p>Un total de {{ $categories->total() }} registros</p>
