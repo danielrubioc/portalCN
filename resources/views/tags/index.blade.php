@@ -31,7 +31,7 @@
 								    <td>{{ $tag->name }} {{ $tag->last_name }}</td>
 								
 								    <td>
-								    	@if ($tag->status === 1)
+								    	@if ($tag->status == 1)
 										   <span class="span-success">Visible</span>
 										@else
 										   <span class="span-danger">No visible</span>
@@ -45,7 +45,7 @@
 									        {{ method_field('DELETE') }}
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
 									    </form>
-									    @if ($tag->status === 1)
+									    @if ($tag->status == 1)
 										    <form method="POST" action="{{ route('tags.update', ['id' => $tag->id] ) }}">
 										       	{{ csrf_field() }}
 	                                    		{{ method_field('PUT') }}

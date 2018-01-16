@@ -91,6 +91,7 @@ class PostsController extends Controller
                             $tag = new Tag();
                             $tag->status = 1;
                             $tag->name = $value;
+                            $tag->url = Str::slug($request->name, '-');
                             $tag->save();
                             // agrego el id al arreglo $tags
                             $tags[$key] = $tag->id;
@@ -219,6 +220,7 @@ class PostsController extends Controller
 
                     //si vienen los tags
                     if ($request->tags) {
+                        $news->tags()->detach();
                         foreach ($request->tags as $key => $value) {
                             // si viene un string esto pasa cuando es un nuevo tag 
                             if(is_numeric($value) == false) {
@@ -229,6 +231,7 @@ class PostsController extends Controller
                                     $tag = new Tag();
                                     $tag->status = 1;
                                     $tag->name = $value;
+                                    $tag->url = Str::slug($value, '-');
                                     $tag->save();
                                     // agrego el id al arreglo $tags
                                     $tags[$key] = $tag->id;
@@ -238,7 +241,7 @@ class PostsController extends Controller
                             }
 
                         }
-                        $news->tags()->detach();
+                        
                         $news->tags()->attach($tags);
                     }
 
