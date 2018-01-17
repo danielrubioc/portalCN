@@ -49,7 +49,6 @@ class StudentsController extends Controller
         ],  $messages);
 
         if ($validator->fails()) {
-            die('Error en el validador');
             return redirect('disciplina/create')
                         ->withErrors($validator)
                         ->withInput();
@@ -66,10 +65,10 @@ class StudentsController extends Controller
             if ($user->save()) {
                 $data['msg'] = 'Codigo : ' . $user->validate;
 
+                $msj->to($user->email);
                 Mail::send('emails.verify', $data, function($msj){
-                    die(print_r($msj));
                     $msj->subject('Correo de contacto');
-                    $msj->to($user->email);
+                    
                 });
 
                 flash('El usuario se creo correctamente!')->success();
