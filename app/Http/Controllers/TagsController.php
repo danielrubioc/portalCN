@@ -96,7 +96,8 @@ class TagsController extends Controller
             if ($tag) {
                 $tag->name = $request->name ?  $request->name : $tag->name;
                 $tag->status = $request->status ? $request->status : 0;
-                $tags->url = Str::slug($request->name, '-');
+                $tag->url = $request->name ?  Str::slug($request->name, '-') : $tag->url;
+
                 if ($tag->save()) {
                     flash('El tag '. $tag->name .' se actualizó correctamente!')->success();
                     if ($request->show) {
@@ -129,10 +130,10 @@ class TagsController extends Controller
         $tag = Tag::find($id);
         if ($tag->delete()) {
             flash('Tag eliminado correctamente!')->success();
-            return redirect('tag');
+            return redirect('tags');
         } else{
             flash('No se pudo eliminar el tag!')->error();   
-            return redirect('tag');
+            return redirect('tags');
         }
     }
 }

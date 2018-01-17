@@ -29,7 +29,7 @@
 								    <td>{{ $category->name }} {{ $category->last_name }}</td>
 								
 									<td>
-								    	@if ($category->status === 1)
+								    	@if ($category->status == 1)
 										   <span class="span-success">Visible</span>
 										@else
 										   <span class="span-danger">No visible</span>
@@ -42,7 +42,7 @@
 									        {{ method_field('DELETE') }}
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
 									    </form>
-									    @if ($category->status === 1)
+									    @if ($category->status == 1)
 										    <form method="POST" action="{{ route('categories.update', ['id' => $category->id] ) }}">
 										       	{{ csrf_field() }}
 	                                    		{{ method_field('PUT') }}
