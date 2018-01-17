@@ -99,8 +99,10 @@ Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'WorkshopsContro
 Route::resource('lessons', 'LessonsController');
 //registro
 Route::resource('registro', 'StudentsController');
+//Route::get('/registro/store', 'StudentsController@store');
 Route::get('/registro/verificacion', 'StudentsController@verificacion');
 Route::get('/registro/exitoso', 'StudentsController@existoso');
+
 
 
 Route::resource('tags', 'TagsController')->middleware('auth');

@@ -35,15 +35,37 @@ class HomeController extends Controller
     public function indexTeacher()
     {   
         $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
-        return view('dashboard_teacher', ['workshops' => $workshops]);
+        $my_workshops = Workshop::join('students', function ($join) {
+                            $join->on('students.workshop_id', '=', 'workshops.id')
+                            ->where('students.user_id','=', Auth::user()->role_id );
+                        })
+                        ->get();
+                        
+
+        return view('dashboard_public', [
+            'workshops' => $workshops,
+            'my_workshops' => $my_workshops
+            ]);       
     }
 
     // vista para los alumnos
     public function indexPublic()
     {   
         //lista de talleres activos
+       
+
         $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
-        return view('dashboard_public', ['workshops' => $workshops]);
+        $my_workshops = Workshop::join('students', function ($join) {
+                            $join->on('students.workshop_id', '=', 'workshops.id')
+                            ->where('students.user_id','=', Auth::user()->role_id );
+                        })
+                        ->get();
+                        
+
+        return view('dashboard_public', [
+            'workshops' => $workshops,
+            'my_workshops' => $my_workshops 
+            ]);
     }
     
     public function indexSite()

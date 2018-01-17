@@ -3,13 +3,29 @@
 @section('content')
 
 
-	<section class="content content-workshop" id="first-section" style="background-image: url('/uploads/workshop/{{$workshop->cover_page}}') ">
-		<div class="container" >
-			<div class="form-workshop" style="color:{{$workshop->color}}">
-				<h1 class="titulo" style="color:{{$workshop->color}}">{{$workshop->name}}</h1>
-				<span>{{$workshop->description}}</span>
-				<h2 class="titulo" style="color:{{$workshop->color}}">DATOS DE INSCRIPCIÓN</h2>
-				<form class="form-horizontal" method="POST" action="{{ route('registro.store' ) }}" enctype="multipart/form-data">
+	<div class="img-post-detail" style="background: url({{url('/uploads/workshop')}}/{{ $workshop->cover_page }}) no-repeat center center; 
+											  -webkit-background-size: cover;
+											  -moz-background-size: cover;
+											  -o-background-size: cover;
+											  background-size: cover;">
+	</div>
+	<div class="content-title-detail" style="background: {{$workshop->color}} ">
+		<span></span>
+		<h1>{{ $workshop->name }}</h1>
+	</div>
+	<div class="container info-content-detail">	
+
+		<div class="tab-content workshop-content">			
+			<div id="step-1" class="tab-pane fade in active" >
+
+				<h4 style="color: {{$workshop->color}} ;">{{ $workshop->subtitle }}</h4>
+				<p style="color: {{$workshop->color}} ;">{!! $workshop->description !!}</p>
+
+				<hr class="separator-comparte">
+
+				<h4 style="color: {{$workshop->color}} ;">DATOS DE INSCRIPCIÓN</h4>
+
+				<form id="incripcion" class="form-horizontal" method="POST" action="{{ route('registro.store' ) }}" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 					<input type="hidden" name="workshop_id" value="{{$workshop->id}}">
@@ -90,39 +106,43 @@
 								</span>
 							@endif
 						</div>
-					</div>		
-				                     
+					</div>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-4">
-							<button type="submit" class="btn btn-primary" style="background-color:{{$workshop->color}}">
+							<button id="inscribirme" type="submit" class="btn btn-primary" style="background-color:{{$workshop->color}}">
 								Inscribirme
 							</button>
 						</div>
 					</div>
-				</form> 
+							
+				</form>
 
-			</div>
+				
+			</div>			
 		</div>
-	</section>
 
-	<section class="content" id="second-section">
 		
-	</section>
 
+			
 
+		
+		 	
+		
+	
+	</div>
 
 	@section('inputHasContent')
 	<script type="text/javascript">
 	// JavaScript for label effects only
 
-			$(".input-effect input").focusout(function(){
-				if($(this).val() != ""){
-					$(this).addClass("has-content");
-				}else{
-					$(this).removeClass("has-content");
-				}
-			})
-	var check=document.getElementById("check").value == "text_value";
+		$(".input-effect input").focusout(function(){
+			if($(this).val() != ""){
+				$(this).addClass("has-content");
+			}else{
+				$(this).removeClass("has-content");
+			}
+		})
+	
 	</script>
 	@stop
 
