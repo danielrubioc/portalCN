@@ -102,7 +102,7 @@
 					<ul class="ul-rrss" >
 						<li><a href="https://www.facebook.com/cerronaviadeporte/" ><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 						<li><a href="https://www.instagram.com/deportes_cerronavia/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						<li><a><i class="fa fa-user" aria-hidden="true"></i></a></li>
+						<li><a href="/login"><i class="fa fa-user" aria-hidden="true"></i></a></li>
 					</ul>	
 				</div>
 			</div>
