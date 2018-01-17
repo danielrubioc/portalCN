@@ -406,6 +406,7 @@ section#six-section:before {
     margin-top: -10px;
     color: white;
     text-transform: initial;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 .info-content-detail {
     margin: 35px 0;
@@ -898,6 +899,10 @@ a.fb-xfbml-parse-ignore {
     border: white 2px solid;
     border-radius: 50%;
     padding: 12% 23%;
+}
+.container.info-content-detail h4 {
+    font-family: 'Merriweather Sans', sans-serif;
+    padding: 20px;
 }
 
 @media (max-width: 320px) {
