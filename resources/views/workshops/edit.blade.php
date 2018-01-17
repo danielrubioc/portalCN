@@ -174,18 +174,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
-                                    <label for="birth_date" class="col-md-4 control-label">Fecha</label>
-                                    <div class="col-md-6">
-                                        <input id="birth_date" type="date" class="form-control" name="date" value="{{ old('date') }}" required autofocus>
-                                        @if ($errors->has('birth_date'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('birth_date') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
                                 <div class="form-group{{ $errors->has('horario') ? ' has-error' : '' }}">
                                     <label for="teachers" class="col-md-4 control-label">Horario</label>
                                     <div class="col-md-6">
@@ -196,7 +184,6 @@
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <div class="col-md-offset-1 col-md-10">
                                         <textarea id="description"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
-                                            
                                         @if ($errors->has('name'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('name') }}</strong>
