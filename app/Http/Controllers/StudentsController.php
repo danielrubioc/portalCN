@@ -65,11 +65,11 @@ class StudentsController extends Controller
             if ($user->save()) {
                 $data['msg'] = 'Codigo : ' . $user->validate;
 
-                $msj->to($user->email);
+                /*$msj->to($user->email);
                 Mail::send('emails.verify', $data, function($msj){
                     $msj->subject('Correo de contacto');
                     
-                });
+                });*/
 
                 flash('El usuario se creo correctamente!')->success();
                 
