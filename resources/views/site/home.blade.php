@@ -50,37 +50,7 @@
 		</div>
 	</section>
 
-	<div class="main-talleres talleres-home">
-			<div class="content-total tallers">
-                <h2>Últimas 5 disciplinas</h2>
-                <p><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Desliza para ver <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p>
-            </div>
-
-            <!--mobil-->
-
-            <span class="visible-xs">
-                <div class="info-taller">
-                    <div id="workshop-modify-container">
-                        <div class="owl-carousel owl-theme content-gallery">
-                            @foreach ($workshops as $key => $taller)
-
-                                <div class="item" data-owl="{{$key}}">
-                                	<img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
-                                    
-                                    <a href="{{ url('/disciplina') }}/{{$taller->url}}" class="btn-ir-taller btn-taller-home" style=" background: {{$taller->color}}">Ingresa</a>
-
-                                </div>    
-                            @endforeach
-                        </div>     
-                    </div>
-
-                </div>
-            </span>
-
-    </div>
-    <div class="block-button-taller">
-         <a href="{{ url('/disciplinas') }}"> Ver todas las disciplinas</a>
-    </div>
+	
 
 
 
