@@ -23,7 +23,7 @@
 
 				<hr class="separator-comparte">
 
-				<h4 style="color: {{$workshop->color}} ;">DATOS DE INSCRIPCIÓN</h4>
+				<h4>DATOS DE INSCRIPCIÓN</h4>
 
 				<form id="incripcion" class="form-horizontal" method="POST" action="{{ route('registro.store' ) }}" enctype="multipart/form-data">
 					{{ csrf_field() }}
@@ -33,7 +33,7 @@
 					<div class="col-md-6 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 						<div class="input-effect">
 							<input id="name" type="text" class="form-control effect-placeholder" name="name" value="{{ old('name') }}" required autofocus>
-							<label for="name" style="color:{{$workshop->color}}">Nombre</label>
+							<label for="name">Nombre</label>
 							<span class="focus-border"></span>
 							@if ($errors->has('name'))
 								<span class="help-block">
@@ -46,7 +46,7 @@
 					<div class="col-md-6 form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
 						<div class="input-effect">
 							<input id="last_name" type="text" class="form-control effect-placeholder" name="last_name" value="{{ old('last_name') }}" required autofocus>
-							<label for="last_name" style="color:{{$workshop->color}}">Apellido</label>
+							<label for="last_name">Apellido</label>
 							<span class="focus-border"></span>
 							@if ($errors->has('last_name'))
 								<span class="help-block">
@@ -59,7 +59,7 @@
 					<div class="col-md-6 form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
 						<div class="input-effect">
 							<input id="rut" type="text" class="form-control effect-placeholder" name="rut" value="{{ old('rut') }}" required autofocus>
-							<label for="rut" style="color:{{$workshop->color}}">Rut</label>
+							<label for="rut">Rut</label>
 							<span class="focus-border"></span>
 							@if ($errors->has('rut'))
 								<span class="help-block">
@@ -72,7 +72,7 @@
 					<div class="col-md-6 form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
 						<div class="input-effect">
 							<input id="birth_date" type="text" class="form-control effect-placeholder" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
-							<label for="birth_date" style="color:{{$workshop->color}}">Fecha de nacimiento</label>
+							<label for="birth_date">Fecha de nacimiento</label>
 							<span class="focus-border"></span>
 							@if ($errors->has('birth_date'))
 								<span class="help-block">
@@ -85,7 +85,7 @@
 					<div class="col-md-6 form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
 						<div class="input-effect">
 							<input id="birth_date" type="text" class="form-control effect-placeholder" name="direccion" value="{{ old('birth_date') }}" required autofocus>
-							<label for="birth_date" style="color:{{$workshop->color}}">Dirección</label>
+							<label for="birth_date">Dirección</label>
 							<span class="focus-border"></span>
 							@if ($errors->has('birth_date'))
 								<span class="help-block">
@@ -98,7 +98,7 @@
 					<div class="col-md-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 						<div class="input-effect">
 							<input id="email" type="text" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus placeholder="Correo">
-							<label for="email" style="color:{{$workshop->color}}">Correo</label>
+							<label for="email">Correo</label>
 							<span class="focus-border"></span>
 							@if ($errors->has('birth_date'))
 								<span class="help-block">
@@ -109,7 +109,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-4">
-							<button id="inscribirme" type="submit" class="btn btn-primary" style="background-color:{{$workshop->color}}">
+							<button id="inscribirme" type="submit" class="btn btn-primary">
 								Inscribirme
 							</button>
 						</div>

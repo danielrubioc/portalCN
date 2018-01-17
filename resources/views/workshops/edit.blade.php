@@ -51,6 +51,34 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('subtitle') ? ' has-error' : '' }}">
+                                    <label for="subtitle" class="col-md-4 control-label"> Subtitulo </label>
+
+                                    <div class="col-md-6">
+                                        <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ old('subtitle') }}" required autofocus>
+
+                                        @if ($errors->has('subtitle'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('subtitle') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                                    <label for="url" class="col-md-4 control-label"> Url </label>
+
+                                    <div class="col-md-6">
+                                        <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" required autofocus>
+
+                                        @if ($errors->has('url'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('url') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="teachers" class="col-md-4 control-label">Profesores a Cargo</label>
                                     <div class="col-md-6">
