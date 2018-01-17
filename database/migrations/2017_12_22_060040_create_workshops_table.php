@@ -20,6 +20,7 @@ class CreateWorkshopsTable extends Migration
             $table->string('subtitle', 200)->nullable();
             $table->text('url')->nullable();
             $table->text('description');
+            $table->text('place')->nullable();
             $table->string('color', 100)->nullable();
             $table->integer('user_id')->unsigned();
             $table->integer('quotas');
