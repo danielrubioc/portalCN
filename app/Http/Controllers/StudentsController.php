@@ -64,6 +64,14 @@ class StudentsController extends Controller
 
         if ($count==0){
             if ($user->save()) {
+                $data['msg'] = 'Codigo : ' . $user->validate;
+
+                Mail::send('emails.verify', $data, function($msj){
+                    die(print_r($msj));
+                    $msj->subject('Correo de contacto');
+                    $msj->to($user->email);
+                });
+
                 flash('El usuario se creo correctamente!')->success();
                 
                 $student = new Student( );
