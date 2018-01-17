@@ -413,6 +413,10 @@ section#six-section:before {
 .info-content-detail h4 {
     margin-bottom: 16px;
 }
+.info-content-detail p {
+    text-align: justify;
+    padding: 5%;
+}
 hr.separator-comparte {
     border-top: 3px solid #eee;
 }
@@ -876,10 +880,27 @@ a.fb-xfbml-parse-ignore {
     background: #4DC247;
 }
 
+/*    home contact   */
+.url-rss{
+    margin-top: 40px !important;
+}
+.ul-rrss li{
+    float: left;
+    width: 33%;
+    text-align: left;
+    font-size: 30px;
+    list-style:none;
+    cursor: pointer;
 }
 
+.ul-rrss li a{
+    color: white;
+    border: white 2px solid;
+    border-radius: 50%;
+    padding: 12% 23%;
+}
 
-@media (max-width: 320px) { 
+@media (max-width: 320px) {
     .title h1 {
         font-size: 23px;
     }
@@ -919,4 +940,23 @@ a.fb-xfbml-parse-ignore {
     font-size: 10px;
     text-align: justify;
     
+}
+
+.workshop-content{
+    text-align: center;
+}
+
+.workshop-content form{
+    text-align: left;
+}
+
+.exito-i{
+    font-size: 100px;
+    width: 100%;
+    text-align: center;
+}
+
+.exito-span{
+    font-size: 20px;
+    font-weight: 900;
 }

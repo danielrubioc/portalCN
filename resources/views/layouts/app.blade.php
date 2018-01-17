@@ -121,7 +121,9 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <div class="space-menu">
                     <a href="{{ url('/') }}">
-                        <h3>Administrador</h3>
+                    @if(Auth::user())
+                        <h3>{{ Auth::user()->name }}</h3>
+                    @endif
                     </a>
                 </div>
                 <div class="buttons">
@@ -132,15 +134,7 @@
                             <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                                Cerrar sesión <span>  <i class="fa fa-sign-out"></i> </span>
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                            
                         @endif
                         @if (Auth::user()->role_id == 2)
                                 <a href="{{ URL::to('categories') }}">Categorías blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
@@ -155,6 +149,15 @@
                             </ul>
 
                         @endif
+                        <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Cerrar sesión <span>  <i class="fa fa-sign-out"></i> </span>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                     @endif
                     @guest
                         <a href="{{ route('login') }}">Ingresar</a>
@@ -175,7 +178,9 @@
                     </div>
                     <div class="icon-corporative"> 
                       <a href="{{ url('/') }}">
-                        <h3>Administrador</h3>  
+                        @if(Auth::user())
+                            <h3>{{ Auth::user()->name }}</h3>
+                        @endif  
                       </a>
                     </div>
                 </div>

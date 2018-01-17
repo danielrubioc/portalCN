@@ -49,14 +49,13 @@ class StudentsController extends Controller
         ],  $messages);
 
         if ($validator->fails()) {
+            die('Error en el validador');
             return redirect('disciplina/create')
                         ->withErrors($validator)
                         ->withInput();
         }
 
-
         $user = new User($usr);
-    
         $user->status = 0;
         $user->role_id = 3;
         $user->password = bcrypt($usr['password']);
@@ -67,34 +66,32 @@ class StudentsController extends Controller
             if ($user->save()) {
                 flash('El usuario se creo correctamente!')->success();
                 
-                /*
-                $usrtaller = $request->all();
-                $usertaller = new UserTaller( $request->all() );
+                $student = new Student( );
+                $student->workshop_id = $workshop_id;
+                $student->user_id = $user->id;
 
-                $usertaller->status = 1;
-                if ($usertaller->save()) {
-                    flash('Alumno registrado correctamente correctamente!')->success();
-                    return redirect('registro');
+                $student->status = 1;
+                if ($student->save()) {
+                    return view('site.workshop_validate_student', [
+                        'workshop' => Workshop::findOrFail($workshop_id), 
+                        'user' => User::findOrFail($user->id) ]         
+                    );
                 }else {
-                    flash('no se pudo crear registrar el alumno')->error();
-                    return view('/');
+                    flash('Error al registrarse en el curso.')->error();
                 }
-                */
-                return view('site.workshop_validate_student', [
-                    'workshops' => Workshop::findOrFail($workshop_id), 
-                    'user' => User::findOrFail($user->id) ]         
-                );
-
             }else {
                 flash('Disculpa! el usuario no se pudo crear.')->error();
                 return view('users.create');
             }
         } else {   
             flash('El email ingresado ya se encuentra en la base de datos!')->error();
+            die('2');
             return redirect()->route('users.create');
         }
 
     }
+
+    
 
     public function randomCode(){
 
@@ -112,117 +109,29 @@ class StudentsController extends Controller
         return $code;
     }
 
-    public function student(Request $request)
-    { 
-        die('jjjj');
-
-        $user = $request->all();
-        unset(  $user['taller_id'] );
-        $user['password'] =  '12345';
-        $user['password_confirmation'] =  '12345';
-        $user['rol_id'] = 3;
-
-        // mensajes de validacion
-        $messages = array(
-            'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
-            'email.unique'    => 'El email ya ha sido registrado.',
-            'required' => 'El campo es obligatorio',
-        );
-        // validacion segun Validator
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ],  $messages);
-
-        if ($validator->fails()) {
-            return redirect('users/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-
-
-        $user = new User($request->all());
-        if ($request->password_confirmation == $request->password) {
-            $user->status = 1;
-            $user->password = bcrypt($request->password);
-            $count = User::where('email', $user->email)->count();
-            //dd($count);
-
-            if ($count==0){                       
-                if ($user->save()) {
-                    flash('El usuario se creo correctamente!')->success();
-                    return redirect('users');
-                }else {
-                    flash('Disculpa! el usuario no se pudo crear.')->error();
-                    return view('users.create');
-                }
-            } else {   
-                flash('El email ingresado ya se encuentra en la base de datos!')->error();
-                return redirect()->route('users.create');
-            }
-
-        } else{
-            flash('Contraseñas deben ser iguales')->error();
-            return redirect()->route('users.create');
-
-        }
-    }
-
     public function verificacion(Request $request)
     { 
-        die('jjjj');
+        $rqs = $request->all();
 
-        $user = $request->all();
-        unset(  $user['taller_id'] );
-        $user['password'] =  '12345';
-        $user['password_confirmation'] =  '12345';
-        $user['rol_id'] = 3;
+        $validador = User::where([
+            'email', '=', $rqs['email'],
+            'validate', '=', $rqs['code']
+        ])->firstOrFail();
 
-        // mensajes de validacion
-        $messages = array(
-            'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
-            'email.unique'    => 'El email ya ha sido registrado.',
-            'required' => 'El campo es obligatorio',
-        );
-        // validacion segun Validator
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ],  $messages);
+        $validador->status = 1;
 
-        if ($validator->fails()) {
-            return redirect('users/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        if( $validador->save() ){
 
-
-        $user = new User($request->all());
-        if ($request->password_confirmation == $request->password) {
-            $user->status = 1;
-            $user->password = bcrypt($request->password);
-            $count = User::where('email', $user->email)->count();
-            //dd($count);
-
-            if ($count==0){                       
-                if ($user->save()) {
-                    flash('El usuario se creo correctamente!')->success();
-                    return redirect('users');
-                }else {
-                    flash('Disculpa! el usuario no se pudo crear.')->error();
-                    return view('users.create');
-                }
-            } else {   
-                flash('El email ingresado ya se encuentra en la base de datos!')->error();
-                return redirect()->route('users.create');
-            }
+            return view('site.workshop_inscripcion_exitosa', [
+                'workshop' => Workshop::findOrFail($workshop_id) ] );
+                
+            die('bkn');
 
         } else{
-            flash('Contraseñas deben ser iguales')->error();
+            flash('Error al validar')->error();
+            die('Error al validar');
             return redirect()->route('users.create');
-
         }
     }
+    
 }

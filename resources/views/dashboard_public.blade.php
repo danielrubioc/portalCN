@@ -1,13 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">   
+<div class="container-fluid">   
 
-     
+    <div class="content-total">
+        <p>Mis Talleres</p>
+    </div>
+
+    <div class="mis-talleres">
+    @foreach ($my_workshops as $key => $taller)
+
+        <div class="col-xs-3">
+            <!--<h2 style="color: {{$taller->color}}">{{ $taller->name }}</h2>-->
+            <br>
+            <img class="img-responsive" src="/uploads/workshop/{{ $taller->cover_page}}">
+        </div>
+
+    @endforeach
+    </div>
 
            
 
 </div>
+<br><br><br><br><br><br>
 @if(Auth::user())
         @if (Auth::user()->role_id == 3)
             <div class="content-total">
@@ -25,7 +40,7 @@
 
                 <div class="item" data-owl="{{$key}}">
                     <h1>{{ $taller->name }}</h1>
-                    <img src="http://www.futuroestudiante.cl/images/services/deportes.jpg">
+                    <img src="/uploads/workshop/{{ $taller->cover_page}}">
                 </div>
 
             @endforeach
@@ -45,7 +60,7 @@
 
                                 <div class="item" data-owl="{{$key}}">
                                     <h1>{{ $taller->name }}</h1>
-                                    <img src="http://www.futuroestudiante.cl/images/services/deportes.jpg">
+                                    <img src="/uploads/workshop/{{ $taller->cover_page}}">
                                 </div>    
                             @endforeach
                         </div>     

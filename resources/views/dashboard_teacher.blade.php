@@ -1,20 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">   
+<div class="container"> 
+    
+    
 
-     @if(Auth::user())
-        @if (Auth::user()->role_id == 2)
-            <ul class="nav navbar-nav">
-                <li><a href="{{ URL::to('category') }}">Categorías blog</a></li>
-                <li><a href="{{ URL::to('post') }}">Blog</a></li>
-            </ul>
-                profeee
-            {{ $workshops }}
+    <div class="content-total">
+        <p>Mis Talleres</p>
+    </div>
 
+    <div class="mis-talleres">
+    @foreach ($my_workshops as $key => $taller)
 
-        @endif
-    @endif
+        <div class="col-xs-3">
+            <!--<h2 style="color: {{$taller->color}}">{{ $taller->name }}</h2>-->
+            <br>
+            <img class="img-responsive" src="/uploads/workshop/{{ $taller->cover_page}}">
+        </div>
 
+    @endforeach
+    </div>
+
+    
+     
+    
 </div>
 @endsection
