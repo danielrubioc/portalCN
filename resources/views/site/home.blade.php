@@ -113,7 +113,7 @@
 	</section>
 	<footer>
         <div class="btn-register-taller">
-            <a href="registro/create">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+            <a href="register">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>
     </footer>  
 
