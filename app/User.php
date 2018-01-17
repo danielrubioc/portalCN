@@ -45,16 +45,16 @@ class User extends Authenticatable
 
             switch ($column) {
                 case 'full_name':
-                    $query->where(\DB::raw("CONCAT(name, '', last_name)"), "LIKE", "%$value%");
+                    $query->where(\DB::raw("CONCAT(name, '', last_name)"), "LIKE", "%$value%")->orderBy('id','DESC');
                     break;
                 case 'email':
-                    $query->where(\DB::raw("email"), "LIKE", "%$value%");
+                    $query->where(\DB::raw("email"), "LIKE", "%$value%")->orderBy('id','DESC');
                     break;
                 case 'status':
-                    $query->where(\DB::raw("status"), "LIKE", "%$value%");
+                    $query->where(\DB::raw("status"), "LIKE", "%$value%")->orderBy('id','DESC');
                     break;
                 case 'role_id':
-                    $query->where(\DB::raw("status"), "=", $value);
+                    $query->where(\DB::raw("status"), "=", $value)->orderBy('id','DESC');
                     break;
             }
         }

@@ -196,6 +196,7 @@ a, span, button {
     transition: 0.5s;
     padding-top: 60px;
     margin-left: -100%;
+    margin-left: -100%;
     transition: 0.5s;
     background-color: rgb(240, 240, 240);
 }

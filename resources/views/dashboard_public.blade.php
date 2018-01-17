@@ -23,89 +23,59 @@
 
 </div>
 <br><br><br><br><br><br>
-@if(Auth::user())
-        @if (Auth::user()->role_id == 3)
-            <div class="content-total">
-                <p>Un total de {{ $workshops->total() }} Talleres disponibles</p>
-            </div>
-            <span class="hidden-xs">
-
-            <ul><li style="position: absolute; left: 0px; top: 0px;">
-                        <figure>
-                            <img src="img/thumb/1.png" alt="img01">
-                            <figcaption><h3>Letterpress asymmetrical</h3><p>Chillwave hoodie ea gentrify aute sriracha consequat.</p></figcaption>
-                        </figure>
-                    </li></ul>
-            @foreach ($workshops as $key => $taller)
-
-                <div class="item" data-owl="{{$key}}">
-                    <h1>{{ $taller->name }}</h1>
-                    <img src="/uploads/workshop/{{ $taller->cover_page}}">
+<div id="mySidenav" class="sidenav visible-xs" style="margin-left:0">
+                @if(Auth::user())
+                <a href="{{ url('/profile')}}" class="left-input"><img src="{{url('/uploads/avatars')}}/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span>Mi perfil</a>
+                @endif
+                <a href="{{ url('/')}}" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <div class="space-menu">
+                    <a href="{{ url('/') }}">
+                    @if(Auth::user())
+                        <h3>{{ Auth::user()->name }}</h3>
+                    @endif
+                    </a>
                 </div>
+                <div class="buttons">
+                    @if(Auth::user())
+                        @if (Auth::user()->role_id == 1)
+                            <a href="{{ URL::to('users') }}">Usuarios <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('categories') }}">Categorías blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            
+                        @endif
+                        @if (Auth::user()->role_id == 2)
+                                <a href="{{ URL::to('categories') }}">Categorías blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                                <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                                <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                                <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                        @endif
+                        @if (Auth::user()->role_id == 3)
+                            <ul class="nav navbar-nav">
+                                <a href="">Mis Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                                <a href="">Estadísticas <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            </ul>
 
-            @endforeach
-            
-            <div class="col-md-12">
-                {{ $workshops->links() }}
-            </div>
-            </span>
+                        @endif
+                        <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Cerrar sesión <span>  <i class="fa fa-sign-out"></i> </span>
+                            </a>
 
-            <!--mobil-->
-
-            <span class="visible-xs">
-                <div class="info-taller">
-                    <div id="workshop-modify-container">
-                        <div class="owl-carousel owl-theme content-gallery">
-                            @foreach ($workshops as $key => $taller)
-
-                                <div class="item" data-owl="{{$key}}">
-                                    <h1>{{ $taller->name }}</h1>
-                                    <img src="/uploads/workshop/{{ $taller->cover_page}}">
-                                </div>    
-                            @endforeach
-                        </div>     
-                    </div>
-                    <div class="text-related-workshop" >
-                        <div class="relative-conten">
-                        @foreach ($workshops as $key => $tall)
-
-                           
-                                <span id="content-workshop-{{$key}}" class="visibility-content">
-                                    <h3>{{ $tall->name }}</h1>
-                                    <span class="info-detail-work">
-                                        <p>Cantidad de cupos:  {{ $tall->quotas }}</p>
-                                        <p>Profesor(es) a cargo:
-                                            <ul>
-                                                @foreach ($tall->teachers as  $teacher)
-
-                                                    <li>{{ $teacher->name }} {{ $teacher->last_name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </p>
-                                    </span>
-                                    <a href="" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar">
-                                        Inscribete
-                                    </a>   
-                                    
-                                </span>
-
-                                   
-                       
-                        @endforeach
-                        </div> 
-                    </div>
-                </div>
-            </span>
-            
-
-
-
-        
-
-       
-
-    @endif
-@endif
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                    @endif
+                    @guest
+                        <a href="{{ route('login') }}">Ingresar</a>
+                        <a href="{{ route('register') }}">Registro</a>
+                        <a href="{{ URL::to('/') }}">Volver a sitio</a>
+                    @endif
+                  
+        </div>
+</div>
 
 
 

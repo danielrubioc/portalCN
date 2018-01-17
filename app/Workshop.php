@@ -52,7 +52,7 @@ class Workshop extends Model
 
     public function scopeGetListActiveWorkshops($query)
     {   
-        $query->where(\DB::raw("status"), "=", 1);
+        $query->where(\DB::raw("status"), "=", 1)->orderBy('id','DESC');
     }
 
 }

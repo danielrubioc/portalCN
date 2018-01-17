@@ -30,15 +30,15 @@ class PostsController extends Controller
         //
         if ($request->has('title')) {
             $column = "title";
-            $news = Post::filterByRequest($column, $request->get('title'))->paginate();
+            $news = Post::filterByRequest($column, $request->get('title'))->paginate(15);
         } else if ($request->has('category')) {
             $column = "category";
-            $news = Post::filterByRequest($column, $request->get('category'))->paginate();
+            $news = Post::filterByRequest($column, $request->get('category'))->paginate(15);
         } else if ($request->has('status')) {
             $column = "status";
-            $news = Post::filterByRequest($column, $request->get('status'))->paginate();
+            $news = Post::filterByRequest($column, $request->get('status'))->paginate(15);
         } else {
-            $news = Post::paginate(15);
+            $news = Post::orderBy('id', 'desc')->paginate(15);
         }
 
         return view('posts.index', ['news' => $news, 'categories' => Category::all(['id', 'name']) ]);

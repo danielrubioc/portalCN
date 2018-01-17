@@ -29,7 +29,7 @@ class UserController extends Controller
             $column = "status";
             $users = User::filterByRequest($column, $request->get('status'))->paginate();
         } else {
-            $users = User::paginate(15);
+            $users = User::orderBy('id', 'desc')->paginate(15);
         }
 
         return view('users.index', ['users' => $users]);
