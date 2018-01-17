@@ -10,7 +10,7 @@ class Workshop extends Model
     protected $table= "workshops";
     
     protected $fillable = [
-        'name', 'description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page'
+        'name', 'description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page', 'url', 'subtitle'
     ];
 
     public function user()

@@ -188,17 +188,9 @@
 
                                 <div class="form-group{{ $errors->has('horario') ? ' has-error' : '' }}">
                                     <label for="teachers" class="col-md-4 control-label">Horario</label>
-                                    <div class="col-md-6">                                    
-                                        <select class="form-control" name="hour" required>
-                                            <option value=""></option>
-                                            <option value="9:30 a 10:30">9:30 a 10:30</option>
-                                            <option value="10:30 a 11:30">10:30 a 11:30</option>
-                                            <option value="11:30 a 12:30">11:30 a 12:30</option>
-                                            <option value="12:30 a 13:30">12:30 a 13:30</option>
-                                            <option value="14:00 a 15:00">14:00 a 15:00</option>
-                                            <option value="15:00 a 16:00">15:00 a 16:00</option>
-                                        </select>
-                                    </div>                            
+                                    <div class="col-md-6">
+                                        <input id="hour" type="date" class="form-control" name="hour" value="{{ old('hour') }}" required autofocus>
+                                    </div>                   
                                 </div>
 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
