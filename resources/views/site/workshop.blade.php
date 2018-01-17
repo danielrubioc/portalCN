@@ -9,7 +9,7 @@
 											  -o-background-size: cover;
 											  background-size: cover;">
 	</div>
-	<div class="content-title-detail" style="background: {{$workshop->color}} ">
+	<div class="content-title-detail" >
 		<span></span>
 		<h1>{{ $workshop->name }}</h1>
 	</div>
@@ -18,8 +18,8 @@
 		<div class="tab-content workshop-content">			
 			<div id="step-1" class="tab-pane fade in active" >
 
-				<h4 style="color: {{$workshop->color}} ;">{{ $workshop->subtitle }}</h4>
-				<p style="color: {{$workshop->color}} ;">{!! $workshop->description !!}</p>
+				<h4 >{{ $workshop->subtitle }}</h4>
+				<p >{!! $workshop->description !!}</p>
 
 				<hr class="separator-comparte">
 
