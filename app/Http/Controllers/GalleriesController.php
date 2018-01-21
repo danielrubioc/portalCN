@@ -45,7 +45,7 @@ class GalleriesController extends Controller
     {
 
         $files = $request->filesToUpload;
-
+        dd('sss');
         if($files){
 
             foreach ($files as $file) {
@@ -86,7 +86,12 @@ class GalleriesController extends Controller
         
     }
 
-    
+    public function storeContent()
+    {
+        dd('ss');
+    }
+
+
 
     /**
      * Display the specified resource.

@@ -68,6 +68,7 @@ class PostsController extends Controller
 
         $news = new Post($request->all());
         $news->status = 1;
+        $news->start = 0;
         $news->user_id = Auth::id();
         $news->url = Str::slug($request->url ? $request->url : $request->title, '_');
         if( $request->hasFile('cover_page') ) {
@@ -174,7 +175,8 @@ class PostsController extends Controller
 
             $news = Post::find($id); 
             if ($news) {
-                if ($news->url != $request->url) {
+
+                if (($news->url != $request->url) && !$request->show) {
                    // mensajes de validacion
                     $messages = array(
                         'url.unique'    => 'La url ya ha sido registrada.',
@@ -199,6 +201,7 @@ class PostsController extends Controller
                 $news->content = $request->content ? $request->content : $news->content;
                 //si no viene el status a 0
                 $news->status = $request->status ? $request->status : 0;
+                $news->start = $request->start ? $request->start : 0;
 
                 //viene una imagen nueva
                 if ($request->cover_page && $request->cover_page != '') {

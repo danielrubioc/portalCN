@@ -83,7 +83,7 @@
 										        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span> </button>
 										    </form>
 										    
-										    @if ($post->status === 1)
+										    @if ($post->status == 1)
 											    <form method="POST" action="{{ route('posts.update', ['id' => $post->id] ) }}">
 											       	{{ csrf_field() }}
 		                                    		{{ method_field('PUT') }}
@@ -98,6 +98,24 @@
 		                                    		<input type="hidden" name="status" value="1">
 		                                    		<input type="hidden" name="show" value="show">
 											        <button type="submit" class="btn btn-success delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Mostrar"> <span class="glyphicon glyphicon-eye-open"></span> </button>
+											    </form>
+											@endif
+
+											@if ($post->start == 1)
+											    <form method="POST" action="{{ route('posts.update', ['id' => $post->id] ) }}">
+											       	{{ csrf_field() }}
+		                                    		{{ method_field('PUT') }}
+		                                    		<input type="hidden" name="start" id="start" value="0">
+		                                    		<input type="hidden" name="show" value="show">
+											        <button type="submit" class="btn btn-alert delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Destacado"> <i class="fa fa-star" aria-hidden="true"></i> </button>
+											    </form>
+											@else
+											    <form method="POST" action="{{ route('posts.update', ['id' => $post->id] ) }}">
+											       	{{ csrf_field() }}
+		                                    		{{ method_field('PUT') }}
+		                                    		<input type="hidden" name="start" value="1">
+		                                    		<input type="hidden" name="show" value="show">
+											        <button type="submit" class="btn btn-success delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Normal"> <i class="fa fa-star-o" aria-hidden="true"></i> </button>
 											    </form>
 											@endif
 

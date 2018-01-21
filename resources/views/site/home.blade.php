@@ -2,6 +2,95 @@
 
 @section('content')
 
+<span class="hidden-xs">
+<section class="content slider"> 
+
+<div class="info-taller">
+    <div id="workshop-modify-container">
+        <div  id="carrousel-slider" class="owl-carousel owl-theme content-gallery">
+                <div class="item">
+                    <img src="{{url('/images')}}/slider-2-min-min.png" class="img-responsive">
+                    
+                </div>  
+                <div class="item">
+                    <img src="{{url('/images')}}/slider-2-min-min.png" class="img-responsive">
+                    
+                </div>   
+        </div>     
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="content" id="first-section">
+
+		<div class="conten-news-gral">
+				
+
+
+				
+				@foreach ($workshops as $key => $taller)
+					@if ($key ==0 )
+						<div class="content-news first-destac">
+	                   		<a href="{{ url('/disciplina') }}/{{$taller->url}}">
+	                   		<div class="content-img">
+	                   			<img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive img-disciplina-home">
+	                   		</div>
+	                        <div class="description">
+				                <h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
+				                <p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 800) }} </p>
+				            </div>
+	                         
+	                        </a>
+	                   	</div>  
+					@else	
+                   	<div class="content-news">
+                   		<a href="{{ url('/disciplina') }}/{{$taller->url}}">
+                   		<div class="content-img">
+                   			<img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive img-disciplina-home">
+                   			<img class="effect "src="https://www.fcinq.com/v3/wp-content/themes/fcinq/img/slideshow_gradient.png" alt="" class="gradient">
+                   		</div>
+                        <div class="description">
+			                <h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
+			                <p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 100) }} </p>
+			            </div>
+                         
+                        </a>
+                   	</div>  
+                   	@endif
+                @endforeach
+		</div>
+
+</section>
+
+<section class="content" id="news-section">
+@foreach ($posts as $post)
+
+	<div class="item-post" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
+								  -webkit-background-size: cover;
+								  -moz-background-size: cover;
+								  -o-background-size: cover;
+								  background-size: cover;">
+		
+		<div class="info-post-tercer-tiempo">
+			<h2>{{ $post->title }}</h2>
+		</div>
+		<div class="info-post-tercer-tiempo-right">
+			<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">leer + </a>
+		</div>
+	</div>		
+
+
+@endforeach
+
+</section>
+</span>
+
+
+
+<span class="visible-xs">
 	<section class="content" id="first-section">
 		<img src="{{url('/images/home-home.jpg')}}" class="img-responsive">
 		<div class="container">
@@ -116,13 +205,33 @@
             <a href="register">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
         </div>
     </footer>  
+</span>
+
+
+
+
+
+
+
 
 
 @section('slider-owl')
 <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script>
-    var owl = $('.owl-carousel');
+	
+var owl = $('#carrousel-slider');
+    owl.owlCarousel({
+        loop: false,
+        autoplay: true,
+        items: 1,
+        animateOut: 'fadeOut',
+        slideSpeed : 3300,
+        paginationSpeed : 3000,
+    });
+
+
+    var owl = $('#carrousel-disciplinas');
     owl.owlCarousel({
         loop: false,
         autoplay: true,

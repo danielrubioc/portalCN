@@ -18,7 +18,7 @@
                                         <img src="{{url('/uploads/news')}}/{{ $news->cover_page }}" style="width:100%; max-height:150px ">
                                 <?php endif ?>
                                  <br>  <br>   
-                                  <a href="{{ URL::to('/') }}/{{ $news->category->url }}/detalle/{{ $news->url }}" class="btn btn-danger">Ir a publicación</a>
+                                  
                                 <form class="form-horizontal" method="POST" action="{{ route('posts.update', ['id' => $news->id] ) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
@@ -134,6 +134,7 @@
                                                 Actualizar
                                             </button>
                                             <a href="{{ URL::to('posts') }}" class="btn btn-danger">Cancelar</a>
+                                            <a href="{{ URL::to('/') }}/{{ $news->category->url }}/detalle/{{ $news->url }}" class="btn btn-success">Ir a publicación</a>
                                         </div>
                                     </div>
                                 </form>
@@ -238,8 +239,20 @@
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
-    $('#content').ckeditor();
+   CKEDITOR.replace( 'content', {
+        filebrowserUploadUrl: "/fileupload.php",
+        toolbar :
+        [
+        ['ajaxsave'],
+        ['Bold', 'Italic', 'Underline', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+        ['Cut','Copy','Paste','PasteText'],
+        ['Undo','Redo','-','RemoveFormat'],
+        ['TextColor','BGColor'],
+        ['Maximize', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ]
+        ],
+       
     
+    } );
 </script>
 @stop
 @endsection

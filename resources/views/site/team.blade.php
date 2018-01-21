@@ -2,12 +2,12 @@
 
 @section('content')
 	
-	<div class="container info-content-detail content-team-description">
+	<div class="info-content-detail content-team-description">
 		
 		
         <span class="visible-xs">
 
-            <div class="container workshop-all">
+            <div class="workshop-all">
                 <h1>El equipo</h1>
                	<p>Todos quienes forman parte de la Corporación del Deporte de Cerro Navia lo hacen con un objetivo en mente; brindar a todos los vecinos y vecinas de la comuna las mejores actividades y programas deportivos posibles, la meta es mejorar la calidad de vida de todos.</p>
 

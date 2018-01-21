@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->integer('status')->nullable();
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('start')->nullable();
             $table->timestamps();
         });
 

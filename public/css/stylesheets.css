@@ -409,14 +409,18 @@ section#six-section:before {
     font-family: 'Merriweather Sans', sans-serif;
 }
 .info-content-detail {
-    margin: 35px 0;
+    margin: 10px 0;
 }
-.info-content-detail h4 {
+.info-content-detail h4,.info-content-detail h2, .info-content-detail h1,
+.info-content-detail h3, .info-content-detail p, .info-content-detail span {
     margin-bottom: 16px;
+    margin-top: 20px;
+    font-family: 'Merriweather Sans', sans-serif;
+    padding: 0 20px;
 }
 .info-content-detail p {
     text-align: justify;
-    padding: 5%;
+    padding: 0 20px;
 }
 hr.separator-comparte {
     border-top: 3px solid #eee;
@@ -836,6 +840,7 @@ span.info-team {
     display: inline-block;
     width: 100%;
     text-align: left;
+    padding: 0;
 }
 
 span.info-team h2 {
@@ -900,10 +905,7 @@ a.fb-xfbml-parse-ignore {
     border-radius: 50%;
     padding: 12% 23%;
 }
-.container.info-content-detail h4 {
-    font-family: 'Merriweather Sans', sans-serif;
-    padding: 20px;
-}
+
 
 @media (max-width: 320px) {
     .title h1 {
@@ -964,4 +966,180 @@ a.fb-xfbml-parse-ignore {
 .exito-span{
     font-size: 20px;
     font-weight: 900;
+}
+
+a.navbar-brand.img-responsive img {
+    max-width: 70px;
+    margin-top: -8px;
+}
+
+
+
+.conten-news-gral {
+    width: 1076px;
+    background: #f4f4f4;
+    margin: -60px auto 60px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+
+.content-news {
+    width: 263px;
+    background: #fff;
+    color: #000;
+    display: block;
+    float: left;
+    margin: 0 6px 6px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.content-img {
+    height: 317px;
+    overflow: hidden;
+    position: relative;
+}
+
+.description {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 150px;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+    display: block;
+}
+.description h2 {
+    color: #000;
+    /*font: 100 26px Metric!important;*/
+    margin: 0 0 10px!important;
+}
+
+.description p {
+    color: #ababab;
+    /*font: 400 13px/18px Domine!important;*/
+}
+
+.content-img img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.content-news a{
+    outline: none;
+    text-decoration: none
+
+}
+.content-news a:hover img.img-disciplina-home {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+img.effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    opacity: .3;
+    top: 0;
+}
+.content-news a{
+    display: inline-block;
+    width: 100%;
+    height: 100%
+}
+.content-news a:hover .img-disciplina-home {
+    position: relative;
+    z-index: 9
+}
+.content-news a .effect {
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    transform: translate(0%, 0%);
+}
+.content-news a:hover .effect {
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    transform: translate(100%, 0%);
+}
+
+.content-news.first-destac {
+    width: 100%;
+}
+.first-destac .content-img {
+    width: 200%;
+    display: block;
+    max-width: 350px;
+    height: auto;
+}
+.first-destac .content-img img {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.content-news.first-destac a {
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, p, span {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+
+
+/* Feel free to change duration  */ 
+.animated  {
+  -webkit-animation-duration : 1000 ms  ;
+  animation-duration : 1000 ms  ;
+  -webkit-animation-fill-mode : both  ;
+  animation-fill-mode : both  ;
+}  
+/* .owl-animated-out - only for current item */ 
+/* This is very important class. Use z-index if you want move Out item above In item */ 
+.owl-animated-out {
+  z-index : 1 
+   }
+/* .owl-animated-in - only for upcoming item
+/* This is very important class. Use z-index if you want move In item above Out item */ 
+.owl-animated-in {
+  z-index : 0 
+   }
+/* .fadeOut is style taken from Animation.css and this is how it looks in owl.carousel.css:  */ 
+.fadeOut  {
+  -webkit-animation-name : fadeOut  ;
+  animation-name : fadeOut  ;
+}  
+@-webkit-keyframes  fadeOut  {
+  0% {
+    opacity : 1   ;
+  }  
+  100% {
+    opacity : 0   ;
+  }  
+}
+@keyframes  fadeOut  {
+  0% {
+    opacity : 1   ;
+  }  
+  100% {
+    opacity : 0   ;
+  }  
 }

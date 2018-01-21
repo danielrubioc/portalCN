@@ -128,7 +128,21 @@
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
- $('#content').ckeditor();
+    //$('#content').ckeditor();
+    CKEDITOR.replace( 'content', {
+        filebrowserUploadUrl: "/fileupload.php",
+        toolbar :
+        [
+        ['ajaxsave'],
+        ['Bold', 'Italic', 'Underline', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+        ['Cut','Copy','Paste','PasteText'],
+        ['Undo','Redo','-','RemoveFormat'],
+        ['TextColor','BGColor'],
+        ['Maximize', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ]
+        ],
+       
+    
+    } );
 </script>
 @stop
 
