@@ -63,14 +63,9 @@ class StudentsController extends Controller
 
         if ($count==0){
             if ($user->save()) {
-                $data['msg'] = 'Codigo : ' . $user->validate;
+                $data['codigo'] = $user->validate;
+                $data['nombre'] = $user->name . ' ' . $user->last_name;
                 $email = $user->email;
-
-                /*$msj->to($user->email);
-                Mail::send('emails.verify', $data, function($msj){
-                    $msj->subject('Correo de contacto');
-                    
-                });*/
 
                 Mail::send('emails.verify', $data, function($msg) use ($email){
                     $msg->subject('Correo de contacto');
