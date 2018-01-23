@@ -74,6 +74,7 @@ class StudentsController extends Controller
 
                 Mail::send('emails.verify', $data, function($msg) use ($email){
                     $msg->subject('Correo de contacto');
+                    $msg->from('cn@portal.com');
                     $msg->to($email);
                 });
        
