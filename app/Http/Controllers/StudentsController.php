@@ -71,6 +71,11 @@ class StudentsController extends Controller
                     
                 });*/
 
+                Mail::send('emails.verify', $request->all(), function($msj){
+                    $msj->subject('Corrreo de contacto');
+                    $msj->to('pabloossandon88@gmail.com');
+                });
+       
                 flash('El usuario se creo correctamente!')->success();
                 
                 $student = new Student( );
