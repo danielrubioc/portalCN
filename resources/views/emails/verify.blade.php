@@ -3,7 +3,7 @@
 	<title></title>
 </head>
 <body>
-	<p> <strong>Mensaje:</strong> {{ $msg }}  </p>
+	<p> <strong>Mensaje:</strong> prueba testeo  </p>
 
 </body>
 </html>
