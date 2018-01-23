@@ -64,6 +64,7 @@ class StudentsController extends Controller
         if ($count==0){
             if ($user->save()) {
                 $data['msg'] = 'Codigo : ' . $user->validate;
+                $email = $user->email;
 
                 /*$msj->to($user->email);
                 Mail::send('emails.verify', $data, function($msj){
@@ -71,9 +72,9 @@ class StudentsController extends Controller
                     
                 });*/
 
-                Mail::send('emails.verify', $request->all(), function($msj){
-                    $msj->subject('Corrreo de contacto');
-                    $msj->to('pabloossandon88@gmail.com');
+                Mail::send('emails.verify', $data, function($msg) use ($email){
+                    $msg->subject('Correo de contacto');
+                    $msg->to($email);
                 });
        
                 flash('El usuario se creo correctamente!')->success();
