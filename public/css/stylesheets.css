@@ -1102,8 +1102,18 @@ img.effect {
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, p, span {
     font-family: 'Merriweather Sans', sans-serif;
 }
+.scrol {
+     overflow-x: auto;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    border-color: #dad4d4;
+}
 
-
+.insciption-detail{
+       margin-top: 56px;
+    padding: 0;
+    padding-bottom: 0;
+}
 
 /* Feel free to change duration  */ 
 .animated  {
