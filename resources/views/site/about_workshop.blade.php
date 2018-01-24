@@ -1,22 +1,21 @@
 @extends('layouts.site')
 
 @section('content')
-	
-	<div class="info-content-detail content-team-description">
-		
-		
-        <span class="visible-xs">
-
-            <div class="workshop-all">
-                <h1>Disciplinas</h1>
-               	<p>En esta sección encontrarás todas las actividades deportivas que tenemos a tú disposición. Todas gratuitas.</p>
-               	
-
-            </div>
-
-        </span>	
-
+	<div class="img-post-detail" style="background: url({{url('/images')}}/nosotros-menu.jpg) no-repeat center center; 
+											  -webkit-background-size: cover;
+											  -moz-background-size: cover;
+											  -o-background-size: cover;
+											  background-size: cover;">
 	</div>
+		<div class="content-title-detail">
+		<span></span><br>
+		<h1>Disciplinas</h1>
+	</div>
+	<div class="container info-content-detail">
+		<h4>En esta sección encontrarás todas las actividades deportivas que tenemos a tú disposición. Todas gratuitas.</h4>
+		<br>
+	</div>
+
 	<div class="content-total tallers insciption-detail">
         <h2>Proceso de inscripción <br> Digital</h2>
         <p><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Desliza para ver <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p>

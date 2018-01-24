@@ -9,7 +9,7 @@
 											  background-size: cover;">
 	</div>
 	<div class="content-title-detail">
-		<span></span>
+		<span></span><br>
 		<h1>Nosotros</h1>
 	</div>
 	<div class="container info-content-detail">
