@@ -96,14 +96,12 @@ Route::resource('workshops', 'WorkshopsController')->middleware('auth');
 Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'WorkshopsController@show']);
 
 //lesson
-Route::resource('lessons', 'LessonsController');
+Route::resource('lessons', 'LessonsController');    
+Route::resource('students', 'StudentsController');
 //registro
-Route::resource('registro', 'StudentsController');
+//Route::resource('registro/', 'StudentsController');
 //Route::get('/registro/store', 'StudentsController@store');
-Route::get('/registro/verificacion', 'StudentsController@verificacion');
-Route::get('/registro/exitoso', 'StudentsController@existoso');
-
-
+Route::get('/registro/{slug}', ['as' => 'students', 'uses' => 'StudentsController@probar']);
 
 Route::resource('tags', 'TagsController')->middleware('auth');
 

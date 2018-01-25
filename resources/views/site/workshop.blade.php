@@ -23,9 +23,11 @@
 
 				<hr class="separator-comparte">
 
+			@if( !Auth::user())
+            
 				<h4>DATOS DE INSCRIPCIÓN</h4>
 
-				<form id="incripcion" class="form-horizontal" method="POST" action="{{ route('registro.store' ) }}" enctype="multipart/form-data">
+				<form id="incripcion" class="form-horizontal" method="POST" action="{{ route('students.store') }}" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 					<input type="hidden" name="workshop_id" value="{{$workshop->id}}">
@@ -116,6 +118,10 @@
 					</div>
 							
 				</form>
+			@else
+				<h4>QUIERES INSCRIBIRTE?</h4>
+				<a>haz click aqui</a>
+        	@endif
 
 				
 			</div>			

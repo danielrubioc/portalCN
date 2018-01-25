@@ -55,7 +55,7 @@
                                     <label for="subtitle" class="col-md-4 control-label"> Subtitulo </label>
 
                                     <div class="col-md-6">
-                                        <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ old('subtitle') }}" required autofocus>
+                                        <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ $workshops->subtitle }}" required autofocus>
 
                                         @if ($errors->has('subtitle'))
                                             <span class="help-block">
@@ -69,7 +69,7 @@
                                     <label for="url" class="col-md-4 control-label"> Url </label>
 
                                     <div class="col-md-6">
-                                        <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" required autofocus>
+                                        <input id="url" type="text" class="form-control" name="url" value="{{ $workshops->url }}" required autofocus>
 
                                         @if ($errors->has('url'))
                                             <span class="help-block">

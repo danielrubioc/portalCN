@@ -161,6 +161,8 @@ class WorkshopsController extends Controller
         $workshops = Workshop::find($id);
         if ($workshops) {
             $workshops->name = $request->name ? $request->name : $workshops->name;
+            $workshops->subtitle = $request->subtitle ? $request->subtitle : $workshops->subtitle;
+            $workshops->url = $request->url ? $request->url : $workshops->url;
             $workshops->description = $request->description ? $request->description : $workshops->description;
             $workshops->quotas = $request->quotas ? $request->quotas : $workshops->quotas;
             $workshops->about_quotas = $request->about_quotas ? $request->about_quotas : $workshops->about_quotas;
@@ -173,8 +175,8 @@ class WorkshopsController extends Controller
                 }
                 $cover_page = $request->file('cover_page');
                 $random_string = md5(microtime());
-                $filename = time() .'_'. $random_string . '.' . $avatar->getClientOriginalExtension();
-                Image::make($avatar)->save( public_path('/uploads/workshop/' . $filename ) );
+                $filename = time() .'_'. $random_string . '.' . $cover_page->getClientOriginalExtension();
+                Image::make($cover_page)->save( public_path('/uploads/workshop/' . $filename ) );
                 $workshops->cover_page = $filename;
             
             } else {

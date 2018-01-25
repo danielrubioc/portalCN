@@ -17,7 +17,7 @@
 				<h4 style="color: {{$workshop->color}} ;">DATOS DE INSCRIPCIÓN</h4>
 				<p style="color: {{$workshop->color}} ;">Felicidades estás a un paso de estar inscrito, revisa tu correo e ingresa el código que te enviamos.</p>
 			
-				<form id="incripcion" class="form-horizontal" method="POST" action="{{ action('StudentsController@verificacion' ) }}" enctype="multipart/form-data">
+				<form id="incripcion" class="form-horizontal" method="POST" action="{{ action('StudentsController@show' , 'verificacion') }}" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 					<input type="hidden" name="workshop_id" value="{{$workshop->id}}">

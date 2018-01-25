@@ -29,6 +29,15 @@ class StudentsController extends Controller
 
     public function store(Request $request)
     {
+
+        return view('site.workshop_validate_student', [
+            'workshop' => Workshop::findOrFail(7), 
+            'user' => User::findOrFail(50) ]   
+        );
+
+        
+
+        /*
         $usr = $request->all();
         $workshop_id = $usr['workshop_id'];
 
@@ -38,9 +47,9 @@ class StudentsController extends Controller
         
         // mensajes de validacion
         $messages = array(
-            'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
-            'email.unique'    => 'El email ya ha sido registrado.',
-            'required' => 'El campo es obligatorio',
+            'password.min'  => 'La contraseña debe tener al menos 6 caracteres.',
+            'email.unique'  => 'El email ya ha sido registrado.',
+            'required'      => 'El campo es obligatorio',
         );
         // validacion segun Validator
         $validator = Validator::make($usr, [
@@ -68,7 +77,7 @@ class StudentsController extends Controller
                 $email = $user->email;
 
                 Mail::send('emails.verify', $data, function($msg) use ($email){
-                    $msg->subject('Correo de contacto');
+                    $msg->subject('Inscripción');
                     $msg->from('cn@portal.com');
                     $msg->to($email);
                 });
@@ -83,12 +92,12 @@ class StudentsController extends Controller
                 if ($student->save()) {
                     return view('site.workshop_validate_student', [
                         'workshop' => Workshop::findOrFail($workshop_id), 
-                        'user' => User::findOrFail($user->id) ]         
+                        'user' => User::findOrFail($user->id) ]   
                     );
                 }else {
                     flash('Error al registrarse en el curso.')->error();
                 }
-            }else {
+            }else{
                 flash('Disculpa! el usuario no se pudo crear.')->error();
                 return view('users.create');
             }
@@ -97,10 +106,65 @@ class StudentsController extends Controller
             die('2');
             return redirect()->route('users.create');
         }
+        */
 
     }
 
-    
+    public function show( Request $request, $slug )
+    {   
+        $request = $request->all();
+
+        switch( $slug ){
+
+            case 'verificacion':
+                die('verificaicon');
+                return view('site.workshop_validate_student', [
+                    'workshop' => Workshop::findOrFail($workshop_id), 
+                    'user' => User::findOrFail($user->id) ]   
+                );
+            break;
+
+            case 'exito':
+                die('exitoso ctm');
+                return view('site.workshop_validate_student', [
+                    'workshop' => Workshop::findOrFail($workshop_id), 
+                    'user' => User::findOrFail($user->id) ]   
+                );
+            break;
+
+            default:
+                die('404');
+            break;
+        }
+    }
+
+    public function probar( Request $request, $slug )
+    {   
+        $request = $request->all();
+
+        switch( $slug ){
+
+            case 'verificacion':
+                die('verificaicon');
+                return view('site.workshop_validate_student', [
+                    'workshop' => Workshop::findOrFail($workshop_id), 
+                    'user' => User::findOrFail($user->id) ]   
+                );
+            break;
+
+            case 'exito':
+                die('exitoso ctm');
+                return view('site.workshop_validate_student', [
+                    'workshop' => Workshop::findOrFail($workshop_id), 
+                    'user' => User::findOrFail($user->id) ]   
+                );
+            break;
+
+            default:
+                die('404');
+            break;
+        }
+    }
 
     public function randomCode(){
 
