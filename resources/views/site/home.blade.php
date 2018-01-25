@@ -134,7 +134,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/nuevas-disciplinas') }}" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/disciplinas') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>

@@ -35,7 +35,7 @@
         </div>
         <div class="buttons">
           <a href="{{ url('/nosotros') }}">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="{{ url('/nuevas-disciplinas') }}">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('/disciplinas') }}">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('publicaciones/eventos') }}">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('publicaciones/tercer-tiempo') }}">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('/contacto') }}">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
@@ -82,7 +82,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="{{ url('/') }}">Home </a></li>
                 <li><a href="{{ url('/nosotros') }}">Nosotros </a></li>
-                <li><a href="{{ url('/nuevas-disciplinas') }}">Disciplina </a></li>
+                <li><a href="{{ url('/disciplinas') }}">Disciplina </a></li>
                 <li><a href="{{ url('publicaciones/eventos') }}">Evento </a></li>
                 <li><a href="{{ url('publicaciones/tercer-tiempo') }}">Tercer Tiempo </a></li>
                 <li> <a href="{{ url('/contacto') }}">Contacto </a></li>

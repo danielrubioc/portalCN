@@ -114,10 +114,11 @@ Route::get('/nosotros', 'HomeController@about');
 Route::get('/equipo', 'HomeController@team');
 Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
+Route::get('/disciplinas', 'HomeController@aboutWorkshop');
 
 //disciplinas
 Route::get('/nuevas-disciplinas', 'HomeController@newsWorkshops');
-Route::get('/disciplinas', 'HomeController@workshopsAll');
+Route::get('/todas-las-disciplinas', 'HomeController@workshopsAll');
 
 
 // blog publico

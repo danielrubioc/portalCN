@@ -91,6 +91,12 @@ class HomeController extends Controller
         return view('site/contact');
     }
 
+    public function aboutWorkshop()
+    {   
+        $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
+        return view('site/about_workshop', ['workshops' => $workshops]);
+    }
+
     public function newsWorkshops()
     {   
         $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
