@@ -50,7 +50,7 @@ class StudentsController extends Controller
         ],  $messages);
 
         if ($validator->fails()) {
-            return redirect('disciplina/create')
+            return redirect('/')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -83,8 +83,8 @@ class StudentsController extends Controller
                 $student->status = 1;
                 if ($student->save()) {
                     return view('site.workshop_validate_student', [
-                        'workshop' => Workshop::findOrFail($workshop_id), 
-                        'user' => User::findOrFail($user->id) ]   
+                        'workshop' => Workshop::findOrFail($workshop_id),
+                        'user' => User::findOrFail($user->id) ]
                     );
                 }else {
                     flash('Error al registrarse en el curso.')->error();
