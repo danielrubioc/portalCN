@@ -45,7 +45,6 @@ Route::get('/dashboard', function () {
                 
                 case '2':
                     return redirect()->action('HomeController@indexTeacher');
-                    //return view('/site/home');
                     break;
 
                 case '3':
@@ -102,6 +101,11 @@ Route::resource('students', 'StudentsController');
 //Route::resource('registro/', 'StudentsController');
 //Route::get('/registro/store', 'StudentsController@store');
 Route::get('/registro/{slug}', ['as' => 'students', 'uses' => 'StudentsController@probar']);
+
+Route::get('codeverify', ['as' => 'students', 'uses' => 'HomeController@codeVerify']);
+
+
+
 
 Route::resource('tags', 'TagsController')->middleware('auth');
 
