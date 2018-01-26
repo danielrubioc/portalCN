@@ -35,9 +35,6 @@ class StudentsController extends Controller
             'user' => User::findOrFail(50) ]   
         );
 
-        
-
-        /*
         $usr = $request->all();
         $workshop_id = $usr['workshop_id'];
 
@@ -99,14 +96,14 @@ class StudentsController extends Controller
                 }
             }else{
                 flash('Disculpa! el usuario no se pudo crear.')->error();
-                return view('users.create');
+                return view('home.indexPublic');
             }
         } else {   
             flash('El email ingresado ya se encuentra en la base de datos!')->error();
-            die('2');
-            return redirect()->route('users.create');
+            
+            return redirect()->route('home.indexPublic');
         }
-        */
+        
 
     }
 
