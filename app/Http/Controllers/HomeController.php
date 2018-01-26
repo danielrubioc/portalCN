@@ -154,5 +154,21 @@ class HomeController extends Controller
         return view('site.post_categories', ['posts' => $posts, 'categories' => Category::getListActiveCategories()->get(), 'tags' => Tag::getListActiveTags()->get() ]);
     }
 
+    public function codeVerify(Request $request)
+    {
+        //
+        die('verificanco');
+        
+        Mail::send('emails.contact', $request->all(), function($msj){
+            $msj->subject('Corrreo de contacto');
+            $msj->to('daniel.janorc@gmail.com');
+        });
+
+        flash('Contacto enviado correctamente!')->success();
+        return view('site/contact');
+                
+    }
+
+
     
 }

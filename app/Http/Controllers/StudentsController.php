@@ -30,11 +30,6 @@ class StudentsController extends Controller
     public function store(Request $request)
     {
 
-        return view('site.workshop_validate_student', [
-            'workshop' => Workshop::findOrFail(7), 
-            'user' => User::findOrFail(50) ]   
-        );
-
         $usr = $request->all();
         $workshop_id = $usr['workshop_id'];
 
