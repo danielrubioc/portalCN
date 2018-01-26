@@ -13,9 +13,9 @@
 
                 <div class="tab-content">
                     <div id="info" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'info' ? 'in active' : '' }}">
-                        <div class="panel-body">
+                        <div class="panel-body" style="text-align: center;" >
                         <?php if ($workshops->cover_page): ?>
-                            <img src="{{url('/uploads/workshop')}}/{{ $workshops->cover_page }}" style="width:100%; max-height:150px ">
+                            <img src="{{url('/uploads/workshop')}}/{{ $workshops->cover_page }}" style=" max-height:250px; ">
                         <?php endif ?>
 
                             <form class="form-horizontal" method="POST" action="{{ route('workshops.update', ['id' => $workshops->id] ) }}" enctype="multipart/form-data">

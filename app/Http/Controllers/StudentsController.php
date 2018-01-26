@@ -93,7 +93,7 @@ class StudentsController extends Controller
                 flash('Disculpa! el usuario no se pudo crear.')->error();
                 return view('home.indexPublic');
             }
-        } else {   
+        } else {  
             flash('El email ingresado ya se encuentra en la base de datos!')->error();
             
             return redirect()->route('home.indexPublic');
