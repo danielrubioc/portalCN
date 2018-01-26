@@ -35,7 +35,7 @@
         </div>
         <div class="buttons">
           <a href="{{ url('/nosotros') }}">Nosotros <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="{{ url('/disciplinas') }}">Disciplina <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+          <a href="{{ url('/disciplinas') }}">Disciplinas <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('publicaciones/eventos') }}">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('publicaciones/tercer-tiempo') }}">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('/contacto') }}">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>

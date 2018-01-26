@@ -140,7 +140,31 @@
                     </div>
                 </div>
             </form>
+
+             <div class="content-login">
+                    <a  class="btn btn-primary loggin-btn" href="{{ route('register') }}" class="btn btn-primary loggin-btn">
+                            REGISTRATE
+                    </a>
+                </div>
         </div>
 
 </div>
+
+@section('inputHasContent')
+    <script type="text/javascript">
+    // JavaScript for labe  l effects only
+    console.log('ss');
+            $('.input-effect input').blur(function(){
+                tmpval = $(this).val();
+                if(tmpval == '') {
+                    $(this).addClass('not-empty');
+                    $(this).removeClass('empty');
+                    console.log('ss');
+                } else {
+                    $(this).addClass('empty');
+                    $(this).removeClass('not-empty');
+                }
+            });
+    </script>
+@stop
 @endsection

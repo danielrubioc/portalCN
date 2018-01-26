@@ -99,7 +99,7 @@
 					
 					<div class="col-md-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 						<div class="input-effect">
-							<input id="email" type="text" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus placeholder="Correo">
+							<input id="email" type="text" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus >
 							<label for="email">Correo</label>
 							<span class="focus-border"></span>
 							@if ($errors->has('birth_date'))
@@ -141,14 +141,16 @@
 	<script type="text/javascript">
 	// JavaScript for label effects only
 
-		$(".input-effect input").focusout(function(){
-			if($(this).val() != ""){
-				$(this).addClass("has-content");
-			}else{
-				$(this).removeClass("has-content");
-			}
-		})
-	
+	        $('.input-effect input').blur(function(){
+	            tmpval = $(this).val();
+	            if(tmpval == '') {
+	                $(this).addClass('not-empty');
+	                $(this).removeClass('empty');
+	            } else {
+	                $(this).addClass('empty');
+	                $(this).removeClass('not-empty');
+	            }
+	        });
 	</script>
 	@stop
 

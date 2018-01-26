@@ -68,14 +68,16 @@
 <script type="text/javascript">
 // JavaScript for label effects only
 
-		$(".input-effect input").focusout(function(){
-			if($(this).val() != ""){
-				$(this).addClass("has-content");
-			}else{
-				$(this).removeClass("has-content");
-			}
-		})
-var check=document.getElementById("check").value == "text_value";
+        $('.input-effect input').blur(function(){
+            tmpval = $(this).val();
+            if(tmpval == '') {
+                $(this).addClass('not-empty');
+                $(this).removeClass('empty');
+            } else {
+                $(this).addClass('empty');
+                $(this).removeClass('not-empty');
+            }
+        });
 </script>
 @stop
 

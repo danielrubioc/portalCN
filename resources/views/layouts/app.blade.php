@@ -202,6 +202,8 @@
     @yield('ckeditor')
     <!--  sliders -->
     @yield('slider-owl')
+
+    @yield('inputHasContent')
     <script>
         $('#flash-overlay-modal').modal();
     </script>
