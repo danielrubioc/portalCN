@@ -20,7 +20,7 @@
 <body>
     <div id="app">
 
-      <div id="mySidenav" class="sidenav visible-xs">
+      <div id="mySidenav" class="sidenav visible-xs" >
         @if(Auth::user())
             <a href="{{ url('/dashboard') }}" class="left-input"><i class="fa fa-user-o" aria-hidden="true"></i>Administrador</a>
             @else
@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <nav class="navbar navbar-default navbar-fixed-top hidden-xs">
+        <nav class="navbar navbar-default navbar-fixed-top hidden-xs" style="display: none">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
