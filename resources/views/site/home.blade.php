@@ -1,8 +1,14 @@
 @extends('layouts.site')
-
+@section('title', 'Page Title')
 @section('content')
 
 <span class="hidden-xs">
+<img src="{{url('/images/en-construccion.gif')}}" class=" img-responsive" style="height: 100vh;
+    margin-top: -0px;">
+
+
+<!--
+
 <section class="content slider"> 
 
 <div class="info-taller">
@@ -86,8 +92,10 @@
 @endforeach
 
 </section>
-</span>
 
+-->
+
+</span>
 
 
 <span class="visible-xs">
