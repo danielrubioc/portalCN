@@ -3,8 +3,17 @@
 @section('content')
 
 <span class="hidden-xs">
+<span style="    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(50%, 50%);
+    text-transform: uppercase;
+    font-size: 20px;
+    color: black;text-transform: uppercase;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;"><p>en construcción</p></span>
 <img src="{{url('/images/en-construccion.gif')}}" class=" img-responsive" style="height: 100vh;
-    margin-top: -0px;">
+    margin-top: -0px;    width: 100%;">
 
 
 <!--
