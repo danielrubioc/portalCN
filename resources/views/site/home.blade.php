@@ -15,7 +15,7 @@
     transform: translate(-50%, -50%);
     position: absolute;
     font-size: 63px;
-    text-transform: uppercase;">en construcción</p>
+    text-transform: uppercase; text-align: center; margin: 0">"en construcción" <br> <span style="font-size: 20px;">Estamos mejorando para ti</span></p>
     </div>
 </div>
  </span>
