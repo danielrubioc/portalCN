@@ -1,17 +1,24 @@
 @extends('layouts.site')
-@section('title', 'Page Title')
 @section('content')
 
 <span class="hidden-xs">
-<span style="    position: absolute;
-    top: 30%;
+
+<span>
+<div class="container" style="position: absolute;
+    width: 100%;
+    height: 100vh;">
+    <div class="relativ" style="    position: relative;
+    width: 100%;
+    height: 100vh;">
+    <p style="        top: 24%;
     left: 50%;
-    transform: translate(50%, 50%);
-    text-transform: uppercase;
-    font-size: 20px;
-    color: black;text-transform: uppercase;
-    font-family: 'Merriweather Sans', sans-serif;
-    font-weight: bold;"><p>en construcción</p></span>
+    transform: translate(-50%, -50%);
+    position: absolute;
+    font-size: 63px;
+    text-transform: uppercase;">en construcción</p>
+    </div>
+</div>
+ </span>
 <img src="{{url('/images/en-construccion.gif')}}" class=" img-responsive" style="height: 100vh;
     margin-top: -0px;    width: 100%;">
 
