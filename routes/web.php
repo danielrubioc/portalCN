@@ -80,6 +80,7 @@ Route::post('profile', 'UserController@update_avatar')->middleware('auth');
 
 //************ blog *****************//
 
+
 //category
 Route::resource('categories', 'CategoriesController')->middleware('auth');
 //post
@@ -87,9 +88,11 @@ Route::resource('posts', 'PostsController')->middleware('auth');
 //gallery
 Route::resource('galleries', 'GalleriesController')->middleware('auth');
 //tags
-Route::resource('tags', 'TagsController');
+Route::resource('tags', 'TagsController')->middleware('checkRole');
 //taller
 Route::resource('workshops', 'WorkshopsController')->middleware('auth');
+//banner
+Route::resource('banners', 'BannersController')->middleware('auth');
 //Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');
 
 Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'WorkshopsController@show']);
