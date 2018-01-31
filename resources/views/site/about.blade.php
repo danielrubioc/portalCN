@@ -2,7 +2,7 @@
 
 @section('content')
 	
-	<div class="img-post-detail" style="background: url({{url('/images')}}/nosotros-menu.jpg) no-repeat center center; 
+	<div class="img-post-detail" style="background: url({{url('/images')}}/nosotros-portada.jpg) no-repeat center center; 
 											  -webkit-background-size: cover;
 											  -moz-background-size: cover;
 											  -o-background-size: cover;
