@@ -1,6 +1,7 @@
 @extends('layouts.site')
 @section('content')
 
+<!--
 <span class="hidden-xs">
 
 <span>
@@ -23,95 +24,133 @@
     margin-top: -0px;    width: 100%;">
 
 
-<!--
-
-<section class="content slider"> 
-
-<div class="info-taller">
-    <div id="workshop-modify-container">
-        <div  id="carrousel-slider" class="owl-carousel owl-theme content-gallery">
-                <div class="item">
-                    <img src="{{url('/images')}}/slider-2-min-min.png" class="img-responsive">
-                    
-                </div>  
-                <div class="item">
-                    <img src="{{url('/images')}}/slider-2-min-min.png" class="img-responsive">
-                    
-                </div>   
-        </div>     
-    </div>
-
-</div>
-
-</section>
-
-
-<section class="content" id="first-section">
-
-		<div class="conten-news-gral">
-				
-
-
-				
-				@foreach ($workshops as $key => $taller)
-					@if ($key ==0 )
-						<div class="content-news first-destac">
-	                   		<a href="{{ url('/disciplina') }}/{{$taller->url}}">
-	                   		<div class="content-img">
-	                   			<img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive img-disciplina-home">
-	                   		</div>
-	                        <div class="description">
-				                <h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
-				                <p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 800) }} </p>
-				            </div>
-	                         
-	                        </a>
-	                   	</div>  
-					@else	
-                   	<div class="content-news">
-                   		<a href="{{ url('/disciplina') }}/{{$taller->url}}">
-                   		<div class="content-img">
-                   			<img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive img-disciplina-home">
-                   			<img class="effect "src="https://www.fcinq.com/v3/wp-content/themes/fcinq/img/slideshow_gradient.png" alt="" class="gradient">
-                   		</div>
-                        <div class="description">
-			                <h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
-			                <p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 100) }} </p>
-			            </div>
-                         
-                        </a>
-                   	</div>  
-                   	@endif
-                @endforeach
-		</div>
-
-</section>
-
-<section class="content" id="news-section">
-@foreach ($posts as $post)
-
-	<div class="item-post" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
-								  -webkit-background-size: cover;
-								  -moz-background-size: cover;
-								  -o-background-size: cover;
-								  background-size: cover;">
-		
-		<div class="info-post-tercer-tiempo">
-			<h2>{{ $post->title }}</h2>
-		</div>
-		<div class="info-post-tercer-tiempo-right">
-			<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">leer + </a>
-		</div>
-	</div>		
-
-
-@endforeach
-
-</section>
-
 -->
 
-</span>
+	<section class="content slider sld-home"> 
+
+		<div class="info-taller">
+			<div id="workshop-modify-container">
+				<div  id="carrousel-slider" class="owl-carousel owl-theme content-gallery">
+						<div class="item" style="background-image: url('{{url('/images')}}/disciplinas-portada.png')">
+							<div class="info">
+								<h2>crosswork</h2>
+								<span>"Aquel que quiere conseguir algo, encuentra su camino. <br> El que no, encuentra una excusa"</span>
+							</div>
+							
+						</div> 
+						  
+				</div>     
+			</div>
+
+		</div>
+
+	</section>
+
+
+	<section class="content col-md-12 conten-workshop-gral" >
+		<h2 class="titulo-home">NUESTRAS DISCIPLINAS</h2>
+
+		<div class="col-md-7">
+			@foreach ($workshops as $key => $taller)				
+				<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-6 ult-wrk">					
+					<div class="img" style=" background-image: url('/uploads/workshop/{{$taller->cover_page}}');">
+					</div>
+					<div class="txt">
+						<h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
+						<p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 40) }} </p>
+					</div>						
+				</a>				 
+			@endforeach
+		</div>
+<!-- Destacada -->
+		<div class="col-md-5">	
+			<div class="destacada-wrk">
+				<a href="{{ url('/disciplina') }}/{{$workshops[0]->url}}">					
+					<div class="img" style=" background-image: url('/uploads/workshop/{{$workshops[0]->cover_page}}');">
+					</div>
+					<div class="txt">
+						<h2 class="animable-element" style="opacity: 1;">{{$workshops[0]->name}}</h2>
+						<p class="animable-element" style="opacity: 1;">{{ str_limit($workshops[0]->description, 40) }} </p>
+					</div>						
+				</a>
+			</div>		
+		</div>
+		<button class="btn-home">VER MÁS</button>
+	</section>
+
+	<section class="container-fluid">
+		<h2 class="titulo-home">CERRO NAVIA DEPORTES</h2>
+	</section>
+
+	<section class="container-fluid equipo-home" style="background-image: url('{{url('/images')}}/slider-2-min-min.png')">
+		<div class="col-md-6 izq">
+			<h2>un titulo super</h2>
+			<p>la bajada increible</p>
+			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+			<br>
+			<button>LEER MÁS</button>
+		</div>
+		<div class="col-md-6 der">
+			<button>CONOCE AL EQUIPO</button>
+			<h2>"Pienso luego existo"</h2>
+			<span>alguien bkn de la corpo</span>
+			
+		</div>
+	</section>
+
+	<section class="container-fluid">
+		<h2 class="titulo-home">TERCER TIEMPO</h2>
+	</section>
+	
+	<section class="content col-md-12">
+	@foreach ($posts as $post)
+
+		<div class="" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
+									-webkit-background-size: cover;
+									-moz-background-size: cover;
+									-o-background-size: cover;
+									background-size: cover;">
+			
+			<div class="info-post-tercer-tiempo">
+				<h2>{{ $post->title }}</h2>
+			</div>
+			<div class="info-post-tercer-tiempo-right">
+				<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">leer + </a>
+			</div>
+		</div>		
+
+
+	@endforeach
+
+</section>
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <span class="visible-xs">

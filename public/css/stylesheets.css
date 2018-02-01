@@ -162,7 +162,7 @@ a, span, button {
 
 
 section#first-section {
-    position: relative;
+    position: relative;    
 }
 .text-description {
     z-index: 2;
@@ -979,14 +979,85 @@ a.navbar-brand.img-responsive img {
 
 
 
-.conten-news-gral {
-    width: 1076px;
+.conten-workshop-gral {
+    width: 86%;
     background: #f4f4f4;
-    margin: -60px auto 60px;
+    margin: 0 7%;
     position: relative;
     z-index: 10;
     overflow: hidden;
 }
+
+.titulo-home{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 900;
+    padding: 30px 0;
+    letter-spacing: 5px;
+}
+
+.conten-workshop-gral .ult-wrk{
+    width: calc(50% - 20px);
+    margin: 10px;
+    padding: 0;
+    -webkit-box-shadow: 10px 10px 30px 0px rgba(46, 50, 50, 0.42);
+    -moz-box-shadow:    10px 10px 30px 0px rgba(46, 50, 50, 0.42);
+    box-shadow:         10px 10px 30px 0px rgba(46, 50, 50, 0.42);
+    
+}
+
+.conten-workshop-gral .img{
+    background-size: cover;
+    background-position: 30px center;
+    height: 180px;
+}
+
+.conten-workshop-gral .txt{
+    padding: 10px 30px;
+    background: color;
+    color: gray;
+    background: white;
+    text-decoration: none;
+}
+
+.conten-workshop-gral .txt h2{ 
+    text-transform: lowercase;
+}
+
+.conten-workshop-gral .txt h2::first-letter { 
+    text-transform: uppercase;
+}
+
+.conten-workshop-gral a :hover{
+    color: gray;
+    text-decoration: none;
+}
+
+.conten-workshop-gral .destacada-wrk{
+    width: calc(100% - 20px);
+    margin: 10px;
+    padding: 0;
+    -webkit-box-shadow: 10px 10px 30px 0px rgba(46, 50, 50, 0.42);
+    -moz-box-shadow:    10px 10px 30px 0px rgba(46, 50, 50, 0.42);
+    box-shadow:         10px 10px 30px 0px rgba(46, 50, 50, 0.42);
+}
+
+.conten-workshop-gral .destacada-wrk .img{
+    background-size: cover;
+    background-position: 30px center;
+    height: 500px;
+}
+
+.conten-workshop-gral button{
+    float: right;
+    border-radius: 0;
+    border: 2px gray solid;
+    padding: 8px 50px;
+    margin: 30px 25px;
+    font-size: 25px;
+}
+
+
 
 form#incripcion {
     position: relative;
@@ -1175,3 +1246,84 @@ img.effect {
     opacity : 0   ;
   }  
 }
+
+
+.sld-home{
+    margin-top: 30px;
+    position: relative;
+    
+}
+
+.sld-home .item{
+    height: 500px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+.sld-home .item .info{
+    top: 120px;
+    left: 50%;
+    position: relative;
+    text-align: center;
+    width: 50%;
+}
+.sld-home .item .info h2{
+    color: aquamarine;
+    font-size: 60px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.sld-home .item .info span{
+    font-size: 20px;
+    font-style: italic;
+}
+
+.equipo-home{
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.equipo-home .izq h2{
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.equipo-home .izq p{
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.equipo-home .izq span{
+    text-align: justify;
+    font-size: 15px;
+    padding: 0 30%;
+}
+
+.equipo-home button{
+    border-radius: 0;
+    border: 2px white solid;
+    padding: 8px 100px;
+    margin: 30px 25px;
+    font-size: 25px;
+    background: transparent;
+}
+
+.equipo-home .der button{
+    font-size: 40px;
+}
+
+.equipo-home .der h2{
+    font-size: 40px;
+    font-style: italic;
+}
+
+.equipo-home .der span{
+    float: right;
+    margin-right: 120px;
+}
+
