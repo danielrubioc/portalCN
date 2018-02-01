@@ -45,7 +45,6 @@ class GalleriesController extends Controller
     {
 
         $files = $request->filesToUpload;
-        dd('sss');
         if($files){
 
             foreach ($files as $file) {
@@ -68,7 +67,7 @@ class GalleriesController extends Controller
                 //from viene de editar noticia si es asi lo redirecciono donde mismo
                 if ($request->from) {
                     //esto es para actvivar el tab en galeria
-                    return redirect()->route('posts.edit', $gallery->post_id);
+                    return redirect()->route('posts.edit', [$gallery->post_id, $gallery = true]);
 
                 } else{
                     
@@ -144,7 +143,11 @@ class GalleriesController extends Controller
             //$file_path = app_path().'/images/news/'.$news->photo;
 
             //unlink('/uploads/news/gallery'.$gallery->url);
-            unlink(public_path() .  '/uploads/gallery/' . $gallery->url );
+            $nombre_fichero = public_path() .  '/uploads/gallery/' . $gallery->url;
+            if (file_exists($nombre_fichero)) {
+                unlink(public_path() .  '/uploads/gallery/' . $gallery->url );
+            }
+            
             flash('imagen eliminada correctamente!')->success();
             if ($request->from) {
                 //esto es para actvivar el tab en galeria

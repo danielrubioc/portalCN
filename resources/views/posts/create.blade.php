@@ -26,21 +26,21 @@
                             </div>
                         </div> 
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label"> Título </label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="title" value="{{ old('name') }}" required autofocus>
+                                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('title'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('title') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label"> Url </label>
 
                             <div class="col-md-6">

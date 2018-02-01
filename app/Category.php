@@ -8,7 +8,7 @@ class Category extends Model
 {
     //
     protected $fillable = [
-        'name', 'status',
+        'name', 'status', 'url'
     ];
 
      public function BlogNews()

@@ -30,8 +30,8 @@
 			   	<form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
 			       <select class="form-control" id="status" name="status">
 			       	  <option disabled selected value> -- Buscar por estado -- </option>
-					    <option value="1">Publicado</option>
-					    <option value="0">No visible</option>
+					    <option value="1">Visible</option>
+					    <option value="0">Oculto</option>
 				  	</select>
 			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
@@ -69,9 +69,9 @@
 										<td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
 									    <td>
 									    	@if ($post->status == 1)
-											   <span class="span-success">Publicado</span>
+											   <span class="span-success">Visible</span>
 											@else
-											   <span class="span-danger">No visible</span>
+											   <span class="span-danger">Oculto</span>
 											@endif	
 									    </td>
 									  

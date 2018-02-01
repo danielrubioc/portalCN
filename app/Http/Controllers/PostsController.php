@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 use App\Post;
 use App\Category;
 use App\Gallery;
 use App\Tag;
+use App\User;
 use Auth;
 use Image;
+use Mail;
 //campo url
 use Illuminate\Support\Str as Str;
 
@@ -65,9 +68,32 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = array(
+            'unique'    => ':attribute ya ha sido registrada.',
+            'required' => ':attribute es obligatorio',
+            'max' => ':attribute no puede ser mayor que :max caracteres',
+            'email'    => ':attribute .',
+            'min'      => ':attribute moet minimaal :min karakters bevatten.',
+        );
+        // validacion segun Validator
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:199',
+            'subtitle' => 'required|max:200',
+            'url' => 'required|max:199|unique:posts',
+            'content' => 'required',
+            'cover_page' => 'mimes:jpeg,jpg,png',
+            
+        ],  $messages);
+
+        if ($validator->fails()) {
+            return redirect('posts/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
 
         $news = new Post($request->all());
-        $news->status = 1;
+        $news->status = 0;
         $news->start = 0;
         $news->user_id = Auth::id();
         $news->url = Str::slug($request->url ? $request->url : $request->title, '_');
@@ -78,7 +104,7 @@ class PostsController extends Controller
             Image::make($avatar)->save( public_path('/uploads/news/' . $filename ) );
             $news->cover_page = $filename;
         }   
-        
+       
         if ($news->save()) {
             //si vienen los tags
             if ($request->tags) {
@@ -104,24 +130,36 @@ class PostsController extends Controller
                 }
                 $news->tags()->attach($tags);
             }
-            $lastInsertedId = $news->id;
-            flash('Noticia creada correctamente!')->success();
-            $tabName = array(
-                'name' => 'info',
-            );
-
-            return view('posts.edit', ['news' => Post::findOrFail($lastInsertedId), 
-                                    'tab' => $tabName, 
-                                    'categories' => Category::all(['id', 'name']),
-                                    'gallery' => Gallery::where('post_id', '=', $lastInsertedId),
-                                    'tags' => Tag::all(['id', 'name']),
-                                    'tagsInPost' => Post::findOrFail($lastInsertedId)->tags()->get()->toArray() ]);
+            
+            $link = url('/').'/'.$news->category->url.'/detalle/'.$news->url;
+            $this->sendMails($news, $link);
+            $idLast =   $news->id;; 
+            flash('Publicación creada correctamente!')->success();
+            return redirect()->route('posts.edit', $idLast);
 
         }else {
-            flash('no se pudo crear la categoría')->error();
+            flash('no se pudo crear la Publicación')->error();
             return view('posts.create');
         }
         
+    }
+
+    public function sendMails($infoNew, $link)
+    {   
+
+        
+        $users = User::allPublicUser()->get();
+
+        foreach ($users as $key => $user) {
+            $emails[] = $user->email;
+        }
+
+        Mail::send('emails.contact-news', ['info' => $infoNew, 'link' => $link], function($message) use ($emails)
+        {    
+            $message->to($emails)->subject('Nueva publicación disponible - Corporación del Deporte Cerro Navia');    
+        });
+        
+        return redirect()->route('posts.edit', $infoNew->id);
     }
 
     /**
@@ -144,19 +182,37 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $tab = null)
     {                           
         //esto es para actvivar el tab en info
-        $tabName = array(
-            'name' => 'info',
-        );
+        if ($tab) {
+           $tabName = array(
+                'name' => 'gallery',
+            );
+        } else {
+            $tabName = array(
+                'name' => 'info',
+            );
+        }
+        
+        $statuses = collect([
+            [
+                'name' => 'Oculto',
+                'id' => 0
+            ],
+            [
+                'name' => 'Visible',
+                'id' => 1
+            ]
+        ]);
 
         return view('posts.edit', [ 'news' => Post::findOrFail($id), 
                                     'tab' => $tabName, 
                                     'categories' => Category::all(['id', 'name']),
                                     'gallery' => Gallery::where('post_id', '=', $id)->paginate(30),
                                     'tags' => Tag::all(['id', 'name']),
-                                    'tagsInPost' => Post::findOrFail($id)->tags()->get()->toArray() ]);
+                                    'tagsInPost' => Post::findOrFail($id)->tags()->get()->toArray(),
+                                    'statuses' => $statuses->all() ]);
     }
 
 
@@ -170,9 +226,31 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {       
-        
+        if (!$request->show) {
+            $messages = array(
+                'unique'    => ':attribute ya ha sido registrada.',
+                'required' => ':attribute es obligatorio',
+                'max' => ':attribute no puede ser mayor que :max caracteres',
+                'email'    => ':attribute .',
+                'min'      => ':attribute moet minimaal :min karakters bevatten.',
+            );
+            // validacion segun Validator
+            $validator = Validator::make($request->all(), [
+                'title' => 'required|max:199',
+                'subtitle' => 'required|max:200',
+                'url' => 'required|max:199|unique:posts',
+                'content' => 'required',
+                'cover_page' => 'mimes:jpeg,jpg,png',
+                
+            ],  $messages);
 
-
+            if ($validator->fails()) {
+                return redirect('posts/create')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+        }
+            
             $news = Post::find($id); 
             if ($news) {
 
@@ -205,8 +283,12 @@ class PostsController extends Controller
 
                 //viene una imagen nueva
                 if ($request->cover_page && $request->cover_page != '') {
+
                     if ($news->cover_page && $news->cover_page != '') {
-                        unlink(public_path() .  '/uploads/news/' . $news->cover_page );
+                        $nombre_fichero = public_path() .  '/uploads/news/' . $news->cover_page;
+                        if (file_exists($nombre_fichero)) {
+                            unlink(public_path() .  '/uploads/news/' . $news->cover_page );
+                        }
                     }
                     $avatar = $request->file('cover_page');
                     $random_string = md5(microtime());

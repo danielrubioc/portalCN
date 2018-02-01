@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 use App\Banner;
 use Image;
 //campo url
@@ -78,8 +79,9 @@ class BannersController extends Controller
             $banner->image = $filename;
         }  
         if ($banner->save()) {
+            $idLast =  $banner->id; 
             flash('Banner creado correctamente!')->success();
-            return redirect('banners');
+            return redirect()->route('banners.edit', $idLast);
         }else {
             flash('no se pudo crear el Banner')->error();
             return view('banners.create');
@@ -106,8 +108,17 @@ class BannersController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('banners.edit', ['banner' => Banner::findOrFail($id)]);
+        $statuses = collect([
+            [
+                'name' => 'Oculto',
+                'id' => 0
+            ],
+            [
+                'name' => 'Visible',
+                'id' => 1
+            ]
+        ]);
+        return view('banners.edit', ['banner' => Banner::findOrFail($id), 'statuses' => $statuses->all() ]);
     }
 
     /**
@@ -150,12 +161,14 @@ class BannersController extends Controller
                                 ->withInput();
                 }
             }
+
+
             
             $banner->title = $request->title ? $request->title : $banner->title;
             $banner->subtitle = $request->subtitle ? $request->subtitle : $banner->subtitle;
             $banner->color = $request->color ? $request->color : $banner->color;
-            $banner->status = $request->status ? $request->status : $banner->status;
-
+            $banner->status = $request->status;
+            
             //viene una imagen nueva
             if ($request->image && $request->image != '') {
                 if ($banner->image && $banner->image != '') {

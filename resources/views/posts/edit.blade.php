@@ -37,13 +37,21 @@
                                             @endif
                                         </div>
                                     </div>  
-                                    <div class="col-md-12">
-                                        <label for="cover_page" class="col-md-4 control-label">Visible</label>
-                                        <label class="switch">
-                                          <input type="checkbox" name="status" id="status" value="1" 
-                                          @if ($news->status == 1) checked="checked" @endif>
-                                          <span class="slider round"></span>
-                                        </label>
+                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                        <label for="cover_page" class="col-md-4 control-label">Estado</label>
+                                        <div class="col-md-6">
+                                        <select class="form-control" id="status" name="status">
+                                            @foreach($statuses as $status)
+                                                @if ($news->status  == $status['id'])
+                                                    <option value="{{$status['id']}}" selected>{{ $status['name'] }}</option>
+
+                                                    @else
+                                                    <option value="{{$status['id']}}">{{$status['name']}}</option>
+                                                @endif
+                                                    
+                                            @endforeach
+                                        </select>
+                                        </div>
                                     </div>
 
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

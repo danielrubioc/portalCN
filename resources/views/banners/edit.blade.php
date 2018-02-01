@@ -80,12 +80,18 @@
                             <label for="color" class="col-md-4 control-label">Estado</label>
                             
                             <div class="col-md-6">
-                                
-                                  <select class="form-control" id="status" name="status" value="{{ old('status') }}">
-                                    <option value="0">Inactivo</option>
-                                    <option value="1">Activo</option>
-                                  </select>
+                                <select class="form-control" id="status" name="status">
+                                    @foreach($statuses as $status)
+                                        @if ($banner->status  == $status['id'])
+                                            <option value="{{$status['id']}}" selected>{{ $status['name'] }}</option>
 
+                                            @else
+                                            <option value="{{$status['id']}}">{{$status['name']}}</option>
+                                        @endif
+                                            
+                                    @endforeach
+                                </select>
+                                
 
                                 @if ($errors->has('status'))
                                     <span class="help-block">

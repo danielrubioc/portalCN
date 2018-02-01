@@ -67,6 +67,7 @@
 			    			@endforeach
 			    	</tbody>
 			    </table>
+			    {{ $banners->links() }}
 		    </div>
 	</div> 		    
  </div> 
