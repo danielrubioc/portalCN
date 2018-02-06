@@ -3,7 +3,9 @@
 @section('content')
 	<span class="hidden-xs">
 		<div class="content-detail-post">
-			<img src="{{url('/uploads/news')}}/{{ $post->cover_page }}" class="img-responsive">
+			<div class="img-header-post">
+				<img src="{{url('/uploads/news')}}/{{ $post->cover_page }}" class="img-responsive">
+			</div>
 			<div class="bx-info">
 				<div class="col-md-6 content-title-detail">
 					<span>{{ date('d-m-Y', strtotime($post->created_at)) }} | {{ $post->category->name  }}</span>
@@ -18,16 +20,19 @@
 				
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 content-p-detail">
 					<h4>{{ $post->subtitle }}</h4>
 					<p>{!! $post->content !!}</p>
 				</div>
 			</div>
 			
 			<div class="info-content-related">
-				<hr class="separator-comparte">
-				
+				<div class="cont-hr">
+					<h2>Te recomendamos</h2>
+					<hr class="separator-comparte">
+				</div>	
 			</div>
+
 		</div>		
 	</span>
 
