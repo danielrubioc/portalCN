@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <nav class="navbar navbar-default navbar-fixed-top hidden-xs">
+        <nav class="navbar navbar-default navbar-fixed-top  nav-default hidden-xs">
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -87,21 +87,10 @@
                 <li><a href="{{ url('publicaciones/tercer-tiempo') }}">Tercer Tiempo </a></li>
                 <li> <a href="{{ url('/contacto') }}">Contacto </a></li>
 
-                <li><a href="{{ route('register') }}">Inscríbete ahora </a></li>
+                <li><a href="{{ route('register') }}" class="btn-head-green">Inscríbete ahora </a></li>
 
 
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>
+                <li><a href="{{ route('register') }}" >Login </a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

@@ -11,6 +11,7 @@ use App\User;
 use App\Workshop;
 use App\Student;
 use App\Teacher;
+use App\Banner;
 use Mail;
 use Auth;
 use Image;
@@ -71,9 +72,10 @@ class HomeController extends Controller
     public function indexSite()
     {   
         
+        $banners = Banner::getListActiveBanners()->paginate(4); 
         $workshops = Workshop::getListActiveWorkshops()->paginate(4); 
         $posts = Post::getListActivePost()->paginate(5); 
-        return view('site/home', ['workshops' => $workshops, 'posts' => $posts]);
+        return view('site/home', ['workshops' => $workshops, 'posts' => $posts, 'banners' => $banners]);
     }
 
 
@@ -114,12 +116,19 @@ class HomeController extends Controller
     public function sendContact(Request $request)
     {
         //
-
-        Mail::send('emails.contact', $request->all(), function($msj){
-            $msj->subject('Corrreo de contacto');
-            $msj->to('daniel.janorc@gmail.com');
+        
+        Mail::send('emails.contact-notification', $request->all(), function($msj){
+            $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
+            $msj->to('contacto@deportescerronavia.cl');
         });
 
+        $email = $request->all();
+        /*
+        Mail::send('emails.contact', $request->all(), function($msj){
+            $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
+            $msj->to($email['email']);
+        });
+            */
         flash('Contacto enviado correctamente!')->success();
         return view('site/contact');
                 
@@ -152,7 +161,10 @@ class HomeController extends Controller
             $posts = Post::getListActivePost()->paginate(5);
         }
 
-        return view('site.post_categories', ['posts' => $posts, 'categories' => Category::getListActiveCategories()->get(), 'tags' => Tag::getListActiveTags()->get() ]);
+        return view('site.post_categories', ['posts' => $posts, 
+                                            'category' => $category,
+                                            'categories' => Category::getListActiveCategories()->get(), 
+                                            'tags' => Tag::getListActiveTags()->get() ]);
     }
 
     public function codeVerify(Request $request)

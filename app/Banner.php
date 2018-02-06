@@ -11,5 +11,8 @@ class Banner extends Model
         'title', 'subtitle', 'color', 'image', 'status',
     ];
 
-
+    public function scopeGetListActiveBanners($query)
+    {   
+        $query->where(\DB::raw("status"), "=", 1)->orderBy('id','DESC');
+    }
 }

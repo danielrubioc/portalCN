@@ -2,8 +2,9 @@
 @media (max-width: 768px) { 
 body{
     font-family: 'Merriweather Sans', sans-serif;
-
+    background-color: #ffffff;
 }
+
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather Sans', sans-serif;
     font-weight: bold;
@@ -1261,19 +1262,22 @@ img.effect {
     background-position: center center;
     background-size: cover;
 }
-.sld-home .item .info{
-    top: 120px;
+.sld-home .item .info {
+    top: 0;
+    bottom: 0;
     left: 50%;
     position: relative;
     text-align: center;
     width: 50%;
+    padding-top: 70px;
 }
-.sld-home .item .info h2{
+.sld-home .item .info h2 {
     color: aquamarine;
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 900;
     text-transform: uppercase;
 }
+
 
 .sld-home .item .info span{
     font-size: 20px;
@@ -1327,3 +1331,100 @@ img.effect {
     margin-right: 120px;
 }
 
+.navbar-fixed-bottom, .navbar-fixed-top {
+    box-shadow: 0 8px 6px -6px #9c9c9c !important;
+  
+}
+.nav-default .navbar-right li.active a, 
+.nav-default .navbar-right li:hover a {
+    font-weight: 800;
+    background: transparent;
+    -webkit-transition: font-weight .4s ease-in-out;
+    transition: font-weight .4s ease-in-out;
+}
+
+.nav-default .navbar-right li a {
+    font-family: 'Merriweather Sans', sans-serif;
+    -webkit-transition: font-weight .4s ease-in-out;
+    transition: font-weight .4s ease-in-out;
+}
+
+.nav-default .navbar-right li a.btn-head-green {
+    padding: 5px !important;
+    margin-top: 10px;
+    color: white !important;
+    margin-right: 10px;
+    background: #7dc200;
+    border-radius: 16px;
+}
+.content-categories {
+    margin-top: 50px;
+}
+.col-md-12.title-posts {
+    margin-top: 30px;
+}
+
+.title-posts h1 {
+    border-bottom: 1px solid #b2b3b3;
+    padding-bottom: 25px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+body {
+    font-family: Raleway,sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #636b6f;
+    background-color: #ffffff;
+}
+
+.row-content {
+    border: 1px solid #e7e7e7;
+    min-height: 400px;
+}
+
+.info-post-tercer-tiempo {
+       padding: 0 20px;
+    margin-top: 30px;
+    min-height: 118px;
+    position: relative;
+}
+
+.info-post-tercer-tiempo h2 {
+    font-size: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.title-posts h1 span {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+}
+.info-post-tercer-tiempo hr {
+        font-size: 12px;
+    border-bottom: 1px solid #d5d5d5;
+    position: absolute;
+    bottom: -10px;
+    left: 15px;
+    right: 15px;
+}
+
+.info-post-tercer-tiempo-right {
+    text-align: right;
+}
+
+.info-post-tercer-tiempo-right a {
+    border: 1px solid #5f5f5f;
+    padding: 5px 10px;
+    border-radius: 30px;
+    color: #5f5f5f;
+        margin-right: 15px;
+}
+
+.content-detail-post {
+    margin-top: 50px;
+}
+.col-md-6.content-title-detail {
+    text-align: center;
+}

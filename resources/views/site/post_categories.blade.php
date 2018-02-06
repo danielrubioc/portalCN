@@ -1,6 +1,54 @@
 @extends('layouts.site')
 
 @section('content')
+	<div class="content-categories hidden-xs">
+
+	        <div class="container">
+	        	<div class="col-md-12 title-posts">
+	        		
+	        		@if ($category == 'eventos')
+                        <h1>Eventos</h1>
+                        @elseif ($category == 'tercer-tiempo')
+                        <h1><span>Tercer</span> Tiempo</h1>	
+                    @endif
+
+
+	        	</div>
+			    @if ($posts)
+					
+					@foreach ($posts as $post)
+					<div class="col-md-6 content-gl-post">
+						<div class="row-content">
+				    		<div class="item-post" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
+														  -webkit-background-size: cover;
+														  -moz-background-size: cover;
+														  -o-background-size: cover;
+														  background-size: cover;    
+														      height: 200px;
+	    												">
+
+				    		</div>	
+
+			    			<div class="info-post-tercer-tiempo">
+			    				<h2>{{ $post->title }}</h2>
+			    				<p>{!! str_limit($post->content, $limit = 200, $end = '...') !!}</p>
+			    				<hr>
+			    			</div>
+			    			<div class="info-post-tercer-tiempo-right">
+			    				<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">ver más</a>
+			    			</div>	
+		    			</div>
+			    	</div>	
+					@endforeach
+					<div class="pagination-blog">
+						{{ $posts->links() }}
+					</div>
+					
+				@endif
+			</div>
+	</div>
+
+
 	<div class="content-categories visible-xs">
 			<div class="flotant-button">
 	            <button class="search-button clickable"><i class="fa fa-search" aria-hidden="true"></i> </button>
@@ -72,6 +120,9 @@
 			@endif
 
 	</div>
+
+
+
 @section('slider-owl')
 <script type="text/javascript">
 $(".clickable").click(function() {  //use a class, since your ID gets mangled
