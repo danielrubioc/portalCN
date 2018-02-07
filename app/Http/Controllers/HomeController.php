@@ -137,30 +137,38 @@ class HomeController extends Controller
     public function showPostDetail($category = null, $slug = null)
     {   
         if ($slug) {
+            $categoryObject = Category::where('url','=', $category)->firstOrFail();
+            if ($categoryObject) {
+                $postRelated = Post::where('category_id', $categoryObject->id)->orderBy('id')->take(3)->get();
+            }
+
             $post = Post::where('url','=', $slug)->firstOrFail();
-            return view('site/post_detail', ['post' => $post]);
+            return view('site/post_detail', ['post' => $post ,
+                                            'postRelated' =>  $postRelated]);
         }
     }
 
     public function indexPosts(Request $request, $category = null)
     {   
-         //
+        //
         if ($request->has('title')) {
             $column = "title";
-            $posts = Post::filterByRequest($column, $request->get('title'))->paginate(5);
+            $posts = Post::filterByRequest($column, $request->get('title'))->paginate(6);
         } else if ($request->has('category')) {
             $column = "category";
-            $posts = Post::filterByRequest($column, $request->get('category'))->paginate(5);
+            $posts = Post::filterByRequest($column, $request->get('category'))->paginate(6);
         } else if ($request->has('status')) {
             $column = "status";
-            $posts = Post::filterByRequest($column, $request->get('status'))->paginate(5);
+            $posts = Post::filterByRequest($column, $request->get('status'))->paginate(6);
         } else if ($category) {
             $column = "category_get";
-            $posts = Post::filterByRequest($column, $category)->paginate(5);
+            $posts = Post::filterByRequest($column, $category)->paginate(6);
         } else {
-            $posts = Post::getListActivePost()->paginate(5);
+            $posts = Post::getListActivePost()->paginate(6);
         }
 
+        
+       
         return view('site.post_categories', ['posts' => $posts, 
                                             'category' => $category,
                                             'categories' => Category::getListActiveCategories()->get(), 

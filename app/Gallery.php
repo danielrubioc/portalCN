@@ -11,7 +11,7 @@ class Gallery extends Model
         'name', 'url', 'post_id', 'status',
     ];
 
-     public function BlogNews()
+     public function Posts()
     {
         return $this->hasMany('App\BlogNew', 'id', 'post_id');
     }

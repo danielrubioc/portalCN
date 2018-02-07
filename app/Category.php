@@ -11,9 +11,9 @@ class Category extends Model
         'name', 'status', 'url'
     ];
 
-     public function BlogNews()
+     public function posts()
     {
-        return $this->hasOne('App\Post', 'id', 'category_id');
+        return $this->hasMany('App\Post', 'id', 'category_id');
     }
 
     public function scopeGetListActiveCategories($query)

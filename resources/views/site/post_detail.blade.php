@@ -32,6 +32,12 @@
 					<hr class="separator-comparte">
 				</div>	
 			</div>
+			<div class="col-md-12">
+			@foreach ($postRelated as $post2)
+				{{$post2['title']}}
+				
+			@endforeach
+			</div>
 
 		</div>		
 	</span>
@@ -63,5 +69,6 @@
 	
 		</div>
 	</div>	
+
 	</span>
 @endsection

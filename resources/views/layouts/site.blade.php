@@ -39,7 +39,12 @@
           <a href="{{ url('publicaciones/eventos') }}">Evento <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('publicaciones/tercer-tiempo') }}">Tercer Tiempo <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
           <a href="{{ url('/contacto') }}">Contacto <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-          <a href="{{ route('register') }}">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+            @if(!Auth::user())
+                <a href="{{ route('register') }}">Inscríbete ahora <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                @else
+            @endif
+
+          
         </div>
       </div>
 
@@ -87,10 +92,14 @@
                 <li><a href="{{ url('publicaciones/tercer-tiempo') }}">Tercer Tiempo </a></li>
                 <li> <a href="{{ url('/contacto') }}">Contacto </a></li>
 
-                <li><a href="{{ route('register') }}" class="btn-head-green">Inscríbete ahora </a></li>
+                @if(!Auth::user())
+                    <li><a href="{{ route('register') }}" class="btn-head-green">Inscríbete ahora </a></li>
+                    <li><a href="{{ route('register') }}" >Login </a></li>
+                    @else
+                    <li><a href="{{ route('register') }}" >Portal </a></li>
+                @endif
 
 
-                <li><a href="{{ route('register') }}" >Login </a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

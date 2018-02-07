@@ -1345,8 +1345,8 @@ img.effect {
 
 .nav-default .navbar-right li a {
     font-family: 'Merriweather Sans', sans-serif;
-    -webkit-transition: font-weight .4s ease-in-out;
-    transition: font-weight .4s ease-in-out;
+    transition: .4s all;
+    font-weight: 800;
 }
 
 .nav-default .navbar-right li a.btn-head-green {
@@ -1429,6 +1429,7 @@ body {
     text-align: center;
     margin-top: 100px;
 }
+
 
 .img-header-post {
     max-height: 500px;
