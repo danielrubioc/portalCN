@@ -19,6 +19,7 @@
 					@foreach ($posts as $post)
 					<div class="col-md-6 content-gl-post">
 						<div class="row-content">
+						<div class="over-hidde" style=" height: 200px;">
 				    		<div class="item-post" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
 														  -webkit-background-size: cover;
 														  -moz-background-size: cover;
@@ -28,7 +29,7 @@
 	    												">
 
 				    		</div>	
-
+				    	</div>	
 			    			<div class="info-post-tercer-tiempo">
 			    				<h2>{{ $post->title }}</h2>
 			    				<p>{!! str_limit($post->content, $limit = 200, $end = '...') !!}</p>

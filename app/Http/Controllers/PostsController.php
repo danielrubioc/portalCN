@@ -132,7 +132,7 @@ class PostsController extends Controller
             }
             
             $link = url('/').'/'.$news->category->url.'/detalle/'.$news->url;
-            $this->sendMails($news, $link);
+            //$this->sendMails($news, $link);
             $idLast =   $news->id;; 
             flash('Publicación creada correctamente!')->success();
             return redirect()->route('posts.edit', $idLast);

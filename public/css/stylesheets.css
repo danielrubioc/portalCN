@@ -347,6 +347,7 @@ section#six-section:before {
     position: relative;
     width: 100%;
     border-bottom: 3px solid white;
+    transition: 1s all;
 }
 
 .item-post:before {
@@ -1402,7 +1403,8 @@ body {
     font-weight: 500;
 }
 .info-post-tercer-tiempo hr {
-        font-size: 12px;
+    font-size: 12px;
+    border: none;
     border-bottom: 1px solid #d5d5d5;
     position: absolute;
     bottom: -10px;
@@ -1472,4 +1474,80 @@ body {
     font-weight: 900;
     font-size: 20px;
     padding-left: 10px;
+}
+
+.col-md-12.related-bx {
+    padding-top: 50px;
+    margin-bottom: 50px;
+}
+
+.content-related-col {
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.related-bx a {
+    font-family: 'Merriweather Sans', sans-serif;
+    text-transform: uppercase;
+    color: #636b6f;
+    font-weight: 800;
+}
+
+.content-related-col .item-post {
+    margin-bottom: 10px;
+}
+.content-title-detail h1 {
+    font-family: 'Merriweather Sans', sans-serif;
+    text-transform: uppercase;
+    color: #636b6f;
+    font-weight: 800;
+    font-size: 25px;
+}
+.social-icons-detail {
+    width: 100%;
+}
+
+.social-icons-detail ul {
+    list-style: none;
+    display: inline-flex;
+}
+
+.social-icons-detail ul li {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.social-icons-detail ul li a {
+    width: 50px;
+    height: 50px;
+    background: white;
+    display: inline-block;
+    border-radius: 50px;
+    border: 2px solid #636b6f;
+    position: relative;
+    font-size: 20px;
+    padding-top: 7px;
+    color: #636b6f;
+    /* margin-right: 10px; */
+}
+.row-content:hover .item-post {
+    transition: 1s all;
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    -ms-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    transform: scale(1.1);
+}
+.row-content .item-post {
+    transition: 1s all;
+   
+}
+.over-hidde {
+    overflow: hidden;
+}
+.content-gl-post {
+    margin-bottom: 50px;
+}
+
+.hideme{
+    opacity:0;
 }
