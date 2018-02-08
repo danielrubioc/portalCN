@@ -26,8 +26,7 @@
 
 -->
 
-	<section class="content slider sld-home"> 
-
+	<section class="content slider sld-home">
 		<div class="info-taller">
 			<div id="workshop-modify-container">
 				<div  id="carrousel-slider" class="owl-carousel owl-theme content-gallery">
@@ -35,20 +34,16 @@
 							<div class="info">
 								<h2>crosswork</h2>
 								<span>"Aquel que quiere conseguir algo, encuentra su camino. <br> El que no, encuentra una excusa"</span>
-							</div>
-							
-						</div> 
-						  
-				</div>     
+							</div>							
+						</div>						  
+				</div>
 			</div>
-
 		</div>
-
 	</section>
 
 
-	<section class="content col-md-12 conten-workshop-gral" >
-		<h2 class="titulo-home">NUESTRAS DISCIPLINAS</h2>
+	<section class="content col-md-12 conten-workshop-gral" style="background-image: url('{{url('/images')}}/bg-disciplinas.jpg')" >
+		<h2 class="titulo-home">NUESTRAS <span>DISCIPLINAS</span></h2>
 
 		<div class="col-md-7">
 			@foreach ($workshops as $key => $taller)				
@@ -82,10 +77,10 @@
 		<h2 class="titulo-home">CERRO NAVIA DEPORTES</h2>
 	</section>
 
-	<section class="container-fluid equipo-home" style="background-image: url('{{url('/images')}}/slider-2-min-min.png')">
+	<section class="container-fluid equipo-home" style="background-image: url('{{url('/images')}}/bg-nosotros.jpg')">
 		<div class="col-md-6 izq">
-			<h2>un titulo super</h2>
-			<p>la bajada increible</p>
+			
+			<p>¿QUÉ NOS MOTIVA?</p>
 			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
 			<br>
 			<button>LEER MÁS</button>
@@ -103,24 +98,52 @@
 	</section>
 	
 	<section class="content col-md-12">
-	@foreach ($posts as $post)
 
-		<div class="" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
+		<!-- Destacada -->
+		<div class="col-md-5">	
+			<div class="destacada-wrk">
+				<a href="{{ url('/disciplina') }}/{{$workshops[0]->url}}">					
+					
+					<div class="txt">
+						<h2 class="animable-element" style="opacity: 1;">{{$workshops[0]->name}}</h2>
+						<p class="animable-element" style="opacity: 1;">{{ str_limit($workshops[0]->description, 40) }} </p>
+					</div>
+					<div class="img" style=" background-image: url('/uploads/workshop/{{$workshops[0]->cover_page}}');">
+					</div>					
+				</a>
+			</div>
+
+		</div>
+		
+	
+
+		<div class="col-md-7" style="background-image: url('{{url('/images')}}/foto-fondo-tercertiempo.jpg')">
+			@foreach ($posts as $key => $post)			
+				<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-6 ult-wrk">					
+					<div class="img" style="background-image: url('{{url('/images')}}/slider-2-min-min.png')">
+					<br><br> <br>
+					</div>
+					<div class="txt">
+						<h2 class="animable-element" style="opacity: 1;">{{$post->title}}</h2>
+						<p class="animable-element" style="opacity: 1;">{{ str_limit($post->content, 40) }} </p>
+					</div>						
+				</a>		
+				
+				<div class="" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
 									-webkit-background-size: cover;
 									-moz-background-size: cover;
 									-o-background-size: cover;
 									background-size: cover;">
 			
-			<div class="info-post-tercer-tiempo">
-				<h2>{{ $post->title }}</h2>
-			</div>
-			<div class="info-post-tercer-tiempo-right">
-				<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">leer + </a>
-			</div>
-		</div>		
-
-
-	@endforeach
+					<div class="info-post-tercer-tiempo">
+						<h2>{{ $post->title }}</h2>
+					</div>
+					<div class="info-post-tercer-tiempo-right">
+						<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">leer + </a>
+					</div>
+				</div>	
+			@endforeach
+		</div>
 
 </section>
 

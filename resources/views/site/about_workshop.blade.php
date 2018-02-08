@@ -1,6 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
+<!--
 	<div class="img-post-detail" style="background: url({{url('/images')}}/disciplinas-portada.png) no-repeat center left; 
 											  -webkit-background-size: cover;
 											  -moz-background-size: cover;
@@ -38,7 +39,7 @@
                 <p><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Desliza para ver <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p>
             </div>
 
-            <!--mobil-->
+            
 
             <span class="visible-xs">
                 <div class="info-taller">
@@ -68,6 +69,43 @@
 			</div>
 
 	</div>
+-->
+
+<section class="disciplinas-all">
+    <br><br><br><br><br><br>
+
+    <h1 class="titulo-princ">NUESTRAS <strong>DISCIPLINAS</strong></h1>
+
+    <hr>
+
+    <div class="content">
+        @foreach ($workshops as $key => $taller)
+
+            <div class="col-md-3 wrkshops" data-owl="{{$key}}">
+
+                <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
+                <div class="info">
+                    <h2>{{ $taller->name }}</h2>
+                    <span>{{ str_limit($taller->description, 50) }}</span>
+                    <div class="horario">
+                        <span class="col-md-6">10:30 am</span>
+                        <span class="col-md-6">25 de febrero</span>
+                    </div>
+                    <div class="botones">
+                        <a class="col-md-5" href="{{ url('/disciplina') }}/{{$taller->url}}">Ver Mas</a>
+                        <a class="col-md-5 col-md-offset-2" href="{{ url('/disciplina') }}/{{$taller->url}}">Inscribete</a>
+                    </div>
+                </div>
+               
+            </div>    
+        @endforeach
+    </div>
+                        
+
+</section>
+
+
+
 
 @section('slider-owl')
 <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">

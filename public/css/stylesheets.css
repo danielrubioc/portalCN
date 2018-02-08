@@ -973,19 +973,21 @@ a.fb-xfbml-parse-ignore {
 }
 
 a.navbar-brand.img-responsive img {
-    max-width: 70px;
-    margin-top: -8px;
+    max-width: 110px;    
+    margin-top: -10px;    
+    margin-left: 70px;
 }
 
 
 
 .conten-workshop-gral {
-    width: 86%;
+    padding: 0 12%;
+    width: 100%;
     background: #f4f4f4;
-    margin: 0 7%;
     position: relative;
     z-index: 10;
     overflow: hidden;
+    background-repeat: no-repeat;
 }
 
 .titulo-home{
@@ -1248,6 +1250,9 @@ img.effect {
 }
 
 
+
+
+
 .sld-home{
     margin-top: 30px;
     position: relative;
@@ -1281,11 +1286,14 @@ img.effect {
 }
 
 .equipo-home{
-    padding: 100px 0;
+    padding: 400px 0 50px 0;
     color: white;
     text-align: center;
-    background-attachment: fixed;
     background-size: cover;
+}
+
+.equipo-home .izq{
+    text-align: left;
 }
 
 .equipo-home .izq h2{
@@ -1327,3 +1335,98 @@ img.effect {
     margin-right: 120px;
 }
 
+
+
+
+.nav-desktop li a{
+    padding: 25px 20px;
+    color: black !important;
+    font-weight: 900;
+}
+
+.nav-desktop .registrate {
+    padding: 20px 20px;
+    
+    font-weight: 900;
+    
+}
+
+.nav-desktop .registrate a{
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: #81bf06;
+    color: white !important;
+    border: 1px solid #81bf06;
+    transition: 0.5s;
+}
+
+.nav-desktop .registrate a:hover{
+    background: white;
+    color: #81bf06!important;
+    transition: 0.5s;
+}
+
+.navbar-default{
+    border: none;
+    -webkit-box-shadow: 0px -21px 14px 22px rgba(110,110,110,1);
+    -moz-box-shadow: 0px -21px 14px 22px rgba(110,110,110,1);
+    box-shadow: 0px -21px 14px 22px rgba(110,110,110,1);
+}
+
+
+
+footer{
+    background: #81bf06;
+    padding: 50px 0;
+}
+
+/* DISCIPLINAS */
+
+.titulo-princ{
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.titulo-princ strong{
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.disciplinas-all .content{
+    padding: 15px 15%;
+}
+
+.disciplinas-all .content .wrkshops{
+    padding: 20px 20px;
+}
+.disciplinas-all .content .wrkshops .info {
+    border: 2px solid gray;
+    padding: 15px 15px 40px 15px;
+}
+
+.disciplinas-all .content .wrkshops h2{
+    text-transform: uppercase;
+}
+
+.disciplinas-all .content .wrkshops .horario{
+    border-top: 2px solid gray;
+    margin: 20px 0;
+}
+
+.disciplinas-all .content .wrkshops .horario span{
+    padding: 0;
+    text-align: center;
+}
+
+.disciplinas-all .content .wrkshops .horario :first-child{
+    border-right: 2px solid gray;
+}
+.disciplinas-all .content .wrkshops .botones {
+    padding: 15px;   
+}
+.disciplinas-all .content .wrkshops .botones a{
+    border: 2px solid gray;
+    border-radius: 10px;
+    text-align: center;
+    color: gray;
+}

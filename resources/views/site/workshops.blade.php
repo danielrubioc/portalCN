@@ -6,13 +6,13 @@
     overflow: inherit!important;
 }
 </style>
+<!--mobil-->
 	<div class="main-talleres">
             <div class="content-total tallers">
                 <h2>Últimas 5 disciplinas</h2>
                 <p><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Desliza para ver <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p>
             </div>
-
-            <!--mobil-->
+          
 
             <span class="visible-xs">
                 <div class="info-taller">
