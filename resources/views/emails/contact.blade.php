@@ -3,9 +3,8 @@
 	<title></title>
 </head>
 <body>
-	<p> <strong>Nombre:</strong> {{ $name }}  </p>
-	<p> <strong>correo:</strong> {{ $email }}  </p>
-	<p> <strong>Mensaje:</strong> {{ $msg }}  </p>
-
+	Gracias por contactarte con nosotros. Responderemos a la brevedad posible
+	
+	
 </body>
 </html>

@@ -249,14 +249,15 @@
 <script>
    CKEDITOR.replace( 'content', {
         filebrowserUploadUrl: "/fileupload.php",
+
         toolbar :
         [
         ['ajaxsave'],
-        ['Bold', 'Italic', 'Underline', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+        ['Bold', 'Italic', 'Underline', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', 'oembed' ],
         ['Cut','Copy','Paste','PasteText'],
         ['Undo','Redo','-','RemoveFormat'],
         ['TextColor','BGColor'],
-        ['Maximize', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ]
+        ['Maximize', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe', 'MediaEmbed' ]
         ],
        
     

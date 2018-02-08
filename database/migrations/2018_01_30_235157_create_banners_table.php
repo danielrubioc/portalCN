@@ -19,6 +19,7 @@ class CreateBannersTable extends Migration
             $table->text('title');
             $table->string('subtitle', 200)->nullable();
             $table->string('color', 100)->nullable();
+            $table->string('subcolor', 100)->nullable();
             $table->string('image', 230);
             $table->integer('status');
             $table->timestamps();    

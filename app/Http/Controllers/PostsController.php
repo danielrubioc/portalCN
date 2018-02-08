@@ -132,7 +132,7 @@ class PostsController extends Controller
             }
             
             $link = url('/').'/'.$news->category->url.'/detalle/'.$news->url;
-            $this->sendMails($news, $link);
+            //$this->sendMails($news, $link);
             $idLast =   $news->id;; 
             flash('Publicación creada correctamente!')->success();
             return redirect()->route('posts.edit', $idLast);
@@ -238,14 +238,13 @@ class PostsController extends Controller
             $validator = Validator::make($request->all(), [
                 'title' => 'required|max:199',
                 'subtitle' => 'required|max:200',
-                'url' => 'required|max:199|unique:posts',
                 'content' => 'required',
                 'cover_page' => 'mimes:jpeg,jpg,png',
                 
             ],  $messages);
 
             if ($validator->fails()) {
-                return redirect('posts/create')
+                return redirect('posts/'.$id.'/edit')
                             ->withErrors($validator)
                             ->withInput();
             }

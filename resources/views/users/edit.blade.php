@@ -125,13 +125,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Estado</label>
+                     
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="cover_page" class="col-md-4 control-label">Estado</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="status" id="status">
-                                    <option value="1">Activo</option>
-                                    <option value="0">Inactivo</option>
-                                </select>
+                            <select class="form-control" id="status" name="status">
+                                @foreach($statuses as $status)
+                                    @if ($user->status  == $status['id'])
+                                        <option value="{{$status['id']}}" selected>{{ $status['name'] }}</option>
+
+                                        @else
+                                        <option value="{{$status['id']}}">{{$status['name']}}</option>
+                                    @endif
+                                        
+                                @endforeach
+                            </select>
                             </div>
                         </div>
 

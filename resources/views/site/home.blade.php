@@ -1,42 +1,24 @@
 @extends('layouts.site')
 @section('content')
 
-<!--
-<span class="hidden-xs">
+	<section class="content slider sld-home"> 
 
-<span>
-<div class="container" style="position: absolute;
-    width: 100%;
-    height: 100vh;">
-    <div class="relativ" style="    position: relative;
-    width: 100%;
-    height: 100vh;">
-    <p style="        top: 24%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    font-size: 63px;
-    text-transform: uppercase; text-align: center; margin: 0">"en construcción" <br> <span style="font-size: 20px;">Estamos mejorando para ti</span></p>
-    </div>
-</div>
- </span>
-<img src="{{url('/images/en-construccion.gif')}}" class=" img-responsive" style="height: 100vh;
-    margin-top: -0px;    width: 100%;">
-
-
--->
-
-	<section class="content slider sld-home">
 		<div class="info-taller">
 			<div id="workshop-modify-container">
 				<div  id="carrousel-slider" class="owl-carousel owl-theme content-gallery">
-						<div class="item" style="background-image: url('{{url('/images')}}/disciplinas-portada.png')">
-							<div class="info">
-								<h2>crosswork</h2>
-								<span>"Aquel que quiere conseguir algo, encuentra su camino. <br> El que no, encuentra una excusa"</span>
-							</div>							
-						</div>						  
-				</div>
+					@foreach ($banners as $banner)
+
+							<div class="item" style="    background: url({{url('/uploads/banners')}}/{{ $banner->image }}) center center / cover no-repeat;">
+								<div class="info">
+									<h2 style="color: {{$banner->color}}">{{$banner->title}}</h2>
+									<span style="color: {{$banner->subcolor}}">{{$banner->subtitle}}</span>
+								</div>
+								
+							</div> 	
+					@endforeach
+						
+						  
+				</div>     
 			</div>
 		</div>
 	</section>

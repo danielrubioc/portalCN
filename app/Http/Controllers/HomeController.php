@@ -11,6 +11,7 @@ use App\User;
 use App\Workshop;
 use App\Student;
 use App\Teacher;
+use App\Banner;
 use Mail;
 use Auth;
 use Image;
@@ -71,9 +72,10 @@ class HomeController extends Controller
     public function indexSite()
     {   
         
+        $banners = Banner::getListActiveBanners()->paginate(4); 
         $workshops = Workshop::getListActiveWorkshops()->paginate(4); 
         $posts = Post::getListActivePost()->paginate(5); 
-        return view('site/home', ['workshops' => $workshops, 'posts' => $posts]);
+        return view('site/home', ['workshops' => $workshops, 'posts' => $posts, 'banners' => $banners]);
     }
 
 
@@ -114,12 +116,19 @@ class HomeController extends Controller
     public function sendContact(Request $request)
     {
         //
-
-        Mail::send('emails.contact', $request->all(), function($msj){
-            $msj->subject('Corrreo de contacto');
-            $msj->to('daniel.janorc@gmail.com');
+        
+        Mail::send('emails.contact-notification', $request->all(), function($msj){
+            $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
+            $msj->to('contacto@deportescerronavia.cl');
         });
 
+        $email = $request->all();
+        /*
+        Mail::send('emails.contact', $request->all(), function($msj){
+            $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
+            $msj->to($email['email']);
+        });
+            */
         flash('Contacto enviado correctamente!')->success();
         return view('site/contact');
                 
@@ -128,31 +137,42 @@ class HomeController extends Controller
     public function showPostDetail($category = null, $slug = null)
     {   
         if ($slug) {
+            $categoryObject = Category::where('url','=', $category)->firstOrFail();
+            if ($categoryObject) {
+                $postRelated = Post::where('category_id', $categoryObject->id)->orderBy('id')->take(3)->get();
+            }
+
             $post = Post::where('url','=', $slug)->firstOrFail();
-            return view('site/post_detail', ['post' => $post]);
+            return view('site/post_detail', ['post' => $post ,
+                                            'postRelated' =>  $postRelated]);
         }
     }
 
     public function indexPosts(Request $request, $category = null)
     {   
-         //
+        //
         if ($request->has('title')) {
             $column = "title";
-            $posts = Post::filterByRequest($column, $request->get('title'))->paginate(5);
+            $posts = Post::filterByRequest($column, $request->get('title'))->paginate(6);
         } else if ($request->has('category')) {
             $column = "category";
-            $posts = Post::filterByRequest($column, $request->get('category'))->paginate(5);
+            $posts = Post::filterByRequest($column, $request->get('category'))->paginate(6);
         } else if ($request->has('status')) {
             $column = "status";
-            $posts = Post::filterByRequest($column, $request->get('status'))->paginate(5);
+            $posts = Post::filterByRequest($column, $request->get('status'))->paginate(6);
         } else if ($category) {
             $column = "category_get";
-            $posts = Post::filterByRequest($column, $category)->paginate(5);
+            $posts = Post::filterByRequest($column, $category)->paginate(6);
         } else {
-            $posts = Post::getListActivePost()->paginate(5);
+            $posts = Post::getListActivePost()->paginate(6);
         }
 
-        return view('site.post_categories', ['posts' => $posts, 'categories' => Category::getListActiveCategories()->get(), 'tags' => Tag::getListActiveTags()->get() ]);
+        
+       
+        return view('site.post_categories', ['posts' => $posts, 
+                                            'category' => $category,
+                                            'categories' => Category::getListActiveCategories()->get(), 
+                                            'tags' => Tag::getListActiveTags()->get() ]);
     }
 
     public function codeVerify(Request $request)
