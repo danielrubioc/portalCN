@@ -25,7 +25,7 @@
 
 
 	<section class="content col-md-12 conten-workshop-gral" style="background-image: url('{{url('/images')}}/bg-disciplinas.jpg')" >
-		<h2 class="titulo-home">NUESTRAS <span>DISCIPLINAS</span></h2>
+		<h2 class="titulo-home titulo-princ" style="text-align: right;">NUESTRAS<br><strong>DISCIPLINAS</strong></h2>
 
 		<div class="col-md-7">
 			@foreach ($workshops as $key => $taller)				
@@ -70,93 +70,47 @@
 		<div class="col-md-6 der">
 			<button>CONOCE AL EQUIPO</button>
 			<h2>"Pienso luego existo"</h2>
-			<span>alguien bkn de la corpo</span>
-			
+			<span>alguien bkn de la corpo</span>			
 		</div>
 	</section>
 
-	<section class="container-fluid">
-		<h2 class="titulo-home">TERCER TIEMPO</h2>
-	</section>
 	
-	<section class="content col-md-12">
 
+	
+	
+	<section  class="content col-md-12 conten-home-tercer" style="background-image: url('{{url('/images')}}/foto-fondo-tercertiempo.jpg'); ">
+
+		<h2 class="titulo-home titulo-princ" style="text-align: left;">TERCER<br><strong>TIEMPO</strong></h2>
 		<!-- Destacada -->
 		<div class="col-md-5">	
 			<div class="destacada-wrk">
-				<a href="{{ url('/disciplina') }}/{{$workshops[0]->url}}">					
+				<a href="{{ url('/disciplina') }}/{{$posts[0]->url}}">					
 					
 					<div class="txt">
-						<h2 class="animable-element" style="opacity: 1;">{{$workshops[0]->name}}</h2>
-						<p class="animable-element" style="opacity: 1;">{{ str_limit($workshops[0]->description, 40) }} </p>
+						<h2 class="animable-element" style="opacity: 1;">{{$posts[0]->title}}</h2>
+						<p class="animable-element" style="opacity: 1;">{{ str_limit($posts[0]->content, 40) }} </p>
 					</div>
-					<div class="img" style=" background-image: url('/uploads/workshop/{{$workshops[0]->cover_page}}');">
+					<div class="img" style=" background-image: url('/uploads/workshop/{{$posts[0]->cover_page}}');">
 					</div>					
 				</a>
 			</div>
 
-		</div>
-		
+		</div>		
 	
-
-		<div class="col-md-7" style="background-image: url('{{url('/images')}}/foto-fondo-tercertiempo.jpg')">
+		<div class="col-md-7 home-tercertiempo" >
 			@foreach ($posts as $key => $post)			
-				<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-6 ult-wrk">					
+				<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-4 ult-wrk">					
 					<div class="img" style="background-image: url('{{url('/images')}}/slider-2-min-min.png')">
-					<br><br> <br>
+						<br><br> <br>
 					</div>
 					<div class="txt">
 						<h2 class="animable-element" style="opacity: 1;">{{$post->title}}</h2>
-						<p class="animable-element" style="opacity: 1;">{{ str_limit($post->content, 40) }} </p>
-					</div>						
-				</a>		
-				
-				<div class="" style="background: url({{url('/uploads/news')}}/{{ $post->cover_page }}) no-repeat center center; 
-									-webkit-background-size: cover;
-									-moz-background-size: cover;
-									-o-background-size: cover;
-									background-size: cover;">
-			
-					<div class="info-post-tercer-tiempo">
-						<h2>{{ $post->title }}</h2>
-					</div>
-					<div class="info-post-tercer-tiempo-right">
-						<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}">leer + </a>
-					</div>
-				</div>	
+					</div>			
+				</a>
 			@endforeach
 		</div>
-
 </section>
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 
 <span class="visible-xs">
 	<section class="content" id="first-section">
@@ -274,13 +228,6 @@
         </div>
     </footer>  
 </span>
-
-
-
-
-
-
-
 
 
 @section('slider-owl')

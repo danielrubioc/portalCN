@@ -112,11 +112,11 @@
       </div>  
 
     </div>
-    <!--
-    <footer>
-      
+    
+    <footer>.
+      <br><br><br><br><br><br><br><br><br>
     </footer>
-    -->
+   
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 

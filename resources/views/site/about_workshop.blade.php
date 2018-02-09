@@ -73,12 +73,15 @@
 
 <section class="disciplinas-all">
     <br><br><br><br><br><br>
+    
 
-    <h1 class="titulo-princ">NUESTRAS <strong>DISCIPLINAS</strong></h1>
+    
 
-    <hr>
 
     <div class="content">
+    <h1 class="titulo-princ">NUESTRAS <br> <strong>DISCIPLINAS</strong></h1>
+
+    <hr>
         @foreach ($workshops as $key => $taller)
 
             <div class="col-md-3 wrkshops" data-owl="{{$key}}">
