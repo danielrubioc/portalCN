@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('content')
-
+<span class="hidden-xs">
 	<section class="content slider sld-home"> 
 
 		<div class="info-taller">
@@ -110,7 +110,9 @@
 			@endforeach
 		</div>
 </section>
-	
+</span>	
+
+
 
 <span class="visible-xs">
 	<section class="content" id="first-section">
