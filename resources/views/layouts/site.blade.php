@@ -95,7 +95,7 @@
 
                 @if(!Auth::user())
                     <li class="registrate"><a href="{{ route('register') }}">Registrate </a></li>
-                    <li><a href="{{ route('register') }}">Login </a></li>
+                    <li><a href="{{ route('login') }}">Login </a></li>
                     @else
                     <li><a href="{{ route('register') }}" >Portal </a></li>
                 @endif
@@ -105,10 +105,8 @@
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
+            @yield('content')
 
-        @yield('content')
-
-        
       </div>  
 
     </div>

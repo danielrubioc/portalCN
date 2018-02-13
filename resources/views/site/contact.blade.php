@@ -2,7 +2,11 @@
 
 @section('content')
 
-
+<div class="container">
+    <div class="content-message">
+        @include('flash::message')
+    </div>
+</div>
 <span class="hidden-xs" >
     <div class="content-about-de">
 
@@ -30,7 +34,7 @@
 
                 <div class="col-md-12  form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="email" type="text" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus>
                         <label for="email">email</label>
                         <span class="focus-border"></span>
                         @if ($errors->has('email'))

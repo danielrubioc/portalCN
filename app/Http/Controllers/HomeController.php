@@ -115,20 +115,13 @@ class HomeController extends Controller
  
     public function sendContact(Request $request)
     {
-        //
+
         
         Mail::send('emails.contact-notification', $request->all(), function($msj){
             $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
             $msj->to('contacto@deportescerronavia.cl');
         });
-
-        $email = $request->all();
-        /*
-        Mail::send('emails.contact', $request->all(), function($msj){
-            $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
-            $msj->to($email['email']);
-        });
-            */
+        
         flash('Contacto enviado correctamente!')->success();
         return view('site/contact');
                 
