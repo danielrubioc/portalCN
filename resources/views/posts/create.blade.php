@@ -130,7 +130,6 @@
 <script>
     //$('#content').ckeditor();
     CKEDITOR.replace( 'content', {
-        filebrowserUploadUrl: "/fileupload.php",
         toolbar :
         [
         ['ajaxsave'],
@@ -138,10 +137,9 @@
         ['Cut','Copy','Paste','PasteText'],
         ['Undo','Redo','-','RemoveFormat'],
         ['TextColor','BGColor'],
-        ['Maximize', 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ]
+        ['Maximize', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ]
         ],
        
-    
     } );
 </script>
 @stop
