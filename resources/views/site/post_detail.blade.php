@@ -7,18 +7,20 @@
 				<img src="{{url('/uploads/news')}}/{{ $post->cover_page }}" class="img-responsive">
 			</div>
 			<div class="bx-info">
-				<div class="col-md-6 content-title-detail hideme" id="box1">
-					<span>{{ date('d-m-Y', strtotime($post->created_at)) }} | {{ $post->category->name  }}</span>
-					<h1>{{ $post->title }}</h1>
-				<div class="social-icons-detail">
-						<ul>
-							<!--<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
-							<li id="btn-1-left"><div class="fb-share-button" data-href="https://www.facebook.com/cerronaviadeporte/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fcerronaviadeporte%2F&amp;src=sdkpreparse"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
-							</li>
-							<li id="btn-2-right"><a href="whatsapp://send?text={{ url()->current() }}" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
-						</ul>
-				
-					</div>
+				<div class="col-md-6 content-title-detail hideme">
+						<div id="box1">
+							<span>{{ date('d-m-Y', strtotime($post->created_at)) }} | {{ $post->category->name  }}</span>
+							<h1>{{ $post->title }}</h1>
+							<div class="social-icons-detail">
+								<ul>
+									<!--<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
+									<li id="btn-1-left"><div class="fb-share-button" data-href="https://www.facebook.com/cerronaviadeporte/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fcerronaviadeporte%2F&amp;src=sdkpreparse"><i class="fa fa-facebook" aria-hidden="true"></i></a></div>
+									</li>
+									<li id="btn-2-right"><a href="whatsapp://send?text={{ url()->current() }}" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+								</ul>
+						
+							</div>
+						</div>
 				</div>
 				<div class="col-md-6 content-p-detail">
 					<h4>{{ $post->subtitle }}</h4>
@@ -94,47 +96,57 @@
 //on load
 var scrollTop = $('html body').scrollTop();
 
-if(scrollTop >= ($('.related-bx').offset().top - 500)){
+
+if(scrollTop >= ($('.related-bx').offset().top)){
 	$("#post-related-0").addClass( "in" );
 	$("#post-related-1").addClass( "in" );
 	$("#post-related-2").addClass( "in" );
 
 }
-if(scrollTop >= ($('#box1').offset().top - 500)){
-
+if(scrollTop >= 200){
+	$( "#box1" ).css('transition', '0.8s all');
+	$( "#box1" ).css('top', '100px');
 	$("#box1").addClass( "in" );
-		    $("#btn-1-left").addClass( "in" );
-		    $("#btn-2-right").addClass( "in" ); 	
+    $("#btn-1-left").addClass( "in" );
+    $("#btn-2-right").addClass( "in" ); 	
 }
 
 var countSum =  0 ; 
 var countRes =  0 ; 
 var lastScrollTop = 0;
-var resultNum = 0;
-var resultNum2 = 0;
-var constante = 185;
+
+
 $(window).scroll(function(){
 	var scrollTop = $('html body').scrollTop();
-
 	var st = $(this).scrollTop();
-	if(scrollTop >= ($('#box1').offset().top - 500)){
-	    
+	if(scrollTop >= 250){
+
 	  	if (st > lastScrollTop){
        	// downscroll code
-       		countSum ++;
-		    resultNum = constante - countSum;
 		    $("#box1").addClass( "in" );
+		    
 		    $("#btn-1-left").addClass( "in" );
 		    $("#btn-2-right").addClass( "in" ); 
+		    $("#btn-2-right").addClass( "in" ); 
+		    $( "#box1" ).css('position', 'fixed');
+		    $( "#box1" ).css('transition', '0s all');
+		    $( "#box1" ).css('top', '40%');
+		    $( "#box1" ).css('width', '50%');
+		   
 	   	} 
+	   	if (scrollTop >= $('.related-bx').offset().top - 700 && countSum == 0) {
+	   		console.log($('#box1').offset().top);
+	   		var top = $('#box1').offset().top;
+	   		$( "#box1" ).css('position', 'absolute');
+	   		$( "#box1" ).css('top', top+'px!important');
+			$( "#box1" ).css('width', '100%');
+			countSum++;
+	   	};
 
+	} else{
+		$( "#box1" ).css('position', 'absolute');
 
-	}else{
-		countSum = 0;
-	    //console.log(countRes);
-	  	$('#box1 h1').css('background', '#ccc');
-
-	  	$('#box1').removeClass( "myClass noClass" )
+		$( "#box1" ).css('width', '100%');
 	}
 
 	if(scrollTop >= ($('.related-bx').offset().top - 500)){
