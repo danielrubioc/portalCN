@@ -155,7 +155,7 @@ class HomeController extends Controller
             $posts = Post::filterByRequest($column, $request->get('status'))->paginate(6);
         } else if ($category) {
             $column = "category_get";
-            $posts = Post::filterByRequest($column, $category)->paginate(6);
+            $posts = Post::filterByRequest($column, $category)->paginate(4);
         } else {
             $posts = Post::getListActivePost()->paginate(6);
         }

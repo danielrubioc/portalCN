@@ -41,10 +41,11 @@
 		    			</div>
 			    	</div>	
 					@endforeach
-					<div class="pagination-blog">
-						{{ $posts->links() }}
+					<div class="col-md-12 pagina-bx">
+						<div class="pagination-blog">
+							{{ $posts->links() }}
+						</div>
 					</div>
-					
 				@endif
 			</div>
 	</div>
