@@ -47,9 +47,25 @@
                             </div>
                         </div>
 
-                        
 
-                        <div class="form-group{{ $errors->has('subtitle') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
+                            <label for="color" class="col-md-4 control-label">Color de titulo</label>
+
+                            <div class="col-md-6">
+                                <div id="colorbx" class="input-group colorpicker-component" title="selecciona el color">
+                                  <input id="color" type="text" class="form-control input-lg" value="{{ $banner->color }}" name="color" value="{{ old('color') }}" required autofocus/>
+                                  <span class="input-group-addon"><i></i></span>
+                                </div>
+
+                                @if ($errors->has('color'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('color') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div> 
+
+                         <div class="form-group{{ $errors->has('subtitle') ? ' has-error' : '' }}">
                             <label for="subtitle" class="col-md-4 control-label">Subtitulo</label>
 
                             <div class="col-md-6">
@@ -63,19 +79,38 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
-                            <label for="color" class="col-md-4 control-label">Color de texto</label>
+                        <div class="form-group{{ $errors->has('subcolor') ? ' has-error' : '' }}">
+                            <label for="subcolor" class="col-md-4 control-label">Color de subtitulo</label>
 
                             <div class="col-md-6">
-                                <input id="color" type="text" class="form-control" name="color" value="{{ $banner->color }}" required autofocus>
-
-                                @if ($errors->has('color'))
+                                <div id="colorbxsub" class="input-group colorpicker-component" title="selecciona el color">
+                                  <input id="subcolor" type="text" class="form-control input-lg" value="{{ $banner->subcolor }}" name="subcolor" required autofocus/>
+                                  <span class="input-group-addon"><i></i></span>
+                                </div>
+                                
+                                @if ($errors->has('subcolor'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('color') }}</strong>
+                                        <strong>{{ $errors->first('subcolor') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
+
+                       
+                        <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                            <label for="url" class="col-md-4 control-label">link de destino</label>
+
+                            <div class="col-md-6">
+                                <input id="url" type="text" class="form-control" name="url" value="{{ $banner->url }}" required autofocus>
+
+                                @if ($errors->has('url'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('url') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                          <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
                             <label for="color" class="col-md-4 control-label">Estado</label>
                             
@@ -115,4 +150,17 @@
         </div>
     </div>
 </div>
+
+@section('select2')
+    <link href="{{ asset('css/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
+    <script>
+      $(function () {
+        $('#colorbx, #colorbxsub').colorpicker({
+          autoInputFallback: false
+        });
+      });
+       
+    </script>
+@stop
 @endsection

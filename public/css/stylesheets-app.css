@@ -197,6 +197,14 @@ a.btn.btn-success.btn-create-gral {
     font-family: 'Merriweather Sans', sans-serif;
 }
 
+label.sub-instr {
+    font-size: 12px;
+    color: #8b8989;
+    line-height: 12px;
+}
+
+
+
 /*switch*/
 
 @media (max-width: 768px) { 

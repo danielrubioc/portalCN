@@ -8,7 +8,7 @@ class Banner extends Model
 {
     //
     protected $fillable = [
-        'title', 'subtitle', 'color', 'image', 'status',
+        'title', 'subtitle', 'color', 'subcolor', 'url', 'image', 'status',
     ];
 
     public function scopeGetListActiveBanners($query)

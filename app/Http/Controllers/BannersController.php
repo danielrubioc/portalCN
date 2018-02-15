@@ -57,6 +57,7 @@ class BannersController extends Controller
             'title' => 'required|max:300',
             'subtitle' => 'required|max:200',
             'color' => 'required|max:100',
+            'subcolor' => 'required|max:100',
             
         ],  $messages);
 
@@ -71,6 +72,8 @@ class BannersController extends Controller
         $banner->title = $request->title;
         $banner->subtitle = $request->subtitle;
         $banner->color = $request->color;
+        $banner->subcolor = $request->subcolor;
+        $banner->url = $request->url;
         if( $request->image ) {
             $image = $request->file('image');
             $random_string = md5(microtime());
@@ -167,6 +170,8 @@ class BannersController extends Controller
             $banner->title = $request->title ? $request->title : $banner->title;
             $banner->subtitle = $request->subtitle ? $request->subtitle : $banner->subtitle;
             $banner->color = $request->color ? $request->color : $banner->color;
+            $banner->subcolor = $request->subcolor ? $request->subcolor : $banner->subcolor;
+            $banner->url = $request->url ? $request->url : $banner->url;
             $banner->status = $request->status;
             
             //viene una imagen nueva
