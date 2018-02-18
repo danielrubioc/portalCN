@@ -110,11 +110,27 @@
       </div>  
 
     </div>
-    <!--
-    <footer>
-      
+    
+    <footer class="hidden-xs">
+        <div class="contianer">
+            <div class="col-md-2">
+                <img src="{{url('/images/logo-blanco-cndeportes.png')}}" class="img-responsive">
+            </div>
+
+            <div class="col-md-8 text-fot">
+                <p>Llámanos al (+562) 26676631 o contáctanos en info@deportescerronavia.cl <br>
+                    Mapocho Norte 8115, Cerro Navia, Santiago </p>
+
+            </div>
+
+            <div class="col-md-2">
+                <a href="http://www.cerronavia.cl/">
+                <img src="{{url('/images/logocerronavia-footer.png')}}" class="img-responsive">
+                </a>
+            </div>
+        </div>
     </footer>
-    -->
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 

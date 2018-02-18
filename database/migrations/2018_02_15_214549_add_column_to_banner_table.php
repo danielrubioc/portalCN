@@ -15,7 +15,7 @@ class AddColumnToBannerTable extends Migration
     {
         Schema::table('banners', function (Blueprint $table) {
             //
-            $table->string('url');
+            $table->string('url')->nullable();
         });
 
 

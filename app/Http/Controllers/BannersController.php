@@ -171,7 +171,7 @@ class BannersController extends Controller
             $banner->subtitle = $request->subtitle ? $request->subtitle : $banner->subtitle;
             $banner->color = $request->color ? $request->color : $banner->color;
             $banner->subcolor = $request->subcolor ? $request->subcolor : $banner->subcolor;
-            $banner->url = $request->url ? $request->url : $banner->url;
+            $banner->url = $request->url;
             $banner->status = $request->status;
             
             //viene una imagen nueva

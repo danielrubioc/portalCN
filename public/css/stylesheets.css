@@ -465,12 +465,26 @@ img.effect {
 
 
 footer{
-    background: #81bf06;
+    background: #94c11f;
     padding: 50px 0;
     display: inline-block;
-    width: 100%;
+    width: 100%;    margin-bottom: -5px;
+}
+.col-md-8.text-fot {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+.owl-stage-outer {
+    position:relative;
+    z-index:10;
 }
 
+.owl-controls {
+    position:relative;
+    z-index:99;
+    margin-top:-35px;
+}
 /* DISCIPLINAS */
 
 .titulo-princ{
@@ -1166,6 +1180,14 @@ div#post-related-2.in {
     margin-bottom: 70px;
         margin-top: 80px;
 }
+.info-taller a {
+    text-decoration: none;
+}
+
+
+
+
+
 
 
 

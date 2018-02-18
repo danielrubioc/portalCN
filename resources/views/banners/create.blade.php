@@ -95,7 +95,7 @@
                             <label for="url" class="col-md-4 control-label">link de destino</label>
 
                             <div class="col-md-6">
-                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" required autofocus>
+                                <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" autofocus>
                                 <label class="sub-instr">Si es url dentro del sitio " /tercer-tiempo/detalle/cancha_loca "</label>
                                 @if ($errors->has('url'))
                                     <span class="help-block">

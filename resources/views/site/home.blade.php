@@ -5,22 +5,35 @@
 
 		<div class="info-taller">
 			<div id="workshop-modify-container">
-				<div  id="carrousel-slider" class="owl-carousel owl-theme content-gallery">
+				<div  id="carrousel-slider" class="owl-carousel owl-theme ">
 					@foreach ($banners as $banner)
-
-							<div class="item" style="    background: url({{url('/uploads/banners')}}/{{ $banner->image }}) center center / cover no-repeat;">
-								<div class="info">
-									<h2 style="color: {{$banner->color}}">{{$banner->title}}</h2>
-									<span style="color: {{$banner->subcolor}}">{{$banner->subtitle}}</span>
-								</div>
-								
-							</div> 	
+						@if ($banner->url)	
+							<a href="{{$banner->url}}">
+							@else
+							<a>
+                    	@endif
+							
+								<div class="item" style="    background: url({{url('/uploads/banners')}}/{{ $banner->image }}) center center / cover no-repeat;">
+									<div class="info">
+										<h2 style="color: {{$banner->color}}">{{$banner->title}}</h2>
+										<span style="color: {{$banner->subcolor}}">{{$banner->subtitle}}</span>
+									</div>
+									
+								</div> 	
+							</a>
 					@endforeach
 						
 						  
 				</div>     
 			</div>
 		</div>
+<div id="slider" class="owl-carousel owl-theme">
+        <img src="/dist/assets/img1.jpg" /> 
+        <img src="/dist/assets/img2.jpg" /> 
+        <img src="/dist/assets/img3.jpg" /> 
+        <img src="/dist/assets/img4.jpg" />
+</div>
+
 	</section>
 
 
@@ -239,12 +252,13 @@
 	
 var owl = $('#carrousel-slider');
     owl.owlCarousel({
-        loop: false,
+        loop: true,
         autoplay: true,
         items: 1,
         animateOut: 'fadeOut',
         slideSpeed : 3300,
         paginationSpeed : 3000,
+        
     });
 
 
