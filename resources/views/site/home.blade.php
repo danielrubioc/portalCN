@@ -4,35 +4,24 @@
 	<section class="content slider sld-home"> 
 
 		<div class="info-taller">
-			<div id="workshop-modify-container">
-				<div  id="carrousel-slider" class="owl-carousel owl-theme ">
-					@foreach ($banners as $banner)
-						@if ($banner->url)	
-							<a href="{{$banner->url}}">
-							@else
-							<a>
-                    	@endif
-							
-								<div class="item" style="    background: url({{url('/uploads/banners')}}/{{ $banner->image }}) center center / cover no-repeat;">
-									<div class="info">
-										<h2 style="color: {{$banner->color}}">{{$banner->title}}</h2>
-										<span style="color: {{$banner->subcolor}}">{{$banner->subtitle}}</span>
-									</div>
-									
-								</div> 	
-							</a>
-					@endforeach
-						
-						  
-				</div>     
+			<div id="carrousel-slider-home" class="owl-carousel owl-theme">
+	            @foreach ($banners as $banner)
+					@if ($banner->url)	
+						<a href="{{$banner->url}}">
+						@else
+						<a>
+	            	@endif
+							<div class="item" style="    background: url({{url('/uploads/banners')}}/{{ $banner->image }}) center center / cover no-repeat;">
+								<div class="info">
+									<h2 style="color: {{$banner->color}}">{{$banner->title}}</h2>
+									<span style="color: {{$banner->subcolor}}">{{$banner->subtitle}}</span>
+								</div>
+								
+							</div> 	
+						</a>
+				@endforeach
 			</div>
 		</div>
-<div id="slider" class="owl-carousel owl-theme">
-        <img src="/dist/assets/img1.jpg" /> 
-        <img src="/dist/assets/img2.jpg" /> 
-        <img src="/dist/assets/img3.jpg" /> 
-        <img src="/dist/assets/img4.jpg" />
-</div>
 
 	</section>
 
@@ -249,18 +238,28 @@
 <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script>
-	
-var owl = $('#carrousel-slider');
-    owl.owlCarousel({
-        loop: true,
-        autoplay: true,
-        items: 1,
+
+	$('#carrousel-slider-home').owlCarousel({
+        loop:true,
+        dots:true,
+        margin:100,
+        nav:false,
         animateOut: 'fadeOut',
+        autoplay: true,
         slideSpeed : 3300,
         paginationSpeed : 3000,
-        
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:1
+            }
+        }
     });
-
 
     var owl = $('#carrousel-disciplinas');
     owl.owlCarousel({
@@ -272,6 +271,7 @@ var owl = $('#carrousel-slider');
         paginationSpeed : 3000,
 
     });
+
 
 
     owl.on('drag.owl.carousel', function(event) {

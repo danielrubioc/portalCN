@@ -11,9 +11,11 @@
     <title>Corporación del Deporte Cerro Navia</title>
 
     <!-- Styles -->
+    <link href="{{ asset('css/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/owl.theme.default.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome/fontawesome-all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/stylesheets.css') }}" rel="stylesheet"> 
     <!--title font-->
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
 </head>

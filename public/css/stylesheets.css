@@ -336,7 +336,7 @@ img.effect {
 
 
 .sld-home{
-    margin-top: 30px;
+    margin-top: 70px;
     position: relative;
     
 }
@@ -934,6 +934,9 @@ form.form-css-label.form-desktop .effect-placeholder {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(255, 255, 255) !important;
     border: none;
     border-bottom: 1px solid #94c11f;
+        border-bottom: 1px solid #94c11f;
+    border-top: none !important;
+    box-shadow: none !important;
 }
 
 form.form-css-label.form-desktop input.btn.btn-info.pull-right.contact-btn-submit {
@@ -1184,11 +1187,43 @@ div#post-related-2.in {
     text-decoration: none;
 }
 
+.owl-prev {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 99;
+}
 
-
-
-
-
+.owl-next {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 99;
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: rgba(255, 255, 255, 0);
+    color: #94c11f;
+    text-decoration: none;
+}
+.owl-theme .owl-nav [class*=owl-] {
+    color: #94c11f;
+    font-size: 30px;
+    margin: 5px;
+    padding: 4px 7px;
+    background: rgba(255, 255, 255, 0);
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.owl-nav button {
+    background: transparent !important;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #94c11f;
+}
 
 
 @media (max-width: 768px) { 
@@ -1333,6 +1368,12 @@ div#post-related-2.in {
         background: #41c14b;
     }
     .buttons a:nth-child(6) {
+        background: #b0d648;
+    }
+    .buttons a:nth-child(7) {
+        background: #b0d648;
+    }
+    .buttons a:nth-child(8) {
         background: #b0d648;
     }
     .buttons a {

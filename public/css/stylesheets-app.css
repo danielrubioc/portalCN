@@ -402,6 +402,13 @@ a, span, button {
 .buttons a:nth-child(6) {
     background: #dbbf8a;
 }
+
+.buttons a:nth-child(7) {
+    background: #f3deb6;
+}
+.buttons a:nth-child(8) {
+    background: #b0d648;
+}
 .space-menu a {
     margin: 0;
     padding: 0;
