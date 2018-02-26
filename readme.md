@@ -8,13 +8,16 @@
 
 ## Instalación
 
-- Composer install en raíz del proyecto.
+- npm update en raíz del proyecto.
+- composer update en raíz del proyecto.
 - Renombrar archivo ".env.example" a ".env" configurar según corresponda. 
 - Crear carpeta en public /uploads/avatars/. 
 - Crear carpeta en public /uploads/workshop/. 
 - php artisan key:generate
 - php artisan migrate
 - php artisan vendor:publish --tag=ckeditor
+- Gulp: sudo npm install -g gulp
+- gulp --production en raíz del proyecto.
 - php artisan serve
 - test commit
 
