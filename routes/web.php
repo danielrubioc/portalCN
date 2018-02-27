@@ -14,18 +14,18 @@
 Route::get('/', function () {
     if(Auth::check()){
         
-        switch (Auth::user()->role_id) {
+        switch (Auth::user()->hasRole->name) {
                 //segun rol redirecciono al dashboard
-                case '1':
+                case 'admin':
                     return redirect()->action('HomeController@index');
                     break;
                 
-                case '2':
+                case 'teacher':
                     return redirect()->action('HomeController@indexTeacher');
                     //return view('/site/home');
                     break;
 
-                case '3':
+                case 'public':
                     return redirect()->action('HomeController@indexPublic');
                     break;
         }    
@@ -37,17 +37,18 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     if(Auth::check()){
-        switch (Auth::user()->role_id) {
+        switch (Auth::user()->hasRole->name) {
                 //segun rol redirecciono al dashboard
-                case '1':
+                case 'admin':
                     return redirect()->action('HomeController@index');
                     break;
                 
-                case '2':
+                case 'teacher':
                     return redirect()->action('HomeController@indexTeacher');
+                    //return view('/site/home');
                     break;
 
-                case '3':
+                case 'public':
                     return redirect()->action('HomeController@indexPublic');
                     break;
         }    
@@ -57,15 +58,15 @@ Route::get('/dashboard', function () {
 });
 
 
+
 Auth::routes();
 
 //************* dashboard **************///
-Route::get('/admin', 'HomeController@index')->middleware('auth');
-Route::get('/profesor', 'HomeController@indexTeacher')->middleware('auth');
-Route::get('/publico', 'HomeController@indexPublic')->middleware('auth');
+Route::get('/admin', 'HomeController@index')->middleware('validRole:admin');
+Route::get('/profesor', 'HomeController@indexTeacher')->middleware('validRole:teacher');
+Route::get('/publico', 'HomeController@indexPublic')->middleware('validRole:public');
 
-//************* users **************///
-Route::resource('users', 'UserController')->middleware('auth');
+
 
 //para ver perfil
 Route::get('profile', function () {
@@ -75,24 +76,25 @@ Route::get('profile', function () {
         return view('/site/home');
     }
 });
+
+//************* users **************///
+Route::resource('users', 'UserController')->middleware('validRole:admin');
 //para actualizar foto avatar
 Route::post('profile', 'UserController@update_avatar')->middleware('auth');
-
 //************ blog *****************//
 
-
 //category
-Route::resource('categories', 'CategoriesController')->middleware('auth');
+Route::resource('categories', 'CategoriesController')->middleware('validRole:admin');
 //post
-Route::resource('posts', 'PostsController')->middleware('auth');
+Route::resource('posts', 'PostsController')->middleware('validRole:admin');
 //gallery
-Route::resource('galleries', 'GalleriesController')->middleware('auth');
+Route::resource('galleries', 'GalleriesController')->middleware('validRole:admin');
 //tags
-Route::resource('tags', 'TagsController')->middleware('checkRole');
+Route::resource('tags', 'TagsController')->middleware('validRole:admin');
 //taller
-Route::resource('workshops', 'WorkshopsController')->middleware('auth');
+Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher');
 //banner
-Route::resource('banners', 'BannersController')->middleware('auth');
+Route::resource('banners', 'BannersController')->middleware('validRole:admin');
 //Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');
 
 Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'WorkshopsController@show']);
@@ -107,10 +109,6 @@ Route::get('/registro/{slug}', ['as' => 'students', 'uses' => 'StudentsControlle
 
 Route::get('codeverify', ['as' => 'students', 'uses' => 'HomeController@codeVerify']);
 
-
-
-
-Route::resource('tags', 'TagsController')->middleware('auth');
 
 
 /***************** Public site  ***********************/

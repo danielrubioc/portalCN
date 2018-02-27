@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav align-element-nav">
                         @if(Auth::user())
-                            @if (Auth::user()->role_id == 1)
+                            @if (Auth::user()->hasRole->name == 'admin')
                                 <ul class="nav navbar-nav">
                                     <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
                                     <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
@@ -54,17 +54,14 @@
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
                             @endif
-                            @if (Auth::user()->role_id == 2)
+                            @if (Auth::user()->hasRole->name == 'teacher')
                                 <ul class="nav navbar-nav">
-                                    <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
-                                    <li><a href="{{ URL::to('posts') }}">Blog</a></li>
-                                    <li><a href="{{ URL::to('tags') }}">Tags</a></li>
                                     <li><a href="{{ URL::to('workshops') }}">Talleres</a></li>
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
 
                             @endif
-                            @if (Auth::user()->role_id == 3)
+                            @if (Auth::user()->hasRole->name == 'public')
                                 <ul class="nav navbar-nav">
                                     <li><a href="">Mis Talleres</a></li>
                                     <li><a href="">Estadísticas</a></li>
@@ -129,7 +126,7 @@
                 </div>
                 <div class="buttons">
                     @if(Auth::user())
-                        @if (Auth::user()->role_id == 1)
+                        @if (Auth::user()->hasRole->name == 'admin')
                             <a href="{{ URL::to('users') }}">Usuarios <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('categories') }}">Categorías blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
@@ -137,14 +134,10 @@
                             <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                  
                         @endif
-                        @if (Auth::user()->role_id == 2)
-                                <a href="{{ URL::to('categories') }}">Categorías blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                                <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                                <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                        @if (Auth::user()->hasRole->name == 'teacher')
                                 <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                                <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                         @endif
-                        @if (Auth::user()->role_id == 3)
+                        @if (Auth::user()->hasRole->name == 'public')
                             <ul class="nav navbar-nav">
                                 <a href="">Mis Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                                 <a href="">Estadísticas <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>

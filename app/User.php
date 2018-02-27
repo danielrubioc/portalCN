@@ -28,7 +28,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
+    public function hasRole()
     {
         return $this->hasOne('App\Role', 'id', 'role_id');
     }

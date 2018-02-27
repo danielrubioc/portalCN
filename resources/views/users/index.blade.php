@@ -62,7 +62,7 @@
 								    <td>{{ $user->name }} {{ $user->last_name }}</td>
 								    <td>{{ $user->email }}</td>
 								    <td>{{ $user->cell_phone }}</td>
-								    <td>{{ $user->roles->name }}</td>
+								    <td>{{ $user->hasRole->name }}</td>
 								    <td>
 								    	@if ($user->status == 1)
 										   <span class="span-success">Activo</span>
