@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Role', 'id', 'role_id');
     }
 
+    public function hasStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
+
     public function workshop()
     {
         return $this->belongsToMany('App\Workshop', 'teachers', 'workshop_id', 'teacher_id');

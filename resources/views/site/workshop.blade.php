@@ -24,7 +24,7 @@
 				<hr class="separator-comparte">
 
 			@if( !Auth::user())
-            <!--
+
 				<h4>DATOS DE INSCRIPCIÓN</h4>
 
 				<form id="incripcion" class="form-horizontal" method="POST" action="{{ route('students.store') }}" enctype="multipart/form-data">
@@ -118,15 +118,13 @@
 					</div>
 							
 				</form>
-			-->
 
-			<span style="font-size: 50px; color: #f38989;">Cupos agotados</span>
 
 			@else
-			<!--
+
 				<h4>QUIERES INSCRIBIRTE?</h4>
 				<a>haz click aqui</a>
-			-->
+
 				<span style="font-size: 50px; color: #f38989;">Cupos agotados</span>
         	@endif
 

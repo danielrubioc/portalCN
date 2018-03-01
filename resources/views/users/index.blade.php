@@ -29,9 +29,9 @@
 			   	<form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
 			       <select class="form-control" id="status" name="status">
 			       	  <option disabled selected value> -- Buscar por estado -- </option>
-					    <option value="1">Activo</option>
-					    <option value="0">Inactivo</option>
-					    <option value="2">Pendiente</option>
+					    @foreach($statuses as $status)
+                                <option value="{{$status['id']}}">{{$status['name']}}</option>
+                        @endforeach
 				  	</select>
 			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
@@ -63,15 +63,7 @@
 								    <td>{{ $user->email }}</td>
 								    <td>{{ $user->cell_phone }}</td>
 								    <td>{{ $user->hasRole->name }}</td>
-								    <td>
-								    	@if ($user->status == 1)
-										   <span class="span-success">Activo</span>
-										@elseif($user->status == 0)
-										   <span class="span-danger">Inactivo</span>
-										@elseif($user->status == 2)
-										   <span class="span-pending">Pendiente</span>
-										@endif	
-									   </td>
+								    <td>{{ $user->hasStatus->name }}</td>
 								  	<td>{{ date('d-m-Y', strtotime($user->created_at)) }}</td>
 
 								    <td class="box-btnes">

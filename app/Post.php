@@ -27,6 +27,11 @@ class Post extends Model
         return $this->belongsToMany('App\Tag', 'post_tag');
     }
 
+    public function hasStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
+
     public function scopeFilterByRequest($query, $column, $value)
     {   
 

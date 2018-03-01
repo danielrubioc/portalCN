@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Role;
+use App\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use Image;
+
 
 class UserController extends Controller
 {
@@ -32,7 +34,8 @@ class UserController extends Controller
             $users = User::orderBy('id', 'desc')->paginate(15);
         }
 
-        return view('users.index', ['users' => $users]);
+        return view('users.index', ['users' => $users, 
+                                    'statuses' => Status::all(['id', 'name']) ]);
     }
 
     /**
@@ -123,25 +126,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-        $statuses = collect([
-            [
-                'name' => 'Inactivo',
-                'id' => 0
-            ],
-            [
-                'name' => 'Activo',
-                'id' => 1
-            ],
-            [
-                'name' => 'Pendiente',
-                'id' => 2
-            ]
-        ]);
+    {   
         return view('users.edit', ['user' => User::findOrFail($id),  
                                    'roles' => Role::all(['id', 'name']),
-                                   'statuses' => $statuses->all() ]);
+                                   'statuses' => Status::all(['id', 'name']) ]);
 
     }
 

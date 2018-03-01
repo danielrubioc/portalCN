@@ -10,6 +10,7 @@ use App\Category;
 use App\Gallery;
 use App\Tag;
 use App\User;
+use App\Status;
 use Auth;
 use Image;
 use Mail;
@@ -44,7 +45,9 @@ class PostsController extends Controller
             $news = Post::orderBy('id', 'desc')->paginate(15);
         }
 
-        return view('posts.index', ['news' => $news, 'categories' => Category::all(['id', 'name']) ]);
+        return view('posts.index', ['news' => $news, 
+                                    'categories' => Category::all(['id', 'name']),
+                                    'statuses' => Status::all(['id', 'name']) ]);
     }
 
     /**
@@ -93,8 +96,8 @@ class PostsController extends Controller
 
 
         $news = new Post($request->all());
-        $news->status = 0;
-        $news->start = 0;
+        $news->status = 2;
+        $news->start = 1;
         $news->user_id = Auth::id();
         $news->url = Str::slug($request->url ? $request->url : $request->title, '_');
         if( $request->hasFile('cover_page') ) {
@@ -195,16 +198,6 @@ class PostsController extends Controller
             );
         }
         
-        $statuses = collect([
-            [
-                'name' => 'Oculto',
-                'id' => 0
-            ],
-            [
-                'name' => 'Visible',
-                'id' => 1
-            ]
-        ]);
 
         return view('posts.edit', [ 'news' => Post::findOrFail($id), 
                                     'tab' => $tabName, 
@@ -212,7 +205,7 @@ class PostsController extends Controller
                                     'gallery' => Gallery::where('post_id', '=', $id)->paginate(30),
                                     'tags' => Tag::all(['id', 'name']),
                                     'tagsInPost' => Post::findOrFail($id)->tags()->get()->toArray(),
-                                    'statuses' => $statuses->all() ]);
+                                    'statuses' => Status::all(['id', 'name']) ]);
     }
 
 
@@ -277,8 +270,9 @@ class PostsController extends Controller
                 $news->category_id = $request->category_id ? $request->category_id : $news->category_id;
                 $news->content = $request->content ? $request->content : $news->content;
                 //si no viene el status a 0
-                $news->status = $request->status ? $request->status : 0;
-                $news->start = $request->start ? $request->start : 0;
+                $news->status = $request->status ? $request->status : $news->status;
+
+                $news->start = $request->start ? $request->start : $news->start;
 
                 //viene una imagen nueva
                 if ($request->cover_page && $request->cover_page != '') {

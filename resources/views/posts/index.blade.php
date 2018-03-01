@@ -30,8 +30,9 @@
 			   	<form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('PostsController@index') }}">
 			       <select class="form-control" id="status" name="status">
 			       	  <option disabled selected value> -- Buscar por estado -- </option>
-					    <option value="1">Visible</option>
-					    <option value="0">Oculto</option>
+					   	@foreach($statuses as $status)
+                                <option value="{{$status['id']}}">{{$status['name']}}</option>
+                        @endforeach
 				  	</select>
 			     	<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 			    </form>
@@ -54,6 +55,7 @@
 				    					<td>Usuario</td>
 				    					<td>Creado </td>
 				    					<td>Estado</td>
+				    					<td>Tipo</td>
 				    					<td></td>
 				    			</tr>
 				    	</thead>
@@ -67,14 +69,8 @@
 										<td>{{ $post->category->name }}</td>
 										<td>{{ $post->user->name   }}</td>
 										<td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
-									    <td>
-									    	@if ($post->status == 1)
-											   <span class="span-success">Visible</span>
-											@else
-											   <span class="span-danger">Oculto</span>
-											@endif	
-									    </td>
-									  
+									    <td>{{$post->hasStatus->name}}</td>
+									  	<td>{{$post->start}}</td>
 									    <td class="box-btnes">
 									    	<a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 					    					<form method="POST" action="{{ route('posts.destroy', ['id' => $post->id] ) }}">
@@ -87,7 +83,7 @@
 											    <form method="POST" action="{{ route('posts.update', ['id' => $post->id] ) }}">
 											       	{{ csrf_field() }}
 		                                    		{{ method_field('PUT') }}
-		                                    		<input type="hidden" name="status" id="status" value="0">
+		                                    		<input type="hidden" name="status" id="status" value="2">
 		                                    		<input type="hidden" name="show" value="show">
 											        <button type="submit" class="btn btn-alert delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Ocultar"> <span class="glyphicon glyphicon-eye-close"></span> </button>
 											    </form>
@@ -105,7 +101,7 @@
 											    <form method="POST" action="{{ route('posts.update', ['id' => $post->id] ) }}">
 											       	{{ csrf_field() }}
 		                                    		{{ method_field('PUT') }}
-		                                    		<input type="hidden" name="start" id="start" value="0">
+		                                    		<input type="hidden" name="start" id="start" value="2">
 		                                    		<input type="hidden" name="show" value="show">
 											        <button type="submit" class="btn btn-alert delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Destacado"> <i class="fa fa-star" aria-hidden="true"></i> </button>
 											    </form>

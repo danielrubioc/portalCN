@@ -29,14 +29,7 @@
 				    			<tr>
 				    				
 								    <td>{{ $tag->name }} {{ $tag->last_name }}</td>
-								
-								    <td>
-								    	@if ($tag->status == 1)
-										   <span class="span-success">Visible</span>
-										@else
-										   <span class="span-danger">No visible</span>
-										@endif	
-								    </td>
+									<td>{{ $tag->hasStatus->name}}</td>
 								  
 								    <td class="box-btnes">
 								    	<a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
@@ -49,7 +42,7 @@
 										    <form method="POST" action="{{ route('tags.update', ['id' => $tag->id] ) }}">
 										       	{{ csrf_field() }}
 	                                    		{{ method_field('PUT') }}
-	                                    		<input type="hidden" name="status" id="status" value="0">
+	                                    		<input type="hidden" name="status" id="status" value="3">
 	                                    		<input type="hidden" name="show" value="show">
 										        <button type="submit" class="btn btn-alert delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Ocultar"> <span class="glyphicon glyphicon-eye-close"></span> </button>
 										    </form>

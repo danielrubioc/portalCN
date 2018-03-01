@@ -90,7 +90,7 @@ class CategoriesController extends Controller
         $category = Category::find($id); 
             if ($category) {
                 $category->name = $request->name ? $request->name : $category->name;
-                $category->status = $request->status ? $request->status : 0;
+                $category->status = $request->status ? $request->status : $category->status;
                 $category->url = Str::slug($request->name, '-');    
                 if ($category->save()) {
                     flash('La categoría '. $category->name .' se actualizó correctamente!')->success();
