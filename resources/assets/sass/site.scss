@@ -392,9 +392,9 @@ img.effect {
 }
 
 .equipo-home .izq span{
-    text-align: justify;
+    text-align: left;
     font-size: 15px;
-    padding: 0 30%;
+    color: red;
 }
 
 .equipo-home button{
@@ -406,10 +406,6 @@ img.effect {
     background: transparent;
 }
 
-.equipo-home .der button{
-    font-size: 40px;
-}
-
 .equipo-home .der h2{
     font-size: 40px;
     font-style: italic;
@@ -418,6 +414,10 @@ img.effect {
 .equipo-home .der span{
     float: right;
     margin-right: 120px;
+}
+
+.equipo-home .der button{
+    font-size: 40px;
 }
 
 

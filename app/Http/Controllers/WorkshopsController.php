@@ -253,4 +253,7 @@ class WorkshopsController extends Controller
             return redirect('workshop');
         }
     }
+
+    
+    
 }

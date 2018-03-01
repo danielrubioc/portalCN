@@ -58,7 +58,7 @@ class LessonsController extends Controller
             
         } else {
             flash('no se pudo crear la categoría')->error();
-            return view('posts.create');
+            return view('talleres.create');
         }
 
 
@@ -72,5 +72,12 @@ class LessonsController extends Controller
             flash('no se pudo crear el Taller')->error();
             return view('talleres.create');
         }
+    }
+
+    public function list($id){
+        return view('talleres.list', [
+            'lessons' => Lesson::all()->where('id', $id)
+        ]);
+
     }
 }

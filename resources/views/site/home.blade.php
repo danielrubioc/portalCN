@@ -62,17 +62,17 @@
 	</section>
 
 	<section class="container-fluid equipo-home" style="background-image: url('{{url('/images')}}/bg-nosotros.jpg')">
-		<div class="col-md-6 izq">
+		<div class="col-md-offset-1 col-md-5 izq">
 			
 			<p>¿QUÉ NOS MOTIVA?</p>
-			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+			<span>Creemos que fomentar y difundir el deporte es fundamental para nuestra calidad de vida y salud, tanto fisica y mental, además creemos que el bienestar y el deporte son un derecho de todos y velamos para que toda la comunidad sea parte.</span>
 			<br>
 			<button>LEER MÁS</button>
 		</div>
-		<div class="col-md-6 der">
-			<button>CONOCE AL EQUIPO</button>
-			<h2>"Pienso luego existo"</h2>
-			<span>alguien bkn de la corpo</span>			
+		<div class="col-md-5 der">
+			<h2>CERRO NAVIA</h2>
+			<span>DEPORTES</span>
+			<button>CONOCE AL EQUIPO</button>		
 		</div>
 	</section>
 

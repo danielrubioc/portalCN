@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Nuevo taller</div>
+                <div class="panel-heading">Taller</div>
                 <ul class="nav nav-pills nav-gallery">
                     <li class="{{ empty($tab['name']) || $tab['name'] == 'info' ? 'active' : '' }}"><a data-toggle="pill" href="#info">Información de taller</a></li>
                     <li class="{{ empty($tab['name']) || $tab['name'] == 'lessons' ? 'active' : '' }}"><a data-toggle="pill" href="#lessons">Calendario de clases</a></li>

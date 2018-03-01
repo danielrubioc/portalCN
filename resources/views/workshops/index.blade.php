@@ -9,7 +9,7 @@
 	<div class="gral-list-content">
 	    <div class="title-gral-index">
 			<a href="{{ URL::to('workshops/create') }}" class="btn btn-success">Nuevo taller</a>
-			<a href="{{ URL::to('workshops/create') }}" class="btn btn-success">Nuevo Alumno</a>	
+			<a href="{{ URL::to('workshops/create') }}" class="btn btn-success">Lista</a>	
 			<h1>Lista de Talleres </h1>
 		</div>
 	    <br>
