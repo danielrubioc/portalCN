@@ -10,6 +10,7 @@ use App\Workshop;
 use App\Student;
 use App\Teacher;
 use App\Lesson;
+use App\Status;
 use Image;
 use Auth;
 
@@ -25,7 +26,8 @@ class WorkshopsController extends Controller
         //$tallers = Taller::paginate(15);
         $workshops = Workshop::paginate(15);       
         
-        return view('workshops.index', ['workshops' => $workshops]);
+        return view('workshops.index', ['workshops' => $workshops,
+                                        'statuses' => Status::all(['id', 'name']) ]);
             
     }
 

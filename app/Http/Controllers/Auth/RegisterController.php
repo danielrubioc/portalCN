@@ -6,6 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -27,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/activate';
 
     /**
      * Create a new controller instance.
@@ -38,6 +41,32 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+
+    public function randomCode(){
+
+        $code = '';
+        $keys = range('A', 'Z');    
+        for ($i = 0; $i < 3; $i++) {
+            $code .= $keys[array_rand($keys)];
+        }
+            
+        $keys = range(0, 9);    
+        for ($i = 0; $i < 3; $i++) {
+            $code .= $keys[array_rand($keys)];
+        }
+
+        return $code;
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -67,7 +96,18 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {  
+    {   
+        $data['codigo'] = $this->randomCode();
+        $data['nombre'] = $data['name'] . ' ' . $data['last_name'];
+        $email = $data['email'];
+
+        Mail::send('emails.verify', $data, function($msg) use ($email){
+            $msg->subject('Inscripción  - Corporación del Deporte Cerro Navia');
+            $msg->from('contacto@deportescerronavia.cl');
+            $msg->to($email);
+        });
+
+
         return User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
@@ -75,7 +115,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'status' => 2,
             'role_id' => 3,
+            'validate' => $this->randomCode(),
             'password' => bcrypt($data['password']),
         ]);
     }
+
+
+
 }

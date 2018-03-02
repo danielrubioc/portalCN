@@ -32,6 +32,11 @@ class Post extends Model
         return $this->hasOne('App\Status', 'id', 'status');
     }
 
+    public function hasType()
+    {
+        return $this->hasOne('App\Type', 'id', 'type');
+    }
+
     public function scopeFilterByRequest($query, $column, $value)
     {   
 
@@ -58,9 +63,19 @@ class Post extends Model
 
     }
 
-    public function scopeGetListActivePost($query)
+    //lista de post activos
+    public function scopeGetListActivePost($query, $value)
     {   
-        $query->where(\DB::raw("status"), "=", 1)->orderBy('id','DESC');
+        if (!$value) {
+            $query->where("status", "=", 1)
+              ->orderBy('id','DESC');
+        } else {
+            $query->where("status", "=", 1)
+              ->where('type', '=', $value)
+              ->orderBy('id','DESC');
+        }
+        
     }
+
 
 }

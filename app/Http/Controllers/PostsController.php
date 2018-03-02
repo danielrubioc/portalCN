@@ -11,6 +11,7 @@ use App\Gallery;
 use App\Tag;
 use App\User;
 use App\Status;
+use App\Type;
 use Auth;
 use Image;
 use Mail;
@@ -47,7 +48,8 @@ class PostsController extends Controller
 
         return view('posts.index', ['news' => $news, 
                                     'categories' => Category::all(['id', 'name']),
-                                    'statuses' => Status::all(['id', 'name']) ]);
+                                    'statuses' => Status::all(['id', 'name']),
+                                    'types' => Type::all(['id', 'name']) ]);
     }
 
     /**
@@ -97,7 +99,7 @@ class PostsController extends Controller
 
         $news = new Post($request->all());
         $news->status = 2;
-        $news->start = 1;
+        $news->type = 1;
         $news->user_id = Auth::id();
         $news->url = Str::slug($request->url ? $request->url : $request->title, '_');
         if( $request->hasFile('cover_page') ) {
@@ -272,7 +274,7 @@ class PostsController extends Controller
                 //si no viene el status a 0
                 $news->status = $request->status ? $request->status : $news->status;
 
-                $news->start = $request->start ? $request->start : $news->start;
+                $news->type = $request->type ? $request->type : $news->type;
 
                 //viene una imagen nueva
                 if ($request->cover_page && $request->cover_page != '') {

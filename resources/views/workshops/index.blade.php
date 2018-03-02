@@ -25,6 +25,7 @@
 									<td>Cupos</td>
 									<td>Sobrecupos</td>
 			    					<td>Estado</td>
+			    					<td>Tipo</td>
 			    					<td>Profesor(es) a cargo</td>
 			    					<td></td>
 			    			</tr>
@@ -36,13 +37,16 @@
 								    <td>{{ $taller->name }}</td>
 									<td>{{ $taller->quotas }}</td>
 									<td>{{ $taller->about_quotas }}</td>
-								    <td>
-								    	@if ($taller->status === 1)
-										   <span class="span-success">Disponible</span>
+								    <td>{{ $taller->hasStatus->name }}</td>
+								    <td> 
+								  		@if($taller->start == 1)         
+										    NORMAL
+										@elseif($taller->start == 2)
+										    DESTACADO
 										@else
-										   <span class="span-danger">No disponible</span>
-										@endif	
-								    </td>
+											NO DEFINIDO   
+										@endif
+									</td>
 								    <td>
 								    	@foreach ($taller->teachers as $key => $teacher)
 								    		{{ $teacher->name }} {{ $teacher->last_name }}, 

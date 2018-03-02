@@ -25,6 +25,10 @@ class Workshop extends Model
         //return $this->belongsToMany('App\Tag', 'post_tag');
     }
 
+    public function hasStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
 
     public function teachers()
     {
@@ -50,9 +54,19 @@ class Workshop extends Model
         }
     }
 
-    public function scopeGetListActiveWorkshops($query)
+
+    //lista de post activos
+    public function scopeGetListActiveWorkshops($query, $value)
     {   
-        $query->where(\DB::raw("status"), "=", 1)->orderBy('id','DESC');
+        if (!$value) {
+            $query->where("status", "=", 1)
+              ->orderBy('id','DESC');
+        } else {
+            $query->where("status", "=", 1)
+              ->where('type', '=', $value)
+              ->orderBy('id','DESC');
+        }
+        
     }
 
 }

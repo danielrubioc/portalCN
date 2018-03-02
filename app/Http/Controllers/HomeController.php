@@ -61,8 +61,7 @@ class HomeController extends Controller
                             ->where('students.user_id','=', Auth::user()->role_id );
                         })
                         ->get();
-                        
-
+                    
         return view('dashboard_public', [
             'workshops' => $workshops,
             'my_workshops' => $my_workshops 
@@ -72,10 +71,17 @@ class HomeController extends Controller
     public function indexSite()
     {   
         
-        $banners = Banner::getListActiveBanners()->paginate(4); 
-        $workshops = Workshop::getListActiveWorkshops()->paginate(4); 
-        $posts = Post::getListActivePost()->paginate(5); 
-        return view('site/home', ['workshops' => $workshops, 'posts' => $posts, 'banners' => $banners]);
+        $banners = Banner::getListActiveBanners()->get(); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(4); 
+        $workshopsPrincipal = Workshop::getListActiveWorkshops(2)->paginate(1); 
+        $posts = Post::GetListActivePost(1)->paginate(6); 
+        $postsPrincipal = Post::GetListActivePost(2)->paginate(1); 
+        dd($postsPrincipal);
+        return view('site/home', [  'workshops' => $workshops, 
+                                    'posts' => $posts, 
+                                    'banners' => $banners,
+                                    'postsPrincipal' => $postsPrincipal,
+                                    'workshopsPrincipal' => $workshopsPrincipal]);
     }
 
 
@@ -161,7 +167,6 @@ class HomeController extends Controller
         }
 
         
-       
         return view('site.post_categories', ['posts' => $posts, 
                                             'category' => $category,
                                             'categories' => Category::getListActiveCategories()->get(), 
