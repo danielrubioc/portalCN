@@ -30,14 +30,7 @@
 				    				<td>{{ $banner->id }}</td>
 				    				<td><img src="{{url('/uploads/banners')}}/{{ $banner->image }}" style="width:100%; max-height:150px "></td>
 								    <td>{{ $banner->title }}</td>
-								
-									<td>
-								    	@if ($banner->status == 1)
-										   <span class="span-success">Visible</span>
-										@else
-										   <span class="span-danger">No visible</span>
-										@endif	
-								    </td>
+									<td>{{ $banner->hasStatus->name }}</td>
 								    <td class="box-btnes">
 								    	<a href="{{ route('banners.edit', $banner->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 				    					<form method="POST" action="{{ route('banners.destroy', ['id' => $banner->id] ) }}">
@@ -49,7 +42,7 @@
 										    <form method="POST" action="{{ route('banners.update', ['id' => $banner->id] ) }}">
 										       	{{ csrf_field() }}
 	                                    		{{ method_field('PUT') }}
-	                                    		<input type="hidden" name="status" id="status" value="0">
+	                                    		<input type="hidden" name="status" id="status" value="3">
 	                                    		<input type="hidden" name="show" value="show">
 										        <button type="submit" class="btn btn-alert delete-user" value="Delete user" onclick="return confirm('Estas seguro?')" data-toggle="tooltip" title="Ocultar"> <span class="glyphicon glyphicon-eye-close"></span> </button>
 										    </form>

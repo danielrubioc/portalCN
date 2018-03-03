@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/activate';
+    protected $redirectTo = '/activacion';
 
     /**
      * Create a new controller instance.
@@ -115,7 +115,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'status' => 2,
             'role_id' => 3,
-            'validate' => $this->randomCode(),
+            'validate' => $data['codigo'],
             'password' => bcrypt($data['password']),
         ]);
     }

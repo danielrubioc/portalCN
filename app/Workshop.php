@@ -30,6 +30,15 @@ class Workshop extends Model
         return $this->hasOne('App\Status', 'id', 'status');
     }
 
+    public function hasType()
+    {
+        return $this->hasOne('App\Type', 'id', 'type');
+    }
+
+    public function hasTotalQuotes() {
+        return $this->quotas - $this->about_quotas;
+    }
+
     public function teachers()
     {
         return $this->belongsToMany('App\User', 'teachers', 'workshop_id', 'teacher_id');
@@ -68,6 +77,8 @@ class Workshop extends Model
         }
         
     }
+
+
 
 }
 

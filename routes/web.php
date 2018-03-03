@@ -81,6 +81,7 @@ Route::get('profile', function () {
 Route::resource('users', 'UserController')->middleware('validRole:admin');
 //para actualizar foto avatar
 Route::post('profile', 'UserController@update_avatar')->middleware('auth');
+
 //************ blog *****************//
 
 //category
@@ -97,8 +98,6 @@ Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin
 Route::resource('banners', 'BannersController')->middleware('validRole:admin');
 //Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');
 
-Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'WorkshopsController@show']);
-
 //lesson
 Route::resource('lessons', 'LessonsController');    
 Route::resource('students', 'StudentsController');
@@ -106,8 +105,6 @@ Route::resource('students', 'StudentsController');
 //Route::resource('registro/', 'StudentsController');
 //Route::get('/registro/store', 'StudentsController@store');
 Route::get('/registro/{slug}', ['as' => 'students', 'uses' => 'StudentsController@probar']);
-
-Route::get('codeverify', ['as' => 'students', 'uses' => 'HomeController@codeVerify']);
 
 
 
@@ -119,12 +116,16 @@ Route::get('/nosotros', 'HomeController@about');
 Route::get('/equipo', 'HomeController@team');
 Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
-Route::get('/disciplinas', 'HomeController@aboutWorkshop');
+Route::get('/disciplinas', 'HomeController@workshopsAll');
+
+Route::get('/activacion', 'HomeController@activateUser');
+Route::post('/codeVerify', 'HomeController@codeVerify');
 
 //disciplinas
 Route::get('/nuevas-disciplinas', 'HomeController@newsWorkshops');
 Route::get('/todas-las-disciplinas', 'HomeController@workshopsAll');
 
+Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'HomeController@showWorkshopDetail']);
 
 // blog publico
 //detalle de noticia

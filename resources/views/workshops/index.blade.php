@@ -38,15 +38,7 @@
 									<td>{{ $taller->quotas }}</td>
 									<td>{{ $taller->about_quotas }}</td>
 								    <td>{{ $taller->hasStatus->name }}</td>
-								    <td> 
-								  		@if($taller->start == 1)         
-										    NORMAL
-										@elseif($taller->start == 2)
-										    DESTACADO
-										@else
-											NO DEFINIDO   
-										@endif
-									</td>
+								    <td>  {{ $taller->hasType->name}} </td>
 								    <td>
 								    	@foreach ($taller->teachers as $key => $teacher)
 								    		{{ $teacher->name }} {{ $teacher->last_name }}, 

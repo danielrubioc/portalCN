@@ -108,7 +108,7 @@
     </div>
     
     <footer class="hidden-xs">
-        <div class="contianer">
+        <div class="container">
             <div class="col-md-2">
                 <img src="{{url('/images/logo-blanco-cndeportes.png')}}" class="img-responsive">
             </div>

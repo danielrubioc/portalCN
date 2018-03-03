@@ -35,7 +35,7 @@ class HomeController extends Controller
     // vista para los profes
     public function indexTeacher()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
         $my_workshops = Workshop::join('students', function ($join) {
                             $join->on('students.workshop_id', '=', 'workshops.id')
                             ->where('students.user_id','=', Auth::user()->role_id );
@@ -55,7 +55,7 @@ class HomeController extends Controller
         //lista de talleres activos
        
 
-        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
         $my_workshops = Workshop::join('students', function ($join) {
                             $join->on('students.workshop_id', '=', 'workshops.id')
                             ->where('students.user_id','=', Auth::user()->role_id );
@@ -76,7 +76,7 @@ class HomeController extends Controller
         $workshopsPrincipal = Workshop::getListActiveWorkshops(2)->paginate(1); 
         $posts = Post::GetListActivePost(1)->paginate(6); 
         $postsPrincipal = Post::GetListActivePost(2)->paginate(1); 
-        dd($postsPrincipal);
+        
         return view('site/home', [  'workshops' => $workshops, 
                                     'posts' => $posts, 
                                     'banners' => $banners,
@@ -102,20 +102,23 @@ class HomeController extends Controller
 
     public function aboutWorkshop()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
+        $workshops = Workshop::getListActiveWorkshops(null)->paginate(8); 
         return view('site/about_workshop', ['workshops' => $workshops]);
     }
 
-    public function newsWorkshops()
-    {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
-        return view('site/workshops', ['workshops' => $workshops]);
-    }
 
     public function workshopsAll()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(4); 
+        $workshops = Workshop::getListActiveWorkshops(null)->paginate(8); 
         return view('site/workshops_all', ['workshops' => $workshops]);
+    }
+
+    public function showWorkshopDetail($slug = null)
+    {   
+        if ($slug) {
+            $workshop = Workshop::where('url','=', $slug)->firstOrFail();           
+            return view('site/workshop_detail', ['workshop' => $workshop ]);
+        }
     }
     
  
@@ -176,16 +179,38 @@ class HomeController extends Controller
     public function codeVerify(Request $request)
     {
         //
-        die('verificanco');
-        
-        Mail::send('emails.contact', $request->all(), function($msj){
-            $msj->subject('Corrreo de contacto');
-            $msj->to('daniel.janorc@gmail.com');
-        });
+        if ($request->code) {
 
-        flash('Contacto enviado correctamente!')->success();
-        return view('site/contact');
+            $user = User::where('validate','=', $request->code)->first();
+            
+            if ($user) {
+                if ($request->email ==  $user->email) {
+                    $user->validate = null;
+                    $user->status = 1;
+
+                    if($user->save()){
+                       flash('Usuario activado con éxito, ahora puedes iniciar sesión')->success();
+                        return redirect('login');
+                    }    
+                    
+                }
+            } else {
+                flash('Codigo erroneo')->error();
+                return view('site/valid_user_token');
+            }
+
+        } else {
+            flash('Codigo erroneo')->error();
+            return view('site/valid_user_token');
+        }
+        
+
                 
+    }
+
+    public function activateUser()
+    {
+        return view('site/valid_user_token');
     }
 
 
