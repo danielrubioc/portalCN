@@ -5,7 +5,8 @@
     font-family: 'Merriweather Sans', sans-serif;
     font-weight: bold;
     font-style: normal;
-    color: #222;
+    color: #636b6f;
+    
     text-rendering: optimizeLegibility;
     margin-top: .2rem;
     margin-bottom: .5rem;
@@ -13,7 +14,7 @@
 }  
 body{
     font-family: 'Merriweather Sans', sans-serif;
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     font-size: 14px;
     line-height: 1.6;
     color: #636b6f;
@@ -23,7 +24,9 @@ a, span, button {
     outline: none;
     text-decoration: none;
 }   
-
+a:hover {
+    text-decoration: none;
+}
 .content-workshop{
     background-repeat: no-repeat;
     background-position: top center;
@@ -444,7 +447,7 @@ img.effect {
 
 .nav-desktop li a{
     padding: 25px 20px;
-    color: black !important;
+    color: #636b6f !important;
     font-weight: 900;
 }
 
@@ -1732,7 +1735,10 @@ form#validate {
 section.team-section {
     background-size: cover;
 }
-
+input.btn.btn-info.pull-right.contact-btn-submit.color-black-desk {
+    color: #81bf06;
+    border-color: #81bf06;
+}
 
 
 @media (max-width: 768px) { 
@@ -1809,7 +1815,7 @@ section.team-section {
         overflow-y: auto;
         border-radius: 0;
         display: inline-block;
-        background-color: #f0f0f0;
+        background-color: #fff;
         border-color: #f0f0f0;
         border-radius: 0;
         height: 55px;
@@ -2006,7 +2012,8 @@ section.team-section {
 
     .contact-info .content-message {
         position: absolute;
-        top: 110px;
+        bottom: 0;
+        margin-bottom: 50px;
     }
 
     .text-description-gral.text-second-gral {
@@ -2127,6 +2134,10 @@ section.team-section {
         margin: 30px 0;
         margin-bottom: 100px;
     }
+
+    .info-content-detail img {
+        max-width: 100%;
+    }
     .info-content-detail h4,.info-content-detail h2, .info-content-detail h1,
     .info-content-detail h3, .info-content-detail p, .info-content-detail span {
         margin-bottom: 16px;
@@ -2143,12 +2154,17 @@ section.team-section {
     }
 
     footer a {
-        color: #898989;
+        color: #ffffff;
         font-family: arial;
         text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 700;
         padding-left: 20px;
         font-size: 18px;
+        text-decoration: none;
+    }
+    footer a:hover {
+        color: #23527c;
+        text-decoration: none;
     }
     a.left-input i {
         padding: 10px;
@@ -2237,6 +2253,7 @@ section.team-section {
         z-index: 9;
         text-align: center;
         width: 100%;
+        min-height: 500px;
     }
     .conten-formulario .effect-placeholder ~ label {
         color: white;
@@ -2342,6 +2359,10 @@ section.team-section {
         color: #ffffff;
     }
 
+    .color-black-input {
+        color: black;
+    }
+
     .main-talleres {
         margin-top: 77px;
     }
@@ -2429,6 +2450,7 @@ section.team-section {
     }
     .item-work.item-team {
         height: 312px;
+        width: 175px;
     }
     .col-md-12.pagination-work {
         width: 100%;
@@ -2471,6 +2493,7 @@ section.team-section {
         opacity: 1;
         transition: 1s all;
     }
+
 
     button.search-button.clickable-out {
         float: right;
@@ -2519,6 +2542,7 @@ section.team-section {
     .selection-participate {
         position: fixed;
         bottom: 0;
+        left: 0;
         width: 100%;
             display: inline-flex;
     }
