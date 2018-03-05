@@ -5,7 +5,8 @@
     font-family: 'Merriweather Sans', sans-serif;
     font-weight: bold;
     font-style: normal;
-    color: #222;
+    color: #636b6f;
+    
     text-rendering: optimizeLegibility;
     margin-top: .2rem;
     margin-bottom: .5rem;
@@ -13,7 +14,7 @@
 }  
 body{
     font-family: 'Merriweather Sans', sans-serif;
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     font-size: 14px;
     line-height: 1.6;
     color: #636b6f;
@@ -446,7 +447,7 @@ img.effect {
 
 .nav-desktop li a{
     padding: 25px 20px;
-    color: black !important;
+    color: #636b6f !important;
     font-weight: 900;
 }
 
@@ -1734,7 +1735,10 @@ form#validate {
 section.team-section {
     background-size: cover;
 }
-
+input.btn.btn-info.pull-right.contact-btn-submit.color-black-desk {
+    color: #81bf06;
+    border-color: #81bf06;
+}
 
 
 @media (max-width: 768px) { 
@@ -2008,7 +2012,8 @@ section.team-section {
 
     .contact-info .content-message {
         position: absolute;
-        top: 110px;
+        bottom: 0;
+        margin-bottom: 50px;
     }
 
     .text-description-gral.text-second-gral {
@@ -2248,6 +2253,7 @@ section.team-section {
         z-index: 9;
         text-align: center;
         width: 100%;
+        min-height: 500px;
     }
     .conten-formulario .effect-placeholder ~ label {
         color: white;
