@@ -66,6 +66,18 @@ class User extends Authenticatable
 
     }
 
+    public function scopeGetListActiveUser($query, $value)
+    {   
+        if (!$value) {
+            $query->where("status", "=", 1)
+              ->orderBy('id','DESC');
+        } else {
+            $query->where("status", "=", 1)
+              ->where('role_id', '=', $value)
+              ->orderBy('id','DESC');
+        }
+        
+    }
 
     public function sendPasswordResetNotification($token)
     {

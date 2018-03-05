@@ -38,7 +38,7 @@
 									<td>{{ $taller->quotas }}</td>
 									<td>{{ $taller->about_quotas }}</td>
 								    <td>{{ $taller->hasStatus->name }}</td>
-								    <td>  {{ $taller->hasType->name}} </td>
+								    <td>{{ $taller->hasType->name}} </td>
 								    <td>
 								    	@foreach ($taller->teachers as $key => $teacher)
 								    		{{ $teacher->name }} {{ $teacher->last_name }}, 
@@ -58,6 +58,7 @@
 			    	</tbody>
 			    </table>
 		    </div>
+		    {{ $workshops->links() }}
 		</div>
 	</div> 		    
  </div> 

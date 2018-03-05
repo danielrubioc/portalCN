@@ -128,6 +128,23 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                        <label for="type" class="col-md-4 control-label">Tipo</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" name="type">
+                                                @foreach($types as $type)
+                                                    @if ($news->type  == $type->id)
+                                                        <option value="{{$type->id}}" selected>{{$type->name}}</option>
+
+                                                        @else
+                                                        <option value="{{$type->id}}">{{$type->name}}</option>
+                                                    @endif
+                                                        
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
 
                                     <div class="form-group">
                                         <div class="col-md-12 col-offset-md-1">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 use App\Http\Requests;
 use App\User;
 use App\Workshop;
@@ -38,8 +40,7 @@ class WorkshopsController extends Controller
      */
     public function create()
     {
-        $user = DB::table('users')->where('role_id', 2);
-        return view('workshops.create', ['teachers' => User::all(['id', 'name', 'last_name'])]);
+        return view('workshops.create', ['teachers' => User::getListActiveUser(2)->get()]);
     
     }
 
@@ -50,9 +51,31 @@ class WorkshopsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $messages = array(
+            'unique'    => ':attribute ya ha sido registrada.',
+            'required' => ':attribute es obligatorio',
+            'max' => ':attribute no puede ser mayor que :max caracteres',
+            'min'      => ':attribute moet minimaal :min karakters bevatten.',
+        );
+        // validacion segun Validator
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:199',
+            'description' => 'required',
+            'url' => 'required|max:199|unique:workshops',
+            'place' => 'required',
+            'cover_page' => 'mimes:jpeg,jpg,png',
+            
+        ],  $messages);
+
+        if ($validator->fails()) {
+            return redirect('posts/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $workshops = new Workshop($request->all());
-        $workshops->status = 1;
+        $workshops->status = 2;
         $workshops->user_id = Auth::id();
                
         if( $request->hasFile('cover_page') ) {

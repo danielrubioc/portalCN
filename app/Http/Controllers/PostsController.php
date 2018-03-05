@@ -61,7 +61,8 @@ class PostsController extends Controller
     {
         //
         return view('posts.create', ['categories' => Category::all(['id', 'name']),
-                                     'tags' => Tag::all(['id', 'name'])]);
+                                     'tags' => Tag::all(['id', 'name']),
+                                     'types' => Type::all(['id', 'name'])]);
 
     }
 
@@ -99,7 +100,6 @@ class PostsController extends Controller
 
         $news = new Post($request->all());
         $news->status = 2;
-        $news->type = 1;
         $news->user_id = Auth::id();
         $news->url = Str::slug($request->url ? $request->url : $request->title, '_');
         if( $request->hasFile('cover_page') ) {
@@ -207,7 +207,8 @@ class PostsController extends Controller
                                     'gallery' => Gallery::where('post_id', '=', $id)->paginate(30),
                                     'tags' => Tag::all(['id', 'name']),
                                     'tagsInPost' => Post::findOrFail($id)->tags()->get()->toArray(),
-                                    'statuses' => Status::all(['id', 'name']) ]);
+                                    'statuses' => Status::all(['id', 'name']),
+                                    'types' => Type::all(['id', 'name']) ]);
     }
 
 

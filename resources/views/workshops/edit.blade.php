@@ -231,23 +231,24 @@
     </div>
 </div>
     
-    @section('select2')
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+@section('select2')
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
     <script type="text/javascript">
         $(".js-multiple").select2({
             placeholder: "Selecciona los Profesores",
             teachers: true,
-        })
+        });
+        $('#content').ckeditor();
+        $(function () {
+            $('#colorbx, #colorbxsub').colorpicker({
+              autoInputFallback: false
+            });
+        });
+       
     </script>
-    @stop
-    @section('ckeditor')
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
-    <script>
-    $('#content').ckeditor();
-    $('#description').ckeditor();
-    </script>
-    @stop
+@stop
 
 @endsection
