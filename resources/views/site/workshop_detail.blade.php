@@ -22,6 +22,8 @@
 		</div>
 		<div class="col-md-6 no-padding form-right">
 			<h2>Si te llamó la atención, Inscribete!</h2>
+			<span><strong>Aviso importante:</strong> los cursos y disciplinas de la temporada 2018 estarán disponibles en marzo, una vez disponibles podrás inscribirte </span>
+			<!--
 			<div class="form-suscri">
 				<form id="incripcion" class="form-horizontal form-register-disciplinas" method="POST" action="{{ route('students.store') }}" enctype="multipart/form-data">
 					{{ csrf_field() }}
@@ -115,7 +117,7 @@
 							
 				</form>
 			</div>
-
+			-->
 		</div>
 
 	</div>

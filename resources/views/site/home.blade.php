@@ -30,9 +30,9 @@
 			<h2 class="titulo-home titulo-princ title-home" style="text-align: right;">NUESTRAS<br><strong>DISCIPLINAS</strong></h2>
 			<div class="content-workshops">
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-8 col-xs-8">
 						@foreach ($workshops as $key => $taller)				
-							<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-6 ult-wrk">					
+							<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-6 col-xs-6 ult-wrk">					
 								<div class="box-gral-work-item">
 								<div class="over-hidde-img" >
 									<div class="img img-r" style=" background-image: url('/uploads/workshop/{{$taller->cover_page}}');"></div>
@@ -48,7 +48,7 @@
 						@endforeach	
 
 					</div>
-					<div class="col-md-4 no-padding">
+					<div class="col-md-4 col-xs-4 no-padding">
 						@foreach ($workshopsPrincipal as $key => $tallerP)				
 							<a href="{{ url('/disciplina') }}/{{$tallerP->url}}" class="col-md-12 ult-wrk">					
 								<div class="box-gral-work-item work-item-principal">
@@ -73,14 +73,14 @@
 	<section class="team-section" style="background-image: url('{{url('/images')}}/bg-nosotros.jpg')">
 		<div class="container">
 			<div class="conten-team">
-				<div class="col-md-6 info-text-team">
+				<div class="col-md-6 col-xs-6 info-text-team">
 			
 					<h1>¿QUÉ NOS MOTIVA?</h1>
 					<p>Creemos que fomentar y difundir el deporte es fundamental para nuestra calidad de vida y salud, tanto fisica y mental, además creemos que el bienestar y el deporte son un derecho de todos y velamos para que toda la comunidad sea parte.</p>
 					<br>
 					<a class="btn-home btn-white-in-home" href="{{ url('/nosotros') }}">LEER MÁS</a>
 				</div>
-				<div class="col-md-6 title-team">
+				<div class="col-md-6 col-xs-6 title-team">
 					<h2 class="titulo-home titulo-princ title-home title-especial-shadow" style="text-align: right;">CERRO NAVIA<br>
 						<strong>DEPORTES</strong></h2>
 
@@ -96,7 +96,7 @@
 		<div class="container">
 			<h2 class="titulo-home titulo-princ title-home" style="text-align: left;">TERCER<br><strong>TIEMPO</strong></h2>
 			<div class="conten-posts">
-				<div class="col-md-4 no-padding">
+				<div class="col-md-4 col-xs-4 no-padding">
 					@foreach ($postsPrincipal as $key => $postsPrincipal)				
 						<a href="{{ URL::to('/') }}/{{ $postsPrincipal->category->url }}/detalle/{{ $postsPrincipal->url }}" class="col-md-12 ult-wrk">					
 							<div class="box-gral-work-item work-item-principal item-posts-home-principal">
@@ -112,9 +112,9 @@
 						</a>				 
 					@endforeach	
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-8 col-xs-8">
 					@foreach ($posts as $key => $post)				
-						<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}" class="col-md-4 ult-wrk">					
+						<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}" class="col-md-4 col-xs-4 ult-wrk">					
 							<div class="box-gral-work-item item-posts-home">
 							<div class="over-hidde-img" >
 								<div class="img img-r" style=" background-image: url('/uploads/news/{{$post->cover_page}}');"></div>

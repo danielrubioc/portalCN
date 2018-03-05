@@ -4,7 +4,10 @@
 	<div class="main-talleres">
         <span class="hidden-xs">
             <div class="container content-workshop">
+                
                 <div class="col-md-12 title-posts">
+                                    <span><strong>Aviso importante:</strong> los cursos y disciplinas de la temporada 2018 estarán disponibles en marzo, una vez disponibles podrás inscribirte </span>
+
                     <h1>Disciplinas</h1>
                 </div>
 
@@ -23,13 +26,13 @@
                                                     <h2>{{$taller->name}}</h2>
                                                     <p>{{ str_limit($taller->description, 80) }}</p>
                                                     <div class="suscrit-regis">
-                                                        <span>10:30 </span>
-                                                        <span>10:30 </span>
+                                                        <span>Próximamente</span>
+                                                        <span>Próximamente </span>
 
                                                     </div>
                                                     <div class="view-regis">
                                                         <span><a href="{{ url('/disciplina') }}/{{$taller->url}}">Ver más</a></span>
-                                                        <span><a href="http://localhost:8000/eventos/detalle/zumba_fest5">Inscríbete</a></span>
+                                                        <span><a href="{{ url('/disciplina') }}/{{$taller->url}}">Inscríbete</a></span>
 
                                                     </div>
                                                 </div> 

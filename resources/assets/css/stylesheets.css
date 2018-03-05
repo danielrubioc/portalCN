@@ -1700,7 +1700,9 @@ form#validate {
 .valid-registe-section {
     margin-top: 120px;
 }
-
+section.team-section {
+    background-size: cover;
+}
 
 
 

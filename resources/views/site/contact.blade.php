@@ -2,16 +2,15 @@
 
 @section('content')
 
-<div class="container">
-    <div class="content-message">
-        @include('flash::message')
-    </div>
-</div>
+
 <span class="hidden-xs" >
     <div class="content-about-de">
 
     <div class="container info-content-detail">
         <div class="col-md-12 title-posts content-title-detail">
+                <div class="content-message">
+                    @include('flash::message')
+                </div>
              <h1> CONTACTO</h1>
         </div>
         <div class="col-md-6">
