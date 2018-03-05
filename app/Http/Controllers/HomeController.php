@@ -124,13 +124,24 @@ class HomeController extends Controller
  
     public function sendContact(Request $request)
     {
-
+        $email = $request['email'];
         
         Mail::send('emails.contact-notification', $request->all(), function($msj){
             $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
             $msj->to('contacto@deportescerronavia.cl');
         });
-        
+
+        Mail::send('emails.contact', $request->all(), function($msj) use ($email){
+            $msj->subject('Contacto  - Corporación del Deporte Cerro Navia');
+            $msj->from('contacto@deportescerronavia.cl');
+            $msj->to($email);
+        });
+
+        if (Mail::failures()) {
+            flash('Contacto no pudo ser enviado')->error();
+            return view('site/contact');
+        }
+
         flash('Contacto enviado correctamente!')->success();
         return view('site/contact');
                 
@@ -195,12 +206,12 @@ class HomeController extends Controller
                     
                 }
             } else {
-                flash('Codigo erroneo')->error();
+                flash('Código erróneo')->error();
                 return view('site/valid_user_token');
             }
 
         } else {
-            flash('Codigo erroneo')->error();
+            flash('Código erróneo')->error();
             return view('site/valid_user_token');
         }
         

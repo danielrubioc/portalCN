@@ -1,6 +1,28 @@
 
 
 /* Workshop */
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: #222;
+    text-rendering: optimizeLegibility;
+    margin-top: .2rem;
+    margin-bottom: .5rem;
+    line-height: 1.4;
+}  
+body{
+    font-family: 'Merriweather Sans', sans-serif;
+    background-color: #ffffff;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #636b6f;
+}
+a, span, button {
+    font-family: 'Merriweather Sans', sans-serif;
+    outline: none;
+    text-decoration: none;
+}   
 
 .content-workshop{
     background-repeat: no-repeat;
@@ -332,9 +354,6 @@ img.effect {
 }
 
 
-
-
-
 .sld-home{
     margin-top: 70px;
     position: relative;
@@ -594,13 +613,9 @@ footer{
     font-size: 35px;
     padding-bottom: 12px;
 }
-body {
-    font-family: Raleway,sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #636b6f;
-    background-color: #ffffff;
-}
+
+
+
 
 .row-content {
        border: 1px solid #e7e7e7;
@@ -930,15 +945,26 @@ span.info-team.desktop-info {
     position: relative;
 }
 .effect-placeholder {
+    background: transparent;
     border: 0;
+    border: none;
     border-radius: 0;
     padding: 4px 0;
     border-bottom: 1px solid #fff;
     background-color: transparent;
-    box-shadow: none;
     outline: none;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(255, 255, 255) !important;
-    border: none;
+    padding-left: 10px;
+    color: #fff;
+    padding-left: 13px;
+    box-shadow: none !important;
+}
+
+.effect-placeholder {
+    background: transparent;
+    border-bottom: 1px solid #fff;
+    padding-left: 10px;
+    color: black;
+    padding-left: 13px;
 }
 
 form.form-css-label.form-desktop {
@@ -950,10 +976,10 @@ form.form-css-label.form-desktop {
 
 form.form-css-label.form-desktop textarea#msg {
     width: 100%;
-        border: 1px solid #94c11f;
+  border: 1px solid #94c11f;
 }
 
-form.form-css-label.form-desktop .effect-placeholder {
+.effect-placeholder {
     border: 0;
     border-radius: 0;
     padding: 4px 0;
@@ -967,9 +993,10 @@ form.form-css-label.form-desktop .effect-placeholder {
         border-bottom: 1px solid #94c11f;
     border-top: none !important;
     box-shadow: none !important;
+        width: 100%;
 }
 
-form.form-css-label.form-desktop input.btn.btn-info.pull-right.contact-btn-submit {
+input.btn.btn-info.pull-right.contact-btn-submit {
     border: 1px solid #5f5f5f;
     padding: 5px 10px;
     /* border-radius: 30px; */
@@ -982,6 +1009,7 @@ form.form-css-label.form-desktop input.btn.btn-info.pull-right.contact-btn-submi
     transition: 1s all;
         margin-bottom: 40px;
     border-radius: 0;
+    color: white
 }
 form.form-css-label.form-desktop input.btn.btn-info.pull-right.contact-btn-submit:hover {
         background: #81bf06;
@@ -1648,6 +1676,7 @@ footer.hidden-xs img {
     right: 0;
     left: 0;
     z-index: 999999;
+        background: #ffffff;
 }
 
 .form-right {
@@ -1707,26 +1736,8 @@ section.team-section {
 
 
 @media (max-width: 768px) { 
-    body{
-        font-family: 'Merriweather Sans', sans-serif;
-        background-color: #ffffff;
-    }
-
-    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-        font-family: 'Merriweather Sans', sans-serif;
-        font-weight: bold;
-        font-style: normal;
-        color: #222;
-        text-rendering: optimizeLegibility;
-        margin-top: .2rem;
-        margin-bottom: .5rem;
-        line-height: 1.4;
-    } 
-    a, span, button {
-        font-family: 'Merriweather Sans', sans-serif;
-        outline: none;
-        text-decoration: none;
-    }   
+    
+      
     /* menu  */
     .sidenav {
         height: 100%;
@@ -1814,7 +1825,7 @@ section.team-section {
         transition: 0.6s;
         width: 100%;
         position: relative;
-            background: white;
+        background: white;
     }
     #main.margin-nav{
         transition: 0.6s;
@@ -1993,6 +2004,11 @@ section.team-section {
         font-weight: bold;
     }
 
+    .contact-info .content-message {
+        position: absolute;
+        top: 110px;
+    }
+
     .text-description-gral.text-second-gral {
         bottom: 20%;
         width: 50%;
@@ -2032,26 +2048,7 @@ section.team-section {
         min-height: 400px;
     }
 
-    /*
-    section#first-section:before {
-        background: rgba(55, 99, 160, 0.2);
-    }
-    section#second-section:before {
-        background: rgba(55, 99, 160, 0.87);
-    }
-    section#third-section:before {
-        background: rgba(14, 55, 111, 0.73);
-    }
-    section#four-section:before {
-        background: rgba(8, 60, 60, 0.7);
-    }
-    section#five-section:before {
-        background: rgba(26, 72, 30, 0.76);
-    }
-    section#six-section:before {
-        background: rgba(76, 150, 39, 0.75);
-    }
-    */
+    
     .content-categories {
         min-height: 100vh;
             margin-bottom: 50px;
@@ -2178,7 +2175,13 @@ section.team-section {
     input{
         outline: none;
     }
-    input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width: 100%; box-sizing: border-box; letter-spacing: 1px;box-shadow: none !important;}
+    input[type="text"]{
+        font: 15px/24px "Lato", Arial, sans-serif; 
+        color: #333; width: 100%; 
+        box-sizing: border-box; 
+        letter-spacing: 1px;
+        box-shadow: none !important;
+    }
     .effect-placeholder {
         border: 0;
         border-radius: 0;
@@ -2192,6 +2195,12 @@ section.team-section {
         color: white;
         outline: none;
     }
+    textarea#msg::placeholder {
+        color: #fff;
+        text-align: left;
+        text-transform: capitalize;  
+        letter-spacing: .5px;
+    }
     input.btn.btn-info.pull-right.contact-btn-submit {
         background: #ea6b00;
         padding: 8px 15px;
@@ -2199,23 +2208,10 @@ section.team-section {
         text-transform: uppercase;
         border-color: white;
     }
-    .effect-placeholder ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #fff; transition: 0.4s;}
-    .effect-placeholder:focus ~ .focus-border,
-    .has-content.effect-placeholder ~ .focus-border{width: 100%; transition: 0.4s;}
-    .effect-placeholder ~ label{position: absolute; left: 0; width: 100%; top: 9px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px;}
-    .effect-placeholder:focus ~ label, .has-content.effect-16 ~ label{top: -16px; font-size: 12px; color: #3399FF; transition: 0.3s;}
-    .effect-placeholder.empty ~ label, .has-content.effect-16 ~ label{top: -16px; font-size: 12px; color: #3399FF; transition: 0.3s;}
 
-    .input-effect {
-        position: relative;
-    }
-    .effect-placeholder {
-        border: 0;
-        border-radius: 0;
-        padding: 4px 0;
-        border-bottom: 1px solid #fff;
-        background-color: transparent;
-    }
+
+
+
     .conent-form-contact {
         background: rgba(255, 255, 255, 0.74);
         height: 100vh;
@@ -2223,7 +2219,7 @@ section.team-section {
     }
     .conent-form-contact h2 {
         text-align: center;
-        margin-bottom: 25px;
+        margin-bottom: 60px;
         color: white;
         font-family: 'Merriweather Sans', sans-serif;
         text-transform: uppercase;
@@ -2342,7 +2338,9 @@ section.team-section {
     }
     /*  carrousel  */
 
-
+    .effect-placeholder {
+        color: #ffffff;
+    }
 
     .main-talleres {
         margin-top: 77px;

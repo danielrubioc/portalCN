@@ -12,6 +12,16 @@
 
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
     <link rel="stylesheet" href="{{ elixir('css/site.css') }}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115077435-1"></script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'UA-115077435-1');
+  </script>
 </head>
 <body>
     <div id="app">
@@ -91,7 +101,7 @@
 
                 @if(!Auth::user())
                     <li class="registrate"><a href="{{ route('register') }}">Registrate </a></li>
-                    <li><a href="{{ route('login') }}">Login </a></li>
+                    <li><a href="{{ route('login') }}">Ingresar </a></li>
                     @else
                     <li><a href="{{ route('register') }}" >Portal </a></li>
                 @endif
@@ -109,17 +119,17 @@
     
     <footer class="hidden-xs">
         <div class="container">
-            <div class="col-md-2">
+            <div class="col-md-2 col-xs-2">
                 <img src="{{url('/images/logo-blanco-cndeportes.png')}}" class="img-responsive">
             </div>
 
-            <div class="col-md-8 text-fot">
+            <div class="col-md-8 text-fot col-xs-8">
                 <p>Llámanos al (+562) 26676631 o contáctanos en info@deportescerronavia.cl <br>
                     Mapocho Norte 8115, Cerro Navia, Santiago </p>
 
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 col-xs-2">
                 <a href="http://www.cerronavia.cl/">
                 <img src="{{url('/images/logocerronavia-footer.png')}}" class="img-responsive">
                 </a>

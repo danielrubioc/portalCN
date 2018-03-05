@@ -1,6 +1,10 @@
 @extends('layouts.site')
 
 @section('content')
+<div class="contact-info">
+    <div class="content-message">
+        @include('flash::message')
+    </div>
 
 
 <span class="hidden-xs" >
@@ -8,9 +12,7 @@
 
     <div class="container info-content-detail">
         <div class="col-md-12 title-posts content-title-detail">
-                <div class="content-message">
-                    @include('flash::message')
-                </div>
+                
              <h1> CONTACTO</h1>
         </div>
         <div class="col-md-6">
@@ -102,7 +104,7 @@
 
                 <div class="col-md-6  form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="email" type="text" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus>
                         <label for="email">email</label>
                         <span class="focus-border"></span>
                         @if ($errors->has('email'))
@@ -115,7 +117,7 @@
 
                 <div class="col-md-6  form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <textarea name="msg" id="msg" rows="10"></textarea> 
+                        <textarea name="msg" id="msg" rows="10" placeholder="Mensaje"></textarea> 
                         <span class="focus-border"></span>
                         @if ($errors->has('email'))
                             <span class="help-block">
@@ -135,6 +137,7 @@
 </span> 
 
 
+</div>
 @section('inputHasContent')
 <script type="text/javascript">
 // JavaScript for label effects only

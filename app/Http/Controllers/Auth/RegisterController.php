@@ -67,6 +67,41 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
+    public function validRut($rut) {
+        $rut = $rut; //recibo rut
+        $rut_sin_puntos = str_replace('.', "", $rut); //elimino puntos
+        $numerosentrada = explode("-", $rut_sin_puntos); //separo rut de dv
+        $verificador = $numerosentrada[1]; //asigno valor de dv
+        $numeros = strrev($numerosentrada[0]);  //separo rut de dv
+        $count = strlen($numeros); //asigno la longitud del string en este caso 8
+        $count = $count -1; //resto uno al contador para comenzar mi ciclo ya que las posiciones empiezan de 0
+        $suma = 0;
+        $recorreString = 0;
+        $multiplo = 2;
+        for ($i=0; $i <=$count ; $i++) { 
+            $resultadoM = $numeros[$recorreString]*$multiplo; // recorro string y multiplico 
+            $suma = $suma + $resultadoM; // se suma resultado de multiplicacion por ciclo
+            if ($multiplo == 7) { 
+                $multiplo = 1;
+            }
+            $multiplo++;
+            $recorreString++;
+        }
+        $resto = $suma%11;
+        $dv= 11-$resto;
+        if ($dv == 11) {
+            $dv = 0;
+        }
+        if ($dv == 10) {
+            $dv = K;
+        }
+        if ($verificador == $dv) {
+          return true;
+        }else {
+          return false;
+        }
+    }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -86,6 +121,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'rut' => 'required|string|unique:users',
         ], $messages);
     }
 
@@ -101,6 +137,11 @@ class RegisterController extends Controller
         $data['nombre'] = $data['name'] . ' ' . $data['last_name'];
         $email = $data['email'];
 
+        if ($this->validRut($data['rut']) == false) {
+            # code...
+        }
+
+
         Mail::send('emails.verify', $data, function($msg) use ($email){
             $msg->subject('Inscripción  - Corporación del Deporte Cerro Navia');
             $msg->from('contacto@deportescerronavia.cl');
@@ -111,7 +152,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
-            'birth_date' => $data['birth_date'],
+            'rut' => $data['rut'],
             'email' => $data['email'],
             'status' => 2,
             'role_id' => 3,

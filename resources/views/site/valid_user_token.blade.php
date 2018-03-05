@@ -2,10 +2,9 @@
 
 @section('content')
 
-<span class="hidden-xs" >
 	<div class="valid-registe-section">
 		<div class="container">
-			 @include('flash::message')
+			@include('flash::message')
 			<div class="col-md-12 title-posts"><h1>Valida tu usuario</h1></div>
 			<div class="col-md-12"><p>Revisa tu correo, se envió un código de activación</p>	</div>
 			<div class="col-md-4 col-md-offset-4">
@@ -50,11 +49,8 @@
 		</div>
 
 	</div>
-</span>	
 
-<span class="visible-xs">
 
-</span>	
 
 @section('inputHasContent')
 <script type="text/javascript">
