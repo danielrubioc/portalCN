@@ -1809,7 +1809,7 @@ section.team-section {
         overflow-y: auto;
         border-radius: 0;
         display: inline-block;
-        background-color: #f0f0f0;
+        background-color: #fff;
         border-color: #f0f0f0;
         border-radius: 0;
         height: 55px;
@@ -2340,6 +2340,10 @@ section.team-section {
 
     .effect-placeholder {
         color: #ffffff;
+    }
+
+    .color-black-input {
+        color: black;
     }
 
     .main-talleres {

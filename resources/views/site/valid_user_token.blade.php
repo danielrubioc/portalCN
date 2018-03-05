@@ -12,8 +12,9 @@
 						{{ csrf_field() }}
 						<div class="col-md-12 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 							<div class="input-effect">
-								<input id="email" type="email" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus>
-								<label for="name">Correo</label>
+								<label for="name" class="visible-xs label-aux">Correo</label>
+								<input id="email" type="email" class="form-control effect-placeholder color-black-input" name="email" value="{{ old('email') }}" required autofocus>
+								<label for="name" class="hidden-xs">Correo</label>
 								<span class="focus-border"></span>
 								@if ($errors->has('email'))
 									<span class="help-block">
@@ -25,8 +26,9 @@
 
 						<div class="col-md-12 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 							<div class="input-effect">
-								<input id="code" type="code" class="form-control effect-placeholder" name="code" value="{{ old('code') }}" required autofocus>
-								<label for="name">Código de verificación</label>
+								<label for="name" class="visible-xs label-aux">Código de verificación</label>
+								<input id="code" type="code" class="form-control effect-placeholder color-black-input" name="code" value="{{ old('code') }}" required autofocus>
+								<label for="name" class="hidden-xs">Código de verificación</label>
 								<span class="focus-border"></span>
 								@if ($errors->has('name'))
 									<span class="help-block">
