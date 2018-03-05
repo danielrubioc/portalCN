@@ -313,6 +313,44 @@
                             </div> 
                         </div>
 
+                         <div id="team-modify-container">
+                            <div class="col-xs-6 no-padding">
+                                <div class="item-work item-team">
+                                    <img src="{{url('/images/team-desktop')}}/Cristian.jpg" class="img-responsive">
+                                    <span class="info-team">
+                                        <h1>Cristian Weibel</h1>
+                                        <h2>Jefe de Administración y Finanzas</h2>
+                                    </span> 
+                                </div>   
+                            </div> 
+                        </div>
+
+
+                         <div id="team-modify-container">
+                            <div class="col-xs-6 no-padding">
+                                <div class="item-work item-team">
+                                    <img src="{{url('/images/team-desktop')}}/Leslile.jpg" class="img-responsive">
+                                    <span class="info-team">
+                                        <h1>Leslie Durán </h1>
+                                        <h2>Encargada de Administración y Finanzas</h2>
+                                    </span> 
+                                </div>   
+                            </div> 
+                        </div>
+
+
+                         <div id="team-modify-container">
+                            <div class="col-xs-6 no-padding">
+                                <div class="item-work item-team">
+                                    <img src="{{url('/images/team-desktop')}}/Almendra.jpg" class="img-responsive">
+                                    <span class="info-team">
+                                        <h1>Almendra Dueñas </h1>
+                                        <h2>Asistente de Administración y Finanzas</h2>
+                                    </span> 
+                                </div>   
+                            </div> 
+                        </div>
+
                 </div>
 
             </div>
