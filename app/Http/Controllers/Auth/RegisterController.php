@@ -138,8 +138,7 @@ class RegisterController extends Controller
         $email = $data['email'];
 
         if ($this->validRut($data['rut']) == false) {
-            
-            return redirect('register');
+            # code...
         }
 
 

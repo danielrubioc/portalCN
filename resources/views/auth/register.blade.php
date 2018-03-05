@@ -43,7 +43,7 @@
                             <label for="rut" class="col-md-4 control-label">Rut</label>
 
                             <div class="col-md-6">
-                                <input id="rut" type="text" class="form-control" name="rut" value="{{ old('rut') }}" required pattern="[0-9]{7,8}-[0-9Kk]{1}" value="" name="rut" id="rut" placeholder="12345678-5" title="ej. 12345678-5" autofocus>
+                                <input id="rut" type="text" class="form-control" name="rut" value="{{ old('rut') }}" required pattern="\d{1,2}\d{3}\d{3}-[\d|kK]{1}" placeholder="xxxxxxxx-x" autofocus>
 
                                 @if ($errors->has('rut'))
                                     <span class="help-block">
@@ -102,6 +102,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

@@ -61,7 +61,7 @@
 
                 <br>
 
-                {!! Form::submit('Enviar', ['class' => 'btn btn-info pull-right contact-btn-submit color-black-desk']) !!}
+                {!! Form::submit('Enviar', ['class' => 'btn btn-info pull-right contact-btn-submit']) !!}
             </form>
 
 
