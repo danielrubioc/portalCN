@@ -95,6 +95,8 @@ Route::resource('galleries', 'GalleriesController')->middleware('validRole:admin
 Route::resource('tags', 'TagsController')->middleware('validRole:admin.publisher');
 //taller
 Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher');
+Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher');
+Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent');
 //banner
 Route::resource('banners', 'BannersController')->middleware('validRole:admin.publisher');
 //Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');
@@ -125,7 +127,6 @@ Route::post('/codeVerify', 'HomeController@codeVerify');
 //disciplinas
 Route::get('/nuevas-disciplinas', 'HomeController@newsWorkshops');
 Route::get('/todas-las-disciplinas', 'HomeController@workshopsAll');
-
 Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'HomeController@showWorkshopDetail']);
 
 // blog publico

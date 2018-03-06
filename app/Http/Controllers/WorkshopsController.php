@@ -99,7 +99,8 @@ class WorkshopsController extends Controller
                     // si viene un string esto pasa cuando es un nuevo tag 
                     $teachers[$key] = $value;
                 }
-                $workshops->teacher()->attach($teachers);
+                $workshops->teachers()->attach($teachers, ['status' => '1']);
+
             }
 
             $lastInsertedId = $workshops->id;
@@ -244,7 +245,7 @@ class WorkshopsController extends Controller
                         // si viene un string esto pasa cuando es un nuevo tag 
                         $teachers[$key] = $value;
                     }
-                    $workshops->teacher()->attach($teachers);
+                    $workshops->teachers()->attach($teachers, ['status' => '1']);
                 }
 
 
@@ -291,6 +292,31 @@ class WorkshopsController extends Controller
             return redirect('workshop');
         }
     }
+
+
+    public function storeStudent(Request $request)
+    {
+        $workshops = Workshop::find($request->id);
+
+        //dd($workshops->students);
+
+        if ($request->students) {
+            foreach ($request->students as $key => $value) {
+                // si viene un string esto pasa cuando es un nuevo tag 
+                $students[$key] = $value;
+            }
+            $workshops->students()->attach($students, ['status' => '1']);
+        }
+    }
+
+    public function registerStudent($id)
+    {   
+
+        return view('workshops.register_student', [ 'workshop' => Workshop::findOrFail($id),
+                                                    'statuses' => Status::all(['id', 'name']),
+                                                    'students' => User::getListActiveUser(3)->get() ]);
+    }
+
 
     
     

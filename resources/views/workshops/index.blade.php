@@ -24,6 +24,8 @@
 			    					<td>Nombre</td>
 									<td>Cupos</td>
 									<td>Sobrecupos</td>
+									<td>Inscritos</td>
+									<td>C. Disponibles</td>
 			    					<td>Estado</td>
 			    					<td>Tipo</td>
 			    					<td>Profesor(es) a cargo</td>
@@ -37,6 +39,8 @@
 								    <td>{{ $taller->name }}</td>
 									<td>{{ $taller->quotas }}</td>
 									<td>{{ $taller->about_quotas }}</td>
+									<td>{{ count($taller->students) }}</td>
+									<td>{{ $taller->hasTotalQuotesAvaibles() }}</td>
 								    <td>{{ $taller->hasStatus->name }}</td>
 								    <td>{{ $taller->hasType->name}} </td>
 								    <td>
@@ -47,12 +51,16 @@
 								  	
 								    <td class="box-btnes">	
 										<a href="{{ route('workshops.edit', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+
+
 					    					
 								    	<form method="POST" action="{{ route('workshops.destroy', ['id' => $taller->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
 									    </form>
+
+									   	<a href="{{ route('workshops.registerStudent', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar">Registrar estudiante</a>
 				    			</tr>
 			    			@endforeach
 			    	</tbody>
