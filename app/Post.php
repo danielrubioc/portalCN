@@ -8,7 +8,7 @@ class Post extends Model
 {
     //
     protected $fillable = [
-        'title', 'subtitle', 'content', 'cover_page', 'category_id', 'status', 'user_id', 'url',
+        'title', 'subtitle', 'content', 'cover_page', 'category_id', 'status', 'user_id', 'url', 'type',
     ];
 
 
@@ -66,9 +66,8 @@ class Post extends Model
     //lista de post activos
     public function scopeGetListActivePost($query, $value)
     {   
-        if (!$value) {
-            $query->where("status", "=", 1)
-              ->orderBy('id','DESC');
+        if ($value == 0) {
+            $query->orderBy('id','DESC');
         } else {
             $query->where("status", "=", 1)
               ->where('type', '=', $value)

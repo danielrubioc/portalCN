@@ -137,7 +137,7 @@ class UserController extends Controller
     {
         //
 
-        return view('users.profile', ['user' => Auth::user(), 'roles' => Role::all(['id', 'name']) ]);
+        return view('users.profile', ['user' => Auth::user(), 'roles' => Role::all(['id', 'name']), 'statuses' => Status::all(['id', 'name']) ]);
 
     }
 
@@ -198,7 +198,7 @@ class UserController extends Controller
                 $user->last_name = $request->last_name;
                 $user->birth_date = $request->birth_date ? $request->birth_date : $user->birth_date;
                 $user->role_id = $request->role_id ? $request->role_id : $user->role_id;
-                $user->status = $request->status ? $request->status : 0;
+                $user->status = $request->status ? $request->status : $user->status;
                 $user->address = $request->address ? $request->address : $user->address;
                 $user->phone = $request->phone ? $request->phone : $user->phone; 
                 $user->cell_phone = $request->cell_phone ? $request->cell_phone : $user->cell_phone;

@@ -126,6 +126,41 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                    <label for="type" class="col-md-4 control-label">Tipo</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="type">
+                                            @foreach($types as $type)
+                                                @if ($workshops->type  == $type->id)
+                                                    <option value="{{$type->id}}" selected>{{$type->name}}</option>
+
+                                                    @else
+                                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                                @endif
+                                                    
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                    <label for="type" class="col-md-4 control-label">Estado</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="status">
+                                            @foreach($statuses as $status)
+                                                @if ($workshops->status  == $status->id)
+                                                    <option value="{{$status->id}}" selected>{{$status->name}}</option>
+
+                                                    @else
+                                                    <option value="{{$status->id}}">{{$status->name}}</option>
+                                                @endif
+                                                    
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
                                 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <div class="col-md-offset-1 col-md-10">

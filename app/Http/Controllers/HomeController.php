@@ -102,14 +102,14 @@ class HomeController extends Controller
 
     public function aboutWorkshop()
     {   
-        $workshops = Workshop::getListActiveWorkshops(null)->paginate(8); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(8); 
         return view('site/about_workshop', ['workshops' => $workshops]);
     }
 
 
     public function workshopsAll()
     {   
-        $workshops = Workshop::getListActiveWorkshops(null)->paginate(8); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(8); 
         return view('site/workshops_all', ['workshops' => $workshops]);
     }
 
@@ -177,7 +177,7 @@ class HomeController extends Controller
             $column = "category_get";
             $posts = Post::filterByRequest($column, $category)->paginate(4);
         } else {
-            $posts = Post::getListActivePost()->paginate(6);
+            $posts = Post::getListActivePost(1)->paginate(6);
         }
 
         

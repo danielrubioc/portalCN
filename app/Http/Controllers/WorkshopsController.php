@@ -13,6 +13,7 @@ use App\Student;
 use App\Teacher;
 use App\Lesson;
 use App\Status;
+use App\Type;
 use Image;
 use Auth;
 
@@ -26,7 +27,7 @@ class WorkshopsController extends Controller
     public function index()
     {
         //$tallers = Taller::paginate(15);
-        $workshops = Workshop::paginate(15);       
+        $workshops = Workshop::getListActiveWorkshops(0)->paginate(15);   
         
         return view('workshops.index', ['workshops' => $workshops,
                                         'statuses' => Status::all(['id', 'name']) ]);
@@ -40,7 +41,9 @@ class WorkshopsController extends Controller
      */
     public function create()
     {
-        return view('workshops.create', ['teachers' => User::getListActiveUser(2)->get()]);
+        return view('workshops.create', ['teachers' => User::getListActiveUser(2)->get(),
+                                        'types' => Type::all(['id', 'name']),
+                                        'statuses' => Status::all(['id', 'name'])]);
     
     }
 
@@ -75,7 +78,6 @@ class WorkshopsController extends Controller
         }
 
         $workshops = new Workshop($request->all());
-        $workshops->status = 2;
         $workshops->user_id = Auth::id();
                
         if( $request->hasFile('cover_page') ) {
@@ -169,7 +171,9 @@ class WorkshopsController extends Controller
             'all_teachers' => User::all(['id', 'name', 'last_name']),
             'teachers' => User::all(['id', 'name', 'last_name']),
             'teachersInWorkshops' => Workshop::findOrFail($id)->teachers()->get()->toArray(),
-            'lessons' => Lesson::all()->where('workshop_id', $id) ]            
+            'lessons' => Lesson::all()->where('workshop_id', $id),
+            'types' => Type::all(['id', 'name']),
+            'statuses' => Status::all(['id', 'name']) ]            
         );
     }
 
@@ -191,7 +195,8 @@ class WorkshopsController extends Controller
             $workshops->description = $request->description ? $request->description : $workshops->description;
             $workshops->quotas = $request->quotas ? $request->quotas : $workshops->quotas;
             $workshops->about_quotas = $request->about_quotas ? $request->about_quotas : $workshops->about_quotas;
-            $workshops->status = $request->status ? $request->status : 1;
+            $workshops->status = $request->status ? $request->status : $workshops->status;
+            $workshops->type = $request->type ? $request->type : $workshops->type;
 
             //viene una imagen nueva
             if ($request->cover_page) {
