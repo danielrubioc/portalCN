@@ -79,6 +79,17 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Tipo</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="type">
+                                    @foreach($types as $type)
+                                            <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="blog_category_id" class="col-md-4 control-label">Tags</label>
                             <div class="col-md-6">

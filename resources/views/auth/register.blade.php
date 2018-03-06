@@ -39,15 +39,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
-                            <label for="birth_date" class="col-md-4 control-label">Fecha de nacimiento</label>
+                        <div class="form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
+                            <label for="rut" class="col-md-4 control-label">Rut</label>
 
                             <div class="col-md-6">
-                                <input id="birth_date" type="date" class="form-control" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
+                                <input id="rut" type="text" class="form-control" name="rut" value="{{ old('rut') }}" required pattern="[0-9]{7,8}-[0-9Kk]{1}" value="" name="rut" id="rut" placeholder="12345678-5" title="ej. 12345678-5" autofocus>
 
-                                @if ($errors->has('birth_date'))
+                                @if ($errors->has('rut'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('birth_date') }}</strong>
+                                        <strong>{{ $errors->first('rut') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -102,4 +102,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

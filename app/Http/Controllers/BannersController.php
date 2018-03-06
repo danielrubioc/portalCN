@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 use App\Banner;
+use App\Status;
 use Image;
 //campo url
 use Illuminate\Support\Str as Str;
@@ -32,7 +33,7 @@ class BannersController extends Controller
     public function create()
     {
         //
-        return view('banners.create');
+        return view('banners.create', ['statuses' => Status::all(['id', 'name'])]);
     }
 
     /**
@@ -68,12 +69,7 @@ class BannersController extends Controller
         }
                 
         $banner = new Banner($request->all());
-        $banner->status = 0;
-        $banner->title = $request->title;
-        $banner->subtitle = $request->subtitle;
-        $banner->color = $request->color;
-        $banner->subcolor = $request->subcolor;
-        $banner->url = $request->url;
+
         if( $request->image ) {
             $image = $request->file('image');
             $random_string = md5(microtime());
@@ -111,17 +107,8 @@ class BannersController extends Controller
      */
     public function edit($id)
     {
-        $statuses = collect([
-            [
-                'name' => 'Oculto',
-                'id' => 0
-            ],
-            [
-                'name' => 'Visible',
-                'id' => 1
-            ]
-        ]);
-        return view('banners.edit', ['banner' => Banner::findOrFail($id), 'statuses' => $statuses->all() ]);
+
+        return view('banners.edit', ['banner' => Banner::findOrFail($id), 'statuses' => Status::all(['id', 'name']) ]);
     }
 
     /**
@@ -171,8 +158,8 @@ class BannersController extends Controller
             $banner->subtitle = $request->subtitle ? $request->subtitle : $banner->subtitle;
             $banner->color = $request->color ? $request->color : $banner->color;
             $banner->subcolor = $request->subcolor ? $request->subcolor : $banner->subcolor;
-            $banner->url = $request->url;
-            $banner->status = $request->status;
+            $banner->url = $request->url ? $request->url : $banner->url ;
+            $banner->status = $request->status ? $request->status : $banner->status ;
             
             //viene una imagen nueva
             if ($request->image && $request->image != '') {

@@ -12,10 +12,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">Ingresar</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-css-label" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -31,6 +31,7 @@
                                 @endif
                             </div>
                         </div>
+                        <br><br>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
@@ -59,7 +60,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    Ingresar
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -86,9 +87,11 @@
 
                 <h2>Ingresa</h2>
 
+
+
                 <div class="col-md-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="email" type="email" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus />
+                        <input id="email" type="email" class="effect-placeholder" name="email" value="{{ old('email') }}" required autofocus />
                         <label for="name">Correo electrónico</label>
 
                         @if ($errors->has('email'))
@@ -101,7 +104,7 @@
 
                 <div class="col-md-6 form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="password" type="password" class="form-control effect-placeholder" name="password" required />
+                        <input id="password" type="password" class="effect-placeholder" name="password" required />
                         <label for="name">Contraseña</label>
 
                         @if ($errors->has('password'))
@@ -153,7 +156,6 @@
 @section('inputHasContent')
     <script type="text/javascript">
     // JavaScript for labe  l effects only
-    console.log('ss');
             $('.input-effect input').blur(function(){
                 tmpval = $(this).val();
                 if(tmpval == '') {

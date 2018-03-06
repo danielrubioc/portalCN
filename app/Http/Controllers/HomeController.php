@@ -35,7 +35,7 @@ class HomeController extends Controller
     // vista para los profes
     public function indexTeacher()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
         $my_workshops = Workshop::join('students', function ($join) {
                             $join->on('students.workshop_id', '=', 'workshops.id')
                             ->where('students.user_id','=', Auth::user()->role_id );
@@ -55,14 +55,13 @@ class HomeController extends Controller
         //lista de talleres activos
        
 
-        $workshops = Workshop::getListActiveWorkshops()->paginate(15); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
         $my_workshops = Workshop::join('students', function ($join) {
                             $join->on('students.workshop_id', '=', 'workshops.id')
                             ->where('students.user_id','=', Auth::user()->role_id );
                         })
                         ->get();
-                        
-
+                    
         return view('dashboard_public', [
             'workshops' => $workshops,
             'my_workshops' => $my_workshops 
@@ -72,10 +71,17 @@ class HomeController extends Controller
     public function indexSite()
     {   
         
-        $banners = Banner::getListActiveBanners()->paginate(4); 
-        $workshops = Workshop::getListActiveWorkshops()->paginate(4); 
-        $posts = Post::getListActivePost()->paginate(5); 
-        return view('site/home', ['workshops' => $workshops, 'posts' => $posts, 'banners' => $banners]);
+        $banners = Banner::getListActiveBanners()->get(); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(4); 
+        $workshopsPrincipal = Workshop::getListActiveWorkshops(2)->paginate(1); 
+        $posts = Post::GetListActivePost(1)->paginate(6); 
+        $postsPrincipal = Post::GetListActivePost(2)->paginate(1); 
+        
+        return view('site/home', [  'workshops' => $workshops, 
+                                    'posts' => $posts, 
+                                    'banners' => $banners,
+                                    'postsPrincipal' => $postsPrincipal,
+                                    'workshopsPrincipal' => $workshopsPrincipal]);
     }
 
 
@@ -96,32 +102,46 @@ class HomeController extends Controller
 
     public function aboutWorkshop()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(8); 
         return view('site/about_workshop', ['workshops' => $workshops]);
     }
 
-    public function newsWorkshops()
-    {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(5); 
-        return view('site/workshops', ['workshops' => $workshops]);
-    }
 
     public function workshopsAll()
     {   
-        $workshops = Workshop::getListActiveWorkshops()->paginate(4); 
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(8); 
         return view('site/workshops_all', ['workshops' => $workshops]);
+    }
+
+    public function showWorkshopDetail($slug = null)
+    {   
+        if ($slug) {
+            $workshop = Workshop::where('url','=', $slug)->firstOrFail();           
+            return view('site/workshop_detail', ['workshop' => $workshop ]);
+        }
     }
     
  
     public function sendContact(Request $request)
     {
-
+        $email = $request['email'];
         
         Mail::send('emails.contact-notification', $request->all(), function($msj){
             $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
             $msj->to('contacto@deportescerronavia.cl');
         });
-        
+
+        Mail::send('emails.contact', $request->all(), function($msj) use ($email){
+            $msj->subject('Contacto  - Corporación del Deporte Cerro Navia');
+            $msj->from('contacto@deportescerronavia.cl');
+            $msj->to($email);
+        });
+
+        if (Mail::failures()) {
+            flash('Contacto no pudo ser enviado')->error();
+            return view('site/contact');
+        }
+
         flash('Contacto enviado correctamente!')->success();
         return view('site/contact');
                 
@@ -157,11 +177,10 @@ class HomeController extends Controller
             $column = "category_get";
             $posts = Post::filterByRequest($column, $category)->paginate(4);
         } else {
-            $posts = Post::getListActivePost()->paginate(6);
+            $posts = Post::getListActivePost(1)->paginate(6);
         }
 
         
-       
         return view('site.post_categories', ['posts' => $posts, 
                                             'category' => $category,
                                             'categories' => Category::getListActiveCategories()->get(), 
@@ -171,16 +190,38 @@ class HomeController extends Controller
     public function codeVerify(Request $request)
     {
         //
-        die('verificanco');
-        
-        Mail::send('emails.contact', $request->all(), function($msj){
-            $msj->subject('Corrreo de contacto');
-            $msj->to('daniel.janorc@gmail.com');
-        });
+        if ($request->code) {
 
-        flash('Contacto enviado correctamente!')->success();
-        return view('site/contact');
+            $user = User::where('validate','=', $request->code)->first();
+            
+            if ($user) {
+                if ($request->email ==  $user->email) {
+                    $user->validate = null;
+                    $user->status = 1;
+
+                    if($user->save()){
+                       flash('Usuario activado con éxito, ahora puedes iniciar sesión')->success();
+                        return redirect('login');
+                    }    
+                    
+                }
+            } else {
+                flash('Código erróneo')->error();
+                return view('site/valid_user_token');
+            }
+
+        } else {
+            flash('Código erróneo')->error();
+            return view('site/valid_user_token');
+        }
+        
+
                 
+    }
+
+    public function activateUser()
+    {
+        return view('site/valid_user_token');
     }
 
 

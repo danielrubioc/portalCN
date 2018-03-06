@@ -8,7 +8,7 @@ class Post extends Model
 {
     //
     protected $fillable = [
-        'title', 'subtitle', 'content', 'cover_page', 'category_id', 'status', 'user_id', 'url',
+        'title', 'subtitle', 'content', 'cover_page', 'category_id', 'status', 'user_id', 'url', 'type',
     ];
 
 
@@ -25,6 +25,16 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Tag', 'post_tag');
+    }
+
+    public function hasStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
+
+    public function hasType()
+    {
+        return $this->hasOne('App\Type', 'id', 'type');
     }
 
     public function scopeFilterByRequest($query, $column, $value)
@@ -53,9 +63,18 @@ class Post extends Model
 
     }
 
-    public function scopeGetListActivePost($query)
+    //lista de post activos
+    public function scopeGetListActivePost($query, $value)
     {   
-        $query->where(\DB::raw("status"), "=", 1)->orderBy('id','DESC');
+        if ($value == 0) {
+            $query->orderBy('id','DESC');
+        } else {
+            $query->where("status", "=", 1)
+              ->where('type', '=', $value)
+              ->orderBy('id','DESC');
+        }
+        
     }
+
 
 }

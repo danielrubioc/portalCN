@@ -70,10 +70,13 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
-                            <label for="color" class="col-md-4 control-label"> Color </label>
+                            <label for="color" class="col-md-4 control-label">Color</label>
 
                             <div class="col-md-6">
-                                <input id="color" type="text" class="form-control" name="color" value="{{ old('color') }}" required autofocus>
+                                <div id="colorbx" class="input-group colorpicker-component" title="selecciona el color">
+                                  <input id="color" type="text" class="form-control input-lg" value="#6D2781" name="color" value="{{ old('color') }}" required autofocus/>
+                                  <span class="input-group-addon"><i></i></span>
+                                </div>
 
                                 @if ($errors->has('color'))
                                     <span class="help-block">
@@ -81,13 +84,31 @@
                                     </span>
                                 @endif
                             </div>
+                        </div> 
+
+                        <div class="form-group{{ $errors->has('subcolor') ? ' has-error' : '' }}">
+                            <label for="subcolor" class="col-md-4 control-label">SubColor</label>
+
+                            <div class="col-md-6">
+                                <div id="colorbxsub" class="input-group colorpicker-component" title="selecciona el color">
+                                  <input id="subcolor" type="text" class="form-control input-lg" value="#fffff" name="subcolor" value="{{ old('subcolor') }}" required autofocus/>
+                                  <span class="input-group-addon"><i></i></span>
+                                </div>
+                                
+                                @if ($errors->has('subcolor'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('subcolor') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
+
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="teachers" class="col-md-4 control-label">Profesores a Cargo</label>
                             <div class="col-md-6">
                                 
-                                <select class="form-control js-multiple" name="teachers[]" multiple="multiple" required>
+                                <select class="form-control js-multiple form-control" name="teachers[]" multiple="multiple" required>
                                 
                                     @foreach($teachers as $teacher)
                                             <option value="{{$teacher->id}}">{{$teacher->name}} {{$teacher->last_name}}</option>
@@ -126,6 +147,42 @@
                             </div>
                         </div>
                         
+                        <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-4 control-label"> Lugar </label>
+
+                            <div class="col-md-6">
+                                <input id="title" type="text" class="form-control" name="place" value="{{ old('place') }}" required autofocus>
+
+                                @if ($errors->has('place'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('place') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Tipo</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="type">
+                                    @foreach($types as $type)
+                                        <option value="{{$type->id}}">{{$type->name}}</option>  
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Estado</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="status">
+                                    @foreach($statuses as $status)
+                                        <option value="{{$status->id}}">{{$status->name}}</option>   
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <div class="col-md-offset-1 col-md-10">
                                 <textarea id="content"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
@@ -153,23 +210,25 @@
     </div>
 </div>
     
-    @section('select2')
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+@section('select2')
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script src="{{ asset('js/bootstrap-colorpicker.min.js') }}"></script>
     <script type="text/javascript">
         $(".js-multiple").select2({
             placeholder: "Selecciona los Profesores",
-            teachers: true,
-        })
+            
+        });
+        $('#content').ckeditor();
+        $(function () {
+            $('#colorbx, #colorbxsub').colorpicker({
+              autoInputFallback: false
+            });
+        });
+       
     </script>
-    @stop
-    @section('ckeditor')
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
-    <script>
-    $('#content').ckeditor();
-    </script>
-    @stop
+@stop
 
 @endsection
 

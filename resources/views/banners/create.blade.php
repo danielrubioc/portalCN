@@ -96,7 +96,7 @@
 
                             <div class="col-md-6">
                                 <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" autofocus>
-                                <label class="sub-instr">Si es url dentro del sitio " /tercer-tiempo/detalle/cancha_loca "</label>
+                
                                 @if ($errors->has('url'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('url') }}</strong>
@@ -104,6 +104,17 @@
                                 @endif
                             </div>
 
+                        </div>
+
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Estado</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="status">
+                                    @foreach($statuses as $status)
+                                        <option value="{{$status->id}}">{{$status->name}}</option>   
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group">

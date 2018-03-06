@@ -25,92 +25,115 @@
 
 	</section>
 
+	<section class="workshop-section" style="background-image: url('{{url('/images')}}/bg-disciplinas.jpg')">
+		<div class="container">
+			<h2 class="titulo-home titulo-princ title-home" style="text-align: right;">NUESTRAS<br><strong>DISCIPLINAS</strong></h2>
+			<div class="content-workshops">
+				<div class="row">
+					<div class="col-md-8 col-xs-8">
+						@foreach ($workshops as $key => $taller)				
+							<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-6 col-xs-6 ult-wrk">					
+								<div class="box-gral-work-item">
+								<div class="over-hidde-img" >
+									<div class="img img-r" style=" background-image: url('/uploads/workshop/{{$taller->cover_page}}');"></div>
+									<div class="info-teacher">Cupos disponibles: {{ $taller->hasTotalQuotes() }} </div>
+								</div>
+								<div class="txt-item-work">
+									<h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
+									<p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 60) }} </p>
+									
+								</div>	
+								</div>					
+							</a>				 
+						@endforeach	
 
-	<section class="content col-md-12 conten-workshop-gral" style="background-image: url('{{url('/images')}}/bg-disciplinas.jpg')" >
-		<h2 class="titulo-home titulo-princ" style="text-align: right;">NUESTRAS<br><strong>DISCIPLINAS</strong></h2>
-
-		<div class="col-md-7">
-			@foreach ($workshops as $key => $taller)				
-				<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-6 ult-wrk">					
-					<div class="img" style=" background-image: url('/uploads/workshop/{{$taller->cover_page}}');">
 					</div>
-					<div class="txt">
-						<h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
-						<p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 40) }} </p>
-					</div>						
-				</a>				 
-			@endforeach
-		</div>
-<!-- Destacada -->
-		<div class="col-md-5">	
-			<div class="destacada-wrk">
-				<a href="{{ url('/disciplina') }}/{{$workshops[0]->url}}">					
-					<div class="img" style=" background-image: url('/uploads/workshop/{{$workshops[0]->cover_page}}');">
+					<div class="col-md-4 col-xs-4 no-padding">
+						@foreach ($workshopsPrincipal as $key => $tallerP)				
+							<a href="{{ url('/disciplina') }}/{{$tallerP->url}}" class="col-md-12 ult-wrk">					
+								<div class="box-gral-work-item work-item-principal">
+								<div class="over-hidde-img" >
+									<div class="img img-r" style=" background-image: url('/uploads/workshop/{{$tallerP->cover_page}}');"></div>
+									<div class="info-teacher">Cupos disponibles: {{ $taller->hasTotalQuotes() }}</div>
+								</div>
+								<div class="txt-item-work">
+									<h2 class="animable-element" style="opacity: 1;">{{$tallerP->name}}</h2>
+									<p class="animable-element" style="opacity: 1;">{{ str_limit($tallerP->description, 120) }} </p>
+								</div>	
+								</div>					
+							</a>				 
+						@endforeach	
 					</div>
-					<div class="txt">
-						<h2 class="animable-element" style="opacity: 1;">{{$workshops[0]->name}}</h2>
-						<p class="animable-element" style="opacity: 1;">{{ str_limit($workshops[0]->description, 40) }} </p>
-					</div>						
-				</a>
-			</div>		
-		</div>
-		<button class="btn-home">VER MÁS</button>
-	</section>
-
-	<section class="container-fluid">
-		<h2 class="titulo-home">CERRO NAVIA DEPORTES</h2>
-	</section>
-
-	<section class="container-fluid equipo-home" style="background-image: url('{{url('/images')}}/bg-nosotros.jpg')">
-		<div class="col-md-offset-1 col-md-5 izq">
-			
-			<p>¿QUÉ NOS MOTIVA?</p>
-			<span>Creemos que fomentar y difundir el deporte es fundamental para nuestra calidad de vida y salud, tanto fisica y mental, además creemos que el bienestar y el deporte son un derecho de todos y velamos para que toda la comunidad sea parte.</span>
-			<button>LEER MÁS</button>
-		</div>
-		<div class="col-md-5 der">
-			<h2>CERRO NAVIA</h2>
-			<span>DEPORTES</span>
-			<button>CONOCE AL EQUIPO</button>		
-		</div>
-	</section>
-
-	
-
-	
-	
-	<section  class="content col-md-12 conten-home-tercer" style="background-image: url('{{url('/images')}}/foto-fondo-tercertiempo.jpg'); ">
-
-		<h2 class="titulo-home titulo-princ" style="text-align: left;">TERCER<br><strong>TIEMPO</strong></h2>
-		<!-- Destacada -->
-		<div class="col-md-5">	
-			<div class="destacada-wrk">
-				<a href="{{ url('/disciplina') }}/{{$posts[0]->url}}">					
-					
-					<div class="txt">
-						<h2 class="animable-element" style="opacity: 1;">{{$posts[0]->title}}</h2>
-						<p class="animable-element" style="opacity: 1;">{{ str_limit($posts[0]->content, 40) }} </p>
-					</div>
-					<div class="img" style=" background-image: url('/uploads/workshop/{{$posts[0]->cover_page}}');">
-					</div>					
-				</a>
+				</div>
+				<a class="btn-home" href="{{ url('/disciplinas') }}">VER MÁS</a>
 			</div>
-
-		</div>		
-	
-		<div class="col-md-7 home-tercertiempo" >
-			@foreach ($posts as $key => $post)			
-				<a href="{{ url('/disciplina') }}/{{$taller->url}}" class="col-md-4 ult-wrk">					
-					<div class="img" style="background-image: url('{{url('/images')}}/slider-2-min-min.png')">
-						<br><br> <br>
-					</div>
-					<div class="txt">
-						<h2 class="animable-element" style="opacity: 1;">{{$post->title}}</h2>
-					</div>			
-				</a>
-			@endforeach
 		</div>
-</section>
+	</section>
+
+	<section class="team-section" style="background-image: url('{{url('/images')}}/bg-nosotros.jpg')">
+		<div class="container">
+			<div class="conten-team">
+				<div class="col-md-6 col-xs-6 info-text-team">			
+					<h1>¿QUÉ NOS MOTIVA?</h1>
+					<p>Creemos que fomentar y difundir el deporte es fundamental para nuestra calidad de vida y salud, tanto fisica y mental, además creemos que el bienestar y el deporte son un derecho de todos y velamos para que toda la comunidad sea parte.</p>
+					<br>
+					<a class="btn-home btn-white-in-home" href="{{ url('/nosotros') }}">LEER MÁS</a>
+				</div>
+				<div class="col-md-6 col-xs-6 title-team">
+					<h2 class="titulo-home titulo-princ title-home title-especial-shadow" style="text-align: right;">CERRO NAVIA<br>
+						<strong>DEPORTES</strong></h2>
+
+					<a  href="{{ url('/equipo') }}" class="btn-home btn-white-in-home border-black-light">CONOCE AL EQUIPO</a>		
+				</div>
+
+			</div>
+				
+		</div>
+	</section>
+
+	<section class="posts-section" style="background-image: url('{{url('/images')}}/foto-fondo-tercertiempo.jpg'); ">
+		<div class="container">
+			<h2 class="titulo-home titulo-princ title-home" style="text-align: left;">TERCER<br><strong>TIEMPO</strong></h2>
+			<div class="conten-posts">
+				<div class="col-md-4 col-xs-4 no-padding">
+					@foreach ($postsPrincipal as $key => $postsPrincipal)				
+						<a href="{{ URL::to('/') }}/{{ $postsPrincipal->category->url }}/detalle/{{ $postsPrincipal->url }}" class="col-md-12 ult-wrk">					
+							<div class="box-gral-work-item work-item-principal item-posts-home-principal">
+								<div class="txt-item-work">
+									<span>{{ date('d-m-Y', strtotime($postsPrincipal->created_at)) }} | {{ $postsPrincipal->category->name  }}</span>
+									<h2 class="animable-element" style="opacity: 1;">{{$postsPrincipal->title}}</h2>
+									<p class="animable-element" style="opacity: 1;">{!! str_limit($postsPrincipal->content, 250) !!} </p>
+								</div>
+								<div class="over-hidde-img" >
+									<div class="img img-r" style=" background-image: url('/uploads/news/{{$postsPrincipal->cover_page}}');"></div>					
+								</div>	
+							</div>					
+						</a>				 
+					@endforeach	
+				</div>
+				<div class="col-md-8 col-xs-8">
+					@foreach ($posts as $key => $post)				
+						<a href="{{ URL::to('/') }}/{{ $post->category->url }}/detalle/{{ $post->url }}" class="col-md-4 col-xs-4 ult-wrk">					
+							<div class="box-gral-work-item item-posts-home">
+							<div class="over-hidde-img" >
+								<div class="img img-r" style=" background-image: url('/uploads/news/{{$post->cover_page}}');"></div>
+								<div class="info-teacher">{{ date('d-m-Y', strtotime($post->created_at)) }} | {{ $post->category->name  }}</div>
+							</div>
+							<div class="txt-item-work">
+								<h2>{!! $post->title !!} </h2>
+							</div>	
+							</div>					
+						</a>				 
+					@endforeach
+
+				</div>
+
+			</div>
+				
+		</div>
+	</section>
+
+
 </span>	
 
 

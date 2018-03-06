@@ -2,30 +2,73 @@
 
 @section('content')
 	<div class="main-talleres">
-        <div class="flotant-button">
-            <button class="search-button clickable"><i class="fa fa-search" aria-hidden="true"></i> </button>
-        </div>
-        <div class="search-open">
+        <span class="hidden-xs">
+            <div class="container content-workshop">
+                
+                <div class="col-md-12 title-posts">
+                                    <span><strong>Aviso importante:</strong> los cursos y disciplinas de la temporada 2018 estarán disponibles en marzo, una vez disponibles podrás inscribirte </span>
 
-                <button class="search-button clickable-out"><i class="fa fa-times" aria-hidden="true"></i> </button>
-               
-                <br>
-
-                <div class="content-info-search">
-                 <p >Busca por nombre de disciplina</p>
-                <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('HomeController@workshopsAll') }}">
-                    <input class="form-control mr-sm-2" type="search" name="title" placeholder="Busca por titulo" aria-label="Search">
-                    <br>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
+                    <h1>Disciplinas</h1>
                 </div>
-            
-        </div>
 
+                <div class="container workshop-all">
+                    <div class="info-taller">
+                        
+                            <div id="workshop-modify-container">
+                                    @foreach ($workshops as $key => $taller)
+                                        <div class="col-xs-3 ">
+                                            <div class="item-disc " data-owl="{{$key}}">
+                                                <div class="img-disc-all">
+                                                    <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
+                                                </div>
+                                                
+                                                <div class="info-detail">
+                                                    <h2>{{$taller->name}}</h2>
+                                                    <p>{{ str_limit($taller->description, 80) }}</p>
+                                                    <div class="suscrit-regis">
+                                                        <span>Próximamente</span>
+                                                        <span>Próximamente </span>
+
+                                                    </div>
+                                                    <div class="view-regis">
+                                                        <span><a href="{{ url('/disciplina') }}/{{$taller->url}}">Ver más</a></span>
+                                                        <span><a href="{{ url('/disciplina') }}/{{$taller->url}}">Inscríbete</a></span>
+
+                                                    </div>
+                                                </div> 
+                                            </div>   
+                                        </div>
+                                    @endforeach   
+                            </div>
+                        
+                    </div>
+                    <div class="col-md-12 pagination-work">
+                        {{ $workshops->links() }}
+                    </div>
+                
+
+                </div>
+            </div>
+        </span>
             <!--mobil-->
 
             <span class="visible-xs">
+                <div class="search-open">
 
+                        <button class="search-button clickable-out"><i class="fa fa-times" aria-hidden="true"></i> </button>
+                       
+                        <br>
+
+                        <div class="content-info-search">
+                             <p >Busca por nombre de disciplina</p>
+                            <form class="form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('HomeController@workshopsAll') }}">
+                                <input class="form-control mr-sm-2" type="search" name="title" placeholder="Busca por titulo" aria-label="Search">
+                                <br>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    
+                </div>
                 <div class="container workshop-all">
                     <h1>Disciplinas</h1>
                     <div class="info-taller">

@@ -11,9 +11,14 @@ class Category extends Model
         'name', 'status', 'url'
     ];
 
-     public function posts()
+    public function posts()
     {
         return $this->hasMany('App\Post', 'id', 'category_id');
+    }
+
+    public function hasStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
     }
 
     public function scopeGetListActiveCategories($query)

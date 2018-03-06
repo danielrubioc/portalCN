@@ -95,7 +95,7 @@ class TagsController extends Controller
         $tag = Tag::find($id); 
             if ($tag) {
                 $tag->name = $request->name ?  $request->name : $tag->name;
-                $tag->status = $request->status ? $request->status : 0;
+                $tag->status = $request->status ? $request->status : $request->status;
                 $tag->url = $request->name ?  Str::slug($request->name, '-') : $tag->url;
 
                 if ($tag->save()) {

@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Role', 'id', 'role_id');
     }
 
+    public function hasStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
+
     public function workshop()
     {
         return $this->belongsToMany('App\Workshop', 'teachers', 'workshop_id', 'teacher_id');
@@ -61,6 +66,18 @@ class User extends Authenticatable
 
     }
 
+    public function scopeGetListActiveUser($query, $value)
+    {   
+        if (!$value) {
+            $query->where("status", "=", 1)
+              ->orderBy('id','DESC');
+        } else {
+            $query->where("status", "=", 1)
+              ->where('role_id', '=', $value)
+              ->orderBy('id','DESC');
+        }
+        
+    }
 
     public function sendPasswordResetNotification($token)
     {

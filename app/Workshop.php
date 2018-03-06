@@ -10,7 +10,7 @@ class Workshop extends Model
     protected $table= "workshops";
     
     protected $fillable = [
-        'name', 'description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page', 'url', 'subtitle'
+        'name', 'place', 'color', 'type', 'subcolor','description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page', 'url', 'subtitle'
     ];
 
     public function user()
@@ -25,6 +25,19 @@ class Workshop extends Model
         //return $this->belongsToMany('App\Tag', 'post_tag');
     }
 
+    public function hasStatus()
+    {
+        return $this->hasOne('App\Status', 'id', 'status');
+    }
+
+    public function hasType()
+    {
+        return $this->hasOne('App\Type', 'id', 'type');
+    }
+
+    public function hasTotalQuotes() {
+        return $this->quotas - $this->about_quotas;
+    }
 
     public function teachers()
     {
@@ -38,22 +51,35 @@ class Workshop extends Model
 
             switch ($column) {
                 case 'role_id':
-                    $query->where(\DB::raw("role_id"), "=", $value);
+                    $query->where(\DB::raw("role_id"), "=", $value)->orderBy('id','DESC');;
                     break;
                 case 'email':
-                    $query->where(\DB::raw("email"), "LIKE", "%$value%");
+                    $query->where(\DB::raw("email"), "LIKE", "%$value%")->orderBy('id','DESC');;
                     break;
                 case 'status':
-                    $query->where(\DB::raw("status"), "LIKE", "%$value%");
+                    $query->where(\DB::raw("status"), "LIKE", "%$value%")->orderBy('id','DESC');;
                     break;
             }
         }
     }
 
-    public function scopeGetListActiveWorkshops($query)
+
+
+
+    //lista de post activos
+    public function scopeGetListActiveWorkshops($query, $value)
     {   
-        $query->where(\DB::raw("status"), "=", 1)->orderBy('id','DESC');
+        if ($value == 0) {
+            $query->orderBy('id','DESC');
+        } else {
+            $query->where("status", "=", 1)
+              ->where('type', '=', $value)
+              ->orderBy('id','DESC');
+        }
+        
     }
+
+
 
 }
 

@@ -5,14 +5,11 @@
 
 	        <div class="container">
 	        	<div class="col-md-12 title-posts">
-	        		
 	        		@if ($category == 'eventos')
                         <h1>Eventos</h1>
                         @elseif ($category == 'tercer-tiempo')
                         <h1><span>Tercer</span> Tiempo</h1>	
                     @endif
-
-
 	        	</div>
 			    @if ($posts)
 					
