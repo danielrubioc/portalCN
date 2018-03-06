@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str as Str;
 use App\Http\Requests;
 use App\User;
 use App\Workshop;
@@ -16,6 +17,7 @@ use App\Status;
 use App\Type;
 use Image;
 use Auth;
+
 
 class WorkshopsController extends Controller
 {
@@ -30,7 +32,8 @@ class WorkshopsController extends Controller
         $workshops = Workshop::getListActiveWorkshops(0)->paginate(15);   
         
         return view('workshops.index', ['workshops' => $workshops,
-                                        'statuses' => Status::all(['id', 'name']) ]);
+                                         'statuses' => Status::all(['id', 'name']),
+                                        'types' => Type::all(['id', 'name']) ]);
             
     }
 
@@ -79,6 +82,7 @@ class WorkshopsController extends Controller
 
         $workshops = new Workshop($request->all());
         $workshops->user_id = Auth::id();
+        $workshops->url = Str::slug($request->url ? $request->url : $request->name, '_');
                
         if( $request->hasFile('cover_page') ) {
             $avatar = $request->file('cover_page');
@@ -97,37 +101,17 @@ class WorkshopsController extends Controller
                 }
                 $workshops->teacher()->attach($teachers);
             }
-            $lastInsertedId = $workshops->id;
-            flash('Taller creado correctamente! Continua agregando el horario y fecha de las clases para este taller.')->success();
-            $tabName = array(
-                'name' => 'lessons',
-            );
 
-            return view('workshops.edit', [
-                'workshops' => Workshop::findOrFail($lastInsertedId), 
-                'tab' => $tabName,
-                'all_teachers' => User::all(['id', 'name', 'last_name']),
-                'teachers' => User::all(['id', 'name', 'last_name']),
-                'teachersInWorkshops' => Workshop::findOrFail($lastInsertedId)->teachers()->get()->toArray(),
-                'lessons' => Lesson::all()->where('workshop_id', $lastInsertedId) ]
-            );
+            $lastInsertedId = $workshops->id;
+            flash('Taller creado correctamente!')->success();
+            return redirect()->route('workshops.edit', $workshops->id);
 
         } else {
-            flash('no se pudo crear la categoría')->error();
-            return view('posts.create');
-        }
-
-
-
-        $taller = new Taller( $request->all() );
-        $taller->status = 1;
-        if ($taller->save()) {
-            flash('Taller creado correctamente!')->success();
-            return redirect('talleres');
-        }else {
             flash('no se pudo crear el Taller')->error();
-            return view('talleres.create');
+            return view('workshops.create');
         }
+
+
     }
 
     /**
@@ -185,13 +169,51 @@ class WorkshopsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        
+    {   
+        $messages = array(
+            'required' => ':attribute es obligatorio',
+            'max' => ':attribute no puede ser mayor que :max caracteres',
+            'min'      => ':attribute moet minimaal :min karakters bevatten.',
+        );
+        // validacion segun Validator
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:199',
+            'description' => 'required',
+            'place' => 'required',
+            'cover_page' => 'mimes:jpeg,jpg,png',
+            
+        ],  $messages);
+
+       
+        if ($validator->fails()) {
+            return redirect('workshops/'.$id.'/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $workshops = Workshop::find($id);
+        //si la url es distinta valido que no se repita en bd
+        if (($workshops->url != $request->url)) {
+            $messages = array(
+                'url.unique'    => 'La url ya ha sido registrada.',
+                'required' => 'El campo es obligatorio',
+            );
+            $validRequest = $request->all();
+            $validRequest['url'] = Str::slug($validRequest['url'], '_');
+            $validator = Validator::make($validRequest, [
+                'url' => 'required|string|max:255|unique:workshops',
+            ],  $messages);
+            if ($validator->fails()) {
+                return redirect('workshops/'.$id.'/edit')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+        }
+
         if ($workshops) {
             $workshops->name = $request->name ? $request->name : $workshops->name;
             $workshops->subtitle = $request->subtitle ? $request->subtitle : $workshops->subtitle;
-            $workshops->url = $request->url ? $request->url : $workshops->url;
+            $workshops->url = $request->url ? Str::slug($request->url, '_') : $workshops->url;
             $workshops->description = $request->description ? $request->description : $workshops->description;
             $workshops->quotas = $request->quotas ? $request->quotas : $workshops->quotas;
             $workshops->about_quotas = $request->about_quotas ? $request->about_quotas : $workshops->about_quotas;
@@ -216,29 +238,15 @@ class WorkshopsController extends Controller
             if ($workshops->save()) {
 
                 //si vienen los tags
-                /*if ($request->teachers) {
+                if ($request->teachers) {
+                    $workshops->teacher()->detach();
                     foreach ($request->teachers as $key => $value) {
                         // si viene un string esto pasa cuando es un nuevo tag 
-                        if(is_numeric($value) == false) {
-                            //busco por nombre los tags que vienen
-                            $teacher = Teacher::firstOrNew(['name' => $value]);
-                            //si no existe lo creo
-                            if (!$tag->exists) {
-                                $tag = new Tag();
-                                $tag->status = 1;
-                                $tag->name = $value;
-                                $tag->save();
-                                // agrego el id al arreglo $tags
-                                $tags[$key] = $tag->id;
-                            } 
-                        } else {
-                            $tags[$key] = $value;  
-                        }
-
+                        $teachers[$key] = $value;
                     }
-                    $news->tags()->detach();
-                    $news->tags()->attach($tags);
-                }*/
+                    $workshops->teacher()->attach($teachers);
+                }
+
 
                 if ($request->show) {
                     flash('La noticia '. $workshops->title .' se actualizó correctamente!')->success();

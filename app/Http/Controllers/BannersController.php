@@ -55,10 +55,10 @@ class BannersController extends Controller
         );
         // validacion segun Validator
         $validator = Validator::make($request->all(), [
-            'title' => 'required|max:300',
-            'subtitle' => 'required|max:200',
-            'color' => 'required|max:100',
-            'subcolor' => 'required|max:100',
+            'title' => 'max:300',
+            'subtitle' => 'max:200',
+            'color' => 'max:100',
+            'subcolor' => 'max:100',
             
         ],  $messages);
 
@@ -122,13 +122,10 @@ class BannersController extends Controller
     {
         //
      
-
         $banner = Banner::find($id); 
         if ($banner) {
                 // mensajes de validacion
             if (!$request->show) {
-
-            
                 $messages = array(
                     'unique'    => ':attribute ya ha sido registrada.',
                     'required' => ':attribute es obligatorio',
@@ -138,15 +135,15 @@ class BannersController extends Controller
                 );
                 // validacion segun Validator
                 $validator = Validator::make($request->all(), [
-                    'title' => 'required|max:300',
-                    'subtitle' => 'required|max:200',
-                    'color' => 'required|max:100',
+                    'title' => 'max:300',
+                    'subtitle' => 'max:200',
+                    'color' => 'max:100',
                     'image' => 'mimes:jpeg,jpg,png',
                     
                 ],  $messages);
 
                 if ($validator->fails()) {
-                    return redirect('banners/create')
+                    return redirect('banners/'.$id.'/edit')
                                 ->withErrors($validator)
                                 ->withInput();
                 }

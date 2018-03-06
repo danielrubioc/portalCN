@@ -19,14 +19,14 @@ Route::get('/', function () {
                 case 'admin':
                     return redirect()->action('HomeController@index');
                     break;
-                
                 case 'teacher':
                     return redirect()->action('HomeController@indexTeacher');
-                    //return view('/site/home');
                     break;
-
                 case 'public':
                     return redirect()->action('HomeController@indexPublic');
+                    break;
+                case 'publisher':
+                    return redirect()->action('HomeController@indexPublisher');
                     break;
         }    
     	
@@ -42,14 +42,14 @@ Route::get('/dashboard', function () {
                 case 'admin':
                     return redirect()->action('HomeController@index');
                     break;
-                
                 case 'teacher':
                     return redirect()->action('HomeController@indexTeacher');
-                    //return view('/site/home');
                     break;
-
                 case 'public':
                     return redirect()->action('HomeController@indexPublic');
+                    break;
+                case 'publisher':
+                    return redirect()->action('HomeController@indexPublisher');
                     break;
         }    
     } else{
@@ -65,6 +65,7 @@ Auth::routes();
 Route::get('/admin', 'HomeController@index')->middleware('validRole:admin');
 Route::get('/profesor', 'HomeController@indexTeacher')->middleware('validRole:teacher');
 Route::get('/publico', 'HomeController@indexPublic')->middleware('validRole:public');
+Route::get('/editor', 'HomeController@indexPublisher')->middleware('validRole:publisher');
 
 
 
@@ -85,17 +86,17 @@ Route::post('profile', 'UserController@update_avatar')->middleware('auth');
 //************ blog *****************//
 
 //category
-Route::resource('categories', 'CategoriesController')->middleware('validRole:admin');
+Route::resource('categories', 'CategoriesController')->middleware('validRole:admin.publisher');
 //post
-Route::resource('posts', 'PostsController')->middleware('validRole:admin');
+Route::resource('posts', 'PostsController')->middleware('validRole:admin.publisher');
 //gallery
-Route::resource('galleries', 'GalleriesController')->middleware('validRole:admin');
+Route::resource('galleries', 'GalleriesController')->middleware('validRole:admin.publisher');
 //tags
-Route::resource('tags', 'TagsController')->middleware('validRole:admin');
+Route::resource('tags', 'TagsController')->middleware('validRole:admin.publisher');
 //taller
 Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher');
 //banner
-Route::resource('banners', 'BannersController')->middleware('validRole:admin');
+Route::resource('banners', 'BannersController')->middleware('validRole:admin.publisher');
 //Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');
 
 //lesson

@@ -30,7 +30,7 @@
                             <label for="title" class="col-md-4 control-label">Título</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
+                                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" autofocus>
 
                                 @if ($errors->has('title'))
                                     <span class="help-block">
@@ -61,7 +61,7 @@
                             <label for="subtitle" class="col-md-4 control-label">Subtitulo</label>
 
                             <div class="col-md-6">
-                                <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ old('subtitle') }}" required autofocus>
+                                <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ old('subtitle') }}" autofocus>
 
                                 @if ($errors->has('subtitle'))
                                     <span class="help-block">

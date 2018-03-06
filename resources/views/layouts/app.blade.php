@@ -67,7 +67,15 @@
                                     <li><a href="">Estadísticas</a></li>
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
-
+                            @endif
+                            @if (Auth::user()->hasRole->name == 'publisher')
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
+                                    <li><a href="{{ URL::to('posts') }}">Blog</a></li>
+                                    <li><a href="{{ URL::to('tags') }}">Tags</a></li>
+                                    <li><a href="{{ URL::to('banners') }}">Banners</a></li>
+                                    <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
+                                </ul>
                             @endif
                         @endif
                     </ul>
@@ -143,6 +151,12 @@
                                 <a href="">Estadísticas <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             </ul>
 
+                        @endif
+                        @if (Auth::user()->hasRole->name == 'publisher')
+                            <a href="{{ URL::to('categories') }}">Categorías blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                  
                         @endif
                         <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
