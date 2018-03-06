@@ -18,11 +18,14 @@ class Workshop extends Model
         return $this->hasOne('App\User', 'id', 'user_id');
     }
 
-    public function teacher()
-    {
-    
-        return $this->belongsToMany('App\Teacher', 'teachers');
-        //return $this->belongsToMany('App\Tag', 'post_tag');
+    //pivot
+    public function teachers(){
+        return $this->belongsToMany('App\User', 'teachers', 'workshop_id', 'teacher_id')->withPivot('status')->withTimestamps();
+    }
+
+    //pivot
+    public function students(){
+        return $this->belongsToMany('App\User', 'students', 'workshop_id', 'user_id')->withPivot('status')->withTimestamps();
     }
 
     public function hasStatus()
@@ -35,14 +38,18 @@ class Workshop extends Model
         return $this->hasOne('App\Type', 'id', 'type');
     }
 
+    //total de cupos + sobrecupós
     public function hasTotalQuotes() {
-        return $this->quotas - $this->about_quotas;
+        return $this->quotas + $this->about_quotas;
     }
 
-    public function teachers()
-    {
-        return $this->belongsToMany('App\User', 'teachers', 'workshop_id', 'teacher_id');
+    //total de cupos disponibles 
+    //**traigo los registros tabla pivot y le resto al total de quotas
+    public function hasTotalQuotesAvaibles() {
+        $cupos = $this->belongsToMany('App\User', 'students', 'workshop_id', 'user_id');
+        return $this->quotas + $this->about_quotas  - count($cupos->get());
     }
+
 
 
     public function scopeFilterByRequest($query, $column, $value)
