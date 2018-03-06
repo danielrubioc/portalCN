@@ -66,7 +66,6 @@
 			
 			<p>¿QUÉ NOS MOTIVA?</p>
 			<span>Creemos que fomentar y difundir el deporte es fundamental para nuestra calidad de vida y salud, tanto fisica y mental, además creemos que el bienestar y el deporte son un derecho de todos y velamos para que toda la comunidad sea parte.</span>
-			<br>
 			<button>LEER MÁS</button>
 		</div>
 		<div class="col-md-5 der">
