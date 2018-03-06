@@ -18,7 +18,7 @@
                             <img src="{{url('/uploads/workshop')}}/{{ $workshops->cover_page }}" style=" max-height:250px; ">
                         <?php endif ?>
 
-                            <form class="form-horizontal" method="POST" action="{{ route('workshops.update', ['id' => $workshops->id] ) }}" enctype="multipart/form-data">
+                            <form class="form-horizontal text-align-left" method="POST" action="{{ route('workshops.update', ['id' => $workshops->id] ) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
 
@@ -55,7 +55,7 @@
                                     <label for="subtitle" class="col-md-4 control-label"> Subtitulo </label>
 
                                     <div class="col-md-6">
-                                        <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ $workshops->subtitle }}" required autofocus>
+                                        <input id="subtitle" type="text" class="form-control" name="subtitle" value="{{ $workshops->subtitle }}" autofocus>
 
                                         @if ($errors->has('subtitle'))
                                             <span class="help-block">
@@ -99,29 +99,43 @@
                                     </div>                            
                                 </div>
                                 
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('quotas') ? ' has-error' : '' }}">
                                     <label for="title" class="col-md-4 control-label"> Cupos </label>
 
                                     <div class="col-md-6">
                                         <input id="quotas" type="number" class="form-control" name="quotas" value="{{ $workshops->quotas }}" required autofocus>
 
-                                        @if ($errors->has('name'))
+                                        @if ($errors->has('quotas'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
+                                                <strong>{{ $errors->first('quotas') }}</strong>
                                             </span>
                                         @endif
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('about_quotas') ? ' has-error' : '' }}">
                                     <label for="title" class="col-md-4 control-label"> Sobre Cupos </label>
 
                                     <div class="col-md-6">
                                         <input id="about_quotas" type="number" class="form-control" name="about_quotas" value="{{ $workshops->about_quotas }}" required autofocus>
 
-                                        @if ($errors->has('name'))
+                                        @if ($errors->has('about_quotas'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
+                                                <strong>{{ $errors->first('about_quotas') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('place') ? ' has-error' : '' }}">
+                                    <label for="title" class="col-md-4 control-label"> Lugar </label>
+
+                                    <div class="col-md-6">
+                                        <input id="title" type="text" class="form-control" name="place" value="{{ $workshops->place }}" required autofocus>
+
+                                        @if ($errors->has('place'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('place') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -160,6 +174,7 @@
                                         </select>
                                     </div>
                                 </div>
+
 
                                 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

@@ -67,6 +67,24 @@ class HomeController extends Controller
             'my_workshops' => $my_workshops 
             ]);
     }
+
+    // vista para los publishers
+    public function indexPublisher()
+    {   
+        //lista de talleres activos
+       
+        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
+        $my_workshops = Workshop::join('students', function ($join) {
+                            $join->on('students.workshop_id', '=', 'workshops.id')
+                            ->where('students.user_id','=', Auth::user()->role_id );
+                        })
+                        ->get();
+                    
+        return view('dashboard_publisher', [
+            'workshops' => $workshops,
+            'my_workshops' => $my_workshops 
+            ]);
+    }
     
     public function indexSite()
     {   

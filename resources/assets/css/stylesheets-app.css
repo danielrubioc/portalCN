@@ -208,7 +208,12 @@ a.btn.btn-success.btn-create-gral {
     width: 12px;
 }
 
-
+form.form-horizontal.text-align-left {
+    text-align: left;
+}
+span.select2.select2-container.select2-container--default.select2-container--focus {
+    width: 100% !important;
+}
 
 /*switch*/
 

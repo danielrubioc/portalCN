@@ -78,8 +78,6 @@ class PostsController extends Controller
             'unique'    => ':attribute ya ha sido registrada.',
             'required' => ':attribute es obligatorio',
             'max' => ':attribute no puede ser mayor que :max caracteres',
-            'email'    => ':attribute .',
-            'min'      => ':attribute moet minimaal :min karakters bevatten.',
         );
         // validacion segun Validator
         $validator = Validator::make($request->all(), [
@@ -247,16 +245,18 @@ class PostsController extends Controller
         }
             
             $news = Post::find($id); 
+            
             if ($news) {
 
-                if (($news->url != $request->url) && !$request->show) {
-                   // mensajes de validacion
+                //si la url es distinta valido que no se repita en bd
+                if ($news->url != $request->url) {
                     $messages = array(
                         'url.unique'    => 'La url ya ha sido registrada.',
                         'required' => 'El campo es obligatorio',
                     );
-                    // validacion segun Validator
-                    $validator = Validator::make($request->all(), [
+                    $validRequest = $request->all();
+                    $validRequest['url'] = Str::slug($validRequest['url'], '_');
+                    $validator = Validator::make($validRequest, [
                         'url' => 'required|string|max:255|unique:posts',
                     ],  $messages);
 
