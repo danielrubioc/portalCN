@@ -25,7 +25,7 @@
                                 <select class="form-control js-multiple form-control" name="students[]" multiple="multiple" required>
                                 
                                     @foreach($students as $student)
-                                            <option value="{{$student->id}}">{{$student->name}} {{$student->last_name}}</option>
+                                            <option value="{{$student->id}}">{{$student->name}} {{$student->last_name}} | {{$student->rut}}</option>
                                     @endforeach
 
                                 </select>

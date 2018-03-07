@@ -11,77 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    if(Auth::check()){
-        
-        switch (Auth::user()->hasRole->name) {
-                //segun rol redirecciono al dashboard
-                case 'admin':
-                    return redirect()->action('HomeController@index');
-                    break;
-                case 'teacher':
-                    return redirect()->action('HomeController@indexTeacher');
-                    break;
-                case 'public':
-                    return redirect()->action('HomeController@indexPublic');
-                    break;
-                case 'publisher':
-                    return redirect()->action('HomeController@indexPublisher');
-                    break;
-        }    
-    	
-    } else{
-        return view('/');
-    }
-});
-
-Route::get('/dashboard', function () {
-    if(Auth::check()){
-        switch (Auth::user()->hasRole->name) {
-                //segun rol redirecciono al dashboard
-                case 'admin':
-                    return redirect()->action('HomeController@index');
-                    break;
-                case 'teacher':
-                    return redirect()->action('HomeController@indexTeacher');
-                    break;
-                case 'public':
-                    return redirect()->action('HomeController@indexPublic');
-                    break;
-                case 'publisher':
-                    return redirect()->action('HomeController@indexPublisher');
-                    break;
-        }    
-    } else{
-        return view('/');
-    }
-});
-
-
-
 Auth::routes();
 
-//************* dashboard **************///
-Route::get('/admin', 'HomeController@index')->middleware('validRole:admin');
-Route::get('/profesor', 'HomeController@indexTeacher')->middleware('validRole:teacher');
-Route::get('/publico', 'HomeController@indexPublic')->middleware('validRole:public');
-Route::get('/editor', 'HomeController@indexPublisher')->middleware('validRole:publisher');
-
-
-
-//para ver perfil
-Route::get('profile', function () {
-    if(Auth::check()){
-    	return view('users.profile', ['user' => Auth::user() ]);
-    }else{
-        return view('/site/home');
-    }
-});
+//dashboard para todos 
+Route::get('/dashboard', 'HomeController@index')->name('home.dashboard')->middleware('auth');
 
 //************* users **************///
 Route::resource('users', 'UserController')->middleware('validRole:admin');
-//para actualizar foto avatar
-Route::post('profile', 'UserController@update_avatar')->middleware('auth');
+//rutas perfil
+Route::get('/profile/show', 'UserController@profile')->name('users.profile')->middleware('auth');
+Route::post('profile', 'UserController@update_avatar')->name('users.profileAvatarUpdate')->middleware('auth');
+Route::put('/profile/update', 'UserController@update_profile')->name('users.profileUpdate')->middleware('auth');
 
 //************ blog *****************//
 
@@ -96,9 +36,9 @@ Route::resource('tags', 'TagsController')->middleware('validRole:admin.publisher
 //taller
 Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher');
 Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher');
-Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent');
+Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent')->middleware('validRole:admin.teacher');
 Route::get('/workshops/listStudent/{idWork}', 'WorkshopsController@listStudent')->name('workshops.listStudent');
-Route::delete('/workshops/students/destoy/{idUser}', 'WorkshopsController@destroyStudent')->name('workshops.destroyStudent');
+Route::delete('/workshops/students/destoy/{idUser}', 'WorkshopsController@destroyStudent')->name('workshops.destroyStudent')->middleware('validRole:admin.teacher');
 //banner
 Route::resource('banners', 'BannersController')->middleware('validRole:admin.publisher');
 //Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');
@@ -106,11 +46,7 @@ Route::resource('banners', 'BannersController')->middleware('validRole:admin.pub
 //lesson
 Route::resource('lessons', 'LessonsController');    
 Route::resource('students', 'StudentsController');
-//registro
-//Route::resource('registro/', 'StudentsController');
-//Route::get('/registro/store', 'StudentsController@store');
 Route::get('/registro/{slug}', ['as' => 'students', 'uses' => 'StudentsController@probar']);
-
 
 
 /***************** Public site  ***********************/

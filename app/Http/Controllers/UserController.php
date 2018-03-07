@@ -135,14 +135,90 @@ class UserController extends Controller
 
     public function profile()
     {
-        //
 
-        return view('users.profile', ['user' => Auth::user(), 'roles' => Role::all(['id', 'name']), 'statuses' => Status::all(['id', 'name']) ]);
+        return view('users.profile', [  'user' => Auth::user(), 
+                                        'roles' => Role::all(['id', 'name']), 
+                                        'statuses' => Status::all(['id', 'name']) ]);
+    }
+
+    public function update_profile(Request $request)
+    {   
+
+        $user = Auth::user();
+        if ($request->password_confirmation == $request->password) {
+            if ($user) {
+                $user->name = $request->name;
+                $user->last_name = $request->last_name;
+                $user->birth_date = $request->birth_date ? $request->birth_date : $user->birth_date;
+                $user->role_id = $request->role_id ? $request->role_id : $user->role_id;
+                $user->status = $request->status ? $request->status : $user->status;
+                $user->address = $request->address ? $request->address : $user->address;
+                $user->phone = $request->phone ? $request->phone : $user->phone; 
+                $user->cell_phone = $request->cell_phone ? $request->cell_phone : $user->cell_phone;
+                $user->password = $request->password ? bcrypt($request->password) : $user->password;
+                $user->referential_info = $request->referential_info ? $request->referential_info : $user->referential_info;
+                $user->rut = $request->rut ? $request->rut : $user->rut;
+
+                if ($request->email == $user->email){
+                    $user->email = $request->email;   
+                } else{
+
+                    $count = User::where('email', $request->email)->count();
+                    if ($count>0) {
+                        flash('el correo ingresado ya se encuentra registrado')->error();
+                        if ($request->profile) {
+                            return view('users.profile', ['user' => Auth::user() ]);
+                        }
+                        return redirect()->route('users.edit', $user->id);
+                    } else {  
+                        $user->email = $request->email;   
+                    }
+                   
+                }
+                
+                if ($user->save()) {
+                    flash('El usuario '. $user->name .' se actualizó correctamente!')->success();
+                    if ($request->profile) {
+                        return view('users.profile', ['user' => Auth::user() ]);
+                    }
+                    return redirect()->route('users.edit', $user->id);
+                } else {
+                    flash('El usuario no se pudo actualizar.')->error();
+                    if ($request->profile) {
+                        return view('users.profile', ['user' => Auth::user() ]);
+                    }
+                    return redirect()->route('users.edit', $user->id);
+                }
+
+                
+
+            }  else {
+                
+                flash('no se encuentra el usuario')->error();
+                if ($request->profile) {
+                    return view('users.profile', ['user' => Auth::user() ]);
+                }
+                return redirect()->route('users.edit', $id);
+            }
+        } else{
+            flash('Contraseñas deben ser iguales')->error();
+            if ($request->profile) {
+               return view('users.profile', ['user' => Auth::user() ]);
+            }
+            return redirect()->route('users.edit', $id);
+
+        }
+        dd("$request profile"); 
 
     }
 
     public function update_avatar(Request $request){
-
+        $messages = array('mimes'    => ':attribute sólo acepta jpeg,jpg,png.');
+        // validacion segun Validator
+        $validator = Validator::make($request->all(), [ 'avatar' => 'mimes:jpeg,jpg,png' ],  $messages);
+        if ($validator->fails()) {
+            return redirect('/profile/show')->withErrors($validator)->withInput();
+        }
         // Handle the user upload of avatar
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
@@ -165,32 +241,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function update(Request $request, $id)
     {   
-        //validacion si esque viene de perfil
-        if ($request->profile) {
-                
-                   
-            // mensajes de validacion
-            $messages = array(
-                'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
-                'email.unique'    => 'El email ya ha sido registrado.',
-                'required' => 'El campo es obligatorio',
-            );
-            // validacion segun Validator
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'password' => 'required|string|min:6|confirmed',
-            ],  $messages);
 
-            if ($validator->fails()) {
-                return redirect('profile')
-                            ->withErrors($validator)
-                            ->withInput();
-            }
-
-        }
-
+        
         $user = User::find($id); 
         if ($request->password_confirmation == $request->password) {
             if ($user) {
@@ -206,9 +263,7 @@ class UserController extends Controller
                 $user->referential_info = $request->referential_info ? $request->referential_info : $user->referential_info;
 
                 if ($request->email == $user->email){
-                   
                     $user->email = $request->email;   
-
                 } else{
 
                     $count = User::where('email', $request->email)->count();

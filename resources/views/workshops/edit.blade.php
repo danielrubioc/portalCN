@@ -103,7 +103,7 @@
                                     <label for="title" class="col-md-4 control-label"> Cupos </label>
 
                                     <div class="col-md-6">
-                                        <input id="quotas" type="number" class="form-control" name="quotas" value="{{ $workshops->quotas }}" required autofocus>
+                                        <input id="quotas" type="number" class="form-control" name="quotas" value="{{ $workshops->quotas }}" min="0" required autofocus>
 
                                         @if ($errors->has('quotas'))
                                             <span class="help-block">
@@ -117,7 +117,7 @@
                                     <label for="title" class="col-md-4 control-label"> Sobre Cupos </label>
 
                                     <div class="col-md-6">
-                                        <input id="about_quotas" type="number" class="form-control" name="about_quotas" value="{{ $workshops->about_quotas }}" required autofocus>
+                                        <input id="about_quotas" type="number" class="form-control" name="about_quotas"  min="0" value="{{ $workshops->about_quotas }}" required autofocus>
 
                                         @if ($errors->has('about_quotas'))
                                             <span class="help-block">

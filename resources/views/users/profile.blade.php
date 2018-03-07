@@ -11,8 +11,24 @@
                 <div class="content-avatar-change col-md-12 ">
                     <img src="{{url('/uploads/avatars/')}}/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%; margin-right:25px; float:left">
                     <div class="content-change-input-avatar">
-                        <form enctype="multipart/form-data" action="/profile" method="POST">
-                            <input type="file" name="avatar" required>
+                        <form enctype="multipart/form-data" action="{{ route('users.profileAvatarUpdate' ) }}" method="POST">
+                            
+                            <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-12 control-label">Nombre</label>
+
+                                <div class="col-md-12">
+
+                                    <input type="file" name="avatar" required>
+
+                                    @if ($errors->has('avatar'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('avatar') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <button type="submit" class="pull-right btn btn-sm btn-primary"> cambiar avatar</button>
                         </form>
@@ -22,7 +38,7 @@
                     <h2 style="text-align: center">Actualiza tus datos {{ $user->name }}</h2>
                    
 
-                    <form class="form-horizontal profile-form" method="POST" action="{{ action('UserController@update', ['id' => $user->id] ) }}">
+                    <form class="form-horizontal profile-form" method="POST" action="{{ route('users.profileUpdate' ) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <input id="profile" type="hidden" class="form-control" name="profile" value="true">
@@ -51,6 +67,20 @@
                                         @if ($errors->has('last_name'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('last_name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
+                                    <label for="rut" class="col-md-4 control-label">Rut</label>
+
+                                    <div class="col-md-6">
+                                        <input id="rut" type="text" class="form-control" name="rut" value="{{ $user->rut }}" required pattern="[0-9]{7,8}-[0-9Kk]{1}" name="rut" id="rut" placeholder="12345678-5" title="ej. 12345678-5" autofocus>
+
+                                        @if ($errors->has('rut'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('rut') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -126,14 +156,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="password" class="col-md-12 control-label">Reseña</label>
-                                    <div class="col-md-12">
-                                        <textarea name="referential_info" id="referential_info"  rows="10" cols="80">
-                                           {{ $user->referential_info }}
-                                        </textarea> 
-                                    </div>
-                                </div>
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <label for="password" class="col-md-4 control-label">Contraseña</label>

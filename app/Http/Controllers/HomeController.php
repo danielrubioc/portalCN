@@ -28,8 +28,27 @@ class HomeController extends Controller
 
     // vista para los admins
     public function index()
-    {
-        return view('dashboard_admin');
+    {   
+
+
+        if (Auth::user()) {
+            switch (Auth::user()->hasRole->name) {
+                case 'admin':
+                    return view('dashboard_all');
+                    break;
+                case 'teacher':
+                    return view('dashboard_all');
+                    break;
+                case 'public':
+                    return view('dashboard_all');
+                    break;
+                case 'publisher':
+                    return view('dashboard_all');
+                    break;
+            }
+        } else {
+            return view('/');
+        }
     }
 
     // vista para los profes
