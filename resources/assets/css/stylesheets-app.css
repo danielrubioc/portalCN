@@ -215,6 +215,24 @@ span.select2.select2-container.select2-container--default.select2-container--foc
     width: 100% !important;
 }
 
+a.btn.btn-info.btn-edit-style.btn-especial-taller {
+    font-size: 12px;
+    font-weight: 200;
+    background: #98c329;
+}
+
+a.btn.btn-info.btn-edit-style.btn-especial-taller:hover {
+    background: #64801e;
+}
+button.btn.btn-danger.delete-user {
+    height: 100%;
+}
+button.btn.btn-danger.delete-user.delete-list-stud {
+    font-size: 12px;
+    font-weight: 200;
+}
+
+
 /*switch*/
 
 @media (max-width: 768px) { 

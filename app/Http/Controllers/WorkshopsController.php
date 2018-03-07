@@ -240,7 +240,7 @@ class WorkshopsController extends Controller
 
                 //si vienen los tags
                 if ($request->teachers) {
-                    $workshops->teacher()->detach();
+                    $workshops->teachers()->detach();
                     foreach ($request->teachers as $key => $value) {
                         // si viene un string esto pasa cuando es un nuevo tag 
                         $teachers[$key] = $value;
@@ -307,6 +307,8 @@ class WorkshopsController extends Controller
             }
             $workshops->students()->attach($students, ['status' => '1']);
         }
+
+        return redirect()->route('workshops.listStudent', $workshops->id);
     }
 
     public function registerStudent($id)
@@ -315,6 +317,31 @@ class WorkshopsController extends Controller
         return view('workshops.register_student', [ 'workshop' => Workshop::findOrFail($id),
                                                     'statuses' => Status::all(['id', 'name']),
                                                     'students' => User::getListActiveUser(3)->get() ]);
+    }
+
+    public function listStudent($id)
+    {   
+        $workshops = Workshop::find($id);
+        if ($workshops) {
+        
+            $listStudents = $workshops->students;
+            return view('workshops.list_student', [ 'workshop' => $workshops,
+                                                    'statuses' => Status::all(['id', 'name']),
+                                                    'students' => User::getListActiveUser(3)->get(),
+                                                    'listStudents' => $listStudents  ]);
+
+        }
+
+    }
+
+    public function destroyStudent(Request $request, $id)
+    {   
+ 
+        $workshops = Workshop::find($request->workshop_id);
+        $workshops->students()->detach($id);
+        return redirect()->route('workshops.listStudent', $request->workshop_id);
+        
+
     }
 
 

@@ -60,7 +60,8 @@
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
 									    </form>
 
-									   	<a href="{{ route('workshops.registerStudent', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar">Registrar estudiante</a>
+									   	<a href="{{ route('workshops.registerStudent', $taller->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Registrar estudiante">Registrar <br> estudiante</a>
+									   	<a href="{{ route('workshops.listStudent', $taller->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Lista de Estudiantes">Lista <br>estudiantes</a>
 				    			</tr>
 			    			@endforeach
 			    	</tbody>

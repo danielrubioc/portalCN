@@ -54,7 +54,7 @@
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script type="text/javascript">
         $(".js-multiple").select2({
-            placeholder: "Selecciona los Profesores",
+            placeholder: "Selecciona los Alumnos",
             
         });
        
