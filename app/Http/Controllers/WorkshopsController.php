@@ -57,7 +57,7 @@ class WorkshopsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $messages = array(
             'unique'    => ':attribute ya ha sido registrada.',
             'required' => ':attribute es obligatorio',

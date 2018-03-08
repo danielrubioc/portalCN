@@ -10,6 +10,8 @@ use App\Workshop;
 use App\Student;
 use App\Teacher;
 use App\Lesson;
+use App\Status;
+use App\Type;
 use Image;
 use Auth;
 
@@ -39,6 +41,7 @@ class LessonsController extends Controller
         $lessons = new Lesson($request->all());
         $lessons->status = 1;
         $lessons->place = $request->all()['place'];
+              
 
         if ($lessons->save()) {
             $id = $request->all()['workshop_id'];
@@ -53,7 +56,9 @@ class LessonsController extends Controller
                             'tab' => $tabName,
                             'teachers' => User::all(['id', 'name', 'last_name']),
                             'teachersInWorkshops' => Workshop::findOrFail($request->all()['workshop_id'])->teachers()->get()->toArray(),
-                            'lessons' => Lesson::all()->where('workshop_id', $id)
+                            'lessons' => Lesson::all()->where('workshop_id', $id),
+                            'types' => Type::all(['id', 'name']),
+                            'statuses' => Status::all(['id', 'name'])                            
                         ]);
             
         } else {
