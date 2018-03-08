@@ -73,8 +73,7 @@
 	<section class="team-section" style="background-image: url('{{url('/images')}}/bg-nosotros.jpg')">
 		<div class="container">
 			<div class="conten-team">
-				<div class="col-md-6 col-xs-6 info-text-team">
-			
+				<div class="col-md-6 col-xs-6 info-text-team">			
 					<h1>¿QUÉ NOS MOTIVA?</h1>
 					<p>Creemos que fomentar y difundir el deporte es fundamental para nuestra calidad de vida y salud, tanto fisica y mental, además creemos que el bienestar y el deporte son un derecho de todos y velamos para que toda la comunidad sea parte.</p>
 					<br>
