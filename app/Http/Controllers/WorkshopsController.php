@@ -154,7 +154,7 @@ class WorkshopsController extends Controller
             'workshops' => Workshop::findOrFail($id), 
             'tab' => $tabName,
             'all_teachers' => User::all(['id', 'name', 'last_name']),
-            'teachers' => User::all(['id', 'name', 'last_name']),
+            'teachers' => User::getListActiveUser(2)->get(),
             'teachersInWorkshops' => Workshop::findOrFail($id)->teachers()->get()->toArray(),
             'lessons' => Lesson::all()->where('workshop_id', $id),
             'types' => Type::all(['id', 'name']),
@@ -216,8 +216,8 @@ class WorkshopsController extends Controller
             $workshops->subtitle = $request->subtitle ? $request->subtitle : $workshops->subtitle;
             $workshops->url = $request->url ? Str::slug($request->url, '_') : $workshops->url;
             $workshops->description = $request->description ? $request->description : $workshops->description;
-            $workshops->quotas = $request->quotas ? $request->quotas : $workshops->quotas;
-            $workshops->about_quotas = $request->about_quotas ? $request->about_quotas : $workshops->about_quotas;
+            $workshops->quotas = isset($request->quotas) ? $request->quotas : $workshops->quotas;
+            $workshops->about_quotas = isset($request->about_quotas) ? $request->about_quotas : $workshops->about_quotas;
             $workshops->status = $request->status ? $request->status : $workshops->status;
             $workshops->type = $request->type ? $request->type : $workshops->type;
             $workshops->place = $request->place ? $request->place : $workshops->place;

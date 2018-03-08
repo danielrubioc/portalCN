@@ -199,9 +199,10 @@ class HomeController extends Controller
                 
     }
 
-    public function showPostDetail($category = null, $slug = null)
+    public function showPostDetail($category = null, $slug = null, $errorValid = null)
     {   
         if ($slug) {
+            
             $categoryObject = Category::where('url','=', $category)->firstOrFail();
             if ($categoryObject) {
                 $postRelated = Post::where('category_id', $categoryObject->id)->orderBy('id')->take(3)->get();

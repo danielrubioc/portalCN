@@ -36,7 +36,7 @@
 				    					<form method="POST" action="{{ route('banners.destroy', ['id' => $banner->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
-									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
+									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estás seguro?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
 									    </form>
 									    @if ($banner->status == 1)
 										    <form method="POST" action="{{ route('banners.update', ['id' => $banner->id] ) }}">

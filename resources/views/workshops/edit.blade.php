@@ -83,7 +83,7 @@
                                     <label for="teachers" class="col-md-4 control-label">Profesores a Cargo</label>
                                     <div class="col-md-6">
                                         
-                                        <select class="form-control js-multiple" name="teachers[]" multiple="multiple" required>
+                                        <select class="form-control js-multiple" name="teachers[]" multiple="multiple">
                                         
                                             @foreach($teachers as $teacher)
                                                 @if (array_search($teacher['id'], array_column($teachersInWorkshops, 'id')) !== false ){

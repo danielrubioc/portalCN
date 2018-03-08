@@ -50,7 +50,7 @@
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
                                                     <input type="hidden" name="workshop_id" value="{{$workshop->id}}">
-                                                    <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> Eliminar del curso </button>
+                                                    <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estás seguro?')" data-toggle="tooltip" title="Eliminar"> Eliminar del curso </button>
                                                 </form>
             
                                             </td>

@@ -12,7 +12,6 @@
     <title>Corporación del Deporte Cerro Navia</title>
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet"> 
-    <link rel="stylesheet" href="{{ elixir('css/site.css') }}">
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 
 </head>

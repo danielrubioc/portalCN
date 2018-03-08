@@ -100,7 +100,7 @@
                 
 
                 @if(!Auth::user())
-                    <li class="registrate"><a href="{{ route('register') }}">Registrate </a></li>
+                    <li class="registrate"><a href="{{ route('register') }}">Regístrate </a></li>
                     <li><a href="{{ route('login') }}">Ingresar </a></li>
                     @else
                     <li><a href="{{ route('register') }}" >Portal </a></li>

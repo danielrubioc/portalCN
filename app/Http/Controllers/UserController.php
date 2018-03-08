@@ -258,13 +258,14 @@ class UserController extends Controller
         // mensajes de validacion
         $messages = array(
             'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
-            'email.unique'    => 'El email ya ha sido registrado.',
+            'unique'    => 'El :attribute ya ha sido registrado.',
             'required' => 'El campo es obligatorio',
         );
         // validacion segun Validator
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'rut' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ],  $messages);
 

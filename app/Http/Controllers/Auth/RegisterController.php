@@ -114,8 +114,9 @@ class RegisterController extends Controller
         // mensajes de validacion
         $messages = array(
             'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
-            'email.unique'    => 'El email ya ha sido registrado.',
-            'required' => 'El campo es obligatorio',
+            'unique'    => 'El :attribute ya ha sido registrado.',
+            'required' => 'El :attribute es obligatorio',
+            'confirmed' => 'La confirmación de contraseña no coincide',
         );
         return Validator::make($data, [
             'name' => 'required|string|max:255',

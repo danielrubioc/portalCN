@@ -183,8 +183,8 @@ ul.nav.navbar-nav li a {
     box-shadow: 0 8px 6px -6px #9c9c9c !important;
 }
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
-    background-color: #98c329;
-    color: #555563;
+    background-color: #ffffff;
+    color: #93c01f;
 }
 a.btn.btn-success.btn-create-gral {
     background: transparent;
@@ -238,6 +238,60 @@ button.btn.btn-primary.btn-home.btn-register-disci {
     float: initial;
 }
 
+form.form-horizontal.form-register-user label {
+    text-align: left;
+}
+
+form.form-horizontal.form-register-user input {
+    border-bottom: 1px solid #94c11f;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #94c11f;
+}
+form.form-horizontal.form-register-user input~label {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 0;
+    color: #aaa;
+    transition: .3s;
+    letter-spacing: .5px;
+}
+form.form-horizontal.form-register-user input.empty~label {
+    top: -16px; font-size: 12px; color: #81bf06; transition: 0.3s;
+}
+
+form.form-horizontal.form-register-user input.not-empty:focus~label {
+    top: -16px; font-size: 12px; color: #81bf06; transition: 0.3s;
+}
+form.form-horizontal.form-register-user {
+    margin-top: 50px;
+}
+
+button.btn.btn-primary.btn-register-user, .btn-no-log-user {
+    background: #faebd7;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: #81bf06;
+    color: #fff!important;
+    border: 1px solid #81bf06;
+    transition: .5s;
+    margin-top: 50px;
+}
+
+button.btn.btn-primary.btn-register-user:hover, .btn-no-log-user:hover {
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: transparent;
+    color: #81BF04 !important;
+    border: 1px solid #81bf06;
+    transition: .5s;
+}
+
+.align-btn-login{
+  text-align: center;
+}
 
 /*switch*/
 
