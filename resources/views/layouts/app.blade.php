@@ -95,7 +95,7 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/profile')}}"> Mi perfil </span></a>
+                                        <a href="{{ route('users.profile' ) }}"> Mi perfil </span></a>
                                     </li>
                                     <li role="presentation" class="divider"></li>
                                     <li>
@@ -122,7 +122,7 @@
         <span class="visible-xs">
             <div id="mySidenav" class="sidenav">
                 @if(Auth::user())
-                <a href="{{ url('/profile')}}" class="left-input"><img src="{{url('/uploads/avatars')}}/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span>Mi perfil</a>
+                <a href="{{ route('users.profile' ) }}" class="left-input"><img src="{{url('/uploads/avatars')}}/{{ Auth::user()->avatar }}" style="width:25px; height:25px; position:absolute; top:7px; left:10px; border-radius:50%"> <span>Mi perfil</a>
                 @endif
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <div class="space-menu">

@@ -28,7 +28,6 @@
 									<td>C. Disponibles</td>
 			    					<td>Estado</td>
 			    					<td>Tipo</td>
-			    					<td>Profesor(es) a cargo</td>
 			    					<td></td>
 			    			</tr>
 			    	</thead>
@@ -43,11 +42,6 @@
 									<td>{{ $taller->hasTotalQuotesAvaibles() }}</td>
 								    <td>{{ $taller->hasStatus->name }}</td>
 								    <td>{{ $taller->hasType->name}} </td>
-								    <td>
-								    	@foreach ($taller->teachers as $key => $teacher)
-								    		{{ $teacher->name }} {{ $teacher->last_name }}, 
-								    	@endforeach
-								    </td>
 								  	
 								    <td class="box-btnes">	
 										<a href="{{ route('workshops.edit', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
@@ -60,7 +54,8 @@
 									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
 									    </form>
 
-									   	<a href="{{ route('workshops.registerStudent', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar">Registrar estudiante</a>
+									   	<a href="{{ route('workshops.registerStudent', $taller->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Registrar estudiante">Registrar <br> estudiante</a>
+									   	<a href="{{ route('workshops.listStudent', $taller->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Lista de Estudiantes">Lista <br>estudiantes</a>
 				    			</tr>
 			    			@endforeach
 			    	</tbody>

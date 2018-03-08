@@ -25,7 +25,7 @@
                                 <select class="form-control js-multiple form-control" name="students[]" multiple="multiple" required>
                                 
                                     @foreach($students as $student)
-                                            <option value="{{$student->id}}">{{$student->name}} {{$student->last_name}}</option>
+                                            <option value="{{$student->id}}">{{$student->name}} {{$student->last_name}} | {{$student->rut}}</option>
                                     @endforeach
 
                                 </select>
@@ -54,7 +54,7 @@
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script type="text/javascript">
         $(".js-multiple").select2({
-            placeholder: "Selecciona los Profesores",
+            placeholder: "Selecciona los Alumnos",
             
         });
        

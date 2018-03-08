@@ -220,6 +220,7 @@ class WorkshopsController extends Controller
             $workshops->about_quotas = $request->about_quotas ? $request->about_quotas : $workshops->about_quotas;
             $workshops->status = $request->status ? $request->status : $workshops->status;
             $workshops->type = $request->type ? $request->type : $workshops->type;
+            $workshops->place = $request->place ? $request->place : $workshops->place;
 
             //viene una imagen nueva
             if ($request->cover_page) {
@@ -240,7 +241,7 @@ class WorkshopsController extends Controller
 
                 //si vienen los tags
                 if ($request->teachers) {
-                    $workshops->teacher()->detach();
+                    $workshops->teachers()->detach();
                     foreach ($request->teachers as $key => $value) {
                         // si viene un string esto pasa cuando es un nuevo tag 
                         $teachers[$key] = $value;
@@ -307,14 +308,62 @@ class WorkshopsController extends Controller
             }
             $workshops->students()->attach($students, ['status' => '1']);
         }
+
+        return redirect()->route('workshops.listStudent', $workshops->id);
+    }
+
+    public function storeStudentPublicAuth(Request $request)
+    {
+
+        $workshops = Workshop::find($request->id);
+        //dd($workshops->students);
+        Auth::user()->workshops()->attach($workshops->id, ['status' => '1']);
+        return redirect()->route('workshops.listStudent', $workshops->id);
     }
 
     public function registerStudent($id)
     {   
-
+        $studentSelect = [];
+        $workshop = Workshop::findOrFail($id);
+        //estudiantes inscritos en workshop
+        $studentsInWorkshop = $workshop->students;
+        //usuarios publicos
+        $students = User::getListActiveUser(3)->get();
+        foreach ($students as $key => $student) {
+            $count = 0;
+            foreach ($studentsInWorkshop as $key => $studentIn) {
+                if ($student->id == $studentIn->id) {
+                    $count++;
+                }
+            }
+            if ($count == 0) {
+                array_push($studentSelect, $student);
+            }
+        }
         return view('workshops.register_student', [ 'workshop' => Workshop::findOrFail($id),
                                                     'statuses' => Status::all(['id', 'name']),
-                                                    'students' => User::getListActiveUser(3)->get() ]);
+                                                    'students' => $studentSelect ]);
+    }
+
+    public function listStudent($id)
+    {   
+        $workshops = Workshop::find($id);
+        if ($workshops) {
+            $listStudents = $workshops->students;
+            return view('workshops.list_student', [ 'workshop' => $workshops,
+                                                    'statuses' => Status::all(['id', 'name']),
+                                                    'students' => User::getListActiveUser(3)->get(),
+                                                    'listStudents' => $listStudents  ]);
+
+        }
+
+    }
+
+    public function destroyStudent(Request $request, $id)
+    {   
+        $workshops = Workshop::find($request->workshop_id);
+        $workshops->students()->detach($id);
+        return redirect()->route('workshops.listStudent', $request->workshop_id);
     }
 
 
