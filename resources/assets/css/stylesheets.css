@@ -1739,7 +1739,10 @@ input.btn.btn-info.pull-right.contact-btn-submit.color-black-desk {
     color: #81bf06;
     border-color: #81bf06;
 }
-
+.register-workshop-desk {
+    text-align: center;
+    margin-top: 50px;
+}
 
 @media (max-width: 768px) { 
     

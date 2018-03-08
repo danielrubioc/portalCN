@@ -231,6 +231,12 @@ button.btn.btn-danger.delete-user.delete-list-stud {
     font-size: 12px;
     font-weight: 200;
 }
+.text-info-detail-discip {
+    margin-top: 90px;
+}
+button.btn.btn-primary.btn-home.btn-register-disci {
+    float: initial;
+}
 
 
 /*switch*/

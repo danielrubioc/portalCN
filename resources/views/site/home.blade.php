@@ -36,7 +36,7 @@
 								<div class="box-gral-work-item">
 								<div class="over-hidde-img" >
 									<div class="img img-r" style=" background-image: url('/uploads/workshop/{{$taller->cover_page}}');"></div>
-									<div class="info-teacher">Cupos disponibles: {{ $taller->hasTotalQuotes() }} </div>
+									<div class="info-teacher">Cupos disponibles: {{ $taller->hasTotalQuotesAvaibles() }} </div>
 								</div>
 								<div class="txt-item-work">
 									<h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>

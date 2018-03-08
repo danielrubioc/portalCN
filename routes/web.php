@@ -18,6 +18,8 @@ Route::get('/dashboard', 'HomeController@index')->name('home.dashboard')->middle
 
 //************* users **************///
 Route::resource('users', 'UserController')->middleware('validRole:admin');
+Route::post('/registerUserAndWorkshop/store', 'UserController@registerUserAndWorkshop')->name('users.registerUserAndWorkshop');
+
 //rutas perfil
 Route::get('/profile/show', 'UserController@profile')->name('users.profile')->middleware('auth');
 Route::post('profile', 'UserController@update_avatar')->name('users.profileAvatarUpdate')->middleware('auth');
@@ -37,6 +39,7 @@ Route::resource('tags', 'TagsController')->middleware('validRole:admin.publisher
 Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher');
 Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher');
 Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent')->middleware('validRole:admin.teacher');
+Route::post('/workshops/storePublic', 'WorkshopsController@storeStudentPublicAuth')->name('workshops.storeStudentPublicAuth')->middleware('validRole:public');
 Route::get('/workshops/listStudent/{idWork}', 'WorkshopsController@listStudent')->name('workshops.listStudent');
 Route::delete('/workshops/students/destoy/{idUser}', 'WorkshopsController@destroyStudent')->name('workshops.destroyStudent')->middleware('validRole:admin.teacher');
 //banner
@@ -59,7 +62,9 @@ Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
 Route::get('/disciplinas', 'HomeController@workshopsAll');
 
-Route::get('/activacion', 'HomeController@activateUser');
+//Route::get('/activacion', 'HomeController@activateUser');
+Route::get('/activacion', 'HomeController@activateUser')->name('home.activateUser');
+
 Route::post('/codeVerify', 'HomeController@codeVerify');
 
 //disciplinas

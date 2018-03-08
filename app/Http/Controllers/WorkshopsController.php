@@ -312,6 +312,15 @@ class WorkshopsController extends Controller
         return redirect()->route('workshops.listStudent', $workshops->id);
     }
 
+    public function storeStudentPublicAuth(Request $request)
+    {
+
+        $workshops = Workshop::find($request->id);
+        //dd($workshops->students);
+        Auth::user()->workshops()->attach($workshops->id, ['status' => '1']);
+        return redirect()->route('workshops.listStudent', $workshops->id);
+    }
+
     public function registerStudent($id)
     {   
         $studentSelect = [];

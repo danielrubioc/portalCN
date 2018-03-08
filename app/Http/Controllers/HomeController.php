@@ -152,9 +152,24 @@ class HomeController extends Controller
 
     public function showWorkshopDetail($slug = null)
     {   
+        $registered = false;
         if ($slug) {
-            $workshop = Workshop::where('url','=', $slug)->firstOrFail();           
-            return view('site/workshop_detail', ['workshop' => $workshop ]);
+            $workshop = Workshop::where('url','=', $slug)->where('status','=', 1)->first();
+            if ($workshop) {
+                if (Auth::user()) {
+                    $workshopRegistered = Auth::user()->workshops;
+                    foreach ($workshopRegistered as $key => $work) {
+                        if ($workshop->id == $work->id) {
+                            $registered = true;
+                        }
+                    }
+                }
+                return view('site/workshop_detail', ['workshop' => $workshop, 'registered' => $registered ]);
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/');
         }
     }
     

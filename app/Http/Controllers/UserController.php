@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use Image;
+use Mail;
 
 
 class UserController extends Controller
@@ -80,7 +81,6 @@ class UserController extends Controller
 
         $user = new User($request->all());
         if ($request->password_confirmation == $request->password) {
-            $user->status = 1;
             $user->password = bcrypt($request->password);
             $count = User::where('email', $user->email)->count();
             //dd($count);
@@ -234,14 +234,96 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
+    public function randomCode(){
+
+        $code = '';
+        $keys = range('A', 'Z');    
+        for ($i = 0; $i < 3; $i++) {
+            $code .= $keys[array_rand($keys)];
+        }
+            
+        $keys = range(0, 9);    
+        for ($i = 0; $i < 3; $i++) {
+            $code .= $keys[array_rand($keys)];
+        }
+
+        return $code;
+    }
+
+
+    public function registerUserAndWorkshop(Request $request)
+    { 
+
+        // mensajes de validacion
+        $messages = array(
+            'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
+            'email.unique'    => 'El email ya ha sido registrado.',
+            'required' => 'El campo es obligatorio',
+        );
+        // validacion segun Validator
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ],  $messages);
+
+        if ($validator->fails()) {
+
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+
+        $user = new User($request->all());
+        if ($request->password_confirmation == $request->password) {
+            $user->status = 2;
+            $user->role_id = 3;
+            $user->password = bcrypt($request->password);
+            $count = User::where('email', $user->email)->count();
+            //dd($count);
+
+            if ($count==0){                       
+                if ($user->save()) {
+
+                    $data['codigo'] = $this->randomCode();
+                    $data['nombre'] = $request->name . ' ' . $request->last_name;
+                    $email = $request->email;
+
+
+                    Mail::send('emails.verify', $data, function($msg) use ($email){
+                        $msg->subject('Inscripción  - Corporación del Deporte Cerro Navia');
+                        $msg->from('contacto@deportescerronavia.cl');
+                        $msg->to($email);
+                    });
+
+                    $user->validate = $data['codigo'];
+                    if ($user->save()) {
+                       $user->workshops()->attach($request->workshop_id, ['status' => '2']);
+                    }
+
+
+
+                    flash('El usuario se creo correctamente! debes validar tu usuario para hacer efectivo tu registro en el taller')->success();
+                    return redirect()->route('home.activateUser');
+
+                    
+                }else {
+                    flash('Disculpa! el usuario no se pudo crear.')->error();
+                    return redirect()->back();
+                }
+            } else {   
+                flash('El email ingresado ya se encuentra en la base de datos!')->error();
+                return redirect()->back();
+            }
+
+        } else{
+            flash('Contraseñas deben ser iguales')->error();
+            return redirect()->back();
+
+        }
+    }
 
 
     public function update(Request $request, $id)

@@ -38,9 +38,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Status', 'id', 'status');
     }
 
-    public function workshop()
+    public function workshops()
     {
-        return $this->belongsToMany('App\Workshop', 'teachers', 'workshop_id', 'teacher_id');
+        return $this->belongsToMany('App\Workshop', 'students', 'user_id', 'workshop_id')->withPivot('status')->withTimestamps();
 
     }
 
