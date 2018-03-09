@@ -48,6 +48,10 @@ Route::resource('banners', 'BannersController')->middleware('validRole:admin.pub
 
 //lesson
 Route::resource('lessons', 'LessonsController');    
+Route::get('/workshops/listAsisstance/{idWork}', 'LessonsController@listAssistance')->name('lessons.listAssistance');
+Route::post('/workshops/listAsisstance/save', 'LessonsController@saveList')->name('lessons.saveList')->middleware('validRole:admin.teacher');
+
+
 Route::resource('students', 'StudentsController');
 Route::get('/registro/{slug}', ['as' => 'students', 'uses' => 'StudentsController@probar']);
 

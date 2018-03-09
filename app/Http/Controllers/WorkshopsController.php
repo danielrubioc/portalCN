@@ -143,20 +143,20 @@ class WorkshopsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $tabName = null)
     {
         //esto es para actvivar el tab en info
         $tabName = array(
             'name' => 'info',
         );
-
+        //dd(Lesson::getListLessonOrderDate()->get());
         return view('workshops.edit', [
             'workshops' => Workshop::findOrFail($id), 
             'tab' => $tabName,
             'all_teachers' => User::all(['id', 'name', 'last_name']),
             'teachers' => User::getListActiveUser(2)->get(),
             'teachersInWorkshops' => Workshop::findOrFail($id)->teachers()->get()->toArray(),
-            'lessons' => Lesson::all()->where('workshop_id', $id),
+            'lessons' => Lesson::getListLessonOrderDate()->get(),
             'types' => Type::all(['id', 'name']),
             'statuses' => Status::all(['id', 'name']) ]            
         );

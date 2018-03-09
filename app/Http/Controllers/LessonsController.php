@@ -12,6 +12,7 @@ use App\Teacher;
 use App\Lesson;
 use App\Status;
 use App\Type;
+use App\Assistance;
 use Image;
 use Auth;
 
@@ -84,5 +85,27 @@ class LessonsController extends Controller
             'lessons' => Lesson::all()->where('id', $id)
         ]);
 
+    } 
+
+    public function listAssistance($id){
+
+        $lesson = Lesson::find($id);
+        $workshop = Workshop::find($lesson->workshop_id);
+        //creo registro de asistencia -- lista de usuarios
+        //$lesson->users()->attach($workshop->students, ['status' => '1']);
+        $lessons = Assistance::all()->where('lesson_id', $lesson->id);
+        return view('workshops.list_assistance', [ 'lessons' => $lessons, 'workshop' => $workshop, 'lesson' => $lesson ]);
+    }
+
+    public function saveList(Request $request){
+
+        foreach ($request->status as $key => $value) {
+            $user = User::find($value['user']);
+
+            $class = $user->assistances()->where('lesson_id', $request->lesson_id)->get()->first();    
+            $class->pivot->status = $value['status'];
+            $class->pivot->save();
+        }
+        return redirect()->route('workshops.edit', $request->wk_id);
     }
 }

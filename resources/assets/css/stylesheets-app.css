@@ -293,6 +293,39 @@ button.btn.btn-primary.btn-register-user:hover, .btn-no-log-user:hover {
   text-align: center;
 }
 
+.no-padding {
+  padding: 0;
+}
+
+ul.table-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.table-list .head-lisr {
+    background: #98c329;
+    color: #fff;
+    padding: 10px;
+    display:  inline-flex;
+    width: 100%;
+}
+
+li.head-lisr span {
+    width: 100%;
+}
+li.body-list {
+    display: inline-flex;
+    width: 100%;
+}
+li.body-list span {
+    width: 100%;
+}
+.col-md-12.send-list {
+    text-align: right;
+    margin-top: 50px;
+}
+
 /*switch*/
 
 @media (max-width: 768px) { 

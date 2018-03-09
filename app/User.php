@@ -44,6 +44,12 @@ class User extends Authenticatable
 
     }
 
+    public function assistances()
+    {
+        return $this->belongsToMany('App\Lesson', 'assistances', 'user_id', 'lesson_id')->withPivot('status')->withTimestamps();
+
+    }
+
     public function scopeFilterByRequest($query, $column, $value)
     {   
         if (trim($value) != "" && trim($column) != "") {

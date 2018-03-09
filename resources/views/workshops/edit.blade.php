@@ -239,7 +239,8 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <div class="col-md-offset-1 col-md-10">
+                                    <label for="horario" class="col-md-4 control-label">Descripción</label>
+                                    <div class="col-md-6">
                                         <textarea id="description"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -263,6 +264,7 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Fecha</th>
+                                                <th scope="col">Hora de clase</th>
                                                 <th scope="col">Lugar</th>
                                                 <th scope="col">Acciones</th>
                                             </tr>
@@ -272,7 +274,9 @@
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td>{{ $lesson->date }}</td>
+                                                    <td>{{ $lesson->hour }}</td>
                                                     <td>{{ $lesson->place }}</td>
+                                                    <td><a href="{{ route('lessons.listAssistance', $lesson->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Registrar estudiante">Ver asistencia</a></td>
                                                 </tr>
                                             @endforeach                                                                                    
                                         </tbody>
