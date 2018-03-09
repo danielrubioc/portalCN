@@ -325,6 +325,71 @@ li.body-list span {
     text-align: right;
     margin-top: 50px;
 }
+.title-gral-index {
+    text-align: left;
+}
+td.btn-align-lesson {
+    display: inline-flex;
+}
+
+.title-gral-index h1 {
+    text-align: left !important;
+    margin-bottom: 0 !important;
+}
+
+.title-gral-index {
+    margin-bottom: 40px;
+}
+.item-disc {
+    margin-bottom: 25px;
+    border: 1px solid #e7e7e7;
+}
+.img-disc-all {
+    overflow: hidden;
+        position: relative;
+}
+.info-detail {
+    padding: 10px;
+}
+.info-detail h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #50504e;
+    margin-bottom: 10px;
+}
+.img-disc-all:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,rgba(0,0,0,.8));
+    content: "";
+    opacity: 1;
+    transform: translate3d(0,50%,0);
+    transition: opacity .35s,transform .35s;
+}
+.item-disc:hover .img-disc-all:before {
+    opacity: 1;
+    transform: translate3d(0,10%,0);
+    transition: opacity .35s,transform .35s;
+}
+
+.info-detail {
+    height: 200px;
+    padding: 15px;
+}
+.img-disc-all {
+    height: 300px;
+}
+.item-disc:hover {
+    border: 1px solid #94c11f;
+}
+.info-detail p {
+    margin-bottom: 0;
+}
 
 /*switch*/
 

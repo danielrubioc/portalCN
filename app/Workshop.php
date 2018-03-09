@@ -43,6 +43,13 @@ class Workshop extends Model
         return $this->quotas + $this->about_quotas;
     }
 
+    //obtener clases de cada workshop
+
+    public function lessons()
+    {
+        return $this->hasMany('App\Lesson');
+    }
+
     //total de cupos disponibles 
     //**traigo los registros tabla pivot y le resto al total de quotas
     public function hasTotalQuotesAvaibles() {
@@ -79,9 +86,7 @@ class Workshop extends Model
         if ($value == 0) {
             $query->orderBy('id','DESC');
         } else {
-            $query->where("status", "=", 1)
-              ->where('type', '=', $value)
-              ->orderBy('id','DESC');
+            $query->where("status", "=", 1)->where('type', '=', $value)->orderBy('id','DESC');
         }
         
     }

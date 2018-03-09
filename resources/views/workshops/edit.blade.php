@@ -3,20 +3,22 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="control-btne-crud">
+            <a href="{{ URL::to('workshops') }}" class="btn btn-success btn-create-gral">Volver a Talleres</a>
+        </div>
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Taller</div>
-                <ul class="nav nav-pills nav-gallery">
-                    <li class="{{ empty($tab['name']) || $tab['name'] == 'info' ? 'active' : '' }}"><a data-toggle="pill" href="#info">Información de taller</a></li>
-                    <li class="{{ empty($tab['name']) || $tab['name'] == 'lessons' ? 'active' : '' }}"><a data-toggle="pill" href="#lessons">Calendario de clases</a></li>
-                </ul>
+
 
                 <div class="tab-content">
                     <div id="info" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'info' ? 'in active' : '' }}">
                         <div class="panel-body" style="text-align: center;" >
-                        <?php if ($workshops->cover_page): ?>
-                            <img src="{{url('/uploads/workshop')}}/{{ $workshops->cover_page }}" style=" max-height:250px; ">
-                        <?php endif ?>
+                            <div class="img-min-avatar">
+                                    @if ($workshops->cover_page)
+                                        <img src="{{url('/uploads/workshop')}}/{{ $workshops->cover_page }}" style="width:100%; max-height:150px ">
+                                    @endif
+                            </div>
 
                             <form class="form-horizontal text-align-left" method="POST" action="{{ route('workshops.update', ['id' => $workshops->id] ) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
@@ -200,90 +202,6 @@
                                 </div>
                             </form>                  
 
-                        </div>
-                    </div>
-
-                    <div id="lessons" class="tab-pane fade {{ empty($tab['name']) || $tab['name'] == 'lessons' ? 'in active' : '' }}">
-                        <div class="panel-body">
-                            
-                            <form class="form-horizontal" method="POST" action="{{ route('lessons.store' ) }}" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                <input id="workshop_id" name="workshop_id" value="{{ $workshops->id }}" type="hidden" />
-                                
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="title" class="col-md-4 control-label"> Lugar </label>
-
-                                    <div class="col-md-6">
-                                        <input id="place" type="text" class="form-control" name="place" value="{{ old('place') }}" required autofocus>
-
-                                        @if ($errors->has('place'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('place') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
-                                    <label for="fecha" class="col-md-4 control-label">Fecha</label>
-                                    <div class="col-md-6">
-                                        <input id="date" type="date" class="form-control" name="date" value="{{ old('date') }}" required autofocus>
-                                    </div>                   
-                                </div>
-
-                                <div class="form-group{{ $errors->has('horario') ? ' has-error' : '' }}">
-                                    <label for="horario" class="col-md-4 control-label">Horario</label>
-                                    <div class="col-md-6">
-                                        <input id="hour" type="text" class="form-control" name="hour" value="{{ old('hour') }}" required autofocus>
-                                    </div>                   
-                                </div>
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="horario" class="col-md-4 control-label">Descripción</label>
-                                    <div class="col-md-6">
-                                        <textarea id="description"  type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
-                                        @if ($errors->has('name'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            Guardar clase
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-10 col-md-offset-1">
-                                    <table class="table table-responsive table-perzonalise table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Fecha</th>
-                                                <th scope="col">Hora de clase</th>
-                                                <th scope="col">Lugar</th>
-                                                <th scope="col">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($lessons as $lesson)
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>{{ $lesson->date }}</td>
-                                                    <td>{{ $lesson->hour }}</td>
-                                                    <td>{{ $lesson->place }}</td>
-                                                    <td><a href="{{ route('lessons.listAssistance', $lesson->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Registrar estudiante">Ver asistencia</a></td>
-                                                </tr>
-                                            @endforeach                                                                                    
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </form>
                         </div>
                     </div>
                 </div>

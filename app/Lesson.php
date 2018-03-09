@@ -13,18 +13,22 @@ class Lesson extends Model
         'description', 'date', 'hour', 'quotas', 'about_quotas', 'workshop_id', 'status'
     ];
 
-    public function scopeGetListLessonOrderDate($query)
-    {   
-        $query->orderBy('date','ASC');
-        
-    }
-
     public function users()
     {
     	
         return $this->belongsToMany('App\User', 'assistances', 'lesson_id', 'user_id')->withPivot('status')->withTimestamps();
     }
 
+    public function scopeGetListLessonOrderDate($query)
+    {   
+        $query->orderBy('date','ASC');
+        
+    }
+    //lista lesson order by date
+    public function scopeGetListLessonsOderByDate($query, $value)
+    {   
+        $query->where('workshop_id', '=', $value)->where('status', '=', 1)->orderBy('date','ASC');
+    }
 
 
 }

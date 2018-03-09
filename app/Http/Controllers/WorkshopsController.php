@@ -251,22 +251,22 @@ class WorkshopsController extends Controller
 
 
                 if ($request->show) {
-                    flash('La noticia '. $workshops->title .' se actualizó correctamente!')->success();
+                    flash('El Taller '. $workshops->title .' se actualizó correctamente!')->success();
                     return redirect()->route('workshops.index');
                 }
                 
 
-                flash('La noticia '. $workshops->title .' se actualizó correctamente!')->success();
+                flash('El Taller '. $workshops->title .' se actualizó correctamente!')->success();
                 return redirect()->route('workshops.edit', $workshops->id);
 
             } else {
-                flash('La noticia no se pudo actualizar.')->error();
+                flash('El Taller no se pudo actualizar.')->error();
                 return redirect()->route('workshops.edit', $workshops->id);
             }
             
         }  else{
             
-            flash('no se encuentra la noticia')->error();
+            flash('no se encuentra el Taller')->error();
             return redirect()->route('workshops.edit', $id);
         }
     }
@@ -354,9 +354,7 @@ class WorkshopsController extends Controller
                                                     'statuses' => Status::all(['id', 'name']),
                                                     'students' => User::getListActiveUser(3)->get(),
                                                     'listStudents' => $listStudents  ]);
-
         }
-
     }
 
     public function destroyStudent(Request $request, $id)
@@ -367,6 +365,4 @@ class WorkshopsController extends Controller
     }
 
 
-    
-    
 }

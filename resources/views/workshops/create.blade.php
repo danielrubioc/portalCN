@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <a href="{{ URL::to('workshops') }}" class="btn btn-success btn-create-gral">Volver a Talleres</a>
             <div class="panel panel-default">
                 <div class="panel-heading">Nuevo taller</div>
 

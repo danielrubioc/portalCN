@@ -7,19 +7,26 @@
 
 <div class="container">
 	<div class="gral-list-content">
+		<div class="control-btne-crud">
+            <a href="{{ URL::to('workshops') }}" class="btn btn-success btn-create-gral">Volver a Talleres</a>	
+            <a href="{{ route('workshops.listStudent', $workshop->id) }}" class="btn btn-success btn-create-gral" title="Lista de Estudiantes">Lista estudiantes</a>
+           
+        </div>
+
+
 	    <div class="title-gral-index">
-			<a href="{{ route('workshops.edit', $workshop->id) }}" class="btn btn-success">Volver</a>	
-
-
 			<h1>Lista de Asistencia  </h1>
-
+			<h3>"{{ $workshop->name }}"</h3>
 		</div>
+		<ul>
+			<li><strong>Hora:</strong> {{$lesson->hour}}</li>
+			<li><strong>Lugar:</strong> {{$lesson->place}}</li>
+			<li><strong>Descripción:</strong> {{$lesson->description}}</li>
+		</ul>
 	    <br>
 		<div class="col-md-12 no-padding">
-	    	<p>Un total de  {{ count($lessons)}}registros</p>
+	    	<p>Un total de  {{ count($lessons)}} registros</p>
 		    <div class="table-responsive">
-
-
 
 				    <ul class="table-list">
 				    	<li class="head-lisr">
@@ -50,10 +57,8 @@
 					    		</div>
 						</form>
 				    </ul>
-
-				   	
+				   
 		    </div>
-
 		</div>
 	</div> 		    
  </div> 

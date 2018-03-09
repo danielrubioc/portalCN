@@ -29,8 +29,6 @@ class HomeController extends Controller
     // vista para los admins
     public function index()
     {   
-
-
         if (Auth::user()) {
             switch (Auth::user()->hasRole->name) {
                 case 'admin':
@@ -40,7 +38,8 @@ class HomeController extends Controller
                     return view('dashboard_all');
                     break;
                 case 'public':
-                    return view('dashboard_all');
+                    $workshops = Auth::user()->workshops;
+                    return view('dashboard_all', [ 'workshops' =>  $workshops]);
                     break;
                 case 'publisher':
                     return view('dashboard_all');
@@ -51,59 +50,6 @@ class HomeController extends Controller
         }
     }
 
-    // vista para los profes
-    public function indexTeacher()
-    {   
-        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
-        $my_workshops = Workshop::join('students', function ($join) {
-                            $join->on('students.workshop_id', '=', 'workshops.id')
-                            ->where('students.user_id','=', Auth::user()->role_id );
-                        })
-                        ->get();
-                        
-
-        return view('dashboard_public', [
-            'workshops' => $workshops,
-            'my_workshops' => $my_workshops
-            ]);       
-    }
-
-    // vista para los alumnos
-    public function indexPublic()
-    {   
-        //lista de talleres activos
-       
-
-        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
-        $my_workshops = Workshop::join('students', function ($join) {
-                            $join->on('students.workshop_id', '=', 'workshops.id')
-                            ->where('students.user_id','=', Auth::user()->role_id );
-                        })
-                        ->get();
-                    
-        return view('dashboard_public', [
-            'workshops' => $workshops,
-            'my_workshops' => $my_workshops 
-            ]);
-    }
-
-    // vista para los publishers
-    public function indexPublisher()
-    {   
-        //lista de talleres activos
-       
-        $workshops = Workshop::getListActiveWorkshops(1)->paginate(15); 
-        $my_workshops = Workshop::join('students', function ($join) {
-                            $join->on('students.workshop_id', '=', 'workshops.id')
-                            ->where('students.user_id','=', Auth::user()->role_id );
-                        })
-                        ->get();
-                    
-        return view('dashboard_publisher', [
-            'workshops' => $workshops,
-            'my_workshops' => $my_workshops 
-            ]);
-    }
     
     public function indexSite()
     {   
