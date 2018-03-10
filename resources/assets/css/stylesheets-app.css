@@ -391,6 +391,42 @@ td.btn-align-lesson {
     margin-bottom: 0;
 }
 
+.info-welcome h2 {
+    /* border-bottom: 1px solid #b2b3b3; */
+    padding-bottom: 25px;
+    font-weight: 900;
+    font-family: Merriweather Sans,sans-serif;
+    text-transform: uppercase;
+    color: #636b6f;
+    font-weight: 800;
+    font-size: 35px;
+    padding-bottom: 12px;
+    margin: 0;
+}
+
+.info-welcome h3 {
+    margin: 0;
+    font-family: Merriweather Sans,sans-serif;
+    text-transform: uppercase;
+    color: #636b6f;
+    font-weight: 800;
+    font-size: 35px;
+    padding-bottom: 12px;
+    margin: 0;
+}
+
+.info-welcome h3 img {
+    width: 74px;
+        display: inline-block;
+}
+.workshop-modify-container {
+    padding-top: 120px;
+}
+.info-welcome p {
+    color: #636b6f;
+    font-size: 17px;
+}
+
 /*switch*/
 
 @media (max-width: 768px) { 

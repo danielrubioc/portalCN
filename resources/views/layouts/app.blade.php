@@ -72,6 +72,7 @@
                                     <li><a href="{{ URL::to('categories') }}">Categorías blog</a></li>
                                     <li><a href="{{ URL::to('posts') }}">Blog</a></li>
                                     <li><a href="{{ URL::to('tags') }}">Tags</a></li>
+                                    <li><a href="{{ URL::to('workshops') }}">Talleres</a></li>
                                     <li><a href="{{ URL::to('banners') }}">Banners</a></li>
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
@@ -125,7 +126,7 @@
                 @endif
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <div class="space-menu">
-                    <a href="{{ url('/') }}">
+                    <a href="{{ url('/dashboard') }}">
                     @if(Auth::user())
                         <h3>{{ Auth::user()->name }}</h3>
                     @endif
@@ -156,6 +157,8 @@
                             <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                  
+                            <a href="{{ URL::to('workshops') }}">Talleres</a>
+                            <a href="{{ URL::to('/') }}">Ir a sitio web</a>
                         @endif
                         <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -185,7 +188,7 @@
                       <div class="bar3"></div>
                     </div>
                     <div class="icon-corporative"> 
-                      <a href="{{ url('/') }}">
+                      <a href="{{ url('/dashboard') }}">
                         @if(Auth::user())
                             <h3>{{ Auth::user()->name }}</h3>
                         @endif  

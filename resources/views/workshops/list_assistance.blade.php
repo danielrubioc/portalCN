@@ -10,7 +10,8 @@
 		<div class="control-btne-crud">
             <a href="{{ URL::to('workshops') }}" class="btn btn-success btn-create-gral">Volver a Talleres</a>	
             <a href="{{ route('workshops.listStudent', $workshop->id) }}" class="btn btn-success btn-create-gral" title="Lista de Estudiantes">Lista estudiantes</a>
-           
+            <a href="{{ route('lessons.listLesson', $workshop->id) }}" class="btn btn-success btn-create-gral" data-toggle="tooltip" title="Listado de Clases">Calendario de Clases</a>
+
         </div>
 
 

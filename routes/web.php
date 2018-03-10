@@ -36,12 +36,12 @@ Route::resource('galleries', 'GalleriesController')->middleware('validRole:admin
 //tags
 Route::resource('tags', 'TagsController')->middleware('validRole:admin.publisher');
 //taller
-Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher');
-Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher');
-Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent')->middleware('validRole:admin.teacher');
+Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher.publisher');
+Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher.publisher');
+Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent')->middleware('validRole:admin.teacher.publisher');
 Route::post('/workshops/storePublic', 'WorkshopsController@storeStudentPublicAuth')->name('workshops.storeStudentPublicAuth')->middleware('validRole:public');
 Route::get('/workshops/listStudent/{idWork}', 'WorkshopsController@listStudent')->name('workshops.listStudent');
-Route::delete('/workshops/students/destoy/{idUser}', 'WorkshopsController@destroyStudent')->name('workshops.destroyStudent')->middleware('validRole:admin.teacher');
+Route::delete('/workshops/students/destoy/{idUser}', 'WorkshopsController@destroyStudent')->name('workshops.destroyStudent')->middleware('validRole:admin.teacher.publisher');
 //banner
 Route::resource('banners', 'BannersController')->middleware('validRole:admin.publisher');
 //Route::post('workshops/update', 'WorkshopsController@update')->middleware('auth');

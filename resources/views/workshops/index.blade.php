@@ -16,7 +16,6 @@
 
 
 	    <div class="col-md-12">
-	    	<p>Un total de {{ $workshops->total() }} registros</p>
 		    <div class="table-responsive">
 			    <table class="table table-responsive table-perzonalise table-striped">
 			    	<thead>
@@ -62,7 +61,6 @@
 			    	</tbody>
 			    </table>
 		    </div>
-		    {{ $workshops->links() }}
 		</div>
 	</div> 		    
  </div> 

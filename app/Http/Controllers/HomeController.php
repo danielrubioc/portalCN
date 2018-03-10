@@ -35,7 +35,8 @@ class HomeController extends Controller
                     return view('dashboard_all');
                     break;
                 case 'teacher':
-                    return view('dashboard_all');
+                    $workshops = Auth::user()->workshopsTeacher;
+                    return view('dashboard_all', [ 'workshops' =>  $workshops]);
                     break;
                 case 'public':
                     $workshops = Auth::user()->workshops;

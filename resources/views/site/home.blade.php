@@ -40,7 +40,7 @@
 								</div>
 								<div class="txt-item-work">
 									<h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
-									<p class="animable-element" style="opacity: 1;">{{ str_limit($taller->description, 60) }} </p>
+									<p class="animable-element" style="opacity: 1;">{!! str_limit($taller->description, 60) !!} </p>
 									
 								</div>	
 								</div>					

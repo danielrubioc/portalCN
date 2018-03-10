@@ -28,13 +28,15 @@ class WorkshopsController extends Controller
      */
     public function index()
     {
-        //$tallers = Taller::paginate(15);
-        $workshops = Workshop::getListActiveWorkshops(0)->paginate(15);   
+        if (Auth::user()->hasRole->name == 'teacher') {
+            $workshops = Auth::user()->workshopsTeacher;
+        } else {    
+            $workshops = Workshop::getListActiveWorkshops(0)->paginate(15);   
+        }
         
         return view('workshops.index', ['workshops' => $workshops,
                                          'statuses' => Status::all(['id', 'name']),
                                         'types' => Type::all(['id', 'name']) ]);
-            
     }
 
     /**
