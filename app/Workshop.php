@@ -50,6 +50,12 @@ class Workshop extends Model
         return $this->hasMany('App\Lesson');
     }
 
+    public function scopeLessonsBeforeRecord()
+    {   
+        $ldate = date('Y-m-d');
+        return $this->hasMany('App\Lesson')->where('date', '>', $ldate)->orderBy('date','ASC');
+    }
+
     //total de cupos disponibles 
     //**traigo los registros tabla pivot y le resto al total de quotas
     public function hasTotalQuotesAvaibles() {
@@ -65,13 +71,13 @@ class Workshop extends Model
 
             switch ($column) {
                 case 'role_id':
-                    $query->where(\DB::raw("role_id"), "=", $value)->orderBy('id','DESC');;
+                    $query->where(\DB::raw("role_id"), "=", $value)->orderBy('id','DESC');
                     break;
                 case 'email':
-                    $query->where(\DB::raw("email"), "LIKE", "%$value%")->orderBy('id','DESC');;
+                    $query->where(\DB::raw("email"), "LIKE", "%$value%")->orderBy('id','DESC');
                     break;
                 case 'status':
-                    $query->where(\DB::raw("status"), "LIKE", "%$value%")->orderBy('id','DESC');;
+                    $query->where(\DB::raw("status"), "LIKE", "%$value%")->orderBy('id','DESC');
                     break;
             }
         }

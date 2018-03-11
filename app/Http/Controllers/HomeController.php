@@ -39,7 +39,7 @@ class HomeController extends Controller
                     return view('dashboard_all', [ 'workshops' =>  $workshops]);
                     break;
                 case 'public':
-                    $workshops = Auth::user()->workshops;
+                    $workshops = Auth::user()->workshops->take(2);;
                     return view('dashboard_all', [ 'workshops' =>  $workshops]);
                     break;
                 case 'publisher':
@@ -68,6 +68,11 @@ class HomeController extends Controller
                                     'workshopsPrincipal' => $workshopsPrincipal]);
     }
 
+    public function viewWorkshopsIns()
+    {   
+        $workshops = Auth::user()->workshops()->paginate(6);
+        return view('dashboard_view', [ 'workshops' =>  $workshops]);;
+    }
 
     public function about()
     {   
@@ -223,7 +228,6 @@ class HomeController extends Controller
     {
         return view('site/valid_user_token');
     }
-
 
     
 }

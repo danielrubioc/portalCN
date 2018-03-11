@@ -61,6 +61,7 @@
 			    	</tbody>
 			    </table>
 		    </div>
+		    {{ $workshops->links() }}
 		</div>
 	</div> 		    
  </div> 

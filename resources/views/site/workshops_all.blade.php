@@ -26,8 +26,13 @@
                                                     <h2>{{$taller->name}}</h2>
                                                     <p>{{ str_limit($taller->description, 80) }}</p>
                                                     <div class="suscrit-regis">
-                                                        <span>Próximamente</span>
-                                                        <span>Próximamente </span>
+                                                        <span>Próxima clase</span>
+                                                        <span>@if ($taller->lessonsBeforeRecord()->first()['date'])
+                                                                    {{ date('d-m-Y', strtotime($taller->lessonsBeforeRecord()->first()['date']))  }}
+                                                                    @else
+                                                                    No hay clases
+                                                                @endif 
+                                                        </span>
 
                                                     </div>
                                                     <div class="view-regis">

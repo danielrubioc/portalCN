@@ -70,8 +70,7 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <h1>Talleres inscritos</h1>
-                            <p>Un total de  {{ count($workshops)}} talleres</p>
+                            <h1>Últimos Talleres inscritos</h1>
                             @foreach ($workshops as $key => $taller)
                                 <div class="col-md-6 max-heigh-susc">
                                     <div class="item-disc " data-owl="{{$key}}">
@@ -88,11 +87,18 @@
                                             </ul>
                                             </p>
                                             <p><strong>Clases disponibles:</strong> {{count($taller->lessons)}}</p>
-
+                                             <p><strong>Próxima clase:</strong> 
+                                                {{ date('d-m-Y', strtotime($taller->lessonsBeforeRecord()->first()['date']))  }}
+                                            </p>
                                         </div> 
                                     </div>   
                                 </div>
-                            @endforeach   
+                            @endforeach  
+                            <div class="col-md-12">
+                                @if (count($workshops) > 0)
+                                    <a href="{{ route('home.viewWorkshopsIns') }}" class="btn btn-success btn-create-gral">ver todos</a>
+                                @endif
+                            </div> 
                         </div>
                     </div>
                 @endif

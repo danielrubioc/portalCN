@@ -60,6 +60,9 @@
 			    	</tbody>
 			    </table>
 		    </div>
+		    <div class="col-md-12">
+                {{ $tags->links() }}
+            </div> 
 		</div> 
 	</div> 		    
  </div> 

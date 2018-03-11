@@ -62,8 +62,7 @@
                             @endif
                             @if (Auth::user()->hasRole->name == 'public')
                                 <ul class="nav navbar-nav">
-                                    <li><a href="">Mis Talleres</a></li>
-                                    <li><a href="">Estadísticas</a></li>
+                                    <li><a href="{{ route('home.viewWorkshopsIns') }}">Mis Talleres</a></li>
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
                             @endif

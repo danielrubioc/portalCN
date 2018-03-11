@@ -15,6 +15,8 @@ Auth::routes();
 
 //dashboard para todos 
 Route::get('/dashboard', 'HomeController@index')->name('home.dashboard')->middleware('auth');
+//dashboard para todos 
+Route::get('/talleres-inscritos', 'HomeController@viewWorkshopsIns')->name('home.viewWorkshopsIns')->middleware('auth')->middleware('validRole:public');
 
 //************* users **************///
 Route::resource('users', 'UserController')->middleware('validRole:admin');
@@ -48,7 +50,7 @@ Route::resource('banners', 'BannersController')->middleware('validRole:admin.pub
 
 //lesson
 Route::resource('lessons', 'LessonsController');    
-Route::get('/workshops/listAsisstance/{idWork}', 'LessonsController@listAssistance')->name('lessons.listAssistance');
+Route::get('/workshops/listAsisstance/{idWork}', 'LessonsController@listAssistance')->name('lessons.listAssistance')->middleware('validRole:admin.teacher');
 Route::post('/workshops/listAsisstance/save', 'LessonsController@saveList')->name('lessons.saveList')->middleware('validRole:admin.teacher');
 //class calendar
 Route::get('/workshops/listClass/{idWork}', 'LessonsController@listLesson')->name('lessons.listLesson');
