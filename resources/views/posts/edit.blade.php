@@ -8,7 +8,7 @@
                 <div class="panel-heading">Editando noticia "{{ $news->title }}"</div>
                 <ul class="nav nav-pills nav-gallery">
                     <li class="{{ empty($tab['name']) || $tab['name'] == 'info' ? 'active' : '' }}"><a data-toggle="pill" href="#info">Información de noticia</a></li>
-                    <li class="{{ empty($tab['name']) || $tab['name'] == 'gallery' ? 'active' : '' }}"><a data-toggle="pill" href="#gallery">Galeria de imagenes</a></li>
+                    <!--<li class="{{ empty($tab['name']) || $tab['name'] == 'gallery' ? 'active' : '' }}"><a data-toggle="pill" href="#gallery">Galeria de imagenes</a></li>-->
                 </ul>
                 
                 <div class="tab-content">
