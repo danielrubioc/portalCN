@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="gral-list-content">
 		<div class="control-btne-crud">
-			@if (Auth::user()->hasRole->name == 'admin' && Auth::user()->hasRole->name == 'publisher')                             
+			@if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'publisher')                             
             	<a href="{{ URL::to('workshops/create') }}" class="btn btn-success btn-create-gral">Nuevo taller</a>
             @endif
         </div>
