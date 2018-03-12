@@ -53,7 +53,7 @@ class Workshop extends Model
     public function scopeLessonsBeforeRecord()
     {   
         $ldate = date('Y-m-d');
-        return $this->hasMany('App\Lesson')->where('date', '>', $ldate)->orderBy('date','ASC');
+        return $this->hasMany('App\Lesson')->where('date', '>=', $ldate)->orderBy('date','ASC');
     }
 
     //total de cupos disponibles 

@@ -143,11 +143,12 @@
                         @endif
                         @if (Auth::user()->hasRole->name == 'teacher')
                                 <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                                <a href="{{ URL::to('/') }}">Ir a sitio web</a>
                         @endif
                         @if (Auth::user()->hasRole->name == 'public')
                             <ul class="nav navbar-nav">
                                 <a href="">Mis Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                                <a href="">Estadísticas <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                                <a href="{{ URL::to('/') }}">Ir a sitio web</a>
                             </ul>
 
                         @endif

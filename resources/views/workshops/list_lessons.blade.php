@@ -43,7 +43,7 @@
                 <div class="form-group{{ $errors->has('horario') ? ' has-error' : '' }}">
                     <label for="horario" class="col-md-4 control-label">Horario</label>
                     <div class="col-md-6">
-                        <input id="hour" type="text" class="form-control" name="hour" value="{{ old('hour') }}" required autofocus>
+                        <input type="time" id="hour"  class="form-control" name="hour" value="{{ old('hour') }}" required autofocus/>
                     </div>                   
                 </div>
 

@@ -39,7 +39,7 @@ class HomeController extends Controller
                     return view('dashboard_all', [ 'workshops' =>  $workshops]);
                     break;
                 case 'public':
-                    $workshops = Auth::user()->workshops->take(2);;
+                    $workshops = Auth::user()->workshops->take(2);
                     return view('dashboard_all', [ 'workshops' =>  $workshops]);
                     break;
                 case 'publisher':
@@ -185,7 +185,6 @@ class HomeController extends Controller
             $posts = Post::getListActivePost(1)->paginate(6);
         }
 
-        
         return view('site.post_categories', ['posts' => $posts, 
                                             'category' => $category,
                                             'categories' => Category::getListActiveCategories()->get(), 

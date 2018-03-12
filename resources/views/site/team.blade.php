@@ -29,6 +29,30 @@
                             <div id="team-modify-container">
                                 <div class="col-xs-3">
                                     <div class="item-work item-team">
+                                        <img src="{{url('/images/team-desktop')}}/Cristian.jpg" class="img-responsive">
+                                        <span class="info-team desktop-info">
+                                            <h1>Cristian Weibel</h1>
+                                            <h2>Jefe de Administración y Finanzas</h2>
+                                        </span> 
+                                    </div>   
+                                </div> 
+                            </div>
+
+                            <div id="team-modify-container">
+                                <div class="col-xs-3">
+                                    <div class="item-work item-team">
+                                        <img src="{{url('/images/team-desktop')}}/felipe-fuenzalida.jpg" class="img-responsive">
+                                        <span class="info-team desktop-info">
+                                            <h1>Felipe Fuenzalida</h1>
+                                            <h2>Asesor de Programas y Contenidos Deportivas</h2>
+                                        </span> 
+                                    </div>   
+                                </div> 
+                            </div>
+
+                            <div id="team-modify-container">
+                                <div class="col-xs-3">
+                                    <div class="item-work item-team">
                                         <img src="{{url('/images/team-desktop')}}/magaly-jauregui.jpg" class="img-responsive">
                                         <span class="info-team desktop-info">
                                             <h1>Magaly Jauregui</h1>
@@ -53,10 +77,22 @@
                             <div id="team-modify-container">
                                 <div class="col-xs-3">
                                     <div class="item-work item-team">
-                                        <img src="{{url('/images/team-desktop')}}/felipe-fuenzalida.jpg" class="img-responsive">
+                                        <img src="{{url('/images/team-desktop')}}/juan-gonzalez.jpg" class="img-responsive">
                                         <span class="info-team desktop-info">
-                                            <h1>Felipe Fuenzalida</h1>
-                                            <h2>Asesor de Programas y Contenidos Deportivas</h2>
+                                            <h1>Juan González </h1>
+                                            <h2>Encargado de Proyectos y Asistente de Gestión</h2>
+                                        </span> 
+                                    </div>   
+                                </div> 
+                            </div>
+
+                            <div id="team-modify-container">
+                                <div class="col-xs-3">
+                                    <div class="item-work item-team">
+                                        <img src="{{url('/images/team-desktop')}}/Leslile.jpg" class="img-responsive">
+                                        <span class="info-team desktop-info">
+                                            <h1>Leslie Durán </h1>
+                                            <h2>Encargada de Administración y Finanzas</h2>
                                         </span> 
                                     </div>   
                                 </div> 
@@ -73,18 +109,6 @@
                                     </div>   
                                 </div> 
                             </div>
-
-                            <div id="team-modify-container">
-                                <div class="col-xs-3">
-                                    <div class="item-work item-team">
-                                        <img src="{{url('/images/team-desktop')}}/juan-gonzalez.jpg" class="img-responsive">
-                                        <span class="info-team desktop-info">
-                                            <h1>Juan González </h1>
-                                            <h2>Encargado de Proyectos y Asistente de Gestión</h2>
-                                        </span> 
-                                    </div>   
-                                </div> 
-                            </div>
                             
                             <div id="team-modify-container">
                                 <div class="col-xs-3">
@@ -93,6 +117,18 @@
                                         <span class="info-team desktop-info">
                                             <h1>Ignacio Martínez </h1>
                                             <h2>Encargado de Comunicaciones y RRPP</h2>
+                                        </span> 
+                                    </div>   
+                                </div> 
+                            </div>
+
+                             <div id="team-modify-container">
+                                <div class="col-xs-3">
+                                    <div class="item-work item-team">
+                                        <img src="{{url('/images/team-desktop')}}/Almendra.jpg" class="img-responsive">
+                                        <span class="info-team desktop-info">
+                                            <h1>Almendra Dueñas </h1>
+                                            <h2>Asistente de Administración y Finanzas</h2>
                                         </span> 
                                     </div>   
                                 </div> 
@@ -132,43 +168,7 @@
                                         </span> 
                                     </div>   
                                 </div> 
-                            </div>
-
-                            <div id="team-modify-container">
-                                <div class="col-xs-3">
-                                    <div class="item-work item-team">
-                                        <img src="{{url('/images/team-desktop')}}/Cristian.jpg" class="img-responsive">
-                                        <span class="info-team desktop-info">
-                                            <h1>Cristian Weibel</h1>
-                                            <h2>Jefe de Administración y Finanzas</h2>
-                                        </span> 
-                                    </div>   
-                                </div> 
-                            </div>
-
-                            <div id="team-modify-container">
-                                <div class="col-xs-3">
-                                    <div class="item-work item-team">
-                                        <img src="{{url('/images/team-desktop')}}/Leslile.jpg" class="img-responsive">
-                                        <span class="info-team desktop-info">
-                                            <h1>Leslie Durán </h1>
-                                            <h2>Encargada de Administración y Finanzas</h2>
-                                        </span> 
-                                    </div>   
-                                </div> 
-                            </div>
-
-                            <div id="team-modify-container">
-                                <div class="col-xs-3">
-                                    <div class="item-work item-team">
-                                        <img src="{{url('/images/team-desktop')}}/Almendra.jpg" class="img-responsive">
-                                        <span class="info-team desktop-info">
-                                            <h1>Almendra Dueñas </h1>
-                                            <h2>Asistente de Administración y Finanzas</h2>
-                                        </span> 
-                                    </div>   
-                                </div> 
-                            </div>
+                            </div>       
 
                     </div>
 

@@ -85,6 +85,17 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="cover_page" class="col-md-4 control-label">Estado</label>
+                            <div class="col-md-6">
+                            <select class="form-control" id="status" name="status">
+                                @foreach($statuses as $status)
+                                    <option value="{{$status['id']}}">{{$status['name']}}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Contraseña</label>
 

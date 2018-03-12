@@ -29,7 +29,8 @@ class WorkshopsController extends Controller
     public function index()
     {
         if (Auth::user()->hasRole->name == 'teacher') {
-            $workshops = Auth::user()->workshopsTeacher;
+            $workshops = Auth::user()->workshopsTeacher()->paginate(15);
+           
         } else {    
             $workshops = Workshop::getListActiveWorkshops(0)->paginate(15);   
         }

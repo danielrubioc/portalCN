@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <h1>Talleres inscritos</h1>
+                            <h1>Talleres asignados</h1>
                             <p>Un total de  {{ count($workshops)}} talleres</p>
                             @foreach ($workshops as $key => $taller)
                                 <div class="col-md-6 max-heigh-susc">
@@ -47,11 +47,15 @@
                                                 @endforeach   
                                             </ul>
                                             </p>
-                                            <p><strong>Clases disponibles:</strong> {{count($taller->lessons)}}</p>
-
+                                            
                                         </div> 
                                     </div>   
                                 </div>
+                                <div class="col-md-12">
+                                    @if (count($workshops) > 0)
+                                        <a href="{{ route('home.viewWorkshopsIns') }}" class="btn btn-success btn-create-gral">ver todos</a>
+                                    @endif
+                                </div> 
                             @endforeach   
                         </div>
                     </div>

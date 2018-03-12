@@ -8,7 +8,9 @@
 <div class="container">
 	<div class="gral-list-content">
 		<div class="control-btne-crud">
-            <a href="{{ URL::to('workshops/create') }}" class="btn btn-success btn-create-gral">Nuevo taller</a>
+			@if (Auth::user()->hasRole->name == 'admin' && Auth::user()->hasRole->name == 'publisher')                             
+            	<a href="{{ URL::to('workshops/create') }}" class="btn btn-success btn-create-gral">Nuevo taller</a>
+            @endif
         </div>
 	    <div class="title-gral-index">
 			<h1>Lista de Talleres </h1>
@@ -45,14 +47,16 @@
 								    <td class="box-btnes">	
 										<a href="{{ route('workshops.edit', $taller->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 
-
-					    					
-								    	<form method="POST" action="{{ route('workshops.destroy', ['id' => $taller->id] ) }}">
+										@if (Auth::user()->hasRole->name == 'admin' && Auth::user()->hasRole->name == 'publisher')                             
+							            	<form method="POST" action="{{ route('workshops.destroy', ['id' => $taller->id] ) }}">
 									        {{ csrf_field() }}
 									        {{ method_field('DELETE') }}
-									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estás seguro?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
-									    </form>
-
+										        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estás seguro?')" data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span>  </button>
+										    </form>
+							            @endif
+					    					
+								    	
+									    
 									   	<a href="{{ route('workshops.registerStudent', $taller->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Registrar estudiante">Registrar <br> estudiante</a>
 									   	<a href="{{ route('workshops.listStudent', $taller->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Lista de Estudiantes">Lista <br>estudiantes</a>
 									   	<a href="{{ route('lessons.listLesson', $taller->id) }}" class="btn btn-info btn-edit-style btn-especial-taller" data-toggle="tooltip" title="Listado de Clases">Calendario de<br>Clases</a>

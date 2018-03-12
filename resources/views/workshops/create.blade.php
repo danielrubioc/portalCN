@@ -69,7 +69,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        <!--
                         <div class="form-group{{ $errors->has('color') ? ' has-error' : '' }}">
                             <label for="color" class="col-md-4 control-label">Color</label>
 
@@ -103,7 +103,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        -->
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="teachers" class="col-md-4 control-label">Profesores a Cargo</label>
