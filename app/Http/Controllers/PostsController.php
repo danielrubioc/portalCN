@@ -249,24 +249,26 @@ class PostsController extends Controller
             if ($news) {
 
                 //si la url es distinta valido que no se repita en bd
-                if ($news->url != $request->url) {
-                    $messages = array(
-                        'url.unique'    => 'La url ya ha sido registrada.',
-                        'required' => 'El campo es obligatorio',
-                    );
-                    $validRequest = $request->all();
-                    $validRequest['url'] = Str::slug($validRequest['url'], '_');
-                    $validator = Validator::make($validRequest, [
-                        'url' => 'required|string|max:255|unique:posts',
-                    ],  $messages);
+                if ($request->url) {
+                   
+                    if ($news->url != $request->url) {
+                        $messages = array(
+                            'url.unique'    => 'La url ya ha sido registrada.',
+                            'required' => 'El campo es obligatorio',
+                        );
+                        $validRequest = $request->all();
+                        $validRequest['url'] = Str::slug($validRequest['url'], '_');
+                        $validator = Validator::make($validRequest, [
+                            'url' => 'required|string|max:255|unique:posts',
+                        ],  $messages);
 
-                    if ($validator->fails()) {
-                        return redirect('posts/'.$id.'/edit')
-                                    ->withErrors($validator)
-                                    ->withInput();
+                        if ($validator->fails()) {
+                            return redirect('posts/'.$id.'/edit')
+                                        ->withErrors($validator)
+                                        ->withInput();
+                        }
                     }
                 }
-
                 $news->title = $request->title ? $request->title : $news->title;
                 $news->subtitle = $request->subtitle ? $request->subtitle : $news->subtitle;
                 $news->url = $request->url ? Str::slug($request->url, '_') : $news->url;
