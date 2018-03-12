@@ -54,7 +54,7 @@
                             @endforeach   
                             <div class="col-md-12">
                                 @if (count($workshops) > 0)
-                                    <a href="{{ route('home.viewWorkshopsIns') }}" class="btn btn-success btn-create-gral">ver todos</a>
+                                    <a href="{{ URL::to('workshops') }}" class="btn btn-success btn-create-gral">ver todos</a>
                                 @endif
                             </div> 
                         </div>
