@@ -50,8 +50,8 @@ Route::resource('banners', 'BannersController')->middleware('validRole:admin.pub
 
 //lesson
 Route::resource('lessons', 'LessonsController');    
-Route::get('/workshops/listAsisstance/{idWork}', 'LessonsController@listAssistance')->name('lessons.listAssistance')->middleware('validRole:admin.teacher');
-Route::post('/workshops/listAsisstance/save', 'LessonsController@saveList')->name('lessons.saveList')->middleware('validRole:admin.teacher');
+Route::get('/workshops/listAsisstance/{idWork}', 'LessonsController@listAssistance')->name('lessons.listAssistance')->middleware('validRole:admin.teacher.publisher');
+Route::post('/workshops/listAsisstance/save', 'LessonsController@saveList')->name('lessons.saveList')->middleware('validRole:admin.teacher.publisher');
 //class calendar
 Route::get('/workshops/listClass/{idWork}', 'LessonsController@listLesson')->name('lessons.listLesson');
 

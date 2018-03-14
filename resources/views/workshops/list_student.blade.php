@@ -23,7 +23,7 @@
                                     
                                     <td>Nombre</td>
                                     @if(Auth::user())
-                                        @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'teacher')
+                                        @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'teacher' || Auth::user()->hasRole->name == 'publisher')
                                         <td>Correo</td>
                                         <td>Telefono</td>
                                         <td>Rol</td>
@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{ $student->name }} {{ $student->last_name }}</td>
                                     @if(Auth::user())
-                                        @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'teacher')
+                                        @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'teacher' || Auth::user()->hasRole->name == 'publisher')
                                             <td>{{ $student->email }}</td>
                                             <td>{{ $student->cell_phone }}</td>
                                             <td>{{ $student->hasRole->name }}</td>
