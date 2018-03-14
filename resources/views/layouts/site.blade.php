@@ -124,7 +124,7 @@
             </div>
 
             <div class="col-md-8 text-fot col-xs-8">
-                <p>Llámanos al (+562) 26676631 o contáctanos en info@deportescerronavia.cl <br>
+                <p>Llámanos al (+562) 26676631 o contáctanos en contacto@deportescerronavia.cl <br>
                     Mapocho Norte 8115, Cerro Navia, Santiago </p>
 
             </div>

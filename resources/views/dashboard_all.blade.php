@@ -13,7 +13,7 @@
                             <h3>{{ Auth::user()->name }} 
                                     <img src="{{url('/images/66t261gs.png')}}" class="img-responsive">
                             </h3>
-                            <p>Si tienes alguna duda contáctanos al correo info@deportescerronavia.cl para mayor información</p>
+                            <p>Si tienes alguna duda contáctanos al correo contacto@deportescerronavia.cl para mayor información</p>
                         </div>
                     </div>
                 @endif
@@ -26,7 +26,7 @@
                                 <h3>{{ Auth::user()->name }} 
                                         <img src="{{url('/images/66t261gs.png')}}" class="img-responsive">
                                 </h3>
-                                <p>Si tienes alguna duda respecto a tus cursos porfavor contáctanos al correo info@deportescerronavia.cl para mayor información</p>
+                                <p>Si tienes alguna duda respecto a tus cursos porfavor contáctanos al correo contacto@deportescerronavia.cl para mayor información</p>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -70,7 +70,7 @@
                                 <h3>{{ Auth::user()->name }} 
                                         <img src="{{url('/images/66t261gs.png')}}" class="img-responsive">
                                 </h3>
-                                <p>Si tienes alguna duda respecto a tus cursos porfavor contáctanos al correo info@deportescerronavia.cl para mayor información</p>
+                                <p>Si tienes alguna duda respecto a tus cursos porfavor contáctanos al correo contacto@deportescerronavia.cl para mayor información</p>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -115,7 +115,7 @@
                                 <h3>{{ Auth::user()->name }} 
                                         <img src="{{url('/images/66t261gs.png')}}" class="img-responsive">
                                 </h3>
-                                <p>Si tienes alguna duda contáctanos al correo info@deportescerronavia.cl para mayor información</p>
+                                <p>Si tienes alguna duda contáctanos al correo contacto@deportescerronavia.cl para mayor información</p>
                             </div>
                         </div>
                         
