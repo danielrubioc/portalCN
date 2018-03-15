@@ -66,6 +66,54 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
+                        
+                            <div class="col-md-12 effect-reg">
+                                <input id="birth_date" type="date" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required>
+                                <label for="email" class="col-md-12 control-label" style="top: -16px; font-size: 12px;">Fecha de nacimiento</label>
+
+                                @if ($errors->has('birth_date'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('birth_date') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
+                        
+                            <div class="col-md-12 effect-reg">
+                                <input id="age" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="age" value="{{ old('age') }}" required readonly>
+                                <label for="age" class="col-md-12 control-label">Edad</label>
+
+                                @if ($errors->has('age'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('age') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <input class="hidden" type="checkbox" value="0" id="health" name="health" checked />
+                        <input class="checkbox" type="checkbox" value="1" id="health" name="health" /> Tiene algún problema de salud
+                        <br/><br/>
+                        <div class="shownDiv" style="display:none;">
+                            <div class="form-group{{ $errors->has('health_problem') ? ' has-error' : '' }}">
+                                <div class="col-md-12 effect-reg">
+                                   
+                                    <textarea id="health_problem" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="health_problem" value="{{ old('health_problem') }}"></textarea>
+                                    <label for="health_problem" class="col-md-12 control-label">Especifique</label>
+
+                                    @if ($errors->has('health_problem'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('health_problem') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                        </div>
+                        
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
                             <div class="col-md-12 effect-reg">
@@ -113,6 +161,52 @@
                 $(this).addClass('empty');
                 $(this).removeClass('not-empty');
             }
+        });
+
+
+        ////edad
+        var age;
+
+        $('#birth_date').on('change', function () {
+          if ($('#birth_date').val()) {
+                var dateString = $('#birth_date').val();
+                var today = new Date();
+                var birthDate = new Date(dateString);
+                age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+
+                $("#age").val(age);
+
+          } else {
+            $("#age").text('');   
+          }      
+        });
+
+        $('#birth_date').blur(function () {
+            if (age && age > 0) {
+                $("#age").val(age);  
+                if (age >= 18) {   
+                    console.log('eres adulto');
+                }
+                if (age < 18) {   
+                    console.log('eres menor');
+                }
+            } else {
+                
+                    console.log('eres extraño');
+                
+            }
+            
+        });
+
+
+        $(document).ready(function() {
+            $('.checkbox').on('change', function() {
+                $('.shownDiv').toggle();
+            });
         });
 </script>
 @stop

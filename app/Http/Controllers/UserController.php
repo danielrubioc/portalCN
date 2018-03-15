@@ -81,6 +81,9 @@ class UserController extends Controller
 
 
         $user = new User($request->all());
+
+
+
         if ($request->password_confirmation == $request->password) {
             $user->password = bcrypt($request->password);
             $count = User::where('email', $user->email)->count();
@@ -159,6 +162,8 @@ class UserController extends Controller
                 $user->password = $request->password ? bcrypt($request->password) : $user->password;
                 $user->referential_info = $request->referential_info ? $request->referential_info : $user->referential_info;
                 $user->rut = $request->rut ? $request->rut : $user->rut;
+
+                dd($this->calculateAge($user->birth_date));
 
                 if ($request->email == $user->email){
                     $user->email = $request->email;   
@@ -415,5 +420,19 @@ class UserController extends Controller
             flash('No se pudo eliminar el usuario!')->error();   
             return redirect('users');
         }
+    }
+
+
+    public function calculateAge($birthdayDate){
+        //replace / with - so strtotime works
+        $dob = strtotime(str_replace("/","-",$birthdayDate));       
+        $tdate = time();
+
+        $age = 0;
+        while( $tdate > $dob = strtotime('+1 year', $dob))
+        {
+            ++$age;
+        }
+        return $age;
     }
 }

@@ -60,7 +60,8 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request)
-    {
+    {   
+        
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
         return $this->registered($request, $user)
@@ -123,6 +124,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'rut' => 'required|string|unique:users',
+            'age' => 'required',
         ], $messages);
     }
 
@@ -137,19 +139,16 @@ class RegisterController extends Controller
         $data['codigo'] = $this->randomCode();
         $data['nombre'] = $data['name'] . ' ' . $data['last_name'];
         $email = $data['email'];
-
         if ($this->validRut($data['rut']) == false) {
             
             return redirect('register');
         }
-
 
         Mail::send('emails.verify', $data, function($msg) use ($email){
             $msg->subject('Inscripción  - Corporación del Deporte Cerro Navia');
             $msg->from('contacto@deportescerronavia.cl');
             $msg->to($email);
         });
-
 
         return User::create([
             'name' => $data['name'],
@@ -158,6 +157,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'status' => 2,
             'role_id' => 3,
+            'age' => $data['age'],
+            "birth_date" => $data['birth_date'],
+            "health" => $data['health'] ? $data['health'] : 0 ,
+            "health_problem" => $data['health_problem'],
             'validate' => $data['codigo'],
             'password' => bcrypt($data['password']),
         ]);
