@@ -13,7 +13,15 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet"> 
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115077435-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
 
+ gtag('config', 'UA-115077435-1');
+</script>
 </head>
 <body>
     <div id="app">
