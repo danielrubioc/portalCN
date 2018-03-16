@@ -79,7 +79,7 @@ class UserController extends Controller
                         ->withInput();
         }
 
-
+        dd($request->all());
         $user = new User($request->all());
 
 

@@ -84,6 +84,13 @@
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
                             @endif
+                            @if (Auth::user()->hasRole->name == 'attention')
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
+                                    <li><a href="{{ URL::to('workshops') }}">Talleres</a></li>
+                                    <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
+                                </ul>
+                            @endif
                         @endif
                     </ul>
 
@@ -150,24 +157,22 @@
                             <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                  
                         @endif
                         @if (Auth::user()->hasRole->name == 'teacher')
-                                <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                                <a href="{{ URL::to('/') }}">Ir a sitio web</a>
+                            <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                        @endif
+                        @if (Auth::user()->hasRole->name == 'attention')
+                            <a href="{{ URL::to('users') }}">Usuarios <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                
                         @endif
                         @if (Auth::user()->hasRole->name == 'public')
-                            <ul class="nav navbar-nav">
-                                <a href="">Mis Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                                <a href="{{ URL::to('/') }}">Ir a sitio web</a>
-                            </ul>
-
+                            <a href="{{ route('home.viewWorkshopsIns') }}">Mis Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                         @endif
                         @if (Auth::user()->hasRole->name == 'publisher')
                             <a href="{{ URL::to('categories') }}">Categorías blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                  
-                            <a href="{{ URL::to('workshops') }}">Talleres</a>
-                            <a href="{{ URL::to('/') }}">Ir a sitio web</a>
                         @endif
+                        <a href="{{ URL::to('/') }}">Ir a sitio web</a>
                         <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
@@ -183,6 +188,7 @@
                         <a href="{{ route('register') }}">Registro</a>
                         <a href="{{ URL::to('/') }}">Volver a sitio</a>
                     @endif
+
                   
                 </div>
             </div>

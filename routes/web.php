@@ -19,7 +19,7 @@ Route::get('/dashboard', 'HomeController@index')->name('home.dashboard')->middle
 Route::get('/talleres-inscritos', 'HomeController@viewWorkshopsIns')->name('home.viewWorkshopsIns')->middleware('auth')->middleware('validRole:public');
 
 //************* users **************///
-Route::resource('users', 'UserController')->middleware('validRole:admin');
+Route::resource('users', 'UserController')->middleware('validRole:admin.attention');
 Route::post('/registerUserAndWorkshop/store', 'UserController@registerUserAndWorkshop')->name('users.registerUserAndWorkshop');
 
 //rutas perfil
@@ -38,9 +38,9 @@ Route::resource('galleries', 'GalleriesController')->middleware('validRole:admin
 //tags
 Route::resource('tags', 'TagsController')->middleware('validRole:admin.publisher');
 //taller
-Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher.publisher');
-Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher.publisher');
-Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent')->middleware('validRole:admin.teacher.publisher');
+Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher.publisher.attention');
+Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher.publisher.attention');
+Route::post('/workshops/store', 'WorkshopsController@storeStudent')->name('workshops.storeStudent')->middleware('validRole:admin.teacher.publisher.attention');
 Route::post('/workshops/storePublic', 'WorkshopsController@storeStudentPublicAuth')->name('workshops.storeStudentPublicAuth')->middleware('validRole:public');
 Route::get('/workshops/listStudent/{idWork}', 'WorkshopsController@listStudent')->name('workshops.listStudent');
 Route::delete('/workshops/students/destoy/{idUser}', 'WorkshopsController@destroyStudent')->name('workshops.destroyStudent')->middleware('validRole:admin.teacher.publisher');

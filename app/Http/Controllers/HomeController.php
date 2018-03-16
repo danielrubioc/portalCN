@@ -45,6 +45,9 @@ class HomeController extends Controller
                 case 'publisher':
                     return view('dashboard_all');
                     break;
+                case 'attention':
+                    return view('dashboard_all');
+                    break;
             }
         } else {
             return view('/');

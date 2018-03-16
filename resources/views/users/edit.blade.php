@@ -108,7 +108,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'publisher' )        
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Rol</label>
                             <div class="col-md-6">
@@ -124,7 +124,7 @@
                                 </select>
                             </div>
                         </div>
-
+                        @endif
                      
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="cover_page" class="col-md-4 control-label">Estado</label>

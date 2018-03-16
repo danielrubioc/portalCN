@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="title-gral-index">
                 @if(Auth::user())
-                    @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'teacher')
+                    @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'teacher' || Auth::user()->hasRole->name == 'attention')
                         <a href="{{ URL::to('workshops') }}" class="btn btn-success btn-create-gral">Volver a Talleres</a>
                         <a href="{{ route('workshops.registerStudent', $workshop->id) }}" class="btn btn-success btn-create-gral">Registrar estudiante</a>
                     @endif

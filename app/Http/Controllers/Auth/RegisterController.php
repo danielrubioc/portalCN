@@ -61,7 +61,6 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {   
-        
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
         return $this->registered($request, $user)
@@ -161,6 +160,11 @@ class RegisterController extends Controller
             "birth_date" => $data['birth_date'],
             "health" => $data['health'] ? $data['health'] : 0 ,
             "health_problem" => $data['health_problem'],
+            "school" => $data['school'],
+            "headline_full_name" => $data['headline_full_name'],
+            "headline_phone" => $data['headline_phone'],
+            "headline_email" => $data['headline_email'],
+            "headline_rut" => $data['headline_rut'],
             'validate' => $data['codigo'],
             'password' => bcrypt($data['password']),
         ]);

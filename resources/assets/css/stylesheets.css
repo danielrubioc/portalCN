@@ -1743,6 +1743,9 @@ input.btn.btn-info.pull-right.contact-btn-submit.color-black-desk {
     text-align: center;
     margin-top: 50px;
 }
+input#age.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background: transparent;
+}
 
 /*form */
 

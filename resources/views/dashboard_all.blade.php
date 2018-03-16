@@ -121,6 +121,21 @@
                         
                     </div>
                 @endif
+                @if (Auth::user()->hasRole->name == 'attention')
+                    <div class="containt-workshops-public">
+                        
+                        <div class="workshop-modify-container col-md-4">
+                            <div class="info-welcome">
+                                <h2>Bienvenido</h2>
+                                <h3>{{ Auth::user()->name }} 
+                                        <img src="{{url('/images/66t261gs.png')}}" class="img-responsive">
+                                </h3>
+                                <p>Si tienes alguna duda contáctanos al correo contacto@deportescerronavia.cl para mayor información</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                @endif
             @endif
 
         </div>

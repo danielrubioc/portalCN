@@ -94,11 +94,13 @@
                             </div>
                         </div>  
                         <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }} col-md-12">    
-                                <input class="hidden" type="checkbox" value="0" id="health" name="health" checked />
-                                <div class="checkbox col-md-12">
-                                  <label><input type="checkbox" value="1" id="health" name="health" >Tengo problema(s) de salud</label>
+                                <label for="email" class="col-md-12 control-label" style="top: -16px;    color: #aaa;">Tienes problemas de salud?</label>
+
+
+                                <div class="radio col-md-12">
+                                  <label class="checkbox-inline"><input type="radio" name="health" class="closeheal" id="health" value="0" checked>No</label>
+                                  <label class="checkbox-inline"><input type="radio" class="openheal" name="health" id="health" value="1">Si</label>
                                 </div>
-                            <br/><br/>
                             <div class="shownDiv" style="display:none;">
                                 <div class="form-group{{ $errors->has('health_problem') ? ' has-error' : '' }}">
                                     <div class="col-md-12 effect-reg">
@@ -119,29 +121,71 @@
                         
                         <span class="titular-info" style="display:none;">
                                 <div class="inline-flex"> 
-                                    <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
                                         <div class="col-md-12 effect-reg">
-                                            <input id="birth_date" type="date" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required>
-                                            <label for="email" class="col-md-12 control-label" style="top: -16px; font-size: 12px;">Fecha de nacimiento</label>
-                                            @if ($errors->has('birth_date'))
+                                            <input id="school" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="school" value="{{ old('school') }}" required>
+                                            <label for="email" class="col-md-12 control-label" style="top: -16px;">Nombre del colegio al que asiste?</label>
+                                            @if ($errors->has('school'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('birth_date') }}</strong>
+                                                    <strong>{{ $errors->first('school') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
 
-                                    <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
+                                </div> 
+                                <div class="inline-flex"> 
+                                    <div class="form-group{{ $errors->has('headline_full_name') ? ' has-error' : '' }}">
                                         <div class="col-md-12 effect-reg">
-                                            <input id="age" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="age" value="{{ old('age') }}" required readonly>
-                                            <label for="age" class="col-md-12 control-label"  style="top: -16px; font-size: 12px;">Edad</label>
-                                            @if ($errors->has('age'))
+                                            <input id="headline_full_name" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_full_name" value="{{ old('headline_full_name') }}" required>
+                                            <label for="email" class="col-md-12 control-label" style="top: -16px;">Nombre completo (apoderado)</label>
+                                            @if ($errors->has('headline_full_name'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('age') }}</strong>
+                                                    <strong>{{ $errors->first('headline_full_name') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
+
+                                    <div class="form-group{{ $errors->has('headline_phone') ? ' has-error' : '' }}">
+                                        <div class="col-md-12 effect-reg">
+                                            <input id="headline_phone" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_phone" value="{{ old('headline_phone') }}" required>
+                                            <label for="headline_phone" class="col-md-12 control-label"  style="top: -16px; ">Teléfono de contacto (apoderado)</label>
+                                            @if ($errors->has('headline_phone'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('headline_phone') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="inline-flex"> 
+                                    <div class="form-group{{ $errors->has('headline_email') ? ' has-error' : '' }}">
+                                        <div class="col-md-12 effect-reg">
+                                            <input id="headline_email" type="email" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_email" value="{{ old('headline_email') }}" required>
+                                            <label for="email" class="col-md-12 control-label" style="top: -16px;">E-Mail (apoderado)</label>
+                                            @if ($errors->has('headline_email'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('headline_email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('headline_rut') ? ' has-error' : '' }}">
+                                        
+                                        <div class="col-md-12 effect-reg">
+                                            <input id="headline_rut" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_rut" value="{{ old('headline_rut') }}" required pattern="[0-9]{7,8}-[0-9Kk]{1}" value="" name="headline_rut" id="headline_rut" title="ej. 12345678-5" autofocus>
+                                            <label for="headline_rut" class="col-md-12 control-label">Rut (apoderado)</label>
+
+                                            @if ($errors->has('headline_rut'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('headline_rut') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                 </div>  
 
                         </span>
@@ -196,7 +240,6 @@
 
         ////edad
         var age;
-
         $('#birth_date').on('change', function () {
           if ($('#birth_date').val()) {
                 var dateString = $('#birth_date').val();
@@ -207,27 +250,45 @@
                 if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
                     age--;
                 }
-
                 $("#age").val(age);
-
-          } else {
-            $("#age").text('');   
-          }      
+          }
         });
 
         $('#birth_date').blur(function () {
             if (age && age > 0) {
                 $("#age").val(age);  
                 if (age >= 18) {   
-                    console.log('eres adulto');
+                
+                    $(".titular-info").css("display", "none");
+                    $("#school").removeAttr('required');
+                    $("#school").val(null); 
+                    $("#headline_full_name").removeAttr('required');
+                    $("#headline_full_name").val(null); 
+                    $("#headline_phone").removeAttr('required');
+                    $("#headline_phone").val(null); 
+                    $("#headline_email").removeAttr('required');
+                    $("#headline_email").val(null); 
+                    $("#headline_rut").removeAttr('required');
+                    $("#headline_rut").val(null);     
                 }
                 if (age < 18) {   
-                    console.log('eres menor');
-                    $('.titular-info').toggle();
+                    
+                    $(".titular-info").css("display", "block");
+                    $("#school").attr("required", true);
+                    $("#school").val(null); 
+                    $("#headline_full_name").attr("required", true);
+                    $("#headline_full_name").val(null); 
+                    $("#headline_phone").attr("required", true);
+                    $("#headline_phone").val(null); 
+                    $("#headline_email").attr("required", true);
+                    $("#headline_email").val(null); 
+                    $("#headline_rut").attr("required", true);
+                    $("#headline_rut").val(null);   
+
                 }
             } else {
                 
-                    console.log('eres extraño');
+                console.log('eres extraño');
                 
             }
             
@@ -235,8 +296,11 @@
 
 
         $(document).ready(function() {
-            $('.checkbox').on('change', function() {
-                $('.shownDiv').toggle();
+            $('.closeheal').on('click', function(e) {
+                $('.shownDiv').css("display", "none");
+            });
+            $('.openheal').on('click', function(e) {
+                $('.shownDiv').css("display", "block");
             });
         });
 </script>

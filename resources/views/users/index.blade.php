@@ -68,11 +68,14 @@
 
 								    <td class="box-btnes">
 								    	<a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-edit-style" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
-				    					<form method="POST" action="{{ action('UserController@destroy', ['id' => $user->id] ) }}">
-									        {{ csrf_field() }}
-									        {{ method_field('DELETE') }}
-									        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estas seguro?')"  data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span> </button>
-									    </form>
+								    	@if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'publisher' )                             
+							            	<form method="POST" action="{{ action('UserController@destroy', ['id' => $user->id] ) }}">
+										        {{ csrf_field() }}
+										        {{ method_field('DELETE') }}
+										        <button type="submit" class="btn btn-danger delete-user" value="Delete user" onclick="return confirm('Estas seguro?')"  data-toggle="tooltip" title="Eliminar"> <span class="glyphicon glyphicon-trash"></span> </button>
+										    </form>
+							            @endif
+				    					
 									</td>
 				    			</tr>
 			    			@endforeach

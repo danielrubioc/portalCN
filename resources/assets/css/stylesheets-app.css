@@ -436,6 +436,9 @@ td.btn-align-lesson {
     width: 100%;
     padding: 5px;
 }
+input#age.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background: transparent;
+}
 
 /*switch*/
 
