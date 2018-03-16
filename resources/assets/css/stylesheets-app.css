@@ -242,7 +242,7 @@ form.form-horizontal.form-register-user label {
     text-align: left;
 }
 
-form.form-horizontal.form-register-user input {
+form.form-horizontal.form-register-user input, form.form-horizontal.form-register-user textarea {
     border-bottom: 1px solid #94c11f;
     border-radius: 0;
     border: none;
@@ -427,10 +427,28 @@ td.btn-align-lesson {
     font-size: 17px;
 }
 
+.inline-flex {
+    display: inline-flex;
+    width: 100%;
+}
+
+.inline-flex .form-group {
+    width: 100%;
+    padding: 5px;
+}
+
 /*switch*/
 
 @media (max-width: 768px) { 
+  .inline-flex {
+      display: block;
+      width: 100%;
+  }
 
+  .inline-flex .form-group {
+      width: 100%;
+      padding: 5px;
+  }
   body{
       font-family: 'Merriweather Sans', sans-serif;
 
