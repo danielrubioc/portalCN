@@ -309,7 +309,7 @@ class WorkshopsController extends Controller
                 // si viene un string esto pasa cuando es un nuevo tag 
                 $students[$key] = $value;
             }
-            $workshops->students()->attach($students, ['status' => '1']);
+            $workshops->students()->attach($students, ['status' => '1', 'commentary' => $request->commentary]);
         }
 
         return redirect()->route('workshops.listStudent', $workshops->id);
@@ -317,10 +317,10 @@ class WorkshopsController extends Controller
 
     public function storeStudentPublicAuth(Request $request)
     {
-
+        
         $workshops = Workshop::find($request->id);
         //dd($workshops->students);
-        Auth::user()->workshops()->attach($workshops->id, ['status' => '1']);
+        Auth::user()->workshops()->attach($workshops->id, ['status' => '1', 'commentary' => $request->commentary]);
         return redirect()->route('workshops.listStudent', $workshops->id);
     }
 

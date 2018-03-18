@@ -33,6 +33,25 @@
                             </div>                            
                         </div>
 
+
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="teachers" class="col-md-4 control-label">Como te enteraste del taller?</label>
+                            <div class="col-md-6">
+                                
+                                <select class="form-control" name="commentary" id="commentary" value="{{ old('commentary') }}" required>
+                                    <option value="">-Selecciona una opcion</option>
+                                    <option value="Facebook Deportes">Facebook Deportes</option>
+                                    <option value="Facebook Municipalidad">Facebook Municipalidad</option>
+                                    <option value="Volante o Afiche">Volante o Afiche</option>
+                                    <option value="Página Web Municipalidad">Página Web Municipalidad</option>
+                                    <option value="Boca a boca">Boca a boca</option>
+                                    <option value="Diario Comunal "Barrancas"">Diario Comunal "Barrancas"</option>
+                                </select>
+
+                            </div>                            
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

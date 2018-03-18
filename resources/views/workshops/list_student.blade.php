@@ -25,10 +25,14 @@
                                     @if(Auth::user())
                                         @if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'teacher' || Auth::user()->hasRole->name == 'publisher')
                                         <td>Correo</td>
-                                        <td>Telefono</td>
+                                        <td>Teléfono</td>
                                         <td>Rol</td>
                                         <td>Estado</td>
-                                        <td>id</td>
+                                        <td>Edad</td>
+                                        <td>Nombre <br>(Apoderado)</td>
+                                        <td>Correo <br> (Apoderado)</td>
+                                        <td>Teléfono <br>(Apoderado)</td>
+                                        <td>Canal de captación</td>
                                         <td></td>
                                        @endif
                                     @endif   
@@ -44,7 +48,11 @@
                                             <td>{{ $student->cell_phone }}</td>
                                             <td>{{ $student->hasRole->name }}</td>
                                             <td>{{ $student->hasStatus->name }}</td>
-                                            <td>{{ $student->id }}</td>    
+                                            <td>{{ $student->age }}</td> 
+                                            <td>{{ $student->headline_full_name }}</td>
+                                            <td>{{ $student->headline_email }}</td>
+                                            <td>{{ $student->headline_phone }}</td>
+                                            <td>{{ $student->workshops()->where('workshop_id', $workshop->id)->first()->pivot->commentary }}</td>    
                                             <td class="box-btnes">
                                                 <form method="POST" action="{{ route('workshops.destroyStudent', ['id' => $student->id] ) }}">
                                                     {{ csrf_field() }}

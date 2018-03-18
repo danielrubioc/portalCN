@@ -107,21 +107,24 @@
                         <!--roles-->
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label" style="top: -16px;    color: #aaa;">Tienes problemas de salud?</label>
-                            <div class="radio col-md-6 col-offset-md-4">
+                            <label for="email" class="col-md-4 control-label">Tienes problemas de salud?</label>
+                            <div class="radio col-md-6">
                                 <label class="checkbox-inline"><input type="radio" name="health" class="closeheal" id="health" value="0" checked>No</label>
                                 <label class="checkbox-inline"><input type="radio" class="openheal" name="health" id="health" value="1">Si</label>
                             </div>
+                            <div class="shownDiv">
+                                <div class="col-md-4"></div>
+                                <br>
+                                <div class="col-md-6 effect-reg">
+                                    <textarea id="health_problem" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="health_problem" value="{{ old('health_problem') }}"></textarea>
+                                    <label for="health_problem" class="col-md-12 control-label" style="color:#aaa">Especifique</label>
 
-                            <div class="col-md-6 col-offset-md-4 effect-reg">
-                                <textarea id="health_problem" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="health_problem" value="{{ old('health_problem') }}"></textarea>
-                                <label for="health_problem" class="col-md-12 control-label" style="color:#aaa">Especifique</label>
-
-                                @if ($errors->has('health_problem'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('health_problem') }}</strong>
-                                    </span>
-                                @endif
+                                    @if ($errors->has('health_problem'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('health_problem') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
 

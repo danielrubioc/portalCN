@@ -284,6 +284,7 @@ class UserController extends Controller
 
 
         $user = new User($request->all());
+
         if ($request->password_confirmation == $request->password) {
             $user->status = 2;
             $user->role_id = 3;
@@ -307,7 +308,7 @@ class UserController extends Controller
 
                     $user->validate = $data['codigo'];
                     if ($user->save()) {
-                       $user->workshops()->attach($request->workshop_id, ['status' => '2']);
+                       $user->workshops()->attach($request->workshop_id, ['status' => '2' , 'commentary' => $request->commentary]);
                     }
 
 
@@ -350,6 +351,16 @@ class UserController extends Controller
                 $user->cell_phone = $request->cell_phone ? $request->cell_phone : $user->cell_phone;
                 $user->password = $request->password ? bcrypt($request->password) : $user->password;
                 $user->referential_info = $request->referential_info ? $request->referential_info : $user->referential_info;
+                $user->age = $request->age ? $request->age : $user->age;
+                $user->school = $request->school ? $request->school : $user->school;
+                $user->health = isset($request->health) ? $request->health : $user->health;
+                dd($user->health_problem);
+                $user->health_problem = $request->health_problem ? $request->health_problem : $user->health_problem;
+                $user->headline_full_name = $request->headline_full_name ? $request->headline_full_name : $user->headline_full_name;
+                $user->headline_email = $request->headline_email ? $request->headline_email : $user->headline_email;
+                $user->headline_phone = $request->headline_phone ? $request->headline_phone : $user->headline_phone;
+                $user->headline_rut = $request->headline_rut ? $request->headline_rut : $user->headline_rut;
+
 
                 if ($request->email == $user->email){
                     $user->email = $request->email;   

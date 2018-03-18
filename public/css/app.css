@@ -637,6 +637,13 @@ td.btn-align-lesson {
 input#age.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     background: transparent;
 }
+.no-bor{
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #94c11f;
+    resize: none;
+}
 
 /*switch*/
 

@@ -70,7 +70,7 @@
                             <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
                                 <div class="col-md-12 effect-reg">
                                     <input id="birth_date" type="date" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required>
-                                    <label for="email" class="col-md-12 control-label" style="top: -16px; font-size: 12px;">Fecha de nacimiento</label>
+                                    <label for="email" class="col-md-12 control-label" style="top: -16px">Fecha de nacimiento</label>
 
                                     @if ($errors->has('birth_date'))
                                         <span class="help-block">
@@ -83,7 +83,7 @@
                             <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }}">
                                 <div class="col-md-12 effect-reg">
                                     <input id="age" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="age" value="{{ old('age') }}" required readonly>
-                                    <label for="age" class="col-md-12 control-label"  style="top: -16px; font-size: 12px;">Edad</label>
+                                    <label for="age" class="col-md-12 control-label"  style="top: -16px">Edad</label>
 
                                     @if ($errors->has('age'))
                                         <span class="help-block">
@@ -94,7 +94,7 @@
                             </div>
                         </div>  
                         <div class="form-group{{ $errors->has('age') ? ' has-error' : '' }} col-md-12">    
-                                <label for="email" class="col-md-12 control-label" style="top: -16px;    color: #aaa;">Tienes problemas de salud?</label>
+                                <label for="email" class="control-label" style="top: -16px;    color: #aaa;">Tienes problemas de salud?</label>
 
 
                                 <div class="radio col-md-12">
@@ -104,10 +104,10 @@
                             <div class="shownDiv" style="display:none;">
                                 <div class="form-group{{ $errors->has('health_problem') ? ' has-error' : '' }}">
                                     <div class="col-md-12 effect-reg">
-                                       
-                                        <textarea id="health_problem" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="health_problem" value="{{ old('health_problem') }}"></textarea>
+                                        
                                         <label for="health_problem" class="col-md-12 control-label" style="color:#aaa">Especifique</label>
-
+                                        <textarea id="health_problem" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }} no-bor" name="health_problem" value="{{ old('health_problem') }}"></textarea>
+                                        
                                         @if ($errors->has('health_problem'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('health_problem') }}</strong>
@@ -118,8 +118,17 @@
 
                             </div>
                         </div> 
-                        
-                        <span class="titular-info" style="display:none;">
+
+
+                        @if(!old('age'))
+                            <span class="titular-info" style="display:none;">
+                        @else
+                            @if(old('age') >= 18)
+                                <span class="titular-info" style="display:none;">
+                                @else
+                                <span class="titular-info" style="display:block;">
+                            @endif
+                        @endif
                                 <div class="inline-flex"> 
                                     <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
                                         <div class="col-md-12 effect-reg">

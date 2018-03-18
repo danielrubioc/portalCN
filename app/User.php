@@ -42,9 +42,14 @@ class User extends Authenticatable
 
     public function workshops()
     {
-        return $this->belongsToMany('App\Workshop', 'students', 'user_id', 'workshop_id')->withPivot('status')->withTimestamps();
+        return $this->belongsToMany('App\Workshop', 'students', 'user_id', 'workshop_id')->withPivot('commentary')->withPivot('status')->withTimestamps();
 
     } 
+
+    public function workshopsOne($id)
+    {   
+        return $this->belongsToMany('App\Workshop', 'students', 'user_id', 'workshop_id')->where('workshop_id', $id)->first();
+    }
 
     public function workshopsTeacher()
     {
