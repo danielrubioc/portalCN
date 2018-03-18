@@ -206,7 +206,7 @@
                             <label for="school" class="col-md-4 control-label">Nombre del colegio al que asiste?</label>
 
                             <div class="col-md-6">
-                                <input id="school" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="school" value="{{  $user->school  }}" required>
+                                <input id="school" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="school" value="{{  $user->school  }}">
 
                                 @if ($errors->has('school'))
                                     <span class="help-block">
@@ -220,7 +220,7 @@
                             <label for="headline_full_name" class="col-md-4 control-label">Nombre completo (apoderado)</label>
 
                             <div class="col-md-6">
-                                <input id="headline_full_name" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_full_name" value="{{  $user->headline_full_name  }}" required>
+                                <input id="headline_full_name" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_full_name" value="{{  $user->headline_full_name  }}">
 
                                 @if ($errors->has('headline_full_name'))
                                     <span class="help-block">
@@ -234,7 +234,7 @@
                             <label for="headline_phone" class="col-md-4 control-label">Teléfono de contacto (apoderado)</label>
 
                             <div class="col-md-6">
-                                <input id="headline_phone" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_phone" value="{{  $user->headline_phone  }}" required>
+                                <input id="headline_phone" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_phone" value="{{  $user->headline_phone  }}" >
 
                                 @if ($errors->has('headline_phone'))
                                     <span class="help-block">
@@ -248,7 +248,7 @@
                             <label for="headline_rut" class="col-md-4 control-label">Rut (apoderado)</label>
 
                             <div class="col-md-6">
-                                <input id="headline_rut" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_rut" value="{{  $user->headline_rut  }}" required>
+                                <input id="headline_rut" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_rut" value="{{  $user->headline_rut  }}" >
 
                                 @if ($errors->has('headline_rut'))
                                     <span class="help-block">
@@ -263,7 +263,7 @@
                             <label for="headline_email" class="col-md-4 control-label">E-Mail (apoderado)</label>
 
                             <div class="col-md-6">
-                                <input id="headline_email" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_email" value="{{  $user->headline_email  }}" required>
+                                <input id="headline_email" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_email" value="{{  $user->headline_email  }}" >
 
                                 @if ($errors->has('headline_email'))
                                     <span class="help-block">
