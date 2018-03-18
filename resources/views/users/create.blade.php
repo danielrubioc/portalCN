@@ -116,7 +116,7 @@
                                 <div class="col-md-4"></div>
                                 <br>
                                 <div class="col-md-6 effect-reg">
-                                    <textarea id="health_problem" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="health_problem" value="{{ old('health_problem') }}"></textarea>
+                                    <textarea id="health_problem" type="text" class="form-control not-empty" name="health_problem" value="{{ old('health_problem') }}"></textarea>
                                     <label for="health_problem" class="col-md-12 control-label" style="color:#aaa">Especifique</label>
 
                                     @if ($errors->has('health_problem'))
@@ -164,7 +164,7 @@
                                 <label for="school" class="col-md-4 control-label">Nombre del colegio al que asiste?</label>
 
                                 <div class="col-md-6">
-                                    <input id="school" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="school" value="{{ old('school') }}" required />
+                                    <input id="school" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="school" value="{{ old('school') }}" />
 
                                     @if ($errors->has('school'))
                                         <span class="help-block">
@@ -177,7 +177,7 @@
                                 <label for="headline_full_name" class="col-md-4 control-label">Nombre completo (apoderado)</label>
 
                                 <div class="col-md-6">
-                                    <input id="headline_full_name" type="text" class="form-control" name="headline_full_name" value="{{ old('headline_full_name') }}" required autofocus>
+                                    <input id="headline_full_name" type="text" class="form-control" name="headline_full_name" value="{{ old('headline_full_name') }}" autofocus>
 
                                     @if ($errors->has('headline_full_name'))
                                         <span class="help-block">
@@ -191,7 +191,7 @@
                                 <label for="headline_phone" class="col-md-4 control-label">Teléfono de contacto (apoderado)</label>
 
                                 <div class="col-md-6">
-                                    <input id="headline_phone" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_phone" value="{{ old('headline_phone') }}" required autofocus>
+                                    <input id="headline_phone" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_phone" value="{{ old('headline_phone') }}"  autofocus>
 
                                     @if ($errors->has('headline_phone'))
                                         <span class="help-block">
@@ -205,7 +205,7 @@
                                 <label for="headline_rut" class="col-md-4 control-label">Rut (apoderado)</label>
 
                                 <div class="col-md-6">
-                                    <input id="headline_rut" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_rut" value="{{ old('headline_rut') }}" required pattern="[0-9]{7,8}-[0-9Kk]{1}" value="" name="headline_rut" id="headline_rut" title="ej. 12345678-5" autofocus>
+                                    <input id="headline_rut" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_rut" value="{{ old('headline_rut') }}" pattern="[0-9]{7,8}-[0-9Kk]{1}" value="" name="headline_rut" id="headline_rut" title="ej. 12345678-5" autofocus>
 
                                     @if ($errors->has('headline_rut'))
                                         <span class="help-block">
@@ -219,7 +219,7 @@
                                 <label for="headline_email" class="col-md-4 control-label">E-Mail (apoderado)</label>
 
                                 <div class="col-md-6">
-                                    <input id="headline_email" type="email" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_email" value="{{ old('headline_email') }}" required autofocus>
+                                    <input id="headline_email" type="email" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_email" value="{{ old('headline_email') }}" autofocus>
 
                                     @if ($errors->has('headline_email'))
                                         <span class="help-block">
