@@ -2060,7 +2060,7 @@ p.especial-p {
     }
     .fixed-menu {
         position: fixed;
-        z-index: 999;
+        z-index: 99999999999999;
         top: 0;
         bottom: 0;
         overflow-y: auto;
@@ -2072,6 +2072,13 @@ p.especial-p {
         height: 55px;
         width: 100%;
     }
+    .effect-placeholder ~ label{
+        z-index: 1; 
+    }
+    span.titular-info {
+        padding: 0;
+    }
+
     .container.order-nav {
         position: relative;
     }
