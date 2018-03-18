@@ -1989,7 +1989,10 @@ p.especial-p {
 
 
 @media (max-width: 768px) { 
-    
+    .no-padding.element-work {
+        width: 50%;
+    }
+
     form#incripcion input {
         color: black !important;
     }  
