@@ -445,7 +445,7 @@
 
 							<div class="col-md-12 form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
 								<div class="input-effect">
-									<input id="birth_date" type="date" class="form-control effect-placeholder {{ !empty($errors->first()) ? ' empty' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
+									<input id="birth_date2" type="date" class="form-control effect-placeholder {{ !empty($errors->first()) ? ' empty' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
 									<label for="birth_date" style="top: -16px;">Fecha de nacimiento</label>
 									<span class="focus-border"></span>
 									@if ($errors->has('birth_date'))
@@ -458,7 +458,7 @@
 
 							<div class="col-md-12 form-group{{ $errors->has('age') ? ' has-error' : '' }}">
 								<div class="input-effect">
-									<input id="age" type="text" class="form-control effect-placeholder {{ !empty($errors->first()) ? ' empty' : '' }}" name="age" value="{{ old('age') }}" required readonly>
+									<input id="age2" type="text" class="form-control effect-placeholder {{ !empty($errors->first()) ? ' empty' : '' }}" name="age" value="{{ old('age') }}" required readonly>
 									<label for="age"  style="top: -16px;">Edad</label>
 									<span class="focus-border"></span>
 									@if ($errors->has('age'))
@@ -669,6 +669,64 @@
         $('#birth_date').blur(function () {
             if (age && age > 0) {
                 $("#age").val(age);  
+                if (age >= 18) {   
+                
+                    $(".titular-info").css("display", "none");
+                    $("#school").removeAttr('required');
+                    $("#school").val(null); 
+                    $("#headline_full_name").removeAttr('required');
+                    $("#headline_full_name").val(null); 
+                    $("#headline_phone").removeAttr('required');
+                    $("#headline_phone").val(null); 
+                    $("#headline_email").removeAttr('required');
+                    $("#headline_email").val(null); 
+                    $("#headline_rut").removeAttr('required');
+                    $("#headline_rut").val(null);     
+                }
+                if (age < 18) {   
+                    
+                    $(".titular-info").css("display", "block");
+                    $("#school").attr("required", true);
+                    $("#school").val(null); 
+                    $("#headline_full_name").attr("required", true);
+                    $("#headline_full_name").val(null); 
+                    $("#headline_phone").attr("required", true);
+                    $("#headline_phone").val(null); 
+                    $("#headline_email").attr("required", true);
+                    $("#headline_email").val(null); 
+                    $("#headline_rut").attr("required", true);
+                    $("#headline_rut").val(null);   
+
+                }
+            } else {
+                
+                console.log('eres extraño');
+                
+            }
+
+            console.log('eres extraño');
+            
+        });
+
+        ////edad
+        var age;
+        $('#birth_date2').on('change', function () {
+          if ($('#birth_date2').val()) {
+                var dateString = $('#birth_date2').val();
+                var today = new Date();
+                var birthDate = new Date(dateString);
+                age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                $("#age2").val(age);
+          }
+        });
+
+        $('#birth_date2').blur(function () {
+            if (age && age > 0) {
+                $("#age2").val(age);  
                 if (age >= 18) {   
                 
                     $(".titular-info").css("display", "none");
