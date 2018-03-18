@@ -78,9 +78,9 @@
                     <h1>Disciplinas</h1>
                     <div class="info-taller">
                         
-                            <div id="workshop-modify-container">
+                            <div id="workshop-modify-container-l">
                                     @foreach ($workshops as $key => $taller)
-                                        <div class="col-md-6 col-sm-6 col-xs-6 no-padding element-work">
+                                        <div class="col-md-6 col-sm-6 col-xs-6 element-work" style="padding: 0;margin-bottom: 50px;">
                                             <div class="item-work " data-owl="{{$key}}">
                                                 <a href="{{ url('/disciplina') }}/{{$taller->url}}">
                                             	   <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
