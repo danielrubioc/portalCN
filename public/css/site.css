@@ -1987,7 +1987,6 @@ p.especial-p {
 
 
 
-
 @media (max-width: 768px) { 
     .no-padding.element-work {
         width: 50%;
@@ -2684,14 +2683,7 @@ p.especial-p {
         margin-top: -10px;
         margin-bottom: 20px;
     }
-    /*
-    .item-work {
-        min-width: 175px;
-        min-height: 236px;
-        width: 50%;
-        position: relative;
-    }
-    */
+
     .no-padding {
         margin-bottom: 25px;
         display: contents;
@@ -2899,6 +2891,7 @@ p.especial-p {
         border-radius: 50%;
         padding: 12% 23%;
     }
+}
 
 
 
