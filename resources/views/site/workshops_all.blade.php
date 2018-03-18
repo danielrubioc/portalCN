@@ -16,7 +16,7 @@
                         
                             <div id="workshop-modify-container">
                                     @foreach ($workshops as $key => $taller)
-                                        <div class="col-xs-3 ">
+                                        <div class="col-xs-3 col-md-3">
                                             <div class="item-disc " data-owl="{{$key}}">
                                                 <div class="img-disc-all">
                                                     <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
@@ -80,10 +80,11 @@
                         
                             <div id="workshop-modify-container">
                                     @foreach ($workshops as $key => $taller)
-                                        <div class="col-xs-6 no-padding">
+                                        <div class="col-md-6 col-sm-6 col-xs-6 no-padding">
                                             <div class="item-work " data-owl="{{$key}}">
                                             	<img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
-                                                 <a href="{{ url('/disciplina') }}/{{$taller->url}}" class="btn-ir-taller" style=" background: {{$taller->color}}">Ingresa</a>
+                                                
+                                                 <a href="{{ url('/disciplina') }}/{{$taller->url}}" class="btn-ir-taller" style=" background: {{$taller->color}}">pruebassIngresa</a>
 
                                             </div>   
                                         </div>
