@@ -285,7 +285,7 @@ class UserController extends Controller
         $user = new User($request->all());
 
         if ($request->password_confirmation == $request->password) {
-            $user->status = 2;
+            $user->status = 1;
             $user->role_id = 3;
             $user->password = bcrypt($request->password);
             $count = User::where('email', $user->email)->count();
@@ -298,22 +298,22 @@ class UserController extends Controller
                     $data['nombre'] = $request->name . ' ' . $request->last_name;
                     $email = $request->email;
 
-
+                    /*
                     Mail::send('emails.verify', $data, function($msg) use ($email){
                         $msg->subject('Inscripción  - Corporación del Deporte Cerro Navia');
                         $msg->from('contacto@deportescerronavia.cl');
                         $msg->to($email);
                     });
-
+                    */
                     $user->validate = $data['codigo'];
                     if ($user->save()) {
-                       $user->workshops()->attach($request->workshop_id, ['status' => '2' , 'commentary' => $request->commentary]);
+                       $user->workshops()->attach($request->workshop_id, ['status' => '1' , 'commentary' => $request->commentary]);
                     }
 
 
 
                     flash('El usuario se creo correctamente! debes validar tu usuario para hacer efectivo tu registro en el taller')->success();
-                    return redirect()->route('home.activateUser');
+                    return redirect()->route('login');
 
                     
                 }else {

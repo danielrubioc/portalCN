@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/activacion';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -58,7 +58,7 @@ class RegisterController extends Controller
 
         return $code;
     }
-
+    
     public function register(Request $request)
     {   
         $this->validator($request->all())->validate();
@@ -138,23 +138,23 @@ class RegisterController extends Controller
         $data['codigo'] = $this->randomCode();
         $data['nombre'] = $data['name'] . ' ' . $data['last_name'];
         $email = $data['email'];
-        if ($this->validRut($data['rut']) == false) {
+        /*if ($this->validRut($data['rut']) == false) {
             
             return redirect('register');
         }
-
+        
         Mail::send('emails.verify', $data, function($msg) use ($email){
             $msg->subject('Inscripción  - Corporación del Deporte Cerro Navia');
             $msg->from('contacto@deportescerronavia.cl');
             $msg->to($email);
         });
-
+        */
         return User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'rut' => $data['rut'],
             'email' => $data['email'],
-            'status' => 2,
+            'status' => 1,
             'role_id' => 3,
             'age' => $data['age'],
             "birth_date" => $data['birth_date'],

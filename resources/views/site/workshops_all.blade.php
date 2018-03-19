@@ -26,7 +26,7 @@
                                                 
                                                 <div class="info-detail">
                                                     <h2>{!! $taller->name !!}</h2>
-                                                    <p>{!! str_limit($taller->description, 80) !!}</p>
+                                                    {!! str_limit($taller->description, 80) !!}
                                                     <div class="suscrit-regis">
                                                         <span>Próxima clase</span>
                                                         <span>@if ($taller->lessonsBeforeRecord()->first()['date'])
