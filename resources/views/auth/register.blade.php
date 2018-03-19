@@ -132,7 +132,7 @@
                                 <div class="inline-flex"> 
                                     <div class="form-group{{ $errors->has('school') ? ' has-error' : '' }}">
                                         <div class="col-md-12 effect-reg">
-                                            <input id="school" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="school" value="{{ old('school') }}" required>
+                                            <input id="school" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="school" value="{{ old('school') }}">
                                             <label for="email" class="col-md-12 control-label" style="top: -16px;">Nombre del colegio al que asiste?</label>
                                             @if ($errors->has('school'))
                                                 <span class="help-block">
@@ -146,7 +146,7 @@
                                 <div class="inline-flex"> 
                                     <div class="form-group{{ $errors->has('headline_full_name') ? ' has-error' : '' }}">
                                         <div class="col-md-12 effect-reg">
-                                            <input id="headline_full_name" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_full_name" value="{{ old('headline_full_name') }}" required>
+                                            <input id="headline_full_name" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_full_name" value="{{ old('headline_full_name') }}">
                                             <label for="email" class="col-md-12 control-label" style="top: -16px;">Nombre completo (apoderado)</label>
                                             @if ($errors->has('headline_full_name'))
                                                 <span class="help-block">
@@ -158,7 +158,7 @@
 
                                     <div class="form-group{{ $errors->has('headline_phone') ? ' has-error' : '' }}">
                                         <div class="col-md-12 effect-reg">
-                                            <input id="headline_phone" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_phone" value="{{ old('headline_phone') }}" required>
+                                            <input id="headline_phone" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_phone" value="{{ old('headline_phone') }}">
                                             <label for="headline_phone" class="col-md-12 control-label"  style="top: -16px; ">Teléfono de contacto (apoderado)</label>
                                             @if ($errors->has('headline_phone'))
                                                 <span class="help-block">
@@ -171,7 +171,7 @@
                                 <div class="inline-flex"> 
                                     <div class="form-group{{ $errors->has('headline_email') ? ' has-error' : '' }}">
                                         <div class="col-md-12 effect-reg">
-                                            <input id="headline_email" type="email" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_email" value="{{ old('headline_email') }}" required>
+                                            <input id="headline_email" type="email" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_email" value="{{ old('headline_email') }}">
                                             <label for="email" class="col-md-12 control-label" style="top: -16px;">E-Mail (apoderado)</label>
                                             @if ($errors->has('headline_email'))
                                                 <span class="help-block">
@@ -184,7 +184,7 @@
                                     <div class="form-group{{ $errors->has('headline_rut') ? ' has-error' : '' }}">
                                         
                                         <div class="col-md-12 effect-reg">
-                                            <input id="headline_rut" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_rut" value="{{ old('headline_rut') }}" required pattern="[0-9]{7,8}-[0-9Kk]{1}" value="" name="headline_rut" id="headline_rut" title="ej. 12345678-5" autofocus>
+                                            <input id="headline_rut" type="text" class="form-control not-empty {{ !empty($errors->first()) ? ' empty' : '' }}" name="headline_rut" value="{{ old('headline_rut') }}"  pattern="[0-9]{7,8}-[0-9Kk]{1}" value="" name="headline_rut" id="headline_rut" title="ej. 12345678-5" autofocus>
                                             <label for="headline_rut" class="col-md-12 control-label">Rut (apoderado)</label>
 
                                             @if ($errors->has('headline_rut'))
