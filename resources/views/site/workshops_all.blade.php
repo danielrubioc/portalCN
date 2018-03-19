@@ -6,7 +6,7 @@
             <div class="container content-workshop">
                 
                 <div class="col-md-12 title-posts">
-                                    <span><strong>Aviso importante:</strong> los cursos y disciplinas de la temporada 2018 estarán disponibles en marzo, una vez disponibles podrás inscribirte </span>
+                
 
                     <h1>Disciplinas</h1>
                 </div>
