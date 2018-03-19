@@ -2461,12 +2461,14 @@ p.especial-p {
         bottom: 0;
         right: 10px;
         left: 0;
-        color: black;
-        background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgb(240, 240, 240)), to(rgb(240, 240, 240))) !important;
-        padding: 5px 15px;
+            color: #93c01f;
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgb(60, 60, 59)), to(rgb(60, 60, 59))) !important;      padding: 5px 15px;
         font-size: 13px;
         text-transform: uppercase;
         text-align: center;
+    }
+    .btn-ir-taller:hover{
+        color: white;
     }
     .info-taller {
         width: 100%;
@@ -2704,6 +2706,22 @@ p.especial-p {
         border-radius: 50%;
         padding: 12% 23%;
     }
+    .item-work p {
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        left: 0;
+        color: black;
+        background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgb(147, 192, 31)), to(rgba(236, 236, 236, 0.38))) !important;
+        padding: 5px 15px;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: left;
+    }
+    .content-mob-left p {
+        text-align: left;
+    }
+
 }
 
 

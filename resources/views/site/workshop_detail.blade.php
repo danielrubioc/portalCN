@@ -19,6 +19,25 @@
 					<p >{!! $workshop->description !!}</p>
 					<p class="especial-p"><strong>Lugar:  </strong>{!! $workshop->place !!}</p>
 					<p><strong>Cupos disponibles: </strong>{{ $workshop->hasTotalQuotesAvaibles() }}</p>
+					<p><strong>Rango de edad: </strong>{{ $workshop->age_min }} - {{ $workshop->age_max }} años</p>
+					<p><strong>Próxima clase: </strong>  
+						@if ($workshop->lessonsBeforeRecord()->first()['date'])
+	                        {{ date('d-m-Y', strtotime($workshop->lessonsBeforeRecord()->first()['date']))  }}  a las {{ $workshop->lessonsBeforeRecord()->first()['hour']  }} hrs.
+	                        @else
+	                        No hay clases disponibles
+	                    @endif 
+					</p>
+					<p><strong>Profesor(es): </strong>
+						<ul style="text-align: left;">
+						@if($workshop->teachers)
+							@foreach ($workshop->teachers as $key => $teacher)
+								<li>{{ $teacher->name}} {{ $teacher->last_name}}</li>
+							@endforeach  
+						@else
+	                        <li>No hay profesor asignado</li>
+						@endif
+						</ul>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -26,6 +45,7 @@
 			
 			
 		<h2>Si te llamó la atención, Inscribete!</h2>
+
 		@if(Auth::user())
 			@if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'admin')
 				<div class="col-md-12 no-padding">
@@ -38,6 +58,7 @@
 		                    	<h2>Ya estas registrado</h2>
 		                   	</div>
 		               	@elseif($workshop->hasTotalQuotesAvaibles() != 0 && !$registered )
+		               		@if( Auth::user()->CheckAge(Auth::user()->birth_date) >= $workshop->age_min &&  Auth::user()->CheckAge(Auth::user()->birth_date) <= $workshop->age_max )
 		                    <form class="form-horizontal form-css-label form-desktop form-work-insc" method="POST" action="{{ route('workshops.storeStudentPublicAuth' ) }}">
 		                        {{ csrf_field() }}
 		                        <input type="hidden" name="id" id="id" value="{{$workshop->id}}">
@@ -51,13 +72,16 @@
 									    <option value="Volante o Afiche">Volante o Afiche</option>
 									    <option value="Página Web Municipalidad">Página Web Municipalidad</option>
 									    <option value="Boca a boca">Boca a boca</option>
-									    <option value="Diario Comunal "Barrancas"">Diario Comunal "Barrancas"</option>
+									    <option value="Diario Comunal Barrancas">Diario Comunal "Barrancas"</option>
 								  	</select>
 								</div>
 			                    <div class="register-workshop-desk">
 			                    	<button type="submit" class="btn btn-primary btn-home btn-register-disci">Inscribirme a taller</button>
 			                    </div>
 		                    </form>
+		                    @else
+		                    	<p>No cumples con el rango de edad necesaria. <br> El rango es de {{ $workshop->age_min }} - {{ $workshop->age_max }} años</p>
+		                    @endif
 	                    @elseif($workshop->hasTotalQuotesAvaibles() == 0)
 		                   	<div class="col-md-12 no-padding text-info-detail-discip">
 			                	<h2>Lo sentimos, no hay cupos disponibles</h2>
@@ -270,7 +294,7 @@
 								    <option value="Volante o Afiche">Volante o Afiche</option>
 								    <option value="Página Web Municipalidad">Página Web Municipalidad</option>
 								    <option value="Boca a boca">Boca a boca</option>
-								    <option value="Diario Comunal "Barrancas"">Diario Comunal "Barrancas"</option>
+								    <option value="Diario Comunal Barrancas">Diario Comunal "Barrancas"</option>
 							  	</select>
 							</div>
 
@@ -340,12 +364,31 @@
 	<div class="container info-content-detail">	
 
 		<div class="tab-content workshop-content">			
-			<div id="step-1" class="tab-pane fade in active" >
+			<div id="step-1" class="tab-pane fade in active content-mob-left">
 
 				<h4 >{{ $workshop->subtitle }}</h4>
 				<p >{!! $workshop->description !!}</p>
 				<p class="especial-p" style="text-align: left;"><strong>Lugar:  </strong>{!! $workshop->place !!}</p>
 				<p><strong>Cupos disponibles: </strong>{{ $workshop->hasTotalQuotesAvaibles() }}</p>
+					<p><strong>Rango de edad: </strong>{{ $workshop->age_min }} - {{ $workshop->age_max }} años</p>
+					<p><strong>Próxima clase: </strong>  
+						@if ($workshop->lessonsBeforeRecord()->first()['date'])
+	                        {{ date('d-m-Y', strtotime($workshop->lessonsBeforeRecord()->first()['date']))  }}  a las {{ $workshop->lessonsBeforeRecord()->first()['hour']  }} hrs.
+	                        @else
+	                        No hay clases disponibles
+	                    @endif 
+					</p>
+					<p><strong>Profesor(es): </strong>
+						<ul style="text-align: left;">
+						@if($workshop->teachers)
+							@foreach ($workshop->teachers as $key => $teacher)
+								<li>{{ $teacher->name}} {{ $teacher->last_name}}</li>
+							@endforeach  
+							@else
+	                        No hay profesor asignado
+						@endif
+						</ul>
+					</p>
 				<hr class="separator-comparte">	
 
 			</div>
@@ -364,6 +407,7 @@
 		                    	<h2>Ya estas registrado</h2>
 		                   	</div>
 		               	@elseif($workshop->hasTotalQuotesAvaibles() != 0 && !$registered )
+		               		@if( Auth::user()->CheckAge(Auth::user()->birth_date) >= $workshop->age_min &&  Auth::user()->CheckAge(Auth::user()->birth_date) <= $workshop->age_max )
 		                    <form class="form-horizontal" method="POST" action="{{ route('workshops.storeStudentPublicAuth' ) }}">
 		                        {{ csrf_field() }}
 		                        <input type="hidden" name="id" id="id" value="{{$workshop->id}}">	
@@ -371,6 +415,10 @@
 			                    	<button type="submit" class="btn btn-primary btn-home btn-register-disci">Inscribirme a taller</button>
 			                    </div>
 		                    </form>
+		                @else
+	                    	
+	                    	<p>No cumples con el rango de edad necesaria. <br> El rango es de {{ $workshop->age_min }} - {{ $workshop->age_max }} años</p>
+	                    @endif
 	                    @elseif($workshop->hasTotalQuotesAvaibles() == 0)
 		                   	<div class="col-md-12 no-padding text-info-detail-discip">
 			                	<h2>Lo sentimos, no hay cupos disponibles</h2>

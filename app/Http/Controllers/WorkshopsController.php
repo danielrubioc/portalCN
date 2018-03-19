@@ -32,7 +32,7 @@ class WorkshopsController extends Controller
             $workshops = Auth::user()->workshopsTeacher()->paginate(15);
            
         } else {    
-            $workshops = Workshop::getListActiveWorkshops(0)->paginate(15);   
+            $workshops = Workshop::getListActiveWorkshopsAdmin()->paginate(15);   
         }
         
         return view('workshops.index', ['workshops' => $workshops,
@@ -221,6 +221,8 @@ class WorkshopsController extends Controller
             $workshops->description = $request->description ? $request->description : $workshops->description;
             $workshops->quotas = isset($request->quotas) ? $request->quotas : $workshops->quotas;
             $workshops->about_quotas = isset($request->about_quotas) ? $request->about_quotas : $workshops->about_quotas;
+            $workshops->age_min = isset($request->age_min) ? $request->age_min : $workshops->age_min;
+            $workshops->age_max = isset($request->age_max) ? $request->age_max : $workshops->age_max;
             $workshops->status = $request->status ? $request->status : $workshops->status;
             $workshops->type = $request->type ? $request->type : $workshops->type;
             $workshops->place = $request->place ? $request->place : $workshops->place;
@@ -331,7 +333,9 @@ class WorkshopsController extends Controller
         //estudiantes inscritos en workshop
         $studentsInWorkshop = $workshop->students;
         //usuarios publicos
-        $students = User::getListActiveUser(3)->get();
+        
+        $students = User::getListActiveUserAgeRange($workshop->age_min, $workshop->age_max);
+
         foreach ($students as $key => $student) {
             $count = 0;
             foreach ($studentsInWorkshop as $key => $studentIn) {

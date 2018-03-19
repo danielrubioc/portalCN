@@ -10,7 +10,7 @@ class Workshop extends Model
     protected $table= "workshops";
     
     protected $fillable = [
-        'name', 'place', 'color', 'type', 'subcolor','description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page', 'url', 'subtitle'
+        'name', 'place', 'color', 'type', 'subcolor','description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page', 'url', 'subtitle', 'age_min', 'age_max'
     ];
 
     public function user()
@@ -97,9 +97,10 @@ class Workshop extends Model
         
     }
 
-    
-
-
+    public function scopeGetListActiveWorkshopsAdmin($query)
+    {   
+        $query->orderBy('id','DESC');
+    }
 
 }
 

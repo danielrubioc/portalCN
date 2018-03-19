@@ -18,20 +18,25 @@
                             </div>
                             <div class="info-detail">
                                 <h2>{{$taller->name}}</h2> 
-                                <p><strong>Profesores(as):</strong> 
-                                <ul>
-                                    @foreach ($taller->teachers as $techer)
-                                        <li>{{ $techer->name }} {{ $techer->last_name }}</li>
-                                    @endforeach   
-                                </ul>
-                                </p>
                                 <p><strong>Clases disponibles:</strong> {{count($taller->lessons)}}</p>
-                                 <p><strong>Próxima clase:</strong> 
+                                <p><strong>Próxima clase:</strong> 
                                     @if ($taller->lessonsBeforeRecord()->first()['date'])
-                                        {{ date('d-m-Y', strtotime($taller->lessonsBeforeRecord()->first()['date']))  }}
+                                        {{ date('d-m-Y', strtotime($taller->lessonsBeforeRecord()->first()['date']))  }}  a las {{ $taller->lessonsBeforeRecord()->first()['hour']  }} hrs.
                                         @else
-                                        No hay clases
+                                        No hay clases disponibles
                                     @endif
+                                </p>
+
+                                <p><strong>Profesor(es): </strong>
+                                    <ul style="text-align: left;">
+                                    @if($taller->teachers)
+                                        @foreach ($taller->teachers as $key => $teacher)
+                                            <li>{{ $teacher->name}} {{ $teacher->last_name}}</li>
+                                        @endforeach  
+                                    @else
+                                        <li>No hay profesor asignado</li>
+                                    @endif
+                                    </ul>
                                 </p>
                             </div> 
                         </div>   

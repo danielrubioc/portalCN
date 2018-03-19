@@ -119,6 +119,34 @@
 
                             </div>                            
                         </div>
+
+                        <div class="form-group{{ $errors->has('age_min') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-4 control-label"> Edad mínima </label>
+
+                            <div class="col-md-6">
+                                <input id="age_min" type="number" class="form-control" name="age_min" value="{{ old('age_min') }}" min="0" required autofocus>
+
+                                @if ($errors->has('age_min'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('age_min') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('age_max') ? ' has-error' : '' }}">
+                            <label for="title" class="col-md-4 control-label"> Edad máxima </label>
+
+                            <div class="col-md-6">
+                                <input id="age_max" type="number" class="form-control" name="age_max" value="{{ old('age_max') }}" min="0" required autofocus>
+
+                                @if ($errors->has('age_max'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('age_max') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label"> Cupos </label>

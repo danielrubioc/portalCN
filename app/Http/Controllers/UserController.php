@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Role;
 use App\Status;
+use App\Workshop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -281,9 +282,16 @@ class UserController extends Controller
                         ->withInput();
         }
 
+        $workshop = Workshop::findOrFail($request->workshop_id);
+
+        $dob = strtotime(str_replace("/","-", $request->birth_date));       
+        $tdate = time();
+        $age = 0;
+        while( $tdate > $dob = strtotime('+1 year', $dob)){
+            ++$age;
+        }
 
         $user = new User($request->all());
-
         if ($request->password_confirmation == $request->password) {
             $user->status = 1;
             $user->role_id = 3;
@@ -307,14 +315,16 @@ class UserController extends Controller
                     */
                     $user->validate = $data['codigo'];
                     if ($user->save()) {
-                       $user->workshops()->attach($request->workshop_id, ['status' => '1' , 'commentary' => $request->commentary]);
+                        if ($age >= $workshop->age_min  && $age <= $workshop->age_max ) {
+                            $user->workshops()->attach($workshop->id, ['status' => '1' , 'commentary' => $request->commentary]);
+                            flash('El usuario se creo correctamente! gracias por registrarte en el Taller "'. $workshop->name .'" . Ahora puedes iniciar sesión')->success();
+                        } else {
+                            flash('El usuario se creo correctamente! pero no pudiste registrarte en el taller "'. $workshop->name .'" por no cumplir con el rango de edad necesario. Ahora puedes iniciar sesión')->success();
+                        }
+                    
                     }
 
-
-
-                    flash('El usuario se creo correctamente! debes validar tu usuario para hacer efectivo tu registro en el taller')->success();
                     return redirect()->route('login');
-
                     
                 }else {
                     flash('Disculpa! el usuario no se pudo crear.')->error();

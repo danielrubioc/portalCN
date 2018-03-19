@@ -98,6 +98,45 @@ class User extends Authenticatable
         
     }
 
+    //listado de todos los usuarios activos que entran en el rango de edad del taller
+    public function scopeGetListActiveUserAgeRange($query, $min, $max)
+    {      
+        $userToReturn = array();
+        $users = $query->where("status", "=", 1)
+                ->where('role_id', '=', 3)
+                ->orderBy('id','DESC'); 
+        foreach ($users->get() as $key => $user) {
+            $dob = strtotime(str_replace("/","-",$user->birth_date));       
+            $tdate = time();
+            $age = 0;
+            while( $tdate > $dob = strtotime('+1 year', $dob))
+            {
+                ++$age;
+            }
+            if ($age >= $min &&  $age <= $max) {
+                array_push($userToReturn, $user);
+            }
+        }
+
+        return $userToReturn;
+        
+    }
+
+    //checkea si esta dentro del rango
+    public function scopeCheckAge($query, $birth_date)
+    {      
+        
+        $dob = strtotime(str_replace("/","-", $birth_date));       
+        $tdate = time();
+        $age = 0;
+        while( $tdate > $dob = strtotime('+1 year', $dob)){
+            ++$age;
+        }
+
+        return $age;
+        
+    }
+
     public function sendPasswordResetNotification($token)
     {
        $this->notify(new CustomResetPasswordNotification($token));

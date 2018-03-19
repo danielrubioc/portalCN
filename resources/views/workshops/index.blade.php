@@ -27,6 +27,7 @@
 									<td>Sobrecupos</td>
 									<td>Inscritos</td>
 									<td>C. Disponibles</td>
+			    					<td>Rango edad</td>
 			    					<td>Estado</td>
 			    					<td>Tipo</td>
 			    					<td></td>
@@ -41,6 +42,7 @@
 									<td>{{ $taller->about_quotas }}</td>
 									<td>{{ count($taller->students) }}</td>
 									<td>{{ $taller->hasTotalQuotesAvaibles() }}</td>
+									<td>{{ $taller->age_min }} - {{ $taller->age_max }}</td>
 								    <td>{{ $taller->hasStatus->name }}</td>
 								    <td>{{ $taller->hasType->name}} </td>
 								  	

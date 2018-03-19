@@ -46,7 +46,7 @@
                                     <option value="Volante o Afiche">Volante o Afiche</option>
                                     <option value="Página Web Municipalidad">Página Web Municipalidad</option>
                                     <option value="Boca a boca">Boca a boca</option>
-                                    <option value="Diario Comunal "Barrancas"">Diario Comunal "Barrancas"</option>
+                                    <option value="Diario Comunal Barrancas">Diario Comunal "Barrancas"</option>
                                 </select>
 
                             </div>                            
