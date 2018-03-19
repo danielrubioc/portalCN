@@ -67,7 +67,7 @@ class Post extends Model
     public function scopeGetListActivePost($query, $value)
     {   
         if ($value == 0) {
-            $query->orderBy('id','DESC');
+            $query->where("status", "=", 1)->orderBy('id','DESC');
         } else {
             $query->where("status", "=", 1)
               ->where('type', '=', $value)

@@ -101,7 +101,7 @@ class HomeController extends Controller
 
     public function workshopsAll()
     {   
-        $workshops = Workshop::getListActiveWorkshops(1)->paginate(8); 
+        $workshops = Workshop::getListActiveWorkshops(0)->paginate(8); 
         return view('site/workshops_all', ['workshops' => $workshops]);
     }
 

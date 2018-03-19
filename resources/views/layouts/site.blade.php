@@ -14,14 +14,16 @@
     <link rel="stylesheet" href="{{ elixir('css/site.css') }}">
     
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115077435-1"></script>
-<script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115077435-1"></script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
 
- gtag('config', 'UA-115077435-1');
-</script>
+     gtag('config', 'UA-115077435-1');
+    </script>
+    <!-- End Google Analytics -->
 </head>
 <body>
     <div id="app">

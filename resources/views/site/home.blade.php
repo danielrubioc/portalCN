@@ -39,7 +39,7 @@
 									<div class="info-teacher">Cupos disponibles: {{ $taller->hasTotalQuotesAvaibles() }} </div>
 								</div>
 								<div class="txt-item-work">
-									<h2 class="animable-element" style="opacity: 1;">{{$taller->name}}</h2>
+									<h2 class="animable-element" style="opacity: 1;">{!!$taller->name!!}</h2>
 									<p class="animable-element" style="opacity: 1;">{!! str_limit($taller->description, 60) !!} </p>
 									
 								</div>	
@@ -57,8 +57,8 @@
 									<div class="info-teacher">Cupos disponibles: {{ $taller->hasTotalQuotes() }}</div>
 								</div>
 								<div class="txt-item-work">
-									<h2 class="animable-element" style="opacity: 1;">{{$tallerP->name}}</h2>
-									<p class="animable-element" style="opacity: 1;">{{ str_limit($tallerP->description, 120) }} </p>
+									<h2 class="animable-element" style="opacity: 1;">{!!$tallerP->name!!}</h2>
+									<p class="animable-element" style="opacity: 1;">{!! str_limit($tallerP->description, 120) !!} </p>
 								</div>	
 								</div>					
 							</a>				 
@@ -101,7 +101,7 @@
 							<div class="box-gral-work-item work-item-principal item-posts-home-principal">
 								<div class="txt-item-work">
 									<span>{{ date('d-m-Y', strtotime($postsPrincipal->created_at)) }} | {{ $postsPrincipal->category->name  }}</span>
-									<h2 class="animable-element" style="opacity: 1;">{{$postsPrincipal->title}}</h2>
+									<h2 class="animable-element" style="opacity: 1;">{!! $postsPrincipal->title !!}</h2>
 									<p class="animable-element" style="opacity: 1;">{!! str_limit($postsPrincipal->content, 250) !!} </p>
 								</div>
 								<div class="over-hidde-img" >

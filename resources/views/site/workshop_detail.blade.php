@@ -344,7 +344,8 @@
 
 				<h4 >{{ $workshop->subtitle }}</h4>
 				<p >{!! $workshop->description !!}</p>
-
+				<p class="especial-p" style="text-align: left;"><strong>Lugar:  </strong>{!! $workshop->place !!}</p>
+				<p><strong>Cupos disponibles: </strong>{{ $workshop->hasTotalQuotesAvaibles() }}</p>
 				<hr class="separator-comparte">	
 
 			</div>

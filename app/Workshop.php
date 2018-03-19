@@ -90,7 +90,7 @@ class Workshop extends Model
     public function scopeGetListActiveWorkshops($query, $value)
     {   
         if ($value == 0) {
-            $query->orderBy('id','DESC');
+            $query->where("status", "=", 1)->orderBy('id','DESC');
         } else {
             $query->where("status", "=", 1)->where('type', '=', $value)->orderBy('id','DESC');
         }

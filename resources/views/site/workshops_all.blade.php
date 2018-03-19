@@ -18,13 +18,15 @@
                                     @foreach ($workshops as $key => $taller)
                                         <div class="col-xs-3 col-md-3">
                                             <div class="item-disc " data-owl="{{$key}}">
-                                                <div class="img-disc-all">
-                                                    <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
-                                                </div>
+                                                <a href="{{ url('/disciplina') }}/{{$taller->url}}">
+                                                    <div class="img-disc-all">
+                                                        <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
+                                                    </div>
+                                                </a>
                                                 
                                                 <div class="info-detail">
-                                                    <h2>{{$taller->name}}</h2>
-                                                    <p>{{ str_limit($taller->description, 80) }}</p>
+                                                    <h2>{!! $taller->name !!}</h2>
+                                                    <p>{!! str_limit($taller->description, 80) !!}</p>
                                                     <div class="suscrit-regis">
                                                         <span>Próxima clase</span>
                                                         <span>@if ($taller->lessonsBeforeRecord()->first()['date'])
@@ -85,7 +87,8 @@
                                                 <a href="{{ url('/disciplina') }}/{{$taller->url}}">
                                             	   <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
                                                 </a>
-                                                 <a href="{{ url('/disciplina') }}/{{$taller->url}}" class="btn-ir-taller" style=" background: {{$taller->color}}">Ingresa</a>
+                                                <p>{!! $taller->name !!}</p>
+                                                <a href="{{ url('/disciplina') }}/{{$taller->url}}" class="btn-ir-taller" style=" background: {{$taller->color}}">Ingresa</a>
 
                                             </div>   
                                         </div>
