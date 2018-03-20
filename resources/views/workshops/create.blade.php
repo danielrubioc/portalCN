@@ -191,6 +191,17 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                            <label for="type" class="col-md-4 control-label">Categoría</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="status">
+                                    @foreach($statuses as $status)
+                                        <option value="{{$status->id}}">{{$status->name}}</option>   
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                             <label for="type" class="col-md-4 control-label">Tipo</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="type">

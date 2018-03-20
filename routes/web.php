@@ -37,6 +37,8 @@ Route::resource('posts', 'PostsController')->middleware('validRole:admin.publish
 Route::resource('galleries', 'GalleriesController')->middleware('validRole:admin.publisher');
 //tags
 Route::resource('tags', 'TagsController')->middleware('validRole:admin.publisher');
+//categorias talleres
+Route::resource('workshopCategories', 'WorkshopCategoriesController')->middleware('validRole:admin.publisher');
 //taller
 Route::resource('workshops', 'WorkshopsController')->middleware('validRole:admin.teacher.publisher.attention');
 Route::get('/workshops/students/{idWork}', 'WorkshopsController@registerStudent')->name('workshops.registerStudent')->middleware('validRole:admin.teacher.publisher.attention');
