@@ -80,7 +80,7 @@
                                         <img src="{{url('/images/team-desktop')}}/juan-gonzalez.jpg" class="img-responsive">
                                         <span class="info-team desktop-info">
                                             <h1>Juan González </h1>
-                                            <h2>Encargado de Proyectos y Asistente de Gestión</h2>
+                                            <h2>Equipo de programas y proyectos corporativos</h2>
                                         </span> 
                                     </div>   
                                 </div> 
@@ -259,7 +259,7 @@
                                 	<img src="{{url('/images/team')}}/juan-contreras.jpg" class="img-responsive">
                                     <span class="info-team">
                                     	<h1>Juan González </h1>
-                                    	<h2>Encargado de Proyectos y Asistente de Gestión</h2>
+                                    	<h2>Equipo de programas y proyectos corporativos</h2>
                                     </span> 
                                 </div>   
                             </div> 
