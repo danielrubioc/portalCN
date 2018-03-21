@@ -30,6 +30,7 @@
 			    					<td>Rango edad</td>
 			    					<td>Estado</td>
 			    					<td>Tipo</td>
+			    					<td>Categoría</td>
 			    					<td></td>
 			    			</tr>
 			    	</thead>
@@ -45,6 +46,7 @@
 									<td>{{ $taller->age_min }} - {{ $taller->age_max }}</td>
 								    <td>{{ $taller->hasStatus->name }}</td>
 								    <td>{{ $taller->hasType->name}} </td>
+								    <td>{{ $taller->hasCategory['name']}} </td>
 								  	
 								    <td class="box-btnes">	
 								    	@if (Auth::user()->hasRole->name == 'admin' || Auth::user()->hasRole->name == 'publisher')      

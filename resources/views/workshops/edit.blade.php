@@ -173,6 +173,23 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                    <label for="type" class="col-md-4 control-label">Categoría</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="category_id">
+                                            @foreach($categories as $category)
+                                                @if ($workshops->category_id  == $category->id)
+                                                    <option value="{{$category->id}}" selected>{{$category->name}}</option>
+
+                                                    @else
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endif
+                                                    
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                                     <label for="type" class="col-md-4 control-label">Tipo</label>
                                     <div class="col-md-6">
                                         <select class="form-control" name="type">

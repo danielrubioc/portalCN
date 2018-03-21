@@ -59,6 +59,7 @@
                                     <li><a href="{{ URL::to('posts') }}">Blog</a></li>
                                     <li><a href="{{ URL::to('tags') }}">Tags</a></li>
                                     <li><a href="{{ URL::to('workshops') }}">Talleres</a></li>
+                                    <li><a href="{{ URL::to('workshopCategories') }}">Categorías de Talleres</a></li>
                                     <li><a href="{{ URL::to('banners') }}">Banners</a></li>
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
@@ -82,6 +83,7 @@
                                     <li><a href="{{ URL::to('posts') }}">Blog</a></li>
                                     <li><a href="{{ URL::to('tags') }}">Tags</a></li>
                                     <li><a href="{{ URL::to('workshops') }}">Talleres</a></li>
+                                    <li><a href="{{ URL::to('workshopCategories') }}">Categorías de Talleres</a></li>
                                     <li><a href="{{ URL::to('banners') }}">Banners</a></li>
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
@@ -90,6 +92,7 @@
                                 <ul class="nav navbar-nav">
                                     <li><a href="{{ URL::to('users') }}">Usuarios</a></li>
                                     <li><a href="{{ URL::to('workshops') }}">Talleres</a></li>
+                                    <li><a href="{{ URL::to('workshopCategories') }}">Categorías de Talleres</a></li>
                                     <li class="to-site"><a href="{{ URL::to('/') }}">Ir a sitio web</a></li>
                                 </ul>
                             @endif
@@ -156,7 +159,9 @@
                             <a href="{{ URL::to('posts') }}">Blog <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('tags') }}">Tags <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
-                            <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                  
+                            <a href="{{ URL::to('workshopCategories') }}">Categorías de Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+                            <a href="{{ URL::to('banners') }}">Banners <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
+
                         @endif
                         @if (Auth::user()->hasRole->name == 'teacher')
                             <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
@@ -164,6 +169,7 @@
                         @if (Auth::user()->hasRole->name == 'attention')
                             <a href="{{ URL::to('users') }}">Usuarios <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                             <a href="{{ URL::to('workshops') }}">Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>                
+                            <a href="{{ URL::to('workshopCategories') }}">Categorías de Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>
                         @endif
                         @if (Auth::user()->hasRole->name == 'public')
                             <a href="{{ route('home.viewWorkshopsIns') }}">Mis Talleres <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span></a>

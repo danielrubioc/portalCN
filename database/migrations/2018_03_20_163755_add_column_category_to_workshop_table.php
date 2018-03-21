@@ -15,7 +15,7 @@ class AddColumnCategoryToWorkshopTable extends Migration
     {   
         Schema::table('workshops', function (Blueprint $table) {
             $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('workshop_categories'); 
+            $table->foreign('category_id')->references('id')->on('workshop_categories')->onDelete('cascade');
         });
         DB::table('workshops')->update(['category_id' => 1]);
     }

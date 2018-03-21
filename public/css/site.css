@@ -1731,13 +1731,22 @@ footer.hidden-xs img {
 .main-talleres {
     margin-bottom: 50px;
     margin-top: 100px;
+    min-height: 950px;
+}
+.info-erro {
+    text-align: center;
+    margin-top: 153px;
 }
 
 .item-disc {
     margin-bottom: 25px;
     border: 1px solid #e7e7e7;
 }
-
+.info-erro img {
+    text-align: center;
+        margin: 0 auto;
+    max-width: 270px;
+}
 .info-detail h2 {
     margin: 0;
     font-size: 17px;

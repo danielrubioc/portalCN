@@ -10,7 +10,7 @@ class Workshop extends Model
     protected $table= "workshops";
     
     protected $fillable = [
-        'name', 'place', 'color', 'type', 'subcolor','description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page', 'url', 'subtitle', 'age_min', 'age_max'
+        'name', 'place', 'color', 'type', 'subcolor','description', 'user_id', 'status', 'quotas', 'about_quotas', 'cover_page', 'url', 'subtitle', 'age_min', 'age_max', 'category_id'
     ];
 
     public function user()
@@ -36,6 +36,11 @@ class Workshop extends Model
     public function hasType()
     {
         return $this->hasOne('App\Type', 'id', 'type');
+    }
+
+    public function hasCategory()
+    {
+        return $this->hasOne('App\WorkshopCategories', 'id', 'category_id');
     }
 
     //total de cupos + sobrecupós

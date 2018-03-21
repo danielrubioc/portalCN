@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\WorkshopCategories;
 use App\Gallery;
 use App\Tag;
 use App\User;
@@ -103,6 +104,30 @@ class HomeController extends Controller
     {   
         $workshops = Workshop::getListActiveWorkshops(0)->paginate(8); 
         return view('site/workshops_all', ['workshops' => $workshops]);
+    } 
+
+    public function workshopsAllCategory($slug = null)
+    {   
+        if ($slug) {
+            $category = WorkshopCategories::where('url','=', $slug)->where('status','=', 1)->first();
+            $workshops = $category->workshopsFromCategory()->paginate(8);
+            if ($workshops) {
+
+                return view('site/workshops_all', ['workshops' => $workshops ]);
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/');
+        }
+
+
+    } 
+
+    public function categoriesWorkshopsAll()
+    {   
+        $categories = WorkshopCategories::getListActiveCat()->paginate(8); 
+        return view('site/category_workshops', ['categories' => $categories]);
     }
 
     public function showWorkshopDetail($slug = null)

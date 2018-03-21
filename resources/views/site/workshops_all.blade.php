@@ -15,6 +15,15 @@
                     <div class="info-taller">
                         
                             <div id="workshop-modify-container">
+                                @if(count($workshops)==0)
+                                    <p></p>
+                                    <br><br><br>
+                                    <div class="info-erro">
+                                        <p>No hay talleres asociados</p>
+                                        
+                                        <img src="{{url('/images/carita1.png')}}" class="img-responsive">
+                                    </div>   
+                                @endif
                                     @foreach ($workshops as $key => $taller)
                                         <div class="col-xs-3 col-md-3">
                                             <div class="item-disc " data-owl="{{$key}}">
@@ -81,6 +90,15 @@
                     <div class="info-taller">
                         
                             <div id="workshop-modify-container-l">
+                                @if(count($workshops)==0)
+                                    <p></p>
+                                    <br><br><br>
+                                    <div class="info-erro">
+                                        <p>No hay talleres asociados</p>
+                                        
+                                        <img src="{{url('/images/carita1.png')}}" class="img-responsive">
+                                    </div>   
+                                @endif
                                     @foreach ($workshops as $key => $taller)
                                         <div class="col-md-6 col-sm-6 col-xs-6 element-work mov-item-xs" style="padding: 0;margin-bottom: 50px;">
                                             <div class="item-work " data-owl="{{$key}}">

@@ -17,6 +17,7 @@ class CreateCategoryWorkshopTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('image')->nullable();
+            $table->string('url')->unique();
             $table->integer('status')->unsigned()->index();
             $table->foreign('status')->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();
@@ -25,6 +26,7 @@ class CreateCategoryWorkshopTable extends Migration
             DB::table('workshop_categories')->insert([
                     'name' => 'Gimnasio',
                     'image' => 'lalal',
+                    'url' => 'gimnasio',
                     'status' => '1',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
@@ -32,6 +34,7 @@ class CreateCategoryWorkshopTable extends Migration
             DB::table('workshop_categories')->insert([
                     'name' => 'Estadio',
                     'image' => 'lalal',
+                    'url' => 'estadio',
                     'status' => '1',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
@@ -39,6 +42,7 @@ class CreateCategoryWorkshopTable extends Migration
             DB::table('workshop_categories')->insert([
                     'name' => 'IND',
                     'image' => 'lalal',
+                    'url' => 'ind',
                     'status' => '1',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
@@ -47,6 +51,7 @@ class CreateCategoryWorkshopTable extends Migration
                     'name' => 'Territorio - Casa de la Cultura y Comunitario',
                     'image' => 'lalal',
                     'status' => '1',
+                    'url' => 'territorio_casa_de_la_cultura_y_comunitario',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
             ]);
@@ -54,6 +59,7 @@ class CreateCategoryWorkshopTable extends Migration
                     'name' => 'Territorio - Clubes y otros',
                     'image' => 'lalal',
                     'status' => '1',
+                    'url' => 'territorio_clubes_y_otros',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
             ]);
@@ -61,6 +67,7 @@ class CreateCategoryWorkshopTable extends Migration
                     'name' => 'Territorio - Unidades Vecinales',
                     'image' => 'lalal',
                     'status' => '1',
+                    'url' => 'territorio_unidades_vecinales',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
             ]);
@@ -68,6 +75,7 @@ class CreateCategoryWorkshopTable extends Migration
                     'name' => 'Territorio - Escuelas y Colegios',
                     'image' => 'lalal',
                     'status' => '1',
+                    'url' => 'territorio_escuelas_y_colegios',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
             ]);

@@ -69,6 +69,7 @@ Route::get('/nosotros', 'HomeController@about');
 Route::get('/equipo', 'HomeController@team');
 Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
+Route::get('/categorias', 'HomeController@categoriesWorkshopsAll');
 Route::get('/disciplinas', 'HomeController@workshopsAll');
 
 //Route::get('/activacion', 'HomeController@activateUser');
@@ -80,6 +81,7 @@ Route::post('/codeVerify', 'HomeController@codeVerify');
 Route::get('/nuevas-disciplinas', 'HomeController@newsWorkshops');
 Route::get('/todas-las-disciplinas', 'HomeController@workshopsAll');
 Route::get('disciplina/{slug}', ['as' => 'workshops', 'uses' => 'HomeController@showWorkshopDetail']);
+Route::get('disciplinas/{slug}', ['as' => 'workshops', 'uses' => 'HomeController@workshopsAllCategory']);
 
 // blog publico
 //detalle de noticia

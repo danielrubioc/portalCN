@@ -17,4 +17,16 @@ class WorkshopCategories extends Model
         return $this->hasOne('App\Status', 'id', 'status');
     }
 
+    public function workshopsFromCategory()
+    {
+        return $this->hasMany('App\Workshop', 'category_id', 'id');
+    }
+
+
+    //lista de categorias activas
+    public function scopeGetListActiveCat($query)
+    {   
+        $query->where("status", "=", 1)->orderBy('id','DESC');
+    }
+
 }

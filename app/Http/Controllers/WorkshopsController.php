@@ -13,6 +13,7 @@ use App\Workshop;
 use App\Student;
 use App\Teacher;
 use App\Lesson;
+use App\WorkshopCategories;
 use App\Status;
 use App\Type;
 use Image;
@@ -46,10 +47,11 @@ class WorkshopsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         return view('workshops.create', ['teachers' => User::getListActiveUser(2)->get(),
                                         'types' => Type::all(['id', 'name']),
-                                        'statuses' => Status::all(['id', 'name'])]);
+                                        'statuses' => Status::all(['id', 'name']),
+                                        'categories' => WorkshopCategories::getListActiveCat(['id', 'name'])->get() ]);
     
     }
 
@@ -161,7 +163,8 @@ class WorkshopsController extends Controller
             'teachersInWorkshops' => Workshop::findOrFail($id)->teachers()->get()->toArray(),
             'lessons' => Lesson::getListLessonOrderDate()->get(),
             'types' => Type::all(['id', 'name']),
-            'statuses' => Status::all(['id', 'name']) ]            
+            'statuses' => Status::all(['id', 'name']),
+            'categories' => WorkshopCategories::getListActiveCat(['id', 'name'])->get() ]            
         );
     }
 
@@ -226,6 +229,7 @@ class WorkshopsController extends Controller
             $workshops->status = $request->status ? $request->status : $workshops->status;
             $workshops->type = $request->type ? $request->type : $workshops->type;
             $workshops->place = $request->place ? $request->place : $workshops->place;
+            $workshops->category_id = $request->category_id ? $request->category_id : $workshops->category_id;
 
             //viene una imagen nueva
             if ($request->cover_page) {
