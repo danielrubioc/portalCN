@@ -1795,14 +1795,60 @@ p.especial-p {
     display: inline-block;
 }
 /*form */
+div#workshop-modify-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+        width: 100%;
+}
+span.detail-info-space {
+    min-height: 115px;
+    display: block;
+}
+p.visible-xs.name-cagtegory-mv {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    color: black;
+    background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgb(147, 192, 31)), to(rgba(236, 236, 236, 0.38))) !important;
+    padding: 5px 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: left;
+}
 
-
+.item-disc.item-category {
+    position: relative;
+}
+a.btn-ir-taller.visible-xs.btn-category-mv {
+    right: 0;
+}
+span.hidden-xs.vm-category {
+    width: 100%;
+    text-align: right;
+}
+a.btn-back-mv {
+    display: inline-block;
+    background: #93c020;
+    padding: 5px 10px;
+    color: white;
+    margin-bottom: 10px;
+}
 
 @media (max-width: 768px) { 
     .no-padding.element-work {
         width: 50%;
     }
-
+    a.btn-back-mv {
+        display: inline-block;
+        background: #93c020;
+        padding: 5px 10px;
+        color: white;
+    }
+    .info-detail.detail-category {
+        padding: 0;
+    }
     form#incripcion input {
         color: black !important;
     }  
@@ -2552,6 +2598,7 @@ p.especial-p {
     }
     .search-open.active {
         position: fixed;
+        display: none;
         top: 0;
         left: 0;
         right: 0;
@@ -2576,6 +2623,7 @@ p.especial-p {
         text-align: center;
     }
     .search-open {
+        display: none;
         position: absolute;
         top: 0;
         left: 0;

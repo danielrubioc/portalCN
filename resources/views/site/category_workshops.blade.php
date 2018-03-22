@@ -20,20 +20,20 @@
                     @foreach ($categories as $key => $category)
 
                     <div class="col-xs-6 col-md-3">
-                        <div class="item-disc " data-owl="{{$key}}">
-                            <a href="{{ url('/disciplina') }}/{{$category->url}}">
+                        <div class="item-disc item-category" data-owl="{{$key}}">
+                            <a href="{{ url('/disciplinas') }}/{{$category->url}}">
                                 <div class="img-disc-all">
                                     <img src="{{url('/uploads/workshopCategories')}}/{{ $category->image }}" class="img-responsive">
                                 </div>
                             </a>
                             <div class="info-detail detail-category">
-                                <h2>{!! $category->name !!}</h2>
+                                <h2 class="hidden-xs">{!! $category->name !!}</h2>
                                 <div class="view-regis">
-                                    <span><a href="{{ url('/disciplinas') }}/{{$category->url}}">Ver más</a></span>
-
+                                    <span class="hidden-xs vm-category"><a href="{{ url('/disciplinas') }}/{{$category->url}}">Ver más</a></span> 
                                 </div>
                             </div> 
-                            
+                            <p class="visible-xs name-cagtegory-mv">{!! $category->name !!} </p>
+                            <a href="{{ url('/disciplinas') }}/{{$category->url}}" class="btn-ir-taller visible-xs btn-category-mv" style="background: rgb(226, 120, 157);">Ingresa</a>
                         </div>   
                     </div>
                     @endforeach

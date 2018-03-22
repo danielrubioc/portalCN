@@ -57,7 +57,7 @@
 			               	<div class="col-md-12 no-padding">
 		                    	<h2>Ya estas registrado</h2>
 		                   	</div>
-		               	@elseif($workshop->hasTotalQuotesAvaibles() != 0 && !$registered )
+		               	@elseif($workshop->hasTotalQuotesAvaibles() > 0 && !$registered )
 		               		@if( Auth::user()->CheckAge(Auth::user()->birth_date) >= $workshop->age_min &&  Auth::user()->CheckAge(Auth::user()->birth_date) <= $workshop->age_max )
 		                    <form class="form-horizontal form-css-label form-desktop form-work-insc" method="POST" action="{{ route('workshops.storeStudentPublicAuth' ) }}">
 		                        {{ csrf_field() }}
@@ -82,7 +82,7 @@
 		                    @else
 		                    	<p>No cumples con el rango de edad necesaria. <br> El rango es de {{ $workshop->age_min }} - {{ $workshop->age_max }} años</p>
 		                    @endif
-	                    @elseif($workshop->hasTotalQuotesAvaibles() == 0)
+	                    @elseif($workshop->hasTotalQuotesAvaibles() <= 0)
 		                   	<div class="col-md-12 no-padding text-info-detail-discip">
 			                	<h2>Lo sentimos, no hay cupos disponibles</h2>
 			               	</div>
@@ -90,7 +90,7 @@
                 @endif
 
             @else
-            	@if($workshop->hasTotalQuotesAvaibles() == 0 )
+            	@if($workshop->hasTotalQuotesAvaibles() <= 0 )
 					<div class="col-md-12 no-padding text-info-detail-discip">
 	                	<h2>Lo sentimos, no hay cupos disponibles</h2>
 	               	</div>
@@ -406,11 +406,24 @@
 			               	<div class="col-md-12 no-padding">
 		                    	<h2>Ya estas registrado</h2>
 		                   	</div>
-		               	@elseif($workshop->hasTotalQuotesAvaibles() != 0 && !$registered )
+		               	@elseif($workshop->hasTotalQuotesAvaibles() > 0 && !$registered )
 		               		@if( Auth::user()->CheckAge(Auth::user()->birth_date) >= $workshop->age_min &&  Auth::user()->CheckAge(Auth::user()->birth_date) <= $workshop->age_max )
-		                    <form class="form-horizontal" method="POST" action="{{ route('workshops.storeStudentPublicAuth' ) }}">
+		                    <form class="form-horizontal form-css-label form-desktop form-work-insc" method="POST" action="{{ route('workshops.storeStudentPublicAuth' ) }}">
 		                        {{ csrf_field() }}
-		                        <input type="hidden" name="id" id="id" value="{{$workshop->id}}">	
+		                        <input type="hidden" name="id" id="id" value="{{$workshop->id}}">
+			                       
+		                        <div class="col-md-12 form-group">
+								  	<label for="sel1">Como te enteraste del taller?</label>
+								  	<select class="form-control" name="commentary" id="commentary" required>
+									  	<option value="">-Selecciona una opcion</option>
+									    <option value="Facebook Deportes">Facebook Deportes</option>
+									    <option value="Facebook Municipalidad">Facebook Municipalidad</option>
+									    <option value="Volante o Afiche">Volante o Afiche</option>
+									    <option value="Página Web Municipalidad">Página Web Municipalidad</option>
+									    <option value="Boca a boca">Boca a boca</option>
+									    <option value="Diario Comunal Barrancas">Diario Comunal "Barrancas"</option>
+								  	</select>
+								</div>
 			                    <div class="register-workshop-desk">
 			                    	<button type="submit" class="btn btn-primary btn-home btn-register-disci">Inscribirme a taller</button>
 			                    </div>
@@ -419,7 +432,7 @@
 	                    	
 	                    	<p>No cumples con el rango de edad necesaria. <br> El rango es de {{ $workshop->age_min }} - {{ $workshop->age_max }} años</p>
 	                    @endif
-	                    @elseif($workshop->hasTotalQuotesAvaibles() == 0)
+	                    @elseif($workshop->hasTotalQuotesAvaibles() <= 0)
 		                   	<div class="col-md-12 no-padding text-info-detail-discip">
 			                	<h2>Lo sentimos, no hay cupos disponibles</h2>
 			               	</div>
@@ -427,7 +440,7 @@
                 @endif
 
             @else
-            	@if($workshop->hasTotalQuotesAvaibles() == 0 )
+            	@if($workshop->hasTotalQuotesAvaibles() <= 0 )
 					<div class="col-md-12 no-padding text-info-detail-discip">
 	                	<h2>Lo sentimos, no hay cupos disponibles</h2>
 	               	</div>

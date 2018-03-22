@@ -65,7 +65,7 @@
 						@endforeach	
 					</div>
 				</div>
-				<a class="btn-home" href="{{ url('/disciplinas') }}">VER MÁS</a>
+				<a class="btn-home" href="{{ url('/categorias/') }}">VER MÁS</a>
 			</div>
 		</div>
 	</section>
@@ -182,7 +182,7 @@
 				</div>
 			</div>
 			<div class="content-btn-full">
-				<a href="{{ url('/disciplinas') }}" class="btn-first btn-gral">Aprende más</a>
+				<a href="{{ url('/categorias') }}" class="btn-first btn-gral">Aprende más</a>
 			</div>
 		</div>
 	</section>

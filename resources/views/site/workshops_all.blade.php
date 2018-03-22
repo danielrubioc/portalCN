@@ -9,6 +9,7 @@
                 
 
                     <h1>Disciplinas</h1>
+                    <a href="{{ url('/categorias') }}" class="btn-back-mv">Volver a categorías</a>
                 </div>
 
                 <div class="container workshop-all">
@@ -35,7 +36,9 @@
                                                 
                                                 <div class="info-detail">
                                                     <h2>{!! $taller->name !!}</h2>
+                                                    <span class="detail-info-space">
                                                     {!! str_limit($taller->description, 80) !!}
+                                                    </span>
                                                     <div class="suscrit-regis">
                                                         <span>Próxima clase</span>
                                                         <span>@if ($taller->lessonsBeforeRecord()->first()['date'])
@@ -87,6 +90,8 @@
                 </div>
                 <div class="container workshop-all">
                     <h1>Disciplinas</h1>
+                    <a href="{{ url('/categorias') }}" class="btn-back-mv">Volver a categorías</a>
+                    <br><br>
                     <div class="info-taller">
                         
                             <div id="workshop-modify-container-l">
