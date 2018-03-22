@@ -31,56 +31,7 @@ class CreateCategoryWorkshopTable extends Migration
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
             ]);
-            DB::table('workshop_categories')->insert([
-                    'name' => 'Estadio',
-                    'image' => 'lalal',
-                    'url' => 'estadio',
-                    'status' => '1',
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-            ]);
-            DB::table('workshop_categories')->insert([
-                    'name' => 'IND',
-                    'image' => 'lalal',
-                    'url' => 'ind',
-                    'status' => '1',
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-            ]);
-            DB::table('workshop_categories')->insert([
-                    'name' => 'Territorio - Casa de la Cultura y Comunitario',
-                    'image' => 'lalal',
-                    'status' => '1',
-                    'url' => 'territorio_casa_de_la_cultura_y_comunitario',
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-            ]);
-            DB::table('workshop_categories')->insert([
-                    'name' => 'Territorio - Clubes y otros',
-                    'image' => 'lalal',
-                    'status' => '1',
-                    'url' => 'territorio_clubes_y_otros',
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-            ]);
-            DB::table('workshop_categories')->insert([
-                    'name' => 'Territorio - Unidades Vecinales',
-                    'image' => 'lalal',
-                    'status' => '1',
-                    'url' => 'territorio_unidades_vecinales',
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-            ]);
-            DB::table('workshop_categories')->insert([
-                    'name' => 'Territorio - Escuelas y Colegios',
-                    'image' => 'lalal',
-                    'status' => '1',
-                    'url' => 'territorio_escuelas_y_colegios',
-                    'created_at' => date('Y-m-d H:i:s'),
-                    'updated_at' => date('Y-m-d H:i:s')
-            ]);
-        
-
+           
     }
 
 
