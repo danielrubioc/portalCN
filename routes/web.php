@@ -70,7 +70,8 @@ Route::get('/equipo', 'HomeController@team');
 Route::get('/contacto', 'HomeController@contact');
 Route::post('/contacto/enviar', 'HomeController@sendContact');
 Route::get('/categorias', 'HomeController@categoriesWorkshopsAll');
-Route::get('/disciplinas', 'HomeController@workshopsAll');
+//Route::get('/disciplinas', 'HomeController@workshopsAll');
+Route::get('/disciplinas', 'HomeController@categoriesWorkshopsAll');
 
 //Route::get('/activacion', 'HomeController@activateUser');
 Route::get('/activacion', 'HomeController@activateUser')->name('home.activateUser');
