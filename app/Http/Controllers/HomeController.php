@@ -110,7 +110,7 @@ class HomeController extends Controller
     {   
         if ($slug) {
             $category = WorkshopCategories::where('url','=', $slug)->where('status','=', 1)->first();
-            $workshops = $category->workshopsFromCategory()->paginate(8);
+            $workshops = $category->workshopsFromCategory()->where("status", "=", 1)->orderBy('id','DESC')->paginate(8);
             if ($workshops) {
 
                 return view('site/workshops_all', ['workshops' => $workshops ]);
