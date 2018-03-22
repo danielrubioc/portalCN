@@ -1839,7 +1839,14 @@ a.btn-back-mv {
     width: 25%;
     padding: 15px;
 }
+.btn-mo {
+    text-align: center;
+    width: 50%;
+}
 
+.btn-mo a {
+    margin: 0 auto;
+}
 
 @media (max-width: 768px) { 
     .no-padding.element-work {

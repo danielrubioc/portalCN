@@ -27,7 +27,7 @@
                                 @endif
                                     @foreach ($workshops as $key => $taller)
                                         <div class="col-xs-3 col-md-3 preci-cat">
-                                            <div class="item-disc " data-owl="{{$key}}">
+                                            <div class="item-disc ">
                                                 <a href="{{ url('/disciplina') }}/{{$taller->url}}">
                                                     <div class="img-disc-all">
                                                         <img src="{{url('/uploads/workshop')}}/{{$taller->cover_page}}" class="img-responsive">
@@ -42,7 +42,7 @@
                                                     <div class="suscrit-regis">
                                                         <span>Próxima clase</span>
                                                         <span>@if ($taller->lessonsBeforeRecord()->first()['date'])
-                                                                    {{ date('d-m-Y', strtotime($taller->lessonsBeforeRecord()->first()['date']))  }}
+                                                                    {!! date('d-m-Y', strtotime($taller->lessonsBeforeRecord()->first()['date']))  !!}
                                                                     @else
                                                                     No hay clases
                                                                 @endif 
@@ -50,8 +50,8 @@
 
                                                     </div>
                                                     <div class="view-regis">
-                                                        <span><a href="{{ url('/disciplina') }}/{{$taller->url}}">Ver más</a></span>
-                                                        <span><a href="{{ url('/disciplina') }}/{{$taller->url}}">Inscríbete</a></span>
+                                                        <div class="btn-mo"><a href="{{ url('/disciplina') }}/{{$taller->url}}">Ver más</a></div>
+                                                        <div class="btn-mo"><a href="{{ url('/disciplina') }}/{{$taller->url}}">Inscríbete</a></div>
 
                                                     </div>
                                                 </div> 
