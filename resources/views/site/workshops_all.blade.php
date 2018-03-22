@@ -26,7 +26,7 @@
                                     </div>   
                                 @endif
                                     @foreach ($workshops as $key => $taller)
-                                        <div class="itm-disc">
+                                        <div class="col-xs-3 col-md-3 preci-cat">
                                             <div class="item-disc " data-owl="{{$key}}">
                                                 <a href="{{ url('/disciplina') }}/{{$taller->url}}">
                                                     <div class="img-disc-all">
