@@ -37,12 +37,16 @@
                                                 <div class="info-detail">
                                                     <h2>{!! $taller->name !!}</h2>
                                                     <span class="detail-info-space">
-                                                    {!! str_limit(strip_tags($taller->description, '<div><span><pre><p><br><hr><hgroup><h1><h2><h3><h4><h5><h6>
+                                                        'The quick brown fox jumps over the lazy dog', 
+
+                                                    {{ str_limit(str_replace( '<br>', '', (strip_tags($taller->description, '<div><span><pre><p><br><hr><hgroup><h1><h2><h3><h4><h5><h6>
                                                     <ul><ol><li><dl><dt><dd><strong><em><b><i><u>
                                                     <img><a><abbr><address><blockquote><area><audio><video>
                                                     <form><fieldset><label><input><textarea>
                                                     <caption><table><tbody><td><tfoot><th><thead><tr>
-                                                    <iframe>'), 120) !!}
+                                                    <iframe>'))), 120, '...') }}
+
+                                                     
                                                     </span>
                                                     <div class="suscrit-regis">
                                                         <span>Próxima clase</span>
