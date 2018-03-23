@@ -37,7 +37,7 @@
                                                 <div class="info-detail">
                                                     <h2>{!! $taller->name !!}</h2>
                                                     <span class="detail-info-space">
-                                                    {!! str_limit($taller->description, 120) !!}
+                                                        {{ str_limit(strip_tags($taller->description), 120) }}
                                                     </span>
                                                     <div class="suscrit-regis">
                                                         <span>Próxima clase</span>
