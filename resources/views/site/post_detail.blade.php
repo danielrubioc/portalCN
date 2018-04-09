@@ -11,9 +11,22 @@
 					</div>
 					<div class="img-header-news">
 						<span>Fecha de publicación {{ date('d-m-Y', strtotime($post->created_at)) }}</span>
-						<img src="{{url('/uploads/news')}}/{{ $post->cover_page }}" class="img-responsive">
+						<img src="{{url('/uploads/news')}}/{{ $post->cover_page }}" class="img-responsive">	
 					</div>
 					<div class="info-detail-news">
+						<ul class="popup-share-rrss text-center">
+					  		<li class="hidden-xs hidden-sm fbc-comment"><a href="mailto:contacto@deportescerronavia.cl" class="default dash"><span class="fa fa-envelope"></span></a></li>
+					  		<li class="hidden-xs hidden-sm fbc-twitter">
+						  		<a 	class = "twitter-share-button"
+						  			rel = "canonical"
+								  	href = "https://twitter.com/intent/tweet?text={{ $post->title }}&url={{URL::current()}}" 
+								  	target="_blank"
+								  	onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+								<span class="fa fa-twitter"></span> </a>
+							</li>
+					  		<li class="hidden-xs hidden-sm fbc-face"><div class="fb-share-button" data-href="https://www.facebook.com/cerronaviadeporte/" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fcerronaviadeporte%2F&amp;src=sdkpreparse"><span class="fa fa-facebook"></span> </a></a></div></li>
+
+					   	</ul>
 						<h4 class="subtitle">{{ $post->subtitle }}</h4>
 						<p>{!! $post->content !!}</p>
 					</div>	

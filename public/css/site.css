@@ -2046,6 +2046,77 @@ a.btn-back-mv {
     margin: 0 auto;
 }
 
+
+ul.popup-share-rrss.text-center li:first-child {
+    color: #485a94;
+}
+
+ul.popup-share-rrss.text-center li {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    color: #fff;
+    color: rgba(255,255,255,1);
+    border: 1px solid #ccc;
+     transition: all .3s ease;
+}
+
+ul.popup-share-rrss.text-center li span {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    -moz-transform: scale(1) translateX(-50%) translateY(-50%);
+    -webkit-transform: scale(1) translateX(-50%) translateY(-50%);
+    -o-transform: scale(1) translateX(-50%) translateY(-50%);
+    -ms-transform: scale(1) translateX(-50%) translateY(-50%);
+    transform: scale(1) translateX(-50%) translateY(-50%);
+}
+
+
+ul.popup-share-rrss.text-center li:hover {
+    background-color: #485a94;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    color: white;
+}
+
+ul.popup-share-rrss.text-center li:hover span {
+    color: white;
+}
+
+li.hidden-xs.hidden-sm.fbc-comment span {
+    color: #b10925;
+}
+
+li.hidden-xs.hidden-sm.fbc-comment li:hover{
+	background-color: #b10925;
+}
+
+li.hidden-xs.hidden-sm.fbc-comment:hover {
+    background: #b10925;
+}
+
+li.hidden-xs.hidden-sm.fbc-comment {
+    color: #b10925;
+}
+
+li.hidden-xs.hidden-sm.fbc-twitter:hover {
+    background: #009bdb;
+}
+li.hidden-xs.hidden-sm.fbc-twitter span {
+    color: #009bdb;
+}
+ul.popup-share-rrss.text-center {
+    margin: 0;
+    padding: 0;
+}
 @media (max-width: 768px) { 
     .no-padding.element-work {
         width: 50%;
