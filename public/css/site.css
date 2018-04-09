@@ -2064,6 +2064,16 @@ ul.popup-share-rrss.text-center li {
      transition: all .3s ease;
 }
 
+ul.popup-share-rrss.text-center li a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    color: #fff;
+}
+
 ul.popup-share-rrss.text-center li span {
     position: absolute;
     z-index: 3;
