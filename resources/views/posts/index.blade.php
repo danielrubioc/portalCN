@@ -67,7 +67,10 @@
 									    <td>{{ $post->title }}</td>
 									    <td>{{ $post->url }}</td>
 										<td>{{ $post->category->name }}</td>
-										<td>{{ $post->user->name   }}</td>
+										<td>@if ($post->user)
+											{{ $post->user->name   }}
+											@endif
+										</td>
 										<td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
 									    <td>{{ $post->hasStatus->name }}</td>
 									  	<td>{{ $post->hasType->name }}</td>
