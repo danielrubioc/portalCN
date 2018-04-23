@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('title',  $post->title )
-@section('og-title'){{url('/uploads/news')}}/{{ $post->cover_page }} @stop
+@section('og:image'){{url('/uploads/news')}}/{{ $post->cover_page }} @stop
 @section('content')
 	<span class="hidden-xs">
 		<div class="container">
