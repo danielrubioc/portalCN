@@ -1,5 +1,5 @@
 @extends('layouts.site')
-
+@section('title',  'Contacto' )
 @section('content')
 <div class="contact-info">
     <div class="content-message">

@@ -102,7 +102,7 @@
 								<div class="txt-item-work">
 									<span>{{ date('d-m-Y', strtotime($postsPrincipal->created_at)) }} | {{ $postsPrincipal->category->name  }}</span>
 									<h2 class="animable-element" style="opacity: 1;">{!! $postsPrincipal->title !!}</h2>
-									<p class="animable-element" style="opacity: 1;">{!! str_limit($postsPrincipal->content, 250) !!} </p>
+									<p class="animable-element" style="opacity: 1;">{!! str_limit($postsPrincipal->content, 40) !!} </p>
 								</div>
 								<div class="over-hidde-img" >
 									<div class="img img-r" style=" background-image: url('/uploads/news/{{$postsPrincipal->cover_page}}');"></div>					

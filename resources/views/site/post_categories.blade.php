@@ -1,5 +1,5 @@
 @extends('layouts.site')
-
+@section('title',  $category )
 @section('content')
 	<div class="content-categories hidden-xs">
 

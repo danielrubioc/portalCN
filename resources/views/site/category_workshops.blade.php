@@ -1,5 +1,5 @@
 @extends('layouts.site')
-
+@section('title',  'Categorías de talleres' )
 @section('content')
 <style type="text/css">
 #app {
