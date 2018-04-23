@@ -2499,7 +2499,8 @@ ul.popup-share-rrss.text-center {
         position: absolute;
         bottom: 30px;
         left: 14px;
-        right: 50%;
+        right: 30%;
+    	word-wrap: break-word;
     }
     .info-post-tercer-tiempo-right a {
         color: white;
