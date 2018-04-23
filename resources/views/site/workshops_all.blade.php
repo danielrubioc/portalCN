@@ -1,5 +1,5 @@
 @extends('layouts.site')
-
+@section('title',  'Disciplinas' )
 @section('content')
 	<div class="main-talleres">
         <span class="hidden-xs">

@@ -1,5 +1,5 @@
 @extends('layouts.site')
-
+@section('title',  $workshop->name )
 @section('content')
 
 <span class="hidden-xs">

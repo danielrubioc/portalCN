@@ -1,4 +1,6 @@
 @extends('layouts.site')
+@section('title',  $post->title )
+<meta property="og:image" content="{{url('/uploads/news')}}/{{ $post->cover_page }}" />
 
 @section('content')
 	<span class="hidden-xs">
