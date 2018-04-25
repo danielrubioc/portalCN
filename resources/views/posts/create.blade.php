@@ -100,6 +100,15 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-6">
+                            @if ($errors->has('urlTag'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('urlTag') }}</strong>
+                                </span>
+                            @endif
+                            </div>
                         </div>
 
 
