@@ -100,6 +100,8 @@ class PostsController extends Controller
         $news->status = 2;
         $news->user_id = Auth::id();
         $news->url = Str::slug($request->url ? $request->url : $request->title, '_');
+
+
         if( $request->hasFile('cover_page') ) {
             $avatar = $request->file('cover_page');
             $random_string = md5(microtime());
@@ -108,35 +110,52 @@ class PostsController extends Controller
             $news->cover_page = $filename;
         }   
        
+
+
+        
+
+
         if ($news->save()) {
-            //si vienen los tags
             if ($request->tags) {
                 foreach ($request->tags as $key => $value) {
                     // si viene un string esto pasa cuando es un nuevo tag 
-                    if(is_numeric($value) == false) {
-                        //busco por nombre los tags que vienen
-                        $tag = Tag::firstOrNew(['name' => $value]);
-                        //si no existe lo creo
-                        if (!$tag->exists) {    
-                            $tag = new Tag();
-                            $tag->status = 1;
-                            $tag->name = $value;
-                            $tag->url = Str::slug($request->name, '-');
-                            $tag->save();
-                            // agrego el id al arreglo $tags
-                            $tags[$key] = $tag->id;
-                        } 
-                    } else {
-                      $tags[$key] = $value;  
-                    }
+                        $valueSinFiltro = $value;
+                        $value = Str::slug($value, '_');
+                        $arrayName = array('url' => $value);
+                        $messages = array(
+                            'unique'    => 'La url ya ha sido registrada.',
+                        );
+                        $validator = Validator::make($arrayName, [
+                            'url' => 'unique:tags',
+                        ],  $messages);
+                        if ($validator->fails()) {
+                            $validator = array();
+                            $arrayName = array('urlTag' => 'el tag ya ha sido registrado.');
+                            return redirect('posts/'.$news->id.'/edit')
+                            ->withErrors($arrayName)
+                            ->withInput();
+                        }
 
+                        //busco por nombre los tags que vienen
+                        $tag = Tag::where('url', '=', $value)->first();
+                        //si no existe lo creo
+                        if ($tag == null) {    
+                                    $tag = new Tag();
+                                    $tag->status = 1;
+                                    $tag->name = $valueSinFiltro;
+                                    $tag->url = Str::slug($value, '-');
+                                    $tag->save();
+                                    // agrego el id al arreglo $tags
+                                    $tags[$key] = $tag->id;
+
+                        }
+                        $news->tags()->attach($tags);
                 }
-                $news->tags()->attach($tags);
             }
-            
+            //si vienen los tags
             $link = url('/').'/'.$news->category->url.'/detalle/'.$news->url;
             //$this->sendMails($news, $link);
-            $idLast =   $news->id;; 
+            $idLast =   $news->id;
             flash('Publicación creada correctamente!')->success();
             return redirect()->route('posts.edit', $idLast);
 
@@ -306,26 +325,43 @@ class PostsController extends Controller
                         $news->tags()->detach();
                         foreach ($request->tags as $key => $value) {
                             // si viene un string esto pasa cuando es un nuevo tag 
-                            if(is_numeric($value) == false) {
+                            if(is_numeric($value) == false) {    
+                                $valueSinFiltro = $value;
+                                $value = Str::slug($value, '_');
+                                $arrayName = array('url' => $value);
+                                $messages = array(
+                                    'unique'    => 'La url ya ha sido registrada.',
+                                );
+                                $validator = Validator::make($arrayName, [
+                                    'url' => 'unique:tags',
+                                ],  $messages);
+                                if ($validator->fails()) {
+                                    $validator = array();
+                                    $arrayName = array('urlTag' => 'el tag ya ha sido registrado.');
+                                    return redirect('posts/'.$news->id.'/edit')
+                                    ->withErrors($arrayName)
+                                    ->withInput();
+                                }
+
                                 //busco por nombre los tags que vienen
-                                $tag = Tag::firstOrNew(['name' => $value]);
+                                $tag = Tag::where('url', '=', $value)->first();
                                 //si no existe lo creo
-                                if (!$tag->exists) {    
+                                if ($tag == null) {    
                                     $tag = new Tag();
                                     $tag->status = 1;
-                                    $tag->name = $value;
+                                    $tag->name = $valueSinFiltro;
                                     $tag->url = Str::slug($value, '-');
                                     $tag->save();
                                     // agrego el id al arreglo $tags
                                     $tags[$key] = $tag->id;
                                 } 
+
                             } else {
                               $tags[$key] = $value;  
                             }
-
-                        }
-                        
+                        }    
                         $news->tags()->attach($tags);
+                        
                     }
 
                     if ($request->show) {
