@@ -185,7 +185,7 @@ class HomeController extends Controller
             
             $categoryObject = Category::where('url','=', $category)->firstOrFail();
             if ($categoryObject) {
-                $postRelated = Post::where('category_id', $categoryObject->id)->orderBy('id')->take(3)->get();
+                $postRelated = Post::where('category_id', $categoryObject->id)->where('status','=', 1)->orderBy('created_at', 'DESC')->take(3)->get();
             }
 
             $post = Post::where('url','=', $slug)->firstOrFail();
