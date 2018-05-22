@@ -184,11 +184,11 @@ class HomeController extends Controller
         if ($slug) {
             
             $categoryObject = Category::where('url','=', $category)->firstOrFail();
-            if ($categoryObject) {
-                $postRelated = Post::where('category_id', $categoryObject->id)->where('status','=', 1)->orderBy('created_at', 'DESC')->take(3)->get();
-            }
-
             $post = Post::where('url','=', $slug)->firstOrFail();
+            if ($categoryObject) {
+                $postRelated = Post::where('category_id', $categoryObject->id)->where('id','!=', $post->id)->where('status','=', 1)->orderBy('created_at', 'DESC')->take(3)->get();
+            }
+            
             return view('site/post_detail', ['post' => $post ,
                                             'postRelated' =>  $postRelated]);
         }
