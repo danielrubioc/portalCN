@@ -21,6 +21,9 @@ Route::get('/talleres-inscritos', 'HomeController@viewWorkshopsIns')->name('home
 //************* users **************///
 Route::resource('users', 'UserController')->middleware('validRole:admin.attention');
 Route::post('/registerUserAndWorkshop/store', 'UserController@registerUserAndWorkshop')->name('users.registerUserAndWorkshop');
+Route::get('download-excel-file/users', array('as'=>'excel-file','uses'=>'UserController@export'))->middleware('validRole:admin.attention');
+Route::post('upload-users', 'UserController@import')->middleware('validRole:admin.attention');
+
 
 //rutas perfil
 Route::get('/profile/show', 'UserController@profile')->name('users.profile')->middleware('auth');
@@ -56,6 +59,7 @@ Route::get('/workshops/listAsisstance/{idWork}', 'LessonsController@listAssistan
 Route::post('/workshops/listAsisstance/save', 'LessonsController@saveList')->name('lessons.saveList')->middleware('validRole:admin.teacher.publisher');
 //class calendar
 Route::get('/workshops/listClass/{idWork}', 'LessonsController@listLesson')->name('lessons.listLesson');
+Route::post('/lessons/upload-lesson', 'LessonsController@import')->middleware('validRole:admin.attention');
 
 Route::resource('students', 'StudentsController');
 Route::get('/registro/{slug}', ['as' => 'students', 'uses' => 'StudentsController@probar']);

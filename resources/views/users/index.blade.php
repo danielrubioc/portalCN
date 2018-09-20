@@ -10,9 +10,12 @@
 	<div id="gral-list-index">
 	<div class="content-gral-index">	
 		
-	    
+ 
 	    <div class="title-gral-index">
 			<a href="{{ URL::to('users/create') }}" class="btn btn-success btn-create-gral">Nuevo usuario <i class="fa fa-plus-circle" aria-hidden="true"></i></a>	
+			<a href="{{ URL::to('download-excel-file/users') }}" target="_blank" class="btn btn-success btn-create-gral">Descargar listado <i class="fa fa-cloud-download" aria-hidden="true"></i></a>	
+			<a data-toggle="modal" data-target="#myModal" class="btn btn-success btn-create-gral">Cargar usuarios <i class="fa fa-cloud-upload" aria-hidden="true"></i></a>	
+ 
 			<h1>Lista de Usuarios</h1>
 
 			    <form class="form-search-general form-inline my-2 my-lg-0 col-md-4" method="GET" action="{{ action('UserController@index') }}">
@@ -87,4 +90,69 @@
 </div>
 	</div> 
  </div> 
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+  	<form  action="{{ URL::to('upload-users') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+    <!-- Modal content-->
+    <div class="modal-content">
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        	<h4 class="modal-title">Carga de usuarios</h4>
+      	</div>
+      	<div class="modal-body">
+			{{ csrf_field() }}
+			<input type="file" name="import_file" accept=".xlsx, .xls, .csv" />
+       	</div>
+      	<div class="modal-footer">
+      		<button type="submit" class="btn btn-primary">Subir archivo</button>
+        	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      	</div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<div id="errorsUser" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+	    <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Registros con errores</h4>
+	    </div>
+      	<div class="modal-body">
+      	@if (!empty($error_users))		
+      		<table class="table table-responsive table-perzonalise table-striped">
+      		<thead>
+    			<tr>	
+ 					<td>Nombre</td>
+					<td>Email</td>
+					<td>rut</td>
+					<td>Observación</td>
+    			</tr>
+	    	</thead>
+	    	<tbody>
+    			 @foreach ($error_users as $user_er)
+	    			<tr>
+ 					    <td>{{ $user_er['name'] }} {{ $user_er['last_name'] }}</td>
+					    <td>{{ $user_er['email']  }}</td>
+					    <td>{{ $user_er['rut'] }}</td>
+					     
+					  	<td>{{ $user_er['observación'] }}</td>
+	    			</tr>
+    			@endforeach
+	    	</tbody>
+	    	</table>
+		@endif
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 @endsection

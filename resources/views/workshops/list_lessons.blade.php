@@ -9,6 +9,7 @@
 	<div class="gral-list-content">
 		<div class="control-btne-crud">
             <a href="{{ URL::to('workshops') }}" class="btn btn-success btn-create-gral">Volver a Talleres</a>
+            <a data-toggle="modal" data-target="#myModal" class="btn btn-success btn-create-gral">Cargar clases <i class="fa fa-cloud-upload" aria-hidden="true"></i></a>  
         </div>
 	    <div class="title-gral-index">
 			<h1>Calendario de clases </h1>	
@@ -113,7 +114,28 @@
             </div>
         </div>
 
-                
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+            <form  action="{{ URL::to('lessons/upload-lesson') }}" class="form-horizontal" method="post" enctype="multipart/form-data">    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Carga de clases</h4>
+                      </div>
+                      <div class="modal-body">
+                            {{ csrf_field() }}
+                            <input type="file" name="import_file" />
+                            <input type="hidden" id="id" name="id" value="{{ $workshops->id }}">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Subir archivo</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                      </div>
+                </div>
+            </form>
+          </div>
+        </div>
 
 	    
 		<div class="col-md-12 no-padding">

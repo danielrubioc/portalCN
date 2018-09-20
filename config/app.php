@@ -180,6 +180,8 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
 
     ],
@@ -233,6 +235,10 @@ return [
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Image' => Intervention\Image\Facades\Image::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
+
+        
 
     ],
 
