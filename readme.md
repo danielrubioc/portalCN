@@ -18,8 +18,8 @@
 - php artisan vendor:publish --tag=ckeditor
 - Gulp: sudo npm install -g gulp
 - gulp --production en raíz del proyecto.
-- php artisan serve
-- test commit
+- php artisan vendor:publish --all
+
 
 
 

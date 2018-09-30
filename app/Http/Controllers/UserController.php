@@ -118,6 +118,17 @@ class UserController extends Controller
     public function export() 
     {
         $users = User::get()->toArray();
+        $roles = Role::get()->toArray();
+
+         
+        foreach ($users as $key => $user) {
+           foreach ($roles as $e => $rol) {
+               if ($rol['id'] == $user['role_id']) {
+                   $users[$key]['rol'] = $rol['name'];
+               }
+           }
+        }
+        
         return Excel::create('usuarios', function($excel) use ($users) {
             $excel->sheet('Listado', function($sheet) use ($users)
             {
@@ -163,7 +174,7 @@ class UserController extends Controller
                             'role_id' => 3,
                             'password' => bcrypt($value->password),
                             'phone' => $value->telefono,
-                            'cel_phone' => $value->celular,
+                            'cell_phone' => $value->celular,
                             'age' => $value->edad,
                             'birth_date' => $value->fecha_nacimiento,
                             'address' => $value->direccion,
@@ -209,10 +220,11 @@ class UserController extends Controller
  
                 if ($error_users) {
                     //flash( count($error_users). ' registros no se pudieron crear, revisa los datos del archivo.'. ' <a data-toggle="modal" data-target="#errorsUser" class="btn btn-success alert-danger" style="    background: #d9534f;">Ver errores <i class="fa fa-plus-circle" aria-hidden="true"></i></a>    ' )->error();   
-                    flash( count($error_users). ' registros no se pudieron crear, revisa los datos del archivo.' )->error();   
+                    foreach ($error_users as $key => $value) {
+                        flash( '"'.$value['name']. $value['last_name'].'" no se pudo crear usuario. <br> Observación: ' .$value['observación'] )->error();   
 
-                    session(['error_users' => $error_users]);
-
+                    }
+ 
 
                 }
                 if ($correct_users) {
@@ -389,6 +401,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'rut' => 'required|string|max:255|unique:users',
+            'g-recaptcha-response' => 'required|captcha',
             'password' => 'required|string|min:6|confirmed',
         ],  $messages);
 

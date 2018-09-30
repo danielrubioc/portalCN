@@ -221,6 +221,15 @@
                             </div>
                         </div>    
                         <div class="form-group">
+                            <div class=" col-md-2 " style="text-align:left;">  
+                                {!! app('captcha')->display($attributes = [], $options = ['lang'=> 'es']) !!}
+                            
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong style="color: #a94442">Debes completar el captcha</strong>
+                                    </span>
+                                @endif
+                            </div>
                             <div class="col-md-12 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary btn-register-user">
                                     Registrar 

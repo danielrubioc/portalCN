@@ -22,7 +22,7 @@
 
                 <div class="col-md-12 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="name" type="text" class="form-control effect-placeholder" name="name" value="{{ old('name') }}" required autofocus>
+                        <input id="name" type="text" class="form-control effect-placeholder {{ $errors ? ' empty' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                         <label for="name">Nombre</label>
                         <span class="focus-border"></span>
                         @if ($errors->has('name'))
@@ -35,7 +35,7 @@
 
                 <div class="col-md-12  form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="email" type="email" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control effect-placeholder {{ $errors ? ' empty' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                         <label for="email">email</label>
                         <span class="focus-border"></span>
                         @if ($errors->has('email'))
@@ -57,7 +57,15 @@
                         @endif
                     </div>
                 </div>
-
+                <div class=" col-md-12 " style="text-align:left;">  
+                    {!! app('captcha')->display($attributes = [], $options = ['lang'=> 'es']) !!}
+                
+                    @if ($errors->has('g-recaptcha-response'))
+                        <span class="help-block">
+                            <strong style="color: #a94442">Debes completar el captcha</strong>
+                        </span>
+                    @endif
+                </div>
 
                 <br>
 
@@ -91,7 +99,7 @@
 
                 <div class="col-md-6 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="name" type="text" class="form-control effect-placeholder" name="name" value="{{ old('name') }}" required autofocus>
+                        <input id="name" type="text" class="form-control effect-placeholder {{ $errors ? ' empty' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
                         <label for="name">Nombre</label>
                         <span class="focus-border"></span>
                         @if ($errors->has('name'))
@@ -104,7 +112,7 @@
 
                 <div class="col-md-6  form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="input-effect">
-                        <input id="email" type="email" class="form-control effect-placeholder" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control effect-placeholder {{ $errors ? ' empty' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
                         <label for="email">email</label>
                         <span class="focus-border"></span>
                         @if ($errors->has('email'))
@@ -127,6 +135,15 @@
                     </div>
                 </div>
 
+                <div class=" col-md-2 " style="text-align:left;">  
+                    {!! app('captcha')->display($attributes = [], $options = ['lang'=> 'es']) !!}
+                
+                    @if ($errors->has('g-recaptcha-response'))
+                        <span class="help-block">
+                            <strong style="color: rgb(249, 249, 249)">Debes completar el captcha</strong>
+                        </span>
+                    @endif
+                </div>
 
                 <br>
 

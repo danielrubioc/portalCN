@@ -324,7 +324,16 @@
 									@endif
 								</div>
 							</div>
-
+							<div class=" col-md-12 " style="text-align:left;">  
+			                    {!! app('captcha')->display($attributes = [], $options = ['lang'=> 'es']) !!}
+			                
+			                    @if ($errors->has('g-recaptcha-response'))
+			                        <span class="help-block">
+			                            <strong style="color: #a94442">Debes completar el captcha</strong>
+			                        </span>
+			                    @endif
+			                </div>
+			                <br><br><br>
 							<div class="form-group">
 								<div class="col-md-12 col-md-offset-4">
 									<button id="inscribirme" type="submit" class="btn btn-primary">
@@ -674,7 +683,16 @@
 									@endif
 								</div>
 							</div>
-
+							<div class=" col-md-12 " style="text-align:left;">  
+			                    {!! app('captcha')->display($attributes = [], $options = ['lang'=> 'es']) !!}
+			                
+			                    @if ($errors->has('g-recaptcha-response'))
+			                        <span class="help-block">
+			                            <strong style="color: #a94442">Debes completar el captcha</strong>
+			                        </span>
+			                    @endif
+			                </div>
+			                <br><br>
 							<div class="form-group">
 								<div class="col-md-12 col-md-offset-4">
 									<button id="inscribirme" type="submit" class="btn btn-primary">
@@ -766,8 +784,7 @@
                 
             }
 
-            console.log('eres extraño');
-            
+             
         });
 
         ////edad

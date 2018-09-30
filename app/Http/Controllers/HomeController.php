@@ -16,7 +16,7 @@ use App\Banner;
 use Mail;
 use Auth;
 use Image;
-
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -158,6 +158,24 @@ class HomeController extends Controller
     {
         $email = $request['email'];
         
+        $messages = array(
+            'unique'    => 'El :attribute ya ha sido registrado.',
+            'required' => 'El :attribute es obligatorio',
+        );
+        // validacion segun Validator
+        $validator = Validator::make($request->all(), [
+            'g-recaptcha-response' => 'required|captcha',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+        ],  $messages);
+
+        if ($validator->fails()) {
+            return redirect('contacto')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+
         Mail::send('emails.contact-notification', $request->all(), function($msj){
             $msj->subject('Corrreo de contacto  - Corporación del Deporte Cerro Navia');
             $msj->to('contacto@deportescerronavia.cl');
