@@ -23,6 +23,7 @@ Route::resource('users', 'UserController')->middleware('validRole:admin.attentio
 Route::post('/registerUserAndWorkshop/store', 'UserController@registerUserAndWorkshop')->name('users.registerUserAndWorkshop');
 Route::get('download-excel-file/users', array('as'=>'excel-file','uses'=>'UserController@export'))->middleware('validRole:admin.attention');
 Route::post('upload-users', 'UserController@import')->middleware('validRole:admin.attention');
+Route::post('update-users', 'UserController@importUpdate')->middleware('validRole:admin.attention');
 
 
 //rutas perfil

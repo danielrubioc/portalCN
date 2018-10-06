@@ -119,20 +119,41 @@ class UserController extends Controller
     {
         $users = User::get()->toArray();
         $roles = Role::get()->toArray();
-
+        $usersReturns = [];
          
         foreach ($users as $key => $user) {
-           foreach ($roles as $e => $rol) {
-               if ($rol['id'] == $user['role_id']) {
-                   $users[$key]['rol'] = $rol['name'];
-               }
-           }
+            $usersReturns[$key]['id'] = $user['id'];
+            $usersReturns[$key]['name'] = $user['name'];
+            $usersReturns[$key]['last_name'] = $user['last_name'];
+            $usersReturns[$key]['email'] = $user['email'];
+            $usersReturns[$key]['rut'] = $user['rut'];
+            $usersReturns[$key]['birth_date'] = $user['birth_date'];
+            $usersReturns[$key]['age'] = $user['age'];
+            $usersReturns[$key]['address'] = $user['address'];
+            $usersReturns[$key]['phone'] = $user['phone'];
+            $usersReturns[$key]['cell_phone'] = $user['cell_phone'];
+            $usersReturns[$key]['school'] = $user['school'];
+            $usersReturns[$key]['health'] = $user['health'];
+            $usersReturns[$key]['health_problem'] = $user['health_problem'];
+            $usersReturns[$key]['headline_full_name'] = $user['headline_full_name'];
+            $usersReturns[$key]['headline_email'] = $user['headline_email'];
+            $usersReturns[$key]['headline_phone'] = $user['headline_phone'];
+            $usersReturns[$key]['headline_rut'] = $user['headline_rut'];
+            $usersReturns[$key]['status'] = $user['status'];
+            $usersReturns[$key]['created_at'] = $user['created_at'];
+            $usersReturns[$key]['updated_at'] = $user['updated_at'];
+
+            foreach ($roles as $e => $rol) {
+                if ($rol['id'] == $user['role_id']) {
+                    $usersReturns[$key]['rol'] = $rol['name'];
+                }
+            }
         }
         
-        return Excel::create('usuarios', function($excel) use ($users) {
-            $excel->sheet('Listado', function($sheet) use ($users)
+        return Excel::create('usuarios', function($excel) use ($usersReturns) {
+            $excel->sheet('Listado', function($sheet) use ($usersReturns)
             {
-                $sheet->fromArray($users);
+                $sheet->fromArray($usersReturns);
             });
         })->download('xls');
     }
@@ -151,11 +172,11 @@ class UserController extends Controller
                 foreach ($data as $key => $value) {
                     //'name', 'last_name','email',  'status', 'role_id', 'password', 'rut', 'validate', 'age', 'health', 'health_problem', 'school', 'headline_full_name', 'headline_email', 'headline_rut', 'headline_phone',
                     //rol usuario
-                    switch ($value->role_id) {
-                        case 'profesor':
+                    switch ($value->rol) {
+                        case 'teacher':
                             $value->role_id = 2;
                             break;
-                        case 'público':
+                        case 'public':
                             $value->role_id = 3;
                             break;
                         case 'publisher':
@@ -167,25 +188,25 @@ class UserController extends Controller
                     }
 
                     $insert[$key] = [
-                            'name' => $value->nombre, 
-                            'last_name' => $value->apellido,
-                            'email' => $value->correo,
+                            'name' => $value->name, 
+                            'last_name' => $value->last_name,
+                            'email' => $value->email,
                             'status' => 1,
                             'role_id' => 3,
                             'password' => bcrypt($value->password),
-                            'phone' => $value->telefono,
-                            'cell_phone' => $value->celular,
-                            'age' => $value->edad,
-                            'birth_date' => $value->fecha_nacimiento,
-                            'address' => $value->direccion,
+                            'phone' => $value->phone,
+                            'cell_phone' => $value->cell_phone,
+                            'age' => $value->age,
+                            'birth_date' => $value->birth_date,
+                            'address' => $value->address,
                             'rut' => $value->rut,
-                            'health' => ($value->problema_salud == 'si') ? 1 : 0,
-                            'health_problem' => $value->especifique_problema,
-                            'school' => $value->colegio,
-                            'headline_full_name' => $value->nombre_completo_apoderado,
-                            'headline_email' => $value->correo_apoderado,
-                            'headline_phone' => $value->telefono_apoderado,
-                            'headline_rut' => $value->rut_apoderado,
+                            'health' => ($value->health == 'si') ? 1 : 0,
+                            'health_problem' => $value->health_problem,
+                            'school' => $value->school,
+                            'headline_full_name' => $value->headline_full_name,
+                            'headline_email' => $value->headline_email,
+                            'headline_phone' => $value->headline_phone,
+                            'headline_rut' => $value->headline_rut,
                     ];
 
                     //validacion
@@ -236,6 +257,100 @@ class UserController extends Controller
                 */
                 return redirect('/users');
             
+
+            }
+        }
+    }
+
+     public function importUpdate(Request $request) 
+    {   
+        $error_users= [];
+        $correct_users= [];
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    //'name', 'last_name','email',  'status', 'role_id', 'password', 'rut', 'validate', 'age', 'health', 'health_problem', 'school', 'headline_full_name', 'headline_email', 'headline_rut', 'headline_phone',
+                    //rol usuario
+                    switch ($value->rol) {
+                        case 'teacher':
+                            $value->role_id = 2;
+                            break;
+                        case 'public':
+                            $value->role_id = 3;
+                            break;
+                        case 'publisher':
+                            $value->role_id = 4;
+                            break;
+                        case 'atencion':
+                            $value->role_id = 5;
+                            break;    
+                    }
+
+
+                    $user = User::find($value->id); 
+ 
+                    if ($user) {
+
+
+                        $insert[$key] = [
+                            'name' => $value->name, 
+                            'last_name' => $value->last_name,
+                            'email' => $value->email,
+                            'status' => $value->status,
+                            'role_id' => $value->role_id ? $value->role_id : $user->role_id,
+                            'phone' => $value->phone ? $value->phone : $user->phone,
+                            'cell_phone' => $value->cell_phone ? $value->cell_phone : $user->cell_phone,
+                            'age' => $value->age ? $value->age : $user->age,
+                            'birth_date' => $value->birth_date ? $value->birth_date : $user->birth_date,
+                            'address' => $value->address ? $value->address : $user->address,
+                            'rut' => $value->rut ? $value->rut : $user->rut,
+                            'health' => ($value->health == 'si') ? 1 : 0,
+                            'health_problem' => $value->rut ? $value->rut : $user->rut,
+                            'school' => $value->school ? $value->school : $user->school,
+                            'headline_full_name' => $value->headline_full_name ? $value->headline_full_name : $user->headline_full_name,
+                            'headline_email' => $value->headline_email ? $value->headline_email : $user->headline_email,
+                            'headline_phone' => $value->headline_phone ? $value->headline_phone : $user->headline_phone,
+                            'headline_rut' => $value->headline_rut ? $value->headline_rut : $user->headline_rut,
+                        ];
+                        
+                        //validacion
+                        $messages = array(
+                            'password.min'    => 'La contraseña debe tener al menos 6 caracteres.',
+                            'unique'    => 'El :attribute ya ha sido registrado.',
+                            'required' => 'El :attribute es obligatorio',
+                            'email' => 'El correo electronico debe ser una direccion de correo electronico valida',
+                            'max' => 'Supera los caracteres permitidos',
+                        ); 
+                        $validator = Validator::make($insert[$key], [
+                            'name' => 'required|string|max:190',
+                            'last_name' => 'max:190',
+                            'last_name' => 'max:190',
+                            'address' => 'max:190',
+                            'email' => 'required|string|email|max:255|unique:users,id,'. $user->id,
+                            'rut' => 'required|string|max:255|unique:users,id,'. $user->id
+                         ], $messages);
+
+                         if ($validator->fails()) {
+                            $error_users[$key]['name'] = $insert[$key]['name']; 
+                            $error_users[$key]['last_name'] = $insert[$key]['name'];
+                            $error_users[$key]['email'] = $insert[$key]['email'];
+                            $error_users[$key]['rut'] = $insert[$key]['rut'];
+                            $error_users[$key]['observación'] = $validator->messages()->toJson();
+                        } else {
+                            $user->fill($insert[$key]);
+
+                            $user->save();
+                             
+                        }
+
+                    }
+ 
+ 
+                }
+                return redirect('/users');
 
             }
         }
